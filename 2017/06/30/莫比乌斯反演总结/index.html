@@ -1,595 +1,1072 @@
+
 <!DOCTYPE html>
 <html lang="zh-cn">
-
+    
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="Goseqh&#39;s Blog">
-  <title>莫比乌斯反演总结 - Goseqh&#39;s Blog</title>
-  <meta name="author" content="Goseqh">
-
-  <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1498830214/86545_qwhjrk.jpg">
-
-  <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
-
-  <meta name="description" content="引言 首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总">
-  <meta name="keywords" content="数学,数论,莫比乌斯反演">
-  <meta property="og:type" content="blog">
-  <meta property="og:title" content="莫比乌斯反演总结">
-  <meta property="og:url" content="https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/index.html">
-  <meta property="og:site_name" content="Goseqh&#39;s Blog">
-  <meta property="og:description" content="引言 首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总">
-  <meta property="og:updated_time" content="2017-07-01T00:27:30.230Z">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="莫比乌斯反演总结">
-  <meta name="twitter:description" content="引言 首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总">
-
-  <meta property="og:image" content="https://GQH123.github.io/assets/images/2016-02-23.png"
-  />
-
-  <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg"
-  />
-  <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg"
-  />
-
-  <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg"
-  />
-  <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg"
-  />
-
-  <!--STYLES-->
-  <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
-  <!--STYLES END-->
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Goseqh&#39;s Blog">
+    <title>莫比乌斯反演总结 - Goseqh&#39;s Blog</title>
+    <meta name="author" content="Goseqh">
+    
+    
+        <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1498830214/86545_qwhjrk.jpg">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="引言首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总">
+<meta name="keywords" content="数学,数论,莫比乌斯反演">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="莫比乌斯反演总结">
+<meta property="og:url" content="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/index.html">
+<meta property="og:site_name" content="Goseqh&#39;s Blog">
+<meta property="og:description" content="引言首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总">
+<meta property="og:image" content="http://218.62.22.209:8080/upload/201411/image/noi/NOI20100101.jpg">
+<meta property="og:updated_time" content="2017-07-01T11:28:40.581Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="莫比乌斯反演总结">
+<meta name="twitter:description" content="引言首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总">
+<meta name="twitter:image" content="http://218.62.22.209:8080/upload/201411/image/noi/NOI20100101.jpg">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://goseqh.tk/assets/images/2016-02-23.png"/>
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" />
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
+    <!--STYLES END-->
+    
+    
 </head>
 
-<body>
-  <div id="blog">
-    <!-- Define author's picture -->
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
 
-    <header id="header" data-behavior="5">
-      <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-      <div class="header-title">
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
         <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
-      </div>
-
-      <a class="header-right-icon " href="/about">
-
-        <i class="fa fa-lg fa-question"></i>
-
-      </a>
-
-    </header>
-
-    <!-- Define author's picture -->
-
-    <nav id="sidebar" data-behavior="5">
-      <div class="sidebar-container">
-
-        <div class="sidebar-profile">
-          <a href="/#about">
-            <img class="sidebar-profile-picture" src="/assets/images/2016-02-23.png" alt="作者的图片"
-            />
-          </a>
-          <h4 class="sidebar-profile-name">Goseqh</h4>
-
-          <h5 class="sidebar-profile-bio">
-            <p>author.bio</p>
-          </h5>
-
-        </div>
-
-        <ul class="sidebar-buttons">
-
-          <li class="sidebar-button">
-
-            <a class="sidebar-button-link " href="/ ">
-
-              <i class="sidebar-button-icon fa fa-lg fa-home"></i>
-              <span class="sidebar-button-desc">首页</span>
-            </a>
-          </li>
-
-          <li class="sidebar-button">
-
-            <a class="sidebar-button-link " href="/all-categories">
-
-              <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
-              <span class="sidebar-button-desc">分类</span>
-            </a>
-          </li>
-
-          <li class="sidebar-button">
-
-            <a class="sidebar-button-link " href="/all-tags">
-
-              <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
-              <span class="sidebar-button-desc">标签</span>
-            </a>
-          </li>
-
-          <li class="sidebar-button">
-
-            <a class="sidebar-button-link " href="/all-archives">
-
-              <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
-              <span class="sidebar-button-desc">归档</span>
-            </a>
-          </li>
-
-          <li class="sidebar-button">
-
-            <a class="sidebar-button-link open-algolia-search" href="#search">
-
-              <i class="sidebar-button-icon fa fa-lg fa-search"></i>
-              <span class="sidebar-button-desc">搜索</span>
-            </a>
-          </li>
-
-          <li class="sidebar-button">
-
-            <a class="sidebar-button-link " href="/about">
-
-              <i class="sidebar-button-icon fa fa-lg fa-question"></i>
-              <span class="sidebar-button-desc">关于</span>
-            </a>
-          </li>
-
-        </ul>
-
-        <ul class="sidebar-buttons">
-
-        </ul>
-
-      </div>
-    </nav>
-
-    <div class="post-header-cover
-                    text-left
-                    " style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg');"
-                                                                                    data-behavior="5">
-
-      <div class="post-header main-content-wrap text-left">
-
-        <h1 class="post-title" itemprop="headline">
-          莫比乌斯反演总结
-        </h1>
-
-        <div class="post-meta">
-          <time itemprop="datePublished" datetime="2017-06-30T17:19:21+08:00">
-
-            6月 30, 2017
-
-          </time>
-
-        </div>
-
-      </div>
-
     </div>
+    
+        
+            <a  class="header-right-icon "
+                href="#about">
+        
+        
+            <i class="fa fa-lg fa-home"></i>
+        
+        </a>
+    
+</header>
 
-    <div id="main" data-behavior="5" class="hasCover
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/2016-02-23.png" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Goseqh</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    "
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg');"
+             data-behavior="5">
+            
+                <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            莫比乌斯反演总结
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2017-06-30T17:19:21+08:00">
+	
+		    6月 30, 2017
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+            
+        </div>
+
+            <div id="main" data-behavior="5"
+                 class="hasCover
                         hasCoverMetaIn
                         hasCoverCaption">
-      <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
         <span class="post-header-cover-caption caption">数学像涓涓细流，汇入科学的灵魂深处</span>
+    
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br><a id="more"></a></p>
+<p><del>说实话你把高效的公式推导出来了代码还不会编么，然后不就轻松AC了么</del></p>
+<ul>
+<li><a href="#莫比乌斯反演总结">莫比乌斯反演总结</a></li>
+<li><a href="#引言">引言</a></li>
+<li><a href="#约定">约定</a><ul>
+<li><a href="#莫比乌斯函数x">莫比乌斯函数μ(x)</a></li>
+<li><a href="#恒等函数idx">恒等函数id(x)</a></li>
+<li><a href="#欧拉函数x">欧拉函数(x)</a></li>
+<li><a href="#单位函数ex">单位函数e(x)</a></li>
+</ul>
+</li>
+<li><a href="#常用定理">常用定理</a><ul>
+<li><a href="#质因子定理">质因子定理</a></li>
+<li><a href="#调和级数定理">调和级数定理</a></li>
+<li><a href="#平方根调和级数定理">平方根调和级数定理</a></li>
+<li><a href="#dirichlet卷积运算律定理">Dirichlet卷积运算律定理</a></li>
+<li><a href="#dirichlet卷积性质定理">Dirichlet卷积性质定理</a></li>
+<li><a href="#dirichlet卷积复杂度定理">Dirichlet卷积复杂度定理</a></li>
+<li><a href="#莫比乌斯反演定理">莫比乌斯反演定理</a><ul>
+<li><a href="#a形式">A形式</a></li>
+<li><a href="#b形式">B形式</a></li>
+</ul>
+</li>
+<li><a href="#函数定理">φ函数定理</a></li>
+</ul>
+</li>
+<li><a href="#数论公式推导技巧">数论公式推导技巧</a><ul>
+<li><a href="#变换">μ变换</a></li>
+<li><a href="#提取">μ提取</a></li>
+<li><a href="#变换">φ变换</a></li>
+<li><a href="#积性函数提取">积性函数提取</a></li>
+<li><a href="#dirichlet卷积">Dirichlet卷积</a></li>
+<li><a href="#交换不变性">交换不变性</a></li>
+</ul>
+</li>
+<li><a href="#数论公式计算技巧">数论公式计算技巧</a><ul>
+<li><a href="#dirichlet卷积计算方法">Dirichlet卷积计算方法</a></li>
+<li><a href="#积性函数线性筛法">积性函数线性筛法</a></li>
+</ul>
+</li>
+<li><a href="#常用公式推导">常用公式推导</a><ul>
+<li><a href="#单维分块法计算">单维分块法计算</a></li>
+<li><a href="#双维分块法计算">双维分块法计算</a></li>
+<li><a href="#最大公约数统计">最大公约数统计</a></li>
+<li><a href="#最小公倍数统计">最小公倍数统计</a></li>
+</ul>
+</li>
+<li><a href="#例题总结">例题总结</a><ul>
+<li><a href="#noi2010能量采集">[Noi2010]能量采集</a></li>
+<li><a href="#yy的gcd">YY的GCD</a><ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#input">Input</a></li>
+<li><a href="#output">Output</a></li>
+<li><a href="#sample-input">Sample Input</a></li>
+<li><a href="#sample-output">Sample Output</a></li>
+<li><a href="#hint">HINT</a></li>
+<li><a href="#题解">题解</a></li>
+<li><a href="#代码">代码</a></li>
+</ul>
+</li>
+<li><a href="#spoj5971-lcm-sum">Spoj5971 LCM Sum</a><ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#input">Input</a></li>
+<li><a href="#output">Output</a></li>
+<li><a href="#sample-input">Sample Input</a></li>
+<li><a href="#sample-output">Sample Output</a></li>
+<li><a href="#hint">HINT</a></li>
+<li><a href="#题解">题解</a></li>
+<li><a href="#代码">代码</a></li>
+</ul>
+</li>
+<li><a href="#cqoi2007余数之和sum">[CQOI2007]余数之和sum</a><ul>
+<li><a href="#题目描述">题目描述</a></li>
+<li><a href="#输入">输入</a></li>
+<li><a href="#输出">输出</a></li>
+<li><a href="#样例输入">样例输入</a></li>
+<li><a href="#样例输出">样例输出</a></li>
+<li><a href="#提示">提示</a></li>
+<li><a href="#题解">题解</a></li>
+<li><a href="#代码">代码</a></li>
+</ul>
+</li>
+<li><a href="#jzptab">jzptab</a><ul>
+<li><a href="#题目描述">题目描述</a></li>
+<li><a href="#输入">输入</a></li>
+<li><a href="#输出">输出</a></li>
+<li><a href="#样例输入">样例输入</a></li>
+<li><a href="#样例输出">样例输出</a></li>
+<li><a href="#提示">提示</a></li>
+<li><a href="#题解">题解</a></li>
+<li><a href="#代码">代码</a><h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2>首先规定几个常用的数论函数：<h3 id="莫比乌斯函数μ-x"><a href="#莫比乌斯函数μ-x" class="headerlink" title="莫比乌斯函数μ(x)"></a>莫比乌斯函数μ(x)</h3><script type="math/tex; mode=display">\mu(x)=\begin{cases}
+1,& x=1\\\\
+(-1)^{n},& x=\prod_{i=1}^{n}p_i\mbox{ }\mbox{ }\mbox{ (}p_i\mbox{两两不同且为质数)}\\\\
+0,&\exists p^2\mid x \mbox{  且 }p\mbox{为质数}
+\end{cases}</script><h3 id="恒等函数id-x"><a href="#恒等函数id-x" class="headerlink" title="恒等函数id(x)"></a>恒等函数id(x)</h3><script type="math/tex; mode=display">id(x)\equiv x</script><h3 id="欧拉函数-x"><a href="#欧拉函数-x" class="headerlink" title="欧拉函数(x)"></a>欧拉函数(x)</h3><script type="math/tex; mode=display">
+\varphi(x)=x*\prod_{i=1}^{n}\left(1-\frac{1}{p_i}\right)&\mbox{其中 }x=\prod_{i=1}^{n}p_i &\mbox{(}p_i \mbox{两两不同且为质数)}</script><h3 id="单位函数e-x"><a href="#单位函数e-x" class="headerlink" title="单位函数e(x)"></a>单位函数e(x)</h3><script type="math/tex; mode=display">e(x)=\begin{cases}
+1,&x=1 \\\\
+0,&x>1
+\end{cases}</script></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="常用定理"><a href="#常用定理" class="headerlink" title="常用定理"></a>常用定理</h2><p>先列一发大纲：</p>
+<ul>
+<li>质因子定理</li>
+</ul>
+<ul>
+<li>调和级数定理</li>
+</ul>
+<ul>
+<li>$Dirichlet$卷积运算律定理</li>
+</ul>
+<ul>
+<li>$Dirichlet$卷积性质定理</li>
+</ul>
+<ul>
+<li>$Dirichlet$卷积复杂度定理</li>
+</ul>
+<ul>
+<li>莫比乌斯反演定理</li>
+</ul>
+<ul>
+<li>$\varphi$函数定理</li>
+</ul>
+<h3 id="质因子定理"><a href="#质因子定理" class="headerlink" title="质因子定理"></a>质因子定理</h3><p>自己命名，指的是下面这个等式：</p>
+<script type="math/tex; mode=display">gcd(i,j)*lcm(i,j)\equiv i*j</script><p>证明较为容易</p>
+<h3 id="调和级数定理"><a href="#调和级数定理" class="headerlink" title="调和级数定理"></a>调和级数定理</h3><p>即有下面的等式：</p>
+<script type="math/tex; mode=display">\sum_{d=1}^{N}\frac{N}{d}=N\log N</script><p>微积分证明</p>
+<h3 id="平方根调和级数定理"><a href="#平方根调和级数定理" class="headerlink" title="平方根调和级数定理"></a>平方根调和级数定理</h3><p>即有下面的等式：</p>
+<script type="math/tex; mode=display">\sum_{d=1}^{N}\sqrt{\frac{N}{d}}=N</script><p>微积分证明</p>
+<h3 id="Dirichlet卷积运算律定理"><a href="#Dirichlet卷积运算律定理" class="headerlink" title="Dirichlet卷积运算律定理"></a>Dirichlet卷积运算律定理</h3><p>$Dirichlet$卷积满足：<strong>交换律，结合律</strong><br>证明较为容易</p>
+<h3 id="Dirichlet卷积性质定理"><a href="#Dirichlet卷积性质定理" class="headerlink" title="Dirichlet卷积性质定理"></a>Dirichlet卷积性质定理</h3><p>两个<strong>积性函数</strong>的$Dirichlet$卷积仍然是<strong>积性函数</strong><br>证明较为容易</p>
+<h3 id="Dirichlet卷积复杂度定理"><a href="#Dirichlet卷积复杂度定理" class="headerlink" title="Dirichlet卷积复杂度定理"></a>Dirichlet卷积复杂度定理</h3><p>我们可以枚举每一个数字并对它的每一个倍数进行统计计算，这样做的复杂度是调和级数，由上述定理，有$Dirichlet$卷积复杂度为$O(\sum_{d=1}^{N}\frac{N}{d}=N\log N)$</p>
+<h3 id="莫比乌斯反演定理"><a href="#莫比乌斯反演定理" class="headerlink" title="莫比乌斯反演定理"></a>莫比乌斯反演定理</h3><p>有两种形式：</p>
+<h4 id="A形式"><a href="#A形式" class="headerlink" title="A形式"></a>A形式</h4><script type="math/tex; mode=display">F(n)=\sum_{d|n} f(d) \Leftrightarrow f(n)=\sum_{d|n} \mu(d)*F(\frac{n}{d})</script><h4 id="B形式"><a href="#B形式" class="headerlink" title="B形式"></a>B形式</h4><script type="math/tex; mode=display">F(n)=\sum_{n|d} f(d) \Leftrightarrow f(n)=\sum_{n|d} \mu(\frac{d}{n})*F(d)</script><p>可以通过数学变换或是$Dirichlet$卷积来进行证明</p>
+<h3 id="φ函数定理"><a href="#φ函数定理" class="headerlink" title="φ函数定理"></a>φ函数定理</h3><p>定义$F(x)$ 表示所有小于$x$且与$x$互质的数的和，其中$x&gt;1$，则有：</p>
+<script type="math/tex; mode=display">F(x)=\varphi(x)*\frac{x}{2}</script><p>这个的推导比较简单，留给读者自行思考</p>
+<h2 id="数论公式推导技巧"><a href="#数论公式推导技巧" class="headerlink" title="数论公式推导技巧"></a>数论公式推导技巧</h2><p>先列一发大纲</p>
+<ul>
+<li>$\mu$变换</li>
+</ul>
+<ul>
+<li>$\mu$提取</li>
+</ul>
+<ul>
+<li>$\varphi$变换</li>
+</ul>
+<ul>
+<li>积性函数提取</li>
+</ul>
+<ul>
+<li>$Dirichlet$卷积</li>
+</ul>
+<p>下面一个个地进行说明</p>
+<h3 id="μ变换"><a href="#μ变换" class="headerlink" title="μ变换"></a>μ变换</h3><p>其实这个非常简单啦，但是有的时候容易被人忽略，大概形式就是这样的：</p>
+<script type="math/tex; mode=display">[P(x)==k]\Leftrightarrow\sum_{d\mid P(x)/k}\mu(d)</script><p>这个应该都很容易看懂吧……</p>
+<p>这个公式也许有人不太习惯使用，但实际上当你学会了他以后，你会对莫比乌斯反演有更直观的认识与感受，帮助你快速地进行推导而完全不需要套用莫比乌斯反演定理</p>
+<h3 id="μ提取"><a href="#μ提取" class="headerlink" title="μ提取"></a>μ提取</h3><p>这个往往与上一步是同时进行的，这个提取的含义就是把 $\mu(d)$ 的系数计算出来，以便后续计算，大概是这样的：</p>
+<script type="math/tex; mode=display">\sum_{x}\sum_{d\mid P(x)/k}\mu(d)=\sum_{d}\mu(d)*num(d)</script><p>其中 $num(d)$ 表示 $\mu(d)$ 总共出现的次数</p>
+<p>最常用的一个形式是这样的：</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{n}\sum_{j=1}^{m}\sum_{d\mid gcd(i,j)/k}\mu(d)=\sum_{d}\mu(d)*\left\lfloor \frac{n}{d*k}\right\rfloor*\left\lfloor \frac{m}{d*k}\right\rfloor</script><p>这里即有：</p>
+<script type="math/tex; mode=display">num(d)=\left\lfloor \frac{n}{d*k}\right\rfloor*\left\lfloor \frac{m}{d*k}\right\rfloor</script><h3 id="φ变换"><a href="#φ变换" class="headerlink" title="φ变换"></a>φ变换</h3><p>基本就是这个式子，令$Sum(x)$表示小于$x$且与$x$互质的数的和，则有：</p>
+<script type="math/tex; mode=display">Sum(x)=\frac{x*\varphi(x)}{2}</script><p>这是因为，如果$i$与$x$互质$(i&lt;x)$，那么易证$x-i$也与$x$互质，这样，我们把他们两两组合，加和，就有了上面的式子，为了计算方便，一般特殊规定$Sum(1)=1$</p>
+<h3 id="积性函数提取"><a href="#积性函数提取" class="headerlink" title="积性函数提取"></a>积性函数提取</h3><p>有的时候，我们算法的时间复杂度会因为需要枚举变量$k$（或更多），同时在每个$k$（或更多）之中进行一些分块前缀和计算而导致TLE，我们可以使用一些类似于“封装”的技巧，把公式的某一大部分看成一个数论函数（<strong>通常要求这个函数满足积性</strong>），然后对这个函数进行预处理，从而达到降维的目的</p>
+<p>比如，我们看下面的这个式子：</p>
+<script type="math/tex; mode=display">\prod_{k=1}^{n}F(k)^{\sum_{i=1}^{n}\sum_{j=1}^{m}\sum_{d\mid gcd(i,j)/k}\mu(d)}=\prod_{k=1}^{n}F(k)^{\sum_{d}\mu(d)*\left\lfloor \frac{n}{d*k}\right\rfloor*\left\lfloor \frac{m}{d*k}\right\rfloor}</script><p>这个式子看似无法继续优化，但是如果我们继续进行积性函数提取，我们可以把前半部分进行封装，变成下面的样子：</p>
+<script type="math/tex; mode=display">\prod_{T=1}^{n} \left(\prod_{d\mid T}F(d)^{\mu(\frac{T}{d})} \right) ^{\left\lfloor \frac{n}{T}\right\rfloor*\left\lfloor \frac{m}{T}\right\rfloor}</script><p>此时，我们可以把前半部分提取出来，作为一个新的函数，像下面这样：</p>
+<script type="math/tex; mode=display">G(T)=\prod_{d\mid T}F(d)^{\mu(\frac{T}{d})}</script><p>我们现在的任务就是要预处理出所有的$G(x)$，这样原公式的效率就有了大大的提升</p>
+<p>而对于这种函数，如果它们是下面这种形式，就很好处理：</p>
+<script type="math/tex; mode=display">F(T)=\sum_{d\mid T}G(d)</script><p>或是：</p>
+<script type="math/tex; mode=display">F(T)=\prod_{d\mid T}G(d)</script><p>而且求出$G(x)$ 的复杂度为$O(x)$ 的话，那么求出所有的$F(x)$ 的复杂度即为$O(N\log N*O(N))$</p>
+<p>其实这个应该很好理解，我们只要枚举$d$然后对于每一个$d*k$都进行更新即可，这是一个调和级数，即：</p>
+<script type="math/tex; mode=display">\sum_{d=1}^{N}\frac{N}{d}=N\log N</script><p>而在上例中，求出$G(x)$ 的复杂度为$O(1)$ 的，所以预处理复杂度为$O(N\log N)$</p>
+<p>由平方根调和级数定理可知，运行的复杂度由原先的$O(Q<em>N)$ 优化为了$O(N\log N+Q</em>\sqrt{N})$</p>
+<h3 id="Dirichlet卷积"><a href="#Dirichlet卷积" class="headerlink" title="Dirichlet卷积"></a>Dirichlet卷积</h3><p>我们在推导公式的时候，往往可以加入一些处理，使得公式的一部分达到如下的形式：</p>
+<script type="math/tex; mode=display">\sum_{i\mid n}F(i)*G(\frac{n}{i})=(F*G)(n)</script><p>这时，很明显这就是$Dirichlet$卷积的形式，我们可以做如下两个方向的处理：</p>
+<p>第一种，我们可以直接预处理这部分函数，复杂度$O(N \log N)$</p>
+<p>第二种，我们可以利用$Dirichlet$卷积的性质：两个积性函数的$Dirichlet$卷积仍然是积性函数，这时我们就可以使用线性筛法进行$O(N)$ 的预处理</p>
+<h3 id="交换不变性"><a href="#交换不变性" class="headerlink" title="交换不变性"></a>交换不变性</h3><p>这个指的是，当一个式子中并列存在许多的$\sum$或是$\prod$的时候，我们可以将它们任意调换顺序，同时转移相互依存的条件，这样我们就可以实现一些想要达到的目的</p>
+<p>举个例子：</p>
+<script type="math/tex; mode=display">\begin{array}{lcl} \sum_{i = 1} ^ {n} \sum_{j = 1} ^ {m} \sum_{d = 1} ^ {\min(n, m)} [gcd(i,j) = d]\\\\= \sum_{d = 1} ^ {\min(n, m)} \sum_{i = 1} ^ {n} \sum_{j = 1} ^ {m}\mbox{ }[gcd(i,j) = d] \end{array}</script><p>同时，在指数上的 $\sum<em>{}^{}$ 可以与外面的 $\prod</em>{} ^{}$ 进行自由交换，还是用上面提到过的那个例子：</p>
+<script type="math/tex; mode=display">
+\begin{array}{lcl}
+\prod_{k=1}^{n}F(k)^{\sum_{i=1}^{n}\sum_{j=1}^{m}\sum_{d\mid gcd(i,j)/k}\mu(d)}\\\\=\prod_{k=1}^{n}F(k)^{\sum_{d}\mu(d)*\left\lfloor \frac{n}{d*k}\right\rfloor*\left\lfloor \frac{m}{d*k}\right\rfloor}\\\\=\prod_{T=1}^{n} \left(\prod_{d\mid T}F(d)^{\mu(\frac{T}{d})} \right) ^{\left\lfloor \frac{n}{T}\right\rfloor*\left\lfloor \frac{m}{T}\right\rfloor}
+\end{array}</script><p>这就是一个非常好的提取指数上的 $\sum_{}^{}$ 的例子</p>
+<h2 id="数论公式计算技巧"><a href="#数论公式计算技巧" class="headerlink" title="数论公式计算技巧"></a>数论公式计算技巧</h2><h3 id="Dirichlet卷积计算方法"><a href="#Dirichlet卷积计算方法" class="headerlink" title="Dirichlet卷积计算方法"></a>Dirichlet卷积计算方法</h3><p>前面多次提到过，就是枚举每一个数字并对它的每一个倍数进行统计计算即可</p>
+<h3 id="积性函数线性筛法"><a href="#积性函数线性筛法" class="headerlink" title="积性函数线性筛法"></a>积性函数线性筛法</h3><p>对于一个积性函数，我们一般可以尝试寻找一种方法，使得它可以在线性筛的过程被“顺便”计算出来，比如对于这个函数：</p>
+<script type="math/tex; mode=display">
+F(x)=\sum_{k\mid x}\mu(k)* k</script><p>我们可以证明这是一个积性函数，然后我们就可以尝试在线性筛中以$O(N)$复杂度进行计算，否则，我们只能采用类似$Dirichlet$卷积的方法，在$O(N\log N)$的时间中对其计算，在$N\approx 10^7$时很容易超时</p>
+<p>具体方法如下（在线性筛意义下给出）：</p>
+<p>首先有<script type="math/tex">F[1]=1</script><br>其次</p>
+<script type="math/tex; mode=display">F(i * prime[j])=\begin{cases}
+F[i] * (1 - prime[j]),& prime[j] \nmid i  \\\\  
+F[i],& prime[j]\mid i
+\end{cases}</script><h2 id="常用公式推导"><a href="#常用公式推导" class="headerlink" title="常用公式推导"></a>常用公式推导</h2><p>这些就是需要通过多做题来进行总结的啦<del>什么东西不是靠做题……</del>，下面简单地总结几个，以后如果再遇到就继续进行添加</p>
+<h3 id="单维分块法计算"><a href="#单维分块法计算" class="headerlink" title="单维分块法计算"></a>单维分块法计算</h3><p>即需要我们计算如下的式子：</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{n}\left\lfloor\frac{n}{i}\right\rfloor</script><p>这时，我们可以对此进行分类讨论，对于$i&lt;\sqrt{n}$ 的情况与$i&gt;\sqrt{n}$ 的情况分别处理，每次跳动一个值不变的区间，这样，我们可以得到一个$O(\sqrt{n})$ 的算法</p>
+<h3 id="双维分块法计算"><a href="#双维分块法计算" class="headerlink" title="双维分块法计算"></a>双维分块法计算</h3><p>即需要我们计算如下的式子：</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{n}\left\lfloor\frac{n}{i}\right\rfloor*\left\lfloor\frac{m}{i}\right\rfloor</script><p>这时，我们可以继续沿用上面的方法，但不同的是，我们每次跳动的距离需要多考虑一个$m$，这样，我们每次取对于$n$与$m$来说的跳动距离的较小值，然后进行跳动即可，复杂度$O(\sqrt{MAX(n,m)})$</p>
+<h3 id="最大公约数统计"><a href="#最大公约数统计" class="headerlink" title="最大公约数统计"></a>最大公约数统计</h3><p>就是要求下面这个式子：</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{n}\sum_{j=1}^{m}gcd(i,j)</script><p>下面对此进行推导：</p>
+<script type="math/tex; mode=display">\begin{array}{lcl}\sum_{i=1}^{n}\sum_{j=1}^{m}gcd(i,j)\\\\
+=\sum_{i=1}^{n}\sum_{j=1}^{m}\sum_{d=1}^{MIN(n,m)}d*[gcd(i,j)=d]\\\\
+=\sum_{i=1}^{n}    \sum_{j=1}^{m}    \sum_{d=1}^{MIN(n,m)}d*     \sum_{k\mid gcd(i,j)/d}    \mu(k) &\mbox{(}\mu\mbox{变换)}\\\\
+=\sum_{d=1}^{MIN(n,m)}d*\sum_{k=1}^{MAX(n,m)} \mu(k)*\left\lfloor\frac{n}{d*k} \right \rfloor   \left\lfloor\frac{m}{d*k} \right \rfloor &\mbox{(}\mu\mbox{提取)}
+ \end{array}</script><p> 一般推到这里就结束了，使用分块计算的方法，能在下面的时间内求出答案：</p>
+<script type="math/tex; mode=display">O\left(\sum_{d=1}^{N}\sqrt{\frac{N}{d}}\right)</script><p> 这个计算完大概是$O(N)$ 的复杂度</p>
+<p>但是，我们还可以进一步得到下面的式子：</p>
+<script type="math/tex; mode=display">\begin{array}{lcl}\sum_{d=1}^{MIN(n,m)}d*\sum_{k=1}^{MAX(n,m)} \mu(k)*\left\lfloor\frac{n}{d*k} \right \rfloor   \left\lfloor\frac{m}{d*k} \right \rfloor\\\\
+=\sum_{T=1}^{MIN(n,m)}\left\lfloor\frac{n}{T}\right\rfloor\left\lfloor\frac{m}{T} \right \rfloor\sum_{d\mid T}d*\mu(\frac{T}{d}) & \mbox{(积性函数提取)} \\\\
+=\sum_{T=1}^{MIN(n,m)}\left\lfloor\frac{n}{T}\right\rfloor\left\lfloor\frac{m}{T} \right \rfloor \left(id*\mu\right)(T)&\mbox{(}Dirichlet\mbox{卷积}\mbox{)}\\\\
+=\sum_{T=1}^{MIN(n,m)}\left\lfloor\frac{n}{T}\right\rfloor\left\lfloor\frac{m}{T} \right \rfloor G(T)
+ \end{array}</script><p> 这个式子巧妙地使用了$Dirichlet$卷积，而我们知道，只要有$Dirichlet$卷积的出现，复杂度就会是$O(N \log N)$，所以我们可以先以$O(N \log N)$ 的复杂度预处理出所有的$G(x)$，然后直接$O(N)$ 进行计算，这样虽然单次查询效率没有上一个方法高，但却给我们提供了良好的思路，而且，在有许多组询问的时候，我们就只能通过这样的方法来进行问题的解决，所以说，这种方法应该更为高效</p>
+<h3 id="最小公倍数统计"><a href="#最小公倍数统计" class="headerlink" title="最小公倍数统计"></a>最小公倍数统计</h3><p>即需要我们计算如下的式子：</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{n}\sum_{j=1}^{m}lcm(i,j)</script><p>首先根据常用定理，我们知道</p>
+<script type="math/tex; mode=display">lcm(i,j)=\frac{i*j}{gcd(i,j)}</script><p>所以我们的式子就化为了：</p>
+<script type="math/tex; mode=display">\sum_{i=1}^{n}\sum_{j=1}^{m}\frac{i*j}{gcd(i,j)}</script><p>下面，我们就对这个式子进行详细的推导，我们发现，此时分母起到很大的作用，对于分母不同的两项，我们很难把他们归到一起，所以我们很自然的想到枚举$gcd$的取值，推导如下：</p>
+<script type="math/tex; mode=display">\begin{array}{lcl}
+\sum_{i=1}^{n}\sum_{j=1}^{m}\frac{i*j}{gcd(i,j)}\\\\
+=\sum_{d = 1} ^ {min(n, m)} \sum_{i = 1}^{n} \sum_{j = 1} ^ {m} \frac{i * j}{d} * [gcd(i,j) = d]\\\\= \sum_{d = 1} ^ {min(n, m)} \sum_{i' = 1}^{n} \sum_{j' = 1} ^ {m} i' * j' * d * [gcd(i',j') = 1]\\\\= \sum_{d = 1} ^ {min(n, m)} \sum_{i' = 1}^{n} \sum_{j' = 1} ^ {m} \sum_{k|gcd(i',j')}i' * j' * d *  \mu(k) &\mbox{(}\mu\mbox{变换)}
+\\\\= \sum_{d = 1} ^ {min(n, m)}d*\sum_{k} \mu(k) * Sum(\left\lfloor\frac{n}{k*d}\right\rfloor,\left\lfloor\frac{m}{k*d}\right\rfloor) * k^2 &\mbox{(}\mu\mbox{提取)}
+\end{array}</script><p>其中</p>
+<script type="math/tex; mode=display">\begin{array}{lcl}
+Sum(a,b) = \frac{a*(a + 1)}{2} * \frac{b*(b + 1)}{2}
+\end{array}</script><p>此时，我们发现式子似乎不能再优化，于是我们使用以前的老套路，积性函数提取以及变量归一化，把变量$k,d$进行归一化，可以得到下面的式子：</p>
+<script type="math/tex; mode=display">\begin{array}{lcl}
+\sum_{d = 1} ^ {min(n, m)}d*\sum_{k} \mu(k) * Sum(\left\lfloor\frac{n}{k*d}\right\rfloor,\left\lfloor\frac{m}{k*d}\right\rfloor) * k^2 &\mbox{(}\mu\mbox{提取)}\\\\
+=\sum_{T = 1}^{min(n, m)} T*Sum( \left\lfloor\frac{n}{T}\right\rfloor,\left\lfloor\frac{m}{T}\right\rfloor)*\sum_{k|T} \mu(k) * k& \mbox{(变量归一化)}\\\\
+= \sum_{T = 1}^{min(n, m)} T*Sum( \left\lfloor\frac{n}{T}\right\rfloor,\left\lfloor\frac{m}{T}\right\rfloor)*F(T)& \mbox{(积性函数提取)}\\\\
+\end{array}</script><p>这里解释一下为什么$F(T)$ 是积性函数，由于$F(T)$ 是两个积性函数的狄利克雷卷积$(F=f <em> 1,其中f=\mu(k)</em>k,显然为积性函数)$，所以，我们知道$F$是一个积性函数</p>
+<p>那么，对于积性函数，我们可以怎么做呢？一开始我想使用杜教筛，但后来发现好像不用这么麻烦 <del>不会杜教筛就直说嘛</del>，然后想到了一个常常被忽略的套路：直接使用线性筛</p>
+<p>具体做法如下，首先有$F[1]=1$，我们直接在线性筛中计算函数，然后对于两种情况进行分别的计算：</p>
+<script type="math/tex; mode=display">F(i * prime[j])=\begin{cases}
+F[i] * (1 - prime[j]),& prime[j] \nmid i  \\\\  
+F[i],& prime[j]\mid i
+\end{cases}</script><p>这样我们就计算出了所有的$F$,然后，我们就可以使用双维分块法这种老套路进行计算了，最后的复杂度为$O(N + Q * \sqrt{N})$</p>
+<h2 id="例题总结"><a href="#例题总结" class="headerlink" title="例题总结"></a>例题总结</h2><h3 id="Noi2010-能量采集"><a href="#Noi2010-能量采集" class="headerlink" title="[Noi2010]能量采集"></a>[Noi2010]能量采集</h3><p>时间限制: 1 Sec  内存限制: 128 MB&lt;/font&gt;</p>
+<font size="5">题目描述</font>
 
-        <div class="post-content markdown" itemprop="articleBody">
-          <div class="main-content-wrap">
-            <script src=/js/crypto-js.js></script>
-            <script>
-              function doDecrypt(pwd, onError) {
-                console.log("in doDecrypt");
-                var txt = document.getElementById("enc_content").innerHTML;
-                var plantext;
-                try {
-                  var bytes = CryptoJS.AES.decrypt(txt, pwd);
-                  plaintext = bytes.toString(CryptoJS.enc.Utf8);
-                } catch (err) {
-                  if (onError) {
-                    onError(err);
-                  }
-                  return;
-                }
-                document.getElementById("enc_content").innerHTML = plaintext;
-                document.getElementById("enc_content").style.display = "block";
-                document.getElementById("enc_passwd").style.display = "none";
-              }
+<p>栋栋有一块长方形的地，他在地上种了一种能量植物，这种植物可以采集太阳光的能量。在这些植物采集能量后，栋栋再使用一个能量汇集机器把这些植物采集到的能量汇集到一起。 栋栋的植物种得非常整齐，一共有n列，每列有m棵，植物的横竖间距都一样，因此对于每一棵植物，栋栋可以用一个坐标(x, y)来表示，其中x的范围是1至n，表示是在第x列，y的范围是1至m，表示是在第x列的第y棵。 由于能量汇集机器较大，不便移动，栋栋将它放在了一个角上，坐标正好是(0, 0)。 能量汇集机器在汇集的过程中有一定的能量损失。如果一棵植物与能量汇集机器连接而成的线段上有k棵植物，则能量的损失为2k + 1。例如，当能量汇集机器收集坐标为(2, 4)的植物时，由于连接线段上存在一棵植物(1, 2)，会产生3的能量损失。注意，如果一棵植物与能量汇集机器连接的线段上没有植物，则能量损失为1。现在要计算总的能量损失。 下面给出了一个能量采集的例子，其中n = 5，m = 4，一共有20棵植物，在每棵植物上标明了能量汇集机器收集它的能量时产生的能量损失。 在这个例子中，总共产生了36的能量损失。<br><img src="http://218.62.22.209:8080/upload/201411/image/noi/NOI20100101.jpg" alt=""></p>
+<font size="5">输入</font>
 
-            </script>
-            <div id="enc_content" style="display:none">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</div>
-            <div id="enc_passwd">
-              <input id="enc_pwd_input" type="text" style="border-radius: 5px;border-style: groove;height: 30px;width: 50%;cursor: auto;font-size: 102%;color: currentColor;outline: none;text-overflow: initial;padding-left: 5px;"
-                                                                                              onkeydown="if (event.keyCode == 13) { decrypt(); return false;}">
-              <input type="submit" value="解&nbsp;密" onclick="decrypt()" style="width: 58px;height: 34px;border-radius: 5px;background-color: white;border-style: solid;color: currentColor;">
-              <div id="enc_error" style="display: inline-block;color: #d84527;margin-left: 10px"></div>
-              <script>
-                var onError = function(error) {
-                  document.getElementById("enc_error").innerHTML =
-                    "password error!"
-                };
+<p>仅包含一行，为两个整数 n 和 m。</p>
+<font size="5">输出</font>
 
-                function decrypt() {
-                  var passwd = document.getElementById("enc_pwd_input").value;
-                  console.log(passwd);
-                  doDecrypt(passwd, onError);
-                }
+<p>仅包含一个整数，表示总共产生的能量损失。</p>
+<font size="5">样例输入</font>
 
-              </script>
-            </div>
+<p>5 4</p>
+<font size="5">样例输出</font>
 
-          </div>
+<p>36</p>
+<font size="5">提示</font>
+
+<font size="5">【样例输入 2】</font>
+
+<p>3 4</p>
+<font size="5">【样例输出 2】</font>
+
+<p>20</p>
+<font size="5">【数据规模和约定】</font>
+
+<p>对于 10%的数据：1 ≤ n, m ≤ 10；</p>
+<p>对于 50%的数据：1 ≤ n, m ≤ 100；</p>
+<p>对于 80%的数据：1 ≤ n, m ≤ 1000；</p>
+<p>对于 90%的数据：1 ≤ n, m ≤ 10,000；</p>
+<p>对于 100%的数据：1 ≤ n, m ≤ 100,000。</p>
+<font size="5">题解</font>
+
+<p>我觉得，上面的套路要是都掌握了，自己推一推应该就行，下面的题都只给出最终公式（如果所需的知识点已经全部介绍过的话）</p>
+<font size="5">方法一公式如下：</font>
+
+<script type="math/tex; mode=display">Sum =
+\sum_{T=1}^{min(n,m)}\left\lfloor\frac{n}{T}\right\rfloor*\left\lfloor\frac{m}{T}\right\rfloor * F(T)\\\\
+F(T)=\sum_{k\mid T}\mu(k)* \frac{T}{k}\\\\
+Ans = 2*(Sum - m*n ) + m*n</script><p><font size="4">代码 实测用时：$28ms$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long int</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line">LL prime[maxn], cnt;</div><div class="line">LL F[maxn];</div><div class="line">LL mu[maxn];</div><div class="line"><span class="keyword">bool</span> vis[maxn];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">    mu[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (LL i = <span class="number">2</span>; i &lt; maxn; i++)&#123;</div><div class="line">        <span class="keyword">if</span> (!vis[i])&#123;</div><div class="line">            prime[cnt++] = i;</div><div class="line">            mu[i] = <span class="number">-1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cnt; j++)&#123;</div><div class="line">            <span class="keyword">if</span> (i * prime[j] &gt;= maxn) <span class="keyword">break</span>;</div><div class="line">            vis[i * prime[j]] = <span class="number">1</span>;</div><div class="line">            mu[i * prime[j]] = mu[i] * (<span class="number">-1</span>);</div><div class="line">            <span class="keyword">if</span> (i % prime[j] == <span class="number">0</span>)&#123;</div><div class="line">                mu[i * prime[j]] = <span class="number">0</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; i++)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; i * j &lt; maxn; j++)&#123;</div><div class="line">            F[i * j] += mu[i] * j;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; i++)&#123;</div><div class="line">        F[i] += F[i - <span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(LL n, LL m)</span></span>&#123;</div><div class="line">    LL ans = <span class="number">0</span>;</div><div class="line">    LL con = min(n, m);</div><div class="line">    <span class="keyword">for</span> (LL i = <span class="number">1</span>; i &lt;= con; i++)&#123;</div><div class="line">        LL next = min(n / (n / i), m / (m / i));</div><div class="line">        ans += (n / i) * (m / i) * (F[next] - F[i - <span class="number">1</span>]);</div><div class="line">        i = next;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>, m * n + ((ans - m * n) &lt;&lt; <span class="number">1</span>));</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    init();</div><div class="line">    freopen(<span class="string">"ene.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"ene.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</div><div class="line">    LL n, m;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>, &amp;n, &amp;m);</div><div class="line">    work(n, m);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></font></p>
+<p><font size="5">方法二公式如下：</font></p>
+<script type="math/tex; mode=display">Sum=\sum_{d=1}^{min(n,m)}d*\sum_{k=1}^{min(\left\lfloor\frac{n}{d}\right\rfloor,\left\lfloor\frac{m}{d}\right\rfloor)}\left\lfloor\frac{n}{k*d}\right\rfloor*\left\lfloor\frac{m}{k*d}\right\rfloor * \mu(k)\\\\
+Ans = 2*(Sum - m*n ) + m*n</script><p><font size="4">代码 实测用时：$44ms$<br><code>cpp</code></font></p>
+<h3 id="YY的GCD"><a href="#YY的GCD" class="headerlink" title="YY的GCD"></a>YY的GCD</h3><p>时间限制: 5 Sec  内存限制: 512 MB&lt;/font&gt;</p>
+<h4 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h4><p>神犇YY虐完数论后给傻×kAc出了一题给定N, M,求1&lt;=x&lt;=N, 1&lt;=y&lt;=M且gcd(x, y)为质数的(x, y)有多少对kAc这种<br>傻×必然不会了，于是向你来请教……多组输入</p>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>第一行一个整数T 表述数据组数接下来T行，每行两个正整数，表示N, M</p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>T行，每行一个整数表示第i组数据的结果</p>
+<h4 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h4><p>2</p>
+<p>10 10</p>
+<p>100 100</p>
+<h4 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h4><p>30</p>
+<p>2791</p>
+<h4 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h4><p>T = 10000</p>
+<p>N, M &lt;= 10000000</p>
+<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><p>公式如下：</p>
+<script type="math/tex; mode=display">Ans =
+\sum_{T=1}^{min(n,m)}\left\lfloor\frac{n}{T}\right\rfloor*\left\lfloor\frac{m}{T}\right\rfloor * F(T)\\\\
+F(T)=\sum_{k\mid T\mbox{且}T/k\mbox{为质数}}\mu(k)* \frac{T}{k}\\\\</script><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>@import “YY的GCD.cpp” {class:”lineNo”}</p>
+<h3 id="Spoj5971-LCM-Sum"><a href="#Spoj5971-LCM-Sum" class="headerlink" title="Spoj5971 LCM Sum"></a>Spoj5971 LCM Sum</h3><p>时间限制: 3 Sec  内存限制: 256 MB&lt;/font&gt;</p>
+<h4 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h4><p>Given n, calculate the sum LCM(1,n) + LCM(2,n) + .. + LCM(n,n), where LCM(i,n) denotes the Least Common Multiple of the integers i and n.</p>
+<h4 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h4><p>The first line contains T the number of test cases. Each of the next T lines contain an integer n.</p>
+<h4 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h4><p>Output T lines, one for each test case, containing the required sum.</p>
+<h4 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input"></a>Sample Input</h4><p>3</p>
+<p>1</p>
+<p>2</p>
+<p>5</p>
+<h4 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output"></a>Sample Output</h4><p>1</p>
+<p>4</p>
+<p>55</p>
+<h4 id="HINT-1"><a href="#HINT-1" class="headerlink" title="HINT"></a>HINT</h4><p>1 &lt;= T &lt;= 300000<br>1 &lt;= n &lt;= 1000000</p>
+<h4 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h4><p>本题还算是有点意思，有一个容易让大家忽略的技巧（然而上面也提到了），这里把公式详细地推一下</p>
+<p>公式如下：</p>
+<script type="math/tex; mode=display">\begin{array}{lcl}
+Ans=\sum_{i = 1}^{n}lcm(i,n)\\\\
+=\sum_{i=1}^{n}\frac{n*i}{gcd(i,n)}\\\\
+=n*\sum_{d\mid n}d*\sum_{i=1}^{\frac{n}{d}}i*[gcd(i,\frac{n}{d})=1]\\\\
+\end{array}</script><p>这时非常显然，就是要我们求出所有小于且与$\frac{n}{d}$互质的数的和，根据上面讲的$\varphi变换$，我们有这样的公式：</p>
+<script type="math/tex; mode=display">\begin{array}{lcl}
+n*\sum_{d\mid n}d*\sum_{i=1}^{\frac{n}{d}}i*[gcd(i,\frac{n}{d})=1]\\\\
+= n*\sum_{d\mid n}d*\frac{\frac{n}{d}* \varphi(\frac{n}{d})}{2}\\\\
+= n*G(n)
+\end{array}</script><p>所以，我们只要预处理出所有的$\varphi[i]$，然后直接狄利克雷卷积法预处理后半部分就好了</p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><p>@import “[Spoj 5971] LCMSum.cpp” {class:”lineNo”}</p>
+<h3 id="CQOI2007-余数之和sum"><a href="#CQOI2007-余数之和sum" class="headerlink" title="[CQOI2007]余数之和sum"></a>[CQOI2007]余数之和sum</h3><p>时间限制: 1 Sec  内存限制: 256 MB&lt;/font&gt;</p>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给出正整数n和k，计算j(n, k)=k mod 1 + k mod 2 + k mod 3 + … + k mod n的值，其中k mod i表示k除以i的余数。例如j(5, 3)=3 mod 1 + 3 mod 2 + 3 mod 3 + 3 mod 4 + 3 mod 5=0+1+0+3+3=7</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>输入仅一行，包含两个整数n, k。</p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>输出仅一行，即j(n, k)。</p>
+<h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><p>5 3</p>
+<h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><p>7</p>
+<h4 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h4><p>50%的数据满足：1&lt;=n, k&lt;=1000<br>100%的数据满足：1&lt;=n ,k&lt;=10^9</p>
+<h4 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h4><p>本题是一道有趣的题，也许它不需要太多的莫比乌斯反演基础</p>
+<p>我们知道，$k \bmod i = k - i*\left\lfloor\frac{k}{i}\right\rfloor$ ，还知道在$i&gt;\sqrt{k}$的时候会有很多的值有重复，总共只有$O(\sqrt{n})$个不同的值，那么我们就可以想到使用这些值相同的特性来优化算法</p>
+<p>于是我们可以类比分块法做：</p>
+<p>令$i<em>t \leqslant k \leq i</em>(t+1)$，则$k \bmod i = k - i<em>t$，考虑$i+1$时的情况，<br>若$\left\lfloor\frac{k}{i}\right\rfloor=\left\lfloor\frac{k}{i+1}\right\rfloor$，则有$(i+1)</em> t \leqslant k \leq (i+1)<em> (t+1)$，$k \bmod (i+1) = k - (i+1)</em> t$，对比两次取模的式子，发现现在的结果比上一次减少了一个固定的数，那就是$t=\left\lfloor\frac{k}{i}\right\rfloor$,所以，我们在值$t=\left\lfloor\frac{k}{i}\right\rfloor$全相等的一群模数$i$中得到了一个等差数列，这个数列所有项的和是我们能够在$O(1)$时间内计算出来的，那么，我们就是要这样“分块”，每个块里面都是一个等差数列</p>
+<p>那么，现在只有一个问题没有解决，那就是，这个等差数列里面会不会出现一些项为负数呢？下面我们来证明一下：</p>
+<p>如果出现了负数，那么说明此时的模数$j$满足$k \bmod j = k - j <em> t &lt; 0$，而由我们先前的证明知道，$k \geqslant j </em> t$，所以不可能出现数列中有负数这种情况</p>
+<p>那么我们就可以水过这道题了</p>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><p>@import “[CQOI2007]余数之和sum.cpp” {class : “lineNo” }</p>
+<h3 id="jzptab"><a href="#jzptab" class="headerlink" title="jzptab"></a>jzptab</h3><p>时间限制: 11 Sec  内存限制: 512 MB&lt;/font&gt;</p>
+<h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>求$\sum<em>{i=1}^{n}\sum</em>{j=1}^{m} lcm(i,j)$，答案模$100000009$输出<br>多组询问</p>
+<h4 id="输入-1"><a href="#输入-1" class="headerlink" title="输入"></a>输入</h4><p>一个正整数T表示数据组数<br>接下来T行 每行两个正整数 表示N、M</p>
+<h4 id="输出-1"><a href="#输出-1" class="headerlink" title="输出"></a>输出</h4><p>T行 每行一个整数 表示第i组数据的结果</p>
+<h4 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h4><p>1<br>4 5</p>
+<h4 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h4><p>122</p>
+<h4 id="提示-1"><a href="#提示-1" class="headerlink" title="提示"></a>提示</h4><p>T &lt;= 10000<br>N, M&lt;=10000000</p>
+<h4 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h4><p>这道题在其他题目的基础上，增加了线性筛积性函数的这个环节，是本题的亮点</p>
+<p>但其实本题就是统计最小公倍数，公式如下：</p>
+<script type="math/tex; mode=display">\begin{array}{lcl}
+Ans=\sum_{T = 1}^{min(n, m)} T*Sum( \left\lfloor\frac{n}{T}\right\rfloor,\left\lfloor\frac{m}{T}\right\rfloor)* F(T)\\\\
+Sum(a,b) = \frac{a*(a + 1)}{2} * \frac{b*(b + 1)}{2}\\\\
+F(T)=\sum_{k|T} \mu(k) * k
+\end{array}</script><p>线性筛一发$F[i]$，不会的回到上面自己看去</p>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><p>@import  “jzptab_new.cpp” {class:”lineNo”}</p>
+
+            
         </div>
-        <div id="post-footer" class="post-footer main-content-wrap">
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/数学/">数学</a> <a class="tag tag--primary tag--small t-link" href="/tags/数论/">数论</a> <a class="tag tag--primary tag--small t-link" href="/tags/莫比乌斯反演/">莫比乌斯反演</a>
 
-          <div class="post-footer-tags">
-            <span class="text-color-light text-small">标签</span>
-            <br/>
-            <a class="tag tag--primary tag--small t-link" href="/tags/数学/">
-              数学</a>
-            <a class="tag tag--primary tag--small t-link" href="/tags/数论/">数论</a>
-            <a class="tag tag--primary tag--small t-link" href="/tags/莫比乌斯反演/">莫比乌斯反演</a>
-
-          </div>
-
-          <div class="post-actions-wrap">
-            <nav>
-              <ul class="post-actions post-action-nav">
-                <li class="post-action">
-
-                  <a class="post-action-btn btn btn--default tooltip--top" href="/2017/06/30/莫比乌斯反演详解/"
-                                                                                                  data-tooltip="莫比乌斯反演详解">
-
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/06/30/莫比乌斯反演详解/"  data-tooltip="莫比乌斯反演详解">
+                
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-                  </a>
-                </li>
-                <li class="post-action">
-
-                  <a class="post-action-btn btn btn--disabled">
-
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <ul class="post-actions post-action-share">
-              <li class="post-action hide-lg hide-md hide-sm">
-                <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-                  <i class="fa fa-share-alt"></i>
                 </a>
-              </li>
-
-              <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-                  <i class="fa fa-facebook-official"></i>
-                </a>
-              </li>
-
-              <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-
-              <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-                  <i class="fa fa-google-plus"></i>
-                </a>
-              </li>
-
-              <li class="post-action">
-
-                <a class="post-action-btn btn btn--default" href="#">
-
-                  <i class="fa fa-list"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-      </article>
-
-      <footer id="footer" class="main-content-wrap">
-        <span class="copyrights">
-          Copyrights &copy; 2017 Goseqh. All Rights Reserved.
-        </span>
-      </footer>
-
-    </div>
-
-    <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
-      <div class="post-actions-wrap">
-        <nav>
-          <ul class="post-actions post-action-nav">
-            <li class="post-action">
-
-              <a class="post-action-btn btn btn--default tooltip--top" href="/2017/06/30/莫比乌斯反演详解/"
-                                                                                              data-tooltip="莫比乌斯反演详解">
-
-                <i class="fa fa-angle-left"></i>
-                <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-              </a>
             </li>
-            <li class="post-action">
-
-              <a class="post-action-btn btn btn--disabled">
-
-                <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
-                <i class="fa fa-angle-right"></i>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <ul class="post-actions post-action-share">
-          <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
-              <i class="fa fa-share-alt"></i>
-            </a>
-          </li>
-
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-              <i class="fa fa-facebook-official"></i>
-            </a>
-          </li>
-
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-
-          <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </li>
-
-          <li class="post-action">
-
-            <a class="post-action-btn btn btn--default" href="#">
-
-              <i class="fa fa-list"></i>
-            </a>
-          </li>
         </ul>
-      </div>
-
-    </div>
-    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
-      <i id="btn-close-shareoptions" class="fa fa-close"></i>
-      <ul class="share-options">
-
-        <li class="share-option">
-          <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-            <i class="fa fa-facebook-official"></i>
-            <span>分享到 Facebook</span>
-          </a>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
         </li>
-
-        <li class="share-option">
-          <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-            <i class="fa fa-twitter"></i>
-            <span>分享到 Twitter</span>
-          </a>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
         </li>
+    </ul>
+</div>
 
-        <li class="share-option">
-          <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-            <i class="fa fa-google-plus"></i>
-            <span>分享到 Google+</span>
-          </a>
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2017 Goseqh. All Rights Reserved.
+    </span>
+<!--<script type="text/javascript"
+  src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/javascript" src="${path}/resources/js/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({
+    tex2jax: {
+    displayMath: [['$','$'],["\\(","\\)"]],
+    inlineMath: [['\\[','\\]'], ['$$','$$']],
+    },
+ }); -->
+<!--<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath:  [ ["$", "$"] ],
+      displayMath: [ ["$$","$$"] ],
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
+      ignoreClass:"class1"
+    },
+    "HTML-CSS": {
+      availableFonts: ["STIX","TeX"]
+    }
+  });
+MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script>-->
+
+<!--<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: true,
+    messageStyle: "none",
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+        inlineMath:  [ ["$", "$"] ],
+        displayMath: [ ["$$","$$"] ],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
+        ignoreClass:"class1"
+    },
+    "HTML-CSS": {
+    availableFonts: ["STIX","TeX"]
+    }
+  });
+MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<!--<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+        inlineMath:  [ ["$", "$"] ], //行内公式选择$
+        displayMath: [ ["$$","$$"] ], //段内公式选择$$
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'], //避开某些标签
+        ignoreClass:"comment-content" //避开含该Class的标签
+    },
+    "HTML-CSS": {
+        availableFonts: ["STIX","TeX"], //可选字体
+    }
+});
+MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath:  [ ["$", "$"] ],
+      displayMath: [ ["$$","$$"] ],
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
+      ignoreClass:"class1"
+    },
+    "HTML-CSS": {
+      availableFonts: ["STIX","TeX"]
+    }
+  });
+MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML&noContrib"></script>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/06/30/莫比乌斯反演详解/"  data-tooltip="莫比乌斯反演详解">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
         </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
-      </ul>
-    </div>
 
-  </div>
-  <div id="about">
-    <div id="about-card">
-      <div id="about-btn-close">
-        <i class="fa fa-remove"></i>
-      </div>
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
 
-      <img id="about-card-picture" src="/assets/images/2016-02-23.png" alt="作者的图片" />
-
-      <h4 id="about-card-name">Goseqh</h4>
-
-      <div id="about-card-bio">
-        <p>author.bio</p>
-      </div>
-
-      <div id="about-card-job">
-        <i class="fa fa-briefcase"></i>
-        <br/>
-        <p>author.job</p>
-
-      </div>
-
-      <div id="about-card-location">
-        <i class="fa fa-map-marker"></i>
-        <br/> China, Liaoning, NEYC
-      </div>
-
-    </div>
-  </div>
-
-  <div id="algolia-search-modal" class="modal-container">
-    <div class="modal">
-      <div class="modal-header">
-        <span class="close-button">
-          <i class="fa fa-close"></i>
-        </span>
-        <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
-          <span class="searchby-algolia-text text-color-light text-small">by</span>
-          <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
-        </a>
-        <i class="search-icon fa fa-search"></i>
-        <form id="algolia-search-form">
-          <input type="text" id="algolia-search-input" name="search" class="form-control input--large search-input"
-                                                                                          placeholder="Search " />
-        </form>
-      </div>
-      <div class="modal-body">
-        <div class="no-result text-color-light text-center">没有找到文章</div>
-        <div class="results">
-
-          <div class="media">
-
-            <div class="media-left">
-              <a class="link-unstyled" href="https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-                <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg"
-                                                                                                width="90" height="90" />
-              </a>
-            </div>
-
-            <div class="media-body">
-              <a class="link-unstyled" href="https://GQH123.github.io/2017/06/30/莫比乌斯反演总结/">
-                <h3 class="media-heading">莫比乌斯反演总结</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-
-                  2017年6月30日
-
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">
-                <h2 id="引言">
-                  <a href="#引言" class="headerlink" title="引言"></a>引言</h2>
-                <p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总
-                  <br>
-              </div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-
-          <div class="media">
-
-            <div class="media-left">
-              <a class="link-unstyled" href="https://GQH123.github.io/2017/06/30/莫比乌斯反演详解/">
-                <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg"
-                                                                                                width="90" height="90" />
-              </a>
-            </div>
-
-            <div class="media-body">
-              <a class="link-unstyled" href="https://GQH123.github.io/2017/06/30/莫比乌斯反演详解/">
-                <h3 class="media-heading">莫比乌斯反演详解</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-
-                  2017年6月30日
-
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">
-                <h2 id="引言">
-                  <a href="#引言" class="headerlink" title="引言"></a>引言</h2>
-                <p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，
-                  <del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p>
-              </div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-
-          <div class="media">
-
-            <div class="media-left">
-              <a class="link-unstyled" href="https://GQH123.github.io/2017/06/30/杜教筛原理详解/">
-                <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830262/83053_kwvev3.jpg"
-                                                                                                width="90" height="90" />
-              </a>
-            </div>
-
-            <div class="media-body">
-              <a class="link-unstyled" href="https://GQH123.github.io/2017/06/30/杜教筛原理详解/">
-                <h3 class="media-heading">杜教筛原理详解</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-
-                  2017年6月30日
-
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">
-                <h2 id="引言">
-                  <a href="#引言" class="headerlink" title="引言"></a>引言</h2>
-                <p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛
-                  orz
-                  <br>
-              </div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-
-          <div class="media">
-
-            <div class="media-left">
-              <a class="link-unstyled" href="https://GQH123.github.io/2017/06/30/狄利克雷卷积详解/">
-                <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830177/86548_fqol95.jpg"
-                                                                                                width="90" height="90" />
-              </a>
-            </div>
-
-            <div class="media-body">
-              <a class="link-unstyled" href="https://GQH123.github.io/2017/06/30/狄利克雷卷积详解/">
-                <h3 class="media-heading">狄利克雷卷积详解</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-
-                  2017年6月30日
-
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">
-                <h2 id="引言">
-                  <a href="#引言" class="headerlink" title="引言"></a>引言</h2>
-                <p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：
-                  <br>
-              </div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-
+            
         </div>
-      </div>
-      <div class="modal-footer">
-        <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章"
-                                                                                        data-message-other="找到 {n} 篇文章">
-          找到 4 篇文章
-        </p>
-      </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/2016-02-23.png" alt="作者的图片"/>
+        
+            <h4 id="about-card-name">Goseqh</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                China, Liaoning, NEYC
+            </div>
+        
     </div>
-  </div>
+</div>
 
-  <div id="cover" style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1498830214/86545_qwhjrk.jpg');">
-  </div>
+        <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-close"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <h3 class="media-heading">莫比乌斯反演总结</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <h3 class="media-heading">莫比乌斯反演详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830262/83053_kwvev3.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <h3 class="media-heading">杜教筛原理详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830177/86548_fqol95.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <h3 class="media-heading">狄利克雷卷积详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <h3 class="media-heading">Dilworth定理</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月1日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="没有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 5 篇文章
+            </p>
+        </div>
+    </div>
+</div>
 
-  <!--SCRIPTS-->
-  <script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
-  <!--SCRIPTS END-->
+        
+<div id="cover" style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1498830214/86545_qwhjrk.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
+<!--SCRIPTS END-->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
-  <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-  <script>
-    var algoliaClient = algoliasearch('Z7A3XW4R2I',
-      '12db1ad54372045549ef465881c17e743');
-    var algoliaIndex = algoliaClient.initIndex('tranquilpeak');
+    
 
-  </script>
 
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('Z7A3XW4R2I', '12db1ad54372045549ef465881c17e743');
+        var algoliaIndex = algoliaClient.initIndex('tranquilpeak');
+    </script>
 
+    </body>
 </html>
