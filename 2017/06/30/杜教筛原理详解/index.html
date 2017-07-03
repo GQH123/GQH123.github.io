@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://goseqh.tk/2017/06/30/杜教筛原理详解/index.html">
 <meta property="og:site_name" content="Goseqh&#39;s Blog">
 <meta property="og:description" content="引言刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz">
-<meta property="og:updated_time" content="2017-07-01T13:47:42.982Z">
+<meta property="og:updated_time" content="2017-07-03T08:34:13.315Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="杜教筛原理详解">
 <meta name="twitter:description" content="引言刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz">
@@ -216,35 +216,24 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <script src=/js/crypto-js.js></script><script>
-function doDecrypt(pwd, onError) {
-	console.log("in doDecrypt");
-	var txt = document.getElementById("enc_content").innerHTML;
-	var plantext;
-	try {
-	  	var bytes = CryptoJS.AES.decrypt(txt, pwd);
-		plaintext = bytes.toString(CryptoJS.enc.Utf8);
-	} catch(err) {
-		if(onError) {onError(err);}
-		return;
-	}
-	document.getElementById("enc_content").innerHTML = plaintext;
-	document.getElementById("enc_content").style.display = "block";
-   document.getElementById("enc_passwd").style.display = "none";
-}
-</script>
-<div id="enc_content" style="display:none">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</div><div id="enc_passwd"> <input id="enc_pwd_input" type="text" style="border-radius: 5px;border-style: groove;height: 30px;width: 50%;cursor: auto;font-size: 102%;color: currentColor;outline: none;text-overflow: initial;padding-left: 5px;" onkeydown="if (event.keyCode == 13) { decrypt(); return false;}"> <input type="submit" value="解&nbsp;密" onclick="decrypt()" style="width: 58px;height: 34px;border-radius: 5px;background-color: white;border-style: solid;color: currentColor;"><div id="enc_error" style="display: inline-block;color: #d84527;margin-left: 10px"></div>
-<script>
-var onError = function(error) {
-	document.getElementById("enc_error").innerHTML = "password error!"
-};
-function decrypt() {
-var passwd = document.getElementById("enc_pwd_input").value;
-console.log(passwd);
-doDecrypt(passwd, onError);
-}
-</script>
-</div>
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br><a id="more"></a></p>
+<p>主要看了看推导，是用来求$\mu(x)$（莫比乌斯函数）的前缀和的东西（其实是用来求<strong>积性函数</strong>的前缀和的一种方法）</p>
+<p>下面简单地推导一下：</p>
+<h1 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h1><p>首先约定下记号，令<script type="math/tex">f(n)=\sum\_{d|n}\mu(d)</script></p>
+<p>令<script type="math/tex">s(n)=\sum\_{i=1}^n\mu(i)</script></p>
+<p>令<script type="math/tex">g(n)=\sum\_{i=1}^nf(i)</script></p>
+<p>那么显然有<script type="math/tex">g(n)=1</script><br>（要是你认真学了莫比乌斯反演的话）</p>
+<p>然后，我们开始搞，怎么搞呢？我们可以这样：</p>
+<p>由于<script type="math/tex">g(n)=\sum_{i=1}^nf(i)</script></p>
+<p>且<script type="math/tex">f(n)=\sum_{d|n}\mu(d)</script></p>
+<p>代入有</p>
+<script type="math/tex; mode=display">g(n)=\sum_{i=1}^{n} \sum_{d|i}\mu(d)</script><p>则有<script type="math/tex">g(n)=\sum_{i=1}^n\mu(i)*\lfloor{\frac{n}{i}}\rfloor</script></p>
+<p>所以<script type="math/tex">g(n)=\sum_{i=1}^ns(\frac{n}{i})</script></p>
+<p>这一步需要一些感性理解，然后，我们又知道<script type="math/tex">g(n)=1</script></p>
+<p>所以<script type="math/tex">s(n)=1-\sum_{i=2}^ns(\frac{n}{i})</script></p>
+<p>然后据说通过什么记忆化+暴力$hash$+积分+预处理可以搞到复杂度$O(n^{\frac{3}{4}})$或者是$O(n^{\frac{2}{3}})$，真是玄学。。。</p>
+<p>那么剩下的部分就再用别的文章来介绍啦，今天杜教筛的讲解到此为止（其实就是一堆简(e)单(xin)的数学推导）</p>
+
             
         </div>
     </div>
@@ -333,7 +322,7 @@ doDecrypt(passwd, onError);
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; <%= date(new Date(), 'YYYY') + ' ' + config.author || config.title %>. All Rights Reserved.
+        Copyrights &copy; 2017 Goseqh. All Rights Reserved.
     </span>
 <!--<script type="text/javascript"
   src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
@@ -412,7 +401,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </script>
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 
-<script type="text/x-mathjax-config">
+<!--<script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath:  [ ["$", "$"] ],
@@ -427,7 +416,24 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </script>
 
-<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </footer>
 
             </div>

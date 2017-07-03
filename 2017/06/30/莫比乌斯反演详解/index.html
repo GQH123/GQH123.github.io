@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/index.html">
 <meta property="og:site_name" content="Goseqh&#39;s Blog">
 <meta property="og:description" content="引言终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，唉我真是太垃圾了），下面对这一神奇的数论定理予以详细的介绍：">
-<meta property="og:updated_time" content="2017-07-01T13:47:41.902Z">
+<meta property="og:updated_time" content="2017-07-03T08:33:53.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="莫比乌斯反演详解">
 <meta name="twitter:description" content="引言终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，唉我真是太垃圾了），下面对这一神奇的数论定理予以详细的介绍：">
@@ -216,35 +216,37 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <script src=/js/crypto-js.js></script><script>
-function doDecrypt(pwd, onError) {
-	console.log("in doDecrypt");
-	var txt = document.getElementById("enc_content").innerHTML;
-	var plantext;
-	try {
-	  	var bytes = CryptoJS.AES.decrypt(txt, pwd);
-		plaintext = bytes.toString(CryptoJS.enc.Utf8);
-	} catch(err) {
-		if(onError) {onError(err);}
-		return;
-	}
-	document.getElementById("enc_content").innerHTML = plaintext;
-	document.getElementById("enc_content").style.display = "block";
-   document.getElementById("enc_passwd").style.display = "none";
-}
-</script>
-<div id="enc_content" style="display:none">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</div><div id="enc_passwd"> <input id="enc_pwd_input" type="text" style="border-radius: 5px;border-style: groove;height: 30px;width: 50%;cursor: auto;font-size: 102%;color: currentColor;outline: none;text-overflow: initial;padding-left: 5px;" onkeydown="if (event.keyCode == 13) { decrypt(); return false;}"> <input type="submit" value="解&nbsp;密" onclick="decrypt()" style="width: 58px;height: 34px;border-radius: 5px;background-color: white;border-style: solid;color: currentColor;"><div id="enc_error" style="display: inline-block;color: #d84527;margin-left: 10px"></div>
-<script>
-var onError = function(error) {
-	document.getElementById("enc_error").innerHTML = "password error!"
-};
-function decrypt() {
-var passwd = document.getElementById("enc_pwd_input").value;
-console.log(passwd);
-doDecrypt(passwd, onError);
-}
-</script>
-</div>
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p>
+<a id="more"></a>
+<p>注，由于我们目前研究的都是数论函数，所以默认定义域均为$Z^+$</p>
+<p>首先，我们考虑一类函数$F(x)$与$f(x)$，它们之间有如下的性质：</p>
+<script type="math/tex; mode=display">F(n)=\sum_{d|n} f(d)</script><p>那么，如果现在我们想知道$f(n)$的表达式该怎么办呢？它其实是这样的：</p>
+<script type="math/tex; mode=display">f(n)=\sum_{d|n} \mu(d)*F(\frac{n}{d})</script><p>其中$\mu(d)$是莫比乌斯函数，它的取值定义如下：</p>
+<script type="math/tex; mode=display">\mu(d)=
+\begin{cases}
+1,\mbox{if  }\mbox{ d = 1}\\
+0,\mbox{if }\mbox{ d 含有平方因子}\\
+(-1)^n,\mbox{if } \mbox{ d = }p_1*p_2*\cdots*p_n\\
+\end{cases}</script><p>其中含有平方因子意为存在某一个质因子的平方可以整除$d$</p>
+<p>这样，我们就介绍完莫比乌斯反演公式啦</p>
+<p>其实它还有一种形式，这种形式才是十分常用的，我就是不知道这个才墨迹了那么长的时间：</p>
+<p>还是对于两个函数$F(x)$与$f(x)$，它们有如下的性质：</p>
+<script type="math/tex; mode=display">F(n)=\sum_{n|d} f(d)</script><p>体会一下区别啊！可别这么翻过去了</p>
+<p>那么它们满足：</p>
+<script type="math/tex; mode=display">f(n)=\sum_{n|d} \mu(\frac{d}{n})*F(d)</script><p>这种形式与上述形式十分相近，但这种形式的用处却十分广泛，广泛用于各种信息技术领域<del>以及SB一样的省选题</del></p>
+<p>这样，莫比乌斯反演呢我们就介绍完了，下面讨论一下它的证明，哦对了，还有一个性质没有说，那就是：</p>
+<script type="math/tex; mode=display">\sum_{d|n}\mu(d)=
+\begin{cases}
+1,\mbox{if d = 1}\\
+0,\mbox{if d}\not=\mbox{1}\\
+\end{cases}</script><p>这个性质十分重要，证明过程留给读者。提示：使用组合计数原理以及二项式定理。下面就会看到它在证明莫比乌斯反演定理中的重要性：</p>
+<p>先证第一种形式：</p>
+<p>首先，我们可知：<script type="math/tex">f(n)=\sum_{d|n} \mu(d)*F(\frac{n}{d})</script><br>然后，我们做一些变换，代入$F(x)$与$f(x)$之间的性质：<script type="math/tex">F(n)=\sum_{d|n} f(d)</script><br>则有：<script type="math/tex">f(n)=\sum_{d|n} \mu(d)*{\sum_{k|{\frac{n}{d}}}f(k)}</script><br>然后，下面需要一些感性思维：<script type="math/tex">f(n)=\sum_{k|n} f(k)*{\sum_{d|{\frac{n}{k}}}\mu(d)}</script><br>然后根据上面的重要性质，可以把第二个级数搞掉，它只有在$k=n$时才为$1$，否则全为零</p>
+<p>那么就有右式等于$f(n)$，证毕！</p>
+<p>然后对于第二种形式来说，我们可以类比上述过程进行证明，当做思考题啦~</p>
+<p>那么，莫比乌斯反演到这里就讲完啦，题目会由其他文章提供与详解，再见啦</p>
+<p>　　　　　　　　　　　　　　　~(≧▽≦)/~</p>
+
             
         </div>
     </div>
@@ -333,7 +335,7 @@ doDecrypt(passwd, onError);
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; <%= date(new Date(), 'YYYY') + ' ' + config.author || config.title %>. All Rights Reserved.
+        Copyrights &copy; 2017 Goseqh. All Rights Reserved.
     </span>
 <!--<script type="text/javascript"
   src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
@@ -412,7 +414,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </script>
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 
-<script type="text/x-mathjax-config">
+<!--<script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath:  [ ["$", "$"] ],
@@ -427,7 +429,24 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </script>
 
-<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 </footer>
 
             </div>
