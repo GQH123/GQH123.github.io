@@ -15,17 +15,17 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="Dirichlet Convolution.">
+    <meta name="description" content="引言 定义 狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d}) 运算律： 1. 结合律 2. 交换律 3. 加法-狄利克雷卷积分配律 4. 单位元 5. 逆元   特殊函数 积性函数 分解质因子 积性函数前缀和      引言作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：">
 <meta name="keywords" content="数学,数论,狄利克雷卷积">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="狄利克雷卷积详解">
 <meta property="og:url" content="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/index.html">
 <meta property="og:site_name" content="Goseqh&#39;s Blog">
-<meta property="og:description" content="Dirichlet Convolution.">
+<meta property="og:description" content="引言 定义 狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d}) 运算律： 1. 结合律 2. 交换律 3. 加法-狄利克雷卷积分配律 4. 单位元 5. 逆元   特殊函数 积性函数 分解质因子 积性函数前缀和      引言作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：">
 <meta property="og:updated_time" content="2017-07-11T04:13:58.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="狄利克雷卷积详解">
-<meta name="twitter:description" content="Dirichlet Convolution.">
+<meta name="twitter:description" content="引言 定义 狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d}) 运算律： 1. 结合律 2. 交换律 3. 加法-狄利克雷卷积分配律 4. 单位元 5. 逆元   特殊函数 积性函数 分解质因子 积性函数前缀和      引言作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：">
     
     
         
@@ -216,7 +216,59 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <link href="/style.css" rel="stylesheet" type="text/css"><script src="/crypto-js.js"></script><script src="/mcommon.js"></script><script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <div id="security"> <div> <div class="input-container"> <input type="password" class="form-control" id="pass" placeholder=" Welcome to my blog, enter password to read. "> <label for="pass"> Welcome to my blog, enter password to read. </label> <div class="bottom-line"></div> </div> </div> </div> <div id="encrypt-blog" style="display:none"> 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 </div>
+            <div class="toc">
+
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#yin-yan"><span class="toc-text">引言"#"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ding-yi"><span class="toc-text">定义"#"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#di-li-ke-lei-juan-ji-fxg-n-sum-d-n-f-d-g-frac-n-d"><span class="toc-text">狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})"#"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yun-suan-lu"><span class="toc-text">运算律："#"</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-jie-he-lu"><span class="toc-text">1. 结合律"#"</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-jiao-huan-lu"><span class="toc-text">2. 交换律"#"</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-jia-fa-di-li-ke-lei-juan-ji-fen-pei-lu"><span class="toc-text">3. 加法-狄利克雷卷积分配律"#"</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-dan-wei-yuan"><span class="toc-text">4. 单位元"#"</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-ni-yuan"><span class="toc-text">5. 逆元"#"</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#te-shu-han-shu"><span class="toc-text">特殊函数"#"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ji-xing-han-shu"><span class="toc-text">积性函数"#"</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fen-jie-zhi-yin-zi"><span class="toc-text">分解质因子"#"</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ji-xing-han-shu-qian-zhui-he"><span class="toc-text">积性函数前缀和"#"</span></a></li></ol></li></ol>
+<ul>
+<li><a href="#yin-yan">引言</a></li>
+<li><a href="#ding-yi">定义</a></li>
+<li><a href="#di-li-ke-lei-juan-ji-fxg-n-sum-d-n-f-d-g-frac-n-d">狄利克雷卷积：<script type="math/tex">(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})</script></a></li>
+<li><a href="#yun-suan-lu">运算律：</a><ul>
+<li><a href="#1-jie-he-lu">1. 结合律</a></li>
+<li><a href="#2-jiao-huan-lu">2. 交换律</a></li>
+<li><a href="#3-jia-fa-di-li-ke-lei-juan-ji-fen-pei-lu">3. 加法-狄利克雷卷积分配律</a></li>
+<li><a href="#4-dan-wei-yuan">4. 单位元</a></li>
+<li><a href="#5-ni-yuan">5. 逆元</a></li>
+</ul>
+</li>
+<li><a href="#te-shu-han-shu">特殊函数</a></li>
+<li><a href="#ji-xing-han-shu">积性函数</a><ul>
+<li><a href="#fen-jie-zhi-yin-zi">分解质因子</a></li>
+<li><a href="#ji-xing-han-shu-qian-zhui-he">积性函数前缀和</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p></div></p>
+<h2 id="yin-yan"><a href="#引言" class="headerlink" title="引言"></a>引言<a href="yin-yan" class="header-anchor">"#"</a></h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br><a id="more"></a></p>
+<h2 id="ding-yi"><a href="#定义" class="headerlink" title="定义"></a>定义<a href="ding-yi" class="header-anchor">"#"</a></h2><h2 id="di-li-ke-lei-juan-ji-fxg-n-sum-d-n-f-d-g-frac-n-d"><a href="#狄利克雷卷积：-f×g-n-sum-d-n-f-d-∗g-frac-n-d" class="headerlink" title="狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})"></a>狄利克雷卷积：<script type="math/tex">(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})</script><a href="di-li-ke-lei-juan-ji-fxg-n-sum-d-n-f-d-g-frac-n-d" class="header-anchor">"#"</a></h2><p>一个例子：$f(x)=2x,g(x)=3x$<br>则$(f×g)(6)=f(1)g(6)+f(2)g(3)+f(3)g(2)+f(6)g(1)$，往往省略掉$n$</p>
+<p>狄利克雷卷积定义<strong>在数论函数</strong>上</p>
+<blockquote>
+<p>数论函数： 如果一个函数的定义域为正整数，值域为复数，则称此函数为数论函数常见的数论函数有欧拉函数$φ$和莫比乌斯函数$μ$</p>
+</blockquote>
+<h2 id="yun-suan-lu"><a href="#运算律：" class="headerlink" title="运算律："></a>运算律：<a href="yun-suan-lu" class="header-anchor">"#"</a></h2><h3 id="1-jie-he-lu"><a href="#1-结合律" class="headerlink" title="1. 结合律"></a>1. 结合律<a href="1-jie-he-lu" class="header-anchor">"#"</a></h3><script type="math/tex; mode=display">(f×g)×h=f×(g×h)</script><h3 id="2-jiao-huan-lu"><a href="#2-交换律" class="headerlink" title="2. 交换律"></a>2. 交换律<a href="2-jiao-huan-lu" class="header-anchor">"#"</a></h3><script type="math/tex; mode=display">f×g=g×f</script><h3 id="3-jia-fa-di-li-ke-lei-juan-ji-fen-pei-lu"><a href="#3-加法-狄利克雷卷积分配律" class="headerlink" title="3. 加法-狄利克雷卷积分配律"></a>3. 加法-狄利克雷卷积分配律<a href="3-jia-fa-di-li-ke-lei-juan-ji-fen-pei-lu" class="header-anchor">"#"</a></h3><script type="math/tex; mode=display">f×(g+h)=f×g+f×h</script><h3 id="4-dan-wei-yuan"><a href="#4-单位元" class="headerlink" title="4. 单位元"></a>4. 单位元<a href="4-dan-wei-yuan" class="header-anchor">"#"</a></h3><p>单位函数$ϵ$，使得<script type="math/tex">f=ϵ×f=f×ϵ</script>，单位函数的取值：$n=1$时$ϵ(n)=1$，$n$取其他值时$ϵ(n)=0$</p>
+<h3 id="5-ni-yuan"><a href="#5-逆元" class="headerlink" title="5. 逆元"></a>5. 逆元<a href="5-ni-yuan" class="header-anchor">"#"</a></h3><p>对于任意数论函数$f$，如果$f(1)≠0$，则存在唯一的逆函数$f^{-1}$，使得$f×f^{-1}=ϵ$：<br>对于$n=1$，有：$f^{-1}(1)=\frac{1}{f(1)}$<br>对于$n&gt;1$，有：<script type="math/tex">f^{-1}(1)=\frac{-1}{f(1)}\sum_{d|n,n≠d}f(\frac{n}{d})f^{-1}(d)</script></p>
+<p>狄利克雷卷积是对数论函数的二元运算，产生的结果也显然是一个数论函数，因此满足<strong>封闭性</strong>。又综合1、4、5，得到：</p>
+<p>$G(数论函数,×)$是一个<strong>群</strong></p>
+<h2 id="te-shu-han-shu"><a href="#特殊函数" class="headerlink" title="特殊函数"></a>特殊函数<a href="te-shu-han-shu" class="header-anchor">"#"</a></h2><p>由于 <script type="math/tex">\sum_{d|n} \varphi(d)=n</script>  </p>
+<p>易得：<script type="math/tex">φ×1=n</script>  </p>
+<p>回顾莫比乌斯反演：<script type="math/tex">F(n)=\sum_{d|n}f(d)</script>  </p>
+<p>这句话的意思就是<script type="math/tex">f×1=F</script>  </p>
+<p>根据莫比乌斯函数的性质或定义：<script type="math/tex">μ×1=ϵ</script>  <script type="math/tex">f×1=F×ϵ=F×μ×1</script><br>故：<script type="math/tex">f=F×μ</script><br>可以推出莫比乌斯反演定理：<script type="math/tex">f=μ×F</script>  </p>
+<p>也即日常所见的式子：<script type="math/tex">f(n)=\sum_{d|n}μ(d)F(\frac{n}{d})</script>  </p>
+<p>根据狄利克雷卷积的交换律，上面的式子可以改写：<script type="math/tex">f=F×μ</script><br>故<script type="math/tex">f(n)=\sum_{d|n}μ(\frac{n}{d})F(d)</script>  </p>
+<h2 id="ji-xing-han-shu"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数<a href="ji-xing-han-shu" class="header-anchor">"#"</a></h2><p>数论函数$f$，如果对于所有$a⊥b$有$f(a∗b)=f(a)∗f(b)$，则称$f$为<strong>积性函数</strong><br>进一步，如果对于所有$a,b∈Z^+$都有$f(a∗b)=f(a)∗f(b)$，则称$f$为<strong>完全积性函数</strong></p>
+<p><strong>两个积性函数的狄利克雷卷积也是积性函数</strong></p>
+<p>两个例子：欧拉函数$φ$和莫比乌斯函数$μ$</p>
+<p>都可以用线性筛求，快速求因子</p>
+<p>可以以$O(n)$的代价预处理$[1,n]$的所有数，然后$O(logn)$</p>
+<h3 id="fen-jie-zhi-yin-zi"><a href="#分解质因子" class="headerlink" title="分解质因子"></a>分解质因子<a href="fen-jie-zhi-yin-zi" class="header-anchor">"#"</a></h3><p>做法：先跑一遍线性筛，以$son[i]$记录把$i$筛掉的最小的质数</p>
+<p>分解质因数的时候，不停地$n=n/son[n]$来分解</p>
+<p>可以证明复杂度是单次$O(logn)$：每迭代一次，$n$被除以$son[n]$，而$son[n]$最小为$2$，故时间复杂度不超过$O(logn)$</p>
+<h3 id="ji-xing-han-shu-qian-zhui-he"><a href="#积性函数前缀和" class="headerlink" title="积性函数前缀和"></a>积性函数前缀和<a href="ji-xing-han-shu-qian-zhui-he" class="header-anchor">"#"</a></h3><p>原文里写的好像是什么杜教筛，那个在另一篇文章里再写吧</p>
+<p>哈哈，改别人的文章还是很爽的，改一改就是自己的了，那么狄利克雷卷积的讲解就到此位置啦，再见~</p>
+<p>　　　　　　　　　　　　　 ~(≧▽≦)/~啦啦啦</p>
+
             
         </div>
     </div>
@@ -285,7 +337,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#">
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
             
                 <i class="fa fa-list"></i>
             </a>
@@ -477,7 +529,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#">
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
             
                 <i class="fa fa-list"></i>
             </a>
@@ -596,7 +648,62 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather">Mobius Inversion Summary.</div>
+                        <div class="media-content hide-xs font-merryweather"><div class="tocStart"></div>
+
+<!-- toc -->
+<ul>
+<li><a href="#yin-yan">引言</a></li>
+<li><a href="#yue-ding">约定</a><ul>
+<li><a href="#mo-bi-wu-si-han-shu-m-x">莫比乌斯函数μ(x)</a></li>
+<li><a href="#heng-deng-han-shu-id-x">恒等函数id(x)</a></li>
+<li><a href="#ou-la-han-shu-x">欧拉函数(x)</a></li>
+<li><a href="#dan-wei-han-shu-e-x">单位函数e(x)</a></li>
+</ul>
+</li>
+<li><a href="#chang-yong-ding-li">常用定理</a><ul>
+<li><a href="#zhi-yin-zi-ding-li">质因子定理</a></li>
+<li><a href="#diao-he-ji-shu-ding-li">调和级数定理</a></li>
+<li><a href="#ping-fang-gen-diao-he-ji-shu-ding-li">平方根调和级数定理</a></li>
+<li><a href="#dirichlet-juan-ji-yun-suan-lu-ding-li">Dirichlet卷积运算律定理</a></li>
+<li><a href="#dirichlet-juan-ji-xing-zhi-ding-li">Dirichlet卷积性质定理</a></li>
+<li><a href="#dirichlet-juan-ji-fu-za-du-ding-li">Dirichlet卷积复杂度定理</a></li>
+<li><a href="#mo-bi-wu-si-fan-yan-ding-li">莫比乌斯反演定理</a></li>
+<li><a href="#fhan-shu-ding-li">φ函数定理</a></li>
+</ul>
+</li>
+<li><a href="#shu-lun-gong-shi-tui-dao-ji-qiao">数论公式推导技巧</a><ul>
+<li><a href="#mbian-huan">μ变换</a></li>
+<li><a href="#mti-qu">μ提取</a></li>
+<li><a href="#fbian-huan">φ变换</a></li>
+<li><a href="#ji-xing-han-shu-ti-qu">积性函数提取</a></li>
+<li><a href="#dirichlet-juan-ji">Dirichlet卷积</a></li>
+<li><a href="#jiao-huan-bu-bian-xing">交换不变性</a></li>
+</ul>
+</li>
+<li><a href="#shu-lun-gong-shi-ji-suan-ji-qiao">数论公式计算技巧</a><ul>
+<li><a href="#dirichlet-juan-ji-ji-suan-fang-fa">Dirichlet卷积计算方法</a></li>
+<li><a href="#ji-xing-han-shu-xian-xing-shai-fa">积性函数线性筛法</a></li>
+</ul>
+</li>
+<li><a href="#chang-yong-gong-shi-tui-dao">常用公式推导</a><ul>
+<li><a href="#dan-wei-fen-kuai-fa-ji-suan">单维分块法计算</a></li>
+<li><a href="#shuang-wei-fen-kuai-fa-ji-suan">双维分块法计算</a></li>
+<li><a href="#zui-da-gong-yue-shu-tong-ji">最大公约数统计</a></li>
+<li><a href="#zui-xiao-gong-bei-shu-tong-ji">最小公倍数统计</a></li>
+</ul>
+</li>
+<li><a href="#li-ti-zong-jie">例题总结</a><ul>
+<li><a href="#noi2010-neng-liang-cai-ji">[Noi2010]能量采集</a></li>
+<li><a href="#yy-de-gcd">YY的GCD</a></li>
+<li><a href="#spoj5971-lcm-sum">Spoj5971 LCM Sum</a></li>
+<li><a href="#cqoi2007-yu-shu-zhi-he-sum">[CQOI2007]余数之和sum</a></li>
+<li><a href="#jzptab">jzptab</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><div class="tocEnd"></div></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
@@ -621,7 +728,15 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather">Mobius Inversion Explanation.</div>
+                        <div class="media-content hide-xs font-merryweather"><div class="tocStart"></div>
+
+<!-- toc -->
+<ul>
+<li><a href="#yin-yan">引言</a></li>
+</ul>
+<!-- tocstop -->
+<p><div class="tocEnd"></div></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
@@ -646,7 +761,18 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather">DYH's Sieve Method.</div>
+                        <div class="media-content hide-xs font-merryweather"><div class="tocStart"></div>
+
+<!-- toc -->
+<ul>
+<li><a href="#yin-yan">引言</a><ul>
+<li><a href="#tui-dao">推导</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><div class="tocEnd"></div></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
@@ -671,7 +797,31 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather">Dirichlet Convolution.</div>
+                        <div class="media-content hide-xs font-merryweather"><div class="tocStart"></div>
+
+<!-- toc -->
+<ul>
+<li><a href="#yin-yan">引言</a></li>
+<li><a href="#ding-yi">定义</a></li>
+<li><a href="#di-li-ke-lei-juan-ji-fxg-n-sum-d-n-f-d-g-frac-n-d">狄利克雷卷积：<script type="math/tex">(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})</script></a></li>
+<li><a href="#yun-suan-lu">运算律：</a><ul>
+<li><a href="#1-jie-he-lu">1. 结合律</a></li>
+<li><a href="#2-jiao-huan-lu">2. 交换律</a></li>
+<li><a href="#3-jia-fa-di-li-ke-lei-juan-ji-fen-pei-lu">3. 加法-狄利克雷卷积分配律</a></li>
+<li><a href="#4-dan-wei-yuan">4. 单位元</a></li>
+<li><a href="#5-ni-yuan">5. 逆元</a></li>
+</ul>
+</li>
+<li><a href="#te-shu-han-shu">特殊函数</a></li>
+<li><a href="#ji-xing-han-shu">积性函数</a><ul>
+<li><a href="#fen-jie-zhi-yin-zi">分解质因子</a></li>
+<li><a href="#ji-xing-han-shu-qian-zhui-he">积性函数前缀和</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><div class="tocEnd"></div></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
@@ -696,7 +846,24 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather">Dilworth Theorem.</div>
+                        <div class="media-content hide-xs font-merryweather"><div class="tocStart"></div>
+
+<!-- toc -->
+<ul>
+<li><a href="#yin-yan">引言</a></li>
+<li><a href="#dilworth-ding-li">Dilworth 定理</a><ul>
+<li><a href="#pian-xu">偏序</a></li>
+<li><a href="#pian-xu-ji">偏序集</a></li>
+<li><a href="#lian-he-fan-lian">链和反链</a></li>
+<li><a href="#dilworth-theorem">Dilworth Theorem</a></li>
+<li><a href="#hasse-diagram">Hasse Diagram</a></li>
+<li><a href="#li-ti">例题</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><div class="tocEnd"></div></p>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
