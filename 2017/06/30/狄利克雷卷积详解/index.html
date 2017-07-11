@@ -15,17 +15,17 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="引言 定义 狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d}) 运算律： 1. 结合律 2. 交换律 3. 加法-狄利克雷卷积分配律 4. 单位元 5. 逆元   特殊函数 积性函数 分解质因子 积性函数前缀和      引言作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：">
+    <meta name="description" content="引言作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：">
 <meta name="keywords" content="数学,数论,狄利克雷卷积">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="狄利克雷卷积详解">
 <meta property="og:url" content="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/index.html">
 <meta property="og:site_name" content="Goseqh&#39;s Blog">
-<meta property="og:description" content="引言 定义 狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d}) 运算律： 1. 结合律 2. 交换律 3. 加法-狄利克雷卷积分配律 4. 单位元 5. 逆元   特殊函数 积性函数 分解质因子 积性函数前缀和      引言作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：">
+<meta property="og:description" content="引言作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：">
 <meta property="og:updated_time" content="2017-07-11T04:13:58.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="狄利克雷卷积详解">
-<meta name="twitter:description" content="引言 定义 狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d}) 运算律： 1. 结合律 2. 交换律 3. 加法-狄利克雷卷积分配律 4. 单位元 5. 逆元   特殊函数 积性函数 分解质因子 积性函数前缀和      引言作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：">
+<meta name="twitter:description" content="引言作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：">
     
     
         
@@ -216,56 +216,33 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <div class="toc">
-
-<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#yin-yan"><span class="toc-text">引言"#"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ding-yi"><span class="toc-text">定义"#"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#di-li-ke-lei-juan-ji-fxg-n-sum-d-n-f-d-g-frac-n-d"><span class="toc-text">狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})"#"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yun-suan-lu"><span class="toc-text">运算律："#"</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-jie-he-lu"><span class="toc-text">1. 结合律"#"</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-jiao-huan-lu"><span class="toc-text">2. 交换律"#"</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-jia-fa-di-li-ke-lei-juan-ji-fen-pei-lu"><span class="toc-text">3. 加法-狄利克雷卷积分配律"#"</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-dan-wei-yuan"><span class="toc-text">4. 单位元"#"</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-ni-yuan"><span class="toc-text">5. 逆元"#"</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#te-shu-han-shu"><span class="toc-text">特殊函数"#"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ji-xing-han-shu"><span class="toc-text">积性函数"#"</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fen-jie-zhi-yin-zi"><span class="toc-text">分解质因子"#"</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ji-xing-han-shu-qian-zhui-he"><span class="toc-text">积性函数前缀和"#"</span></a></li></ol></li></ol>
-<ul>
-<li><a href="#yin-yan">引言</a></li>
-<li><a href="#ding-yi">定义</a></li>
-<li><a href="#di-li-ke-lei-juan-ji-fxg-n-sum-d-n-f-d-g-frac-n-d">狄利克雷卷积：<script type="math/tex">(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})</script></a></li>
-<li><a href="#yun-suan-lu">运算律：</a><ul>
-<li><a href="#1-jie-he-lu">1. 结合律</a></li>
-<li><a href="#2-jiao-huan-lu">2. 交换律</a></li>
-<li><a href="#3-jia-fa-di-li-ke-lei-juan-ji-fen-pei-lu">3. 加法-狄利克雷卷积分配律</a></li>
-<li><a href="#4-dan-wei-yuan">4. 单位元</a></li>
-<li><a href="#5-ni-yuan">5. 逆元</a></li>
-</ul>
-</li>
-<li><a href="#te-shu-han-shu">特殊函数</a></li>
-<li><a href="#ji-xing-han-shu">积性函数</a><ul>
-<li><a href="#fen-jie-zhi-yin-zi">分解质因子</a></li>
-<li><a href="#ji-xing-han-shu-qian-zhui-he">积性函数前缀和</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-<p></div></p>
-<h2 id="yin-yan"><a href="#引言" class="headerlink" title="引言"></a>引言<a href="yin-yan" class="header-anchor">"#"</a></h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br><a id="more"></a></p>
-<h2 id="ding-yi"><a href="#定义" class="headerlink" title="定义"></a>定义<a href="ding-yi" class="header-anchor">"#"</a></h2><h2 id="di-li-ke-lei-juan-ji-fxg-n-sum-d-n-f-d-g-frac-n-d"><a href="#狄利克雷卷积：-f×g-n-sum-d-n-f-d-∗g-frac-n-d" class="headerlink" title="狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})"></a>狄利克雷卷积：<script type="math/tex">(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})</script><a href="di-li-ke-lei-juan-ji-fxg-n-sum-d-n-f-d-g-frac-n-d" class="header-anchor">"#"</a></h2><p>一个例子：$f(x)=2x,g(x)=3x$<br>则$(f×g)(6)=f(1)g(6)+f(2)g(3)+f(3)g(2)+f(6)g(1)$，往往省略掉$n$</p>
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#狄利克雷卷积：-f×g-n-sum-d-n-f-d-∗g-frac-n-d"><span class="toc-text">狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算律："><span class="toc-text">运算律：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-结合律"><span class="toc-text">1. 结合律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-交换律"><span class="toc-text">2. 交换律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-加法-狄利克雷卷积分配律"><span class="toc-text">3. 加法-狄利克雷卷积分配律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-单位元"><span class="toc-text">4. 单位元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-逆元"><span class="toc-text">5. 逆元</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特殊函数"><span class="toc-text">特殊函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#积性函数"><span class="toc-text">积性函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分解质因子"><span class="toc-text">分解质因子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#积性函数前缀和"><span class="toc-text">积性函数前缀和</span></a></li></ol></li></ol>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br><a id="more"></a></p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h2 id="狄利克雷卷积：-f×g-n-sum-d-n-f-d-∗g-frac-n-d"><a href="#狄利克雷卷积：-f×g-n-sum-d-n-f-d-∗g-frac-n-d" class="headerlink" title="狄利克雷卷积：(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})"></a>狄利克雷卷积：<script type="math/tex">(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})</script></h2><p>一个例子：$f(x)=2x,g(x)=3x$<br>则$(f×g)(6)=f(1)g(6)+f(2)g(3)+f(3)g(2)+f(6)g(1)$，往往省略掉$n$</p>
 <p>狄利克雷卷积定义<strong>在数论函数</strong>上</p>
 <blockquote>
 <p>数论函数： 如果一个函数的定义域为正整数，值域为复数，则称此函数为数论函数常见的数论函数有欧拉函数$φ$和莫比乌斯函数$μ$</p>
 </blockquote>
-<h2 id="yun-suan-lu"><a href="#运算律：" class="headerlink" title="运算律："></a>运算律：<a href="yun-suan-lu" class="header-anchor">"#"</a></h2><h3 id="1-jie-he-lu"><a href="#1-结合律" class="headerlink" title="1. 结合律"></a>1. 结合律<a href="1-jie-he-lu" class="header-anchor">"#"</a></h3><script type="math/tex; mode=display">(f×g)×h=f×(g×h)</script><h3 id="2-jiao-huan-lu"><a href="#2-交换律" class="headerlink" title="2. 交换律"></a>2. 交换律<a href="2-jiao-huan-lu" class="header-anchor">"#"</a></h3><script type="math/tex; mode=display">f×g=g×f</script><h3 id="3-jia-fa-di-li-ke-lei-juan-ji-fen-pei-lu"><a href="#3-加法-狄利克雷卷积分配律" class="headerlink" title="3. 加法-狄利克雷卷积分配律"></a>3. 加法-狄利克雷卷积分配律<a href="3-jia-fa-di-li-ke-lei-juan-ji-fen-pei-lu" class="header-anchor">"#"</a></h3><script type="math/tex; mode=display">f×(g+h)=f×g+f×h</script><h3 id="4-dan-wei-yuan"><a href="#4-单位元" class="headerlink" title="4. 单位元"></a>4. 单位元<a href="4-dan-wei-yuan" class="header-anchor">"#"</a></h3><p>单位函数$ϵ$，使得<script type="math/tex">f=ϵ×f=f×ϵ</script>，单位函数的取值：$n=1$时$ϵ(n)=1$，$n$取其他值时$ϵ(n)=0$</p>
-<h3 id="5-ni-yuan"><a href="#5-逆元" class="headerlink" title="5. 逆元"></a>5. 逆元<a href="5-ni-yuan" class="header-anchor">"#"</a></h3><p>对于任意数论函数$f$，如果$f(1)≠0$，则存在唯一的逆函数$f^{-1}$，使得$f×f^{-1}=ϵ$：<br>对于$n=1$，有：$f^{-1}(1)=\frac{1}{f(1)}$<br>对于$n&gt;1$，有：<script type="math/tex">f^{-1}(1)=\frac{-1}{f(1)}\sum_{d|n,n≠d}f(\frac{n}{d})f^{-1}(d)</script></p>
+<h2 id="运算律："><a href="#运算律：" class="headerlink" title="运算律："></a>运算律：</h2><h3 id="1-结合律"><a href="#1-结合律" class="headerlink" title="1. 结合律"></a>1. 结合律</h3><script type="math/tex; mode=display">(f×g)×h=f×(g×h)</script><h3 id="2-交换律"><a href="#2-交换律" class="headerlink" title="2. 交换律"></a>2. 交换律</h3><script type="math/tex; mode=display">f×g=g×f</script><h3 id="3-加法-狄利克雷卷积分配律"><a href="#3-加法-狄利克雷卷积分配律" class="headerlink" title="3. 加法-狄利克雷卷积分配律"></a>3. 加法-狄利克雷卷积分配律</h3><script type="math/tex; mode=display">f×(g+h)=f×g+f×h</script><h3 id="4-单位元"><a href="#4-单位元" class="headerlink" title="4. 单位元"></a>4. 单位元</h3><p>单位函数$ϵ$，使得<script type="math/tex">f=ϵ×f=f×ϵ</script>，单位函数的取值：$n=1$时$ϵ(n)=1$，$n$取其他值时$ϵ(n)=0$</p>
+<h3 id="5-逆元"><a href="#5-逆元" class="headerlink" title="5. 逆元"></a>5. 逆元</h3><p>对于任意数论函数$f$，如果$f(1)≠0$，则存在唯一的逆函数$f^{-1}$，使得$f×f^{-1}=ϵ$：<br>对于$n=1$，有：$f^{-1}(1)=\frac{1}{f(1)}$<br>对于$n&gt;1$，有：<script type="math/tex">f^{-1}(1)=\frac{-1}{f(1)}\sum_{d|n,n≠d}f(\frac{n}{d})f^{-1}(d)</script></p>
 <p>狄利克雷卷积是对数论函数的二元运算，产生的结果也显然是一个数论函数，因此满足<strong>封闭性</strong>。又综合1、4、5，得到：</p>
 <p>$G(数论函数,×)$是一个<strong>群</strong></p>
-<h2 id="te-shu-han-shu"><a href="#特殊函数" class="headerlink" title="特殊函数"></a>特殊函数<a href="te-shu-han-shu" class="header-anchor">"#"</a></h2><p>由于 <script type="math/tex">\sum_{d|n} \varphi(d)=n</script>  </p>
+<h2 id="特殊函数"><a href="#特殊函数" class="headerlink" title="特殊函数"></a>特殊函数</h2><p>由于 <script type="math/tex">\sum_{d|n} \varphi(d)=n</script>  </p>
 <p>易得：<script type="math/tex">φ×1=n</script>  </p>
 <p>回顾莫比乌斯反演：<script type="math/tex">F(n)=\sum_{d|n}f(d)</script>  </p>
 <p>这句话的意思就是<script type="math/tex">f×1=F</script>  </p>
 <p>根据莫比乌斯函数的性质或定义：<script type="math/tex">μ×1=ϵ</script>  <script type="math/tex">f×1=F×ϵ=F×μ×1</script><br>故：<script type="math/tex">f=F×μ</script><br>可以推出莫比乌斯反演定理：<script type="math/tex">f=μ×F</script>  </p>
 <p>也即日常所见的式子：<script type="math/tex">f(n)=\sum_{d|n}μ(d)F(\frac{n}{d})</script>  </p>
 <p>根据狄利克雷卷积的交换律，上面的式子可以改写：<script type="math/tex">f=F×μ</script><br>故<script type="math/tex">f(n)=\sum_{d|n}μ(\frac{n}{d})F(d)</script>  </p>
-<h2 id="ji-xing-han-shu"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数<a href="ji-xing-han-shu" class="header-anchor">"#"</a></h2><p>数论函数$f$，如果对于所有$a⊥b$有$f(a∗b)=f(a)∗f(b)$，则称$f$为<strong>积性函数</strong><br>进一步，如果对于所有$a,b∈Z^+$都有$f(a∗b)=f(a)∗f(b)$，则称$f$为<strong>完全积性函数</strong></p>
+<h2 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h2><p>数论函数$f$，如果对于所有$a⊥b$有$f(a∗b)=f(a)∗f(b)$，则称$f$为<strong>积性函数</strong><br>进一步，如果对于所有$a,b∈Z^+$都有$f(a∗b)=f(a)∗f(b)$，则称$f$为<strong>完全积性函数</strong></p>
 <p><strong>两个积性函数的狄利克雷卷积也是积性函数</strong></p>
 <p>两个例子：欧拉函数$φ$和莫比乌斯函数$μ$</p>
 <p>都可以用线性筛求，快速求因子</p>
 <p>可以以$O(n)$的代价预处理$[1,n]$的所有数，然后$O(logn)$</p>
-<h3 id="fen-jie-zhi-yin-zi"><a href="#分解质因子" class="headerlink" title="分解质因子"></a>分解质因子<a href="fen-jie-zhi-yin-zi" class="header-anchor">"#"</a></h3><p>做法：先跑一遍线性筛，以$son[i]$记录把$i$筛掉的最小的质数</p>
+<h3 id="分解质因子"><a href="#分解质因子" class="headerlink" title="分解质因子"></a>分解质因子</h3><p>做法：先跑一遍线性筛，以$son[i]$记录把$i$筛掉的最小的质数</p>
 <p>分解质因数的时候，不停地$n=n/son[n]$来分解</p>
 <p>可以证明复杂度是单次$O(logn)$：每迭代一次，$n$被除以$son[n]$，而$son[n]$最小为$2$，故时间复杂度不超过$O(logn)$</p>
-<h3 id="ji-xing-han-shu-qian-zhui-he"><a href="#积性函数前缀和" class="headerlink" title="积性函数前缀和"></a>积性函数前缀和<a href="ji-xing-han-shu-qian-zhui-he" class="header-anchor">"#"</a></h3><p>原文里写的好像是什么杜教筛，那个在另一篇文章里再写吧</p>
+<h3 id="积性函数前缀和"><a href="#积性函数前缀和" class="headerlink" title="积性函数前缀和"></a>积性函数前缀和</h3><p>原文里写的好像是什么杜教筛，那个在另一篇文章里再写吧</p>
 <p>哈哈，改别人的文章还是很爽的，改一改就是自己的了，那么狄利克雷卷积的讲解就到此位置啦，再见~</p>
 <p>　　　　　　　　　　　　　 ~(≧▽≦)/~啦啦啦</p>
 
@@ -648,61 +625,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><div class="tocStart"></div>
-
-<!-- toc -->
-<ul>
-<li><a href="#yin-yan">引言</a></li>
-<li><a href="#yue-ding">约定</a><ul>
-<li><a href="#mo-bi-wu-si-han-shu-m-x">莫比乌斯函数μ(x)</a></li>
-<li><a href="#heng-deng-han-shu-id-x">恒等函数id(x)</a></li>
-<li><a href="#ou-la-han-shu-x">欧拉函数(x)</a></li>
-<li><a href="#dan-wei-han-shu-e-x">单位函数e(x)</a></li>
-</ul>
-</li>
-<li><a href="#chang-yong-ding-li">常用定理</a><ul>
-<li><a href="#zhi-yin-zi-ding-li">质因子定理</a></li>
-<li><a href="#diao-he-ji-shu-ding-li">调和级数定理</a></li>
-<li><a href="#ping-fang-gen-diao-he-ji-shu-ding-li">平方根调和级数定理</a></li>
-<li><a href="#dirichlet-juan-ji-yun-suan-lu-ding-li">Dirichlet卷积运算律定理</a></li>
-<li><a href="#dirichlet-juan-ji-xing-zhi-ding-li">Dirichlet卷积性质定理</a></li>
-<li><a href="#dirichlet-juan-ji-fu-za-du-ding-li">Dirichlet卷积复杂度定理</a></li>
-<li><a href="#mo-bi-wu-si-fan-yan-ding-li">莫比乌斯反演定理</a></li>
-<li><a href="#fhan-shu-ding-li">φ函数定理</a></li>
-</ul>
-</li>
-<li><a href="#shu-lun-gong-shi-tui-dao-ji-qiao">数论公式推导技巧</a><ul>
-<li><a href="#mbian-huan">μ变换</a></li>
-<li><a href="#mti-qu">μ提取</a></li>
-<li><a href="#fbian-huan">φ变换</a></li>
-<li><a href="#ji-xing-han-shu-ti-qu">积性函数提取</a></li>
-<li><a href="#dirichlet-juan-ji">Dirichlet卷积</a></li>
-<li><a href="#jiao-huan-bu-bian-xing">交换不变性</a></li>
-</ul>
-</li>
-<li><a href="#shu-lun-gong-shi-ji-suan-ji-qiao">数论公式计算技巧</a><ul>
-<li><a href="#dirichlet-juan-ji-ji-suan-fang-fa">Dirichlet卷积计算方法</a></li>
-<li><a href="#ji-xing-han-shu-xian-xing-shai-fa">积性函数线性筛法</a></li>
-</ul>
-</li>
-<li><a href="#chang-yong-gong-shi-tui-dao">常用公式推导</a><ul>
-<li><a href="#dan-wei-fen-kuai-fa-ji-suan">单维分块法计算</a></li>
-<li><a href="#shuang-wei-fen-kuai-fa-ji-suan">双维分块法计算</a></li>
-<li><a href="#zui-da-gong-yue-shu-tong-ji">最大公约数统计</a></li>
-<li><a href="#zui-xiao-gong-bei-shu-tong-ji">最小公倍数统计</a></li>
-</ul>
-</li>
-<li><a href="#li-ti-zong-jie">例题总结</a><ul>
-<li><a href="#noi2010-neng-liang-cai-ji">[Noi2010]能量采集</a></li>
-<li><a href="#yy-de-gcd">YY的GCD</a></li>
-<li><a href="#spoj5971-lcm-sum">Spoj5971 LCM Sum</a></li>
-<li><a href="#cqoi2007-yu-shu-zhi-he-sum">[CQOI2007]余数之和sum</a></li>
-<li><a href="#jzptab">jzptab</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-<p><div class="tocEnd"></div></p>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -728,14 +651,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><div class="tocStart"></div>
-
-<!-- toc -->
-<ul>
-<li><a href="#yin-yan">引言</a></li>
-</ul>
-<!-- tocstop -->
-<p><div class="tocEnd"></div></p>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -761,17 +677,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><div class="tocStart"></div>
-
-<!-- toc -->
-<ul>
-<li><a href="#yin-yan">引言</a><ul>
-<li><a href="#tui-dao">推导</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-<p><div class="tocEnd"></div></p>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -797,30 +703,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><div class="tocStart"></div>
-
-<!-- toc -->
-<ul>
-<li><a href="#yin-yan">引言</a></li>
-<li><a href="#ding-yi">定义</a></li>
-<li><a href="#di-li-ke-lei-juan-ji-fxg-n-sum-d-n-f-d-g-frac-n-d">狄利克雷卷积：<script type="math/tex">(f×g)(n)=\sum_{d|n}f(d)∗g(\frac{n}{d})</script></a></li>
-<li><a href="#yun-suan-lu">运算律：</a><ul>
-<li><a href="#1-jie-he-lu">1. 结合律</a></li>
-<li><a href="#2-jiao-huan-lu">2. 交换律</a></li>
-<li><a href="#3-jia-fa-di-li-ke-lei-juan-ji-fen-pei-lu">3. 加法-狄利克雷卷积分配律</a></li>
-<li><a href="#4-dan-wei-yuan">4. 单位元</a></li>
-<li><a href="#5-ni-yuan">5. 逆元</a></li>
-</ul>
-</li>
-<li><a href="#te-shu-han-shu">特殊函数</a></li>
-<li><a href="#ji-xing-han-shu">积性函数</a><ul>
-<li><a href="#fen-jie-zhi-yin-zi">分解质因子</a></li>
-<li><a href="#ji-xing-han-shu-qian-zhui-he">积性函数前缀和</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-<p><div class="tocEnd"></div></p>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
                     </div>
                     <div style="clear:both;"></div>
@@ -846,23 +729,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><div class="tocStart"></div>
-
-<!-- toc -->
-<ul>
-<li><a href="#yin-yan">引言</a></li>
-<li><a href="#dilworth-ding-li">Dilworth 定理</a><ul>
-<li><a href="#pian-xu">偏序</a></li>
-<li><a href="#pian-xu-ji">偏序集</a></li>
-<li><a href="#lian-he-fan-lian">链和反链</a></li>
-<li><a href="#dilworth-theorem">Dilworth Theorem</a></li>
-<li><a href="#hasse-diagram">Hasse Diagram</a></li>
-<li><a href="#li-ti">例题</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-<p><div class="tocEnd"></div></p>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
                     </div>
                     <div style="clear:both;"></div>
