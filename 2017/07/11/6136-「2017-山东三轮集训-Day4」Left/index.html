@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Goseqh&#39;s Blog">
-    <title>Dilworth定理 - Goseqh&#39;s Blog</title>
+    <title>#6136. 「2017 山东三轮集训 Day4」Left - Goseqh&#39;s Blog</title>
     <meta name="author" content="Goseqh">
     
     
@@ -15,17 +15,19 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="引言今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下">
-<meta name="keywords" content="数学,组合数学,序理论,Dilworth定理">
+    <meta name="description" content="引言题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left">
+<meta name="keywords" content="模拟,贪心,Codility">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Dilworth定理">
-<meta property="og:url" content="https://goseqh.tk/2017/07/01/Dilworth定理/index.html">
+<meta property="og:title" content="#6136. 「2017 山东三轮集训 Day4」Left">
+<meta property="og:url" content="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/index.html">
 <meta property="og:site_name" content="Goseqh&#39;s Blog">
-<meta property="og:description" content="引言今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下">
-<meta property="og:updated_time" content="2017-07-11T06:21:16.876Z">
+<meta property="og:description" content="引言题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/07/05/595c70f8362a9.png">
+<meta property="og:updated_time" content="2017-07-11T13:19:53.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dilworth定理">
-<meta name="twitter:description" content="引言今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下">
+<meta name="twitter:title" content="#6136. 「2017 山东三轮集训 Day4」Left">
+<meta name="twitter:description" content="引言题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left">
+<meta name="twitter:image" content="https://ooo.0o0.ooo/2017/07/05/595c70f8362a9.png">
     
     
         
@@ -34,12 +36,12 @@
         <meta property="og:image" content="https://goseqh.tk/assets/images/2016-02-23.png"/>
     
     
-        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" />
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg" />
     
     
-        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" />
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg" />
     
     
     <!--STYLES-->
@@ -180,20 +182,20 @@
         <div class="post-header-cover
                     text-left
                     "
-             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg');"
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg');"
              data-behavior="5">
             
                 <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Dilworth定理
+            #6136. 「2017 山东三轮集训 Day4」Left
         </h1>
     
     
         <div class="post-meta">
-    <time itemprop="datePublished" datetime="2017-07-01T17:48:00+08:00">
+    <time itemprop="datePublished" datetime="2017-07-11T20:50:36+08:00">
 	
-		    7月 01, 2017
+		    7月 11, 2017
     	
     </time>
     
@@ -211,64 +213,33 @@
                 
 <article class="post" itemscope itemType="http://schema.org/BlogPosting">
     
-        <span class="post-header-cover-caption caption">外表的无序，内在的有序</span>
+        <span class="post-header-cover-caption caption">宏观是微观的表现，微观是宏观的本质</span>
     
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dilworth-定理"><span class="toc-text">Dilworth 定理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#偏序"><span class="toc-text">偏序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#偏序集"><span class="toc-text">偏序集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链和反链"><span class="toc-text">链和反链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dilworth-Theorem"><span class="toc-text">Dilworth Theorem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hasse-Diagram"><span class="toc-text">Hasse Diagram</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例题"><span class="toc-text">例题</span></a></li></ol></li></ol>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br><a id="more"></a></p>
-<h1 id="Dilworth-定理"><a href="#Dilworth-定理" class="headerlink" title="Dilworth 定理"></a>Dilworth 定理</h1><p>这是一个应用于偏序集上的定理，应该属于是序理论和组合数学那里面的一些内容，所以我们先来普及一下基础知识</p>
-<h2 id="偏序"><a href="#偏序" class="headerlink" title="偏序"></a>偏序</h2><p>设A是一个非空集，P是A上的一个关系，若关系P是自反的、反对称的、和传递的，则称P是集合A上的偏序关系</p>
-<p>即P适合下列条件：</p>
-<ol>
-<li>对任意的a∈A,(a,a)∈P;&lt;/br&gt;&lt;/br&gt;</li>
-<li>若（a,b)∈P且（b,a)∈P,则a=b;&lt;/br&gt;&lt;/br&gt;</li>
-<li>若（a,b)∈P,(b,c)∈P,则（a,c)∈P,则称P是A上的一个偏序关系。带偏序关系的集合A称为偏序集或半序集</li>
-</ol>
-<p>若P是A上的一个偏序关系，我们用a≤b来表示（a,b)∈P</p>
-<p>比方说：(A,≤)是偏序集，A={1,2,3},偏序≤在A上的大于等于关系。则有：≤={<3,3>,<3,2>,<3,1>,<2,2>,<2,1>,<1,1>},则有3≤2,2≤2,2≤1….</1,1></2,1></2,2></3,1></3,2></3,3></p>
-<p>举如下例子说明偏序关系：</p>
-<ol>
-<li><p>实数集上的小于等于关系是一个偏序关系&lt;/br&gt;&lt;/br&gt;</p>
-</li>
-<li><p>设S是集合，P（S）是S的所有子集构成的集合，定义P（S）中两个元素A≤B当且仅当A是B的子集，即A包含于B，则P（S）在这个关系下成为偏序集&lt;/br&gt;&lt;/br&gt;</p>
-</li>
-<li><p>设N是正整数集，定义m≤n当且仅当m能整除n，不难验证这是一个偏序关系。注意它不同于N上的自然序关系</p>
-</li>
-</ol>
-<h2 id="偏序集"><a href="#偏序集" class="headerlink" title="偏序集"></a>偏序集</h2><p>偏序是在集合X上的二元关系≤(这只是个抽象符号，不是“小于或等于”)，它满足自反性、反对称性和传递性。即，对于X中的任意元素a,b和c，有:</p>
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LOJ-6136-「2017-山东三轮集训-Day4」Left"><span class="toc-text">LOJ 6136. 「2017 山东三轮集训 Day4」Left</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入格式"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出格式"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样例"><span class="toc-text">样例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输入"><span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输出"><span class="toc-text">样例输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据范围与提示"><span class="toc-text">数据范围与提示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left<br><a id="more"></a></p>
+<h1 id="LOJ-6136-「2017-山东三轮集训-Day4」Left"><a href="#LOJ-6136-「2017-山东三轮集训-Day4」Left" class="headerlink" title="LOJ 6136. 「2017 山东三轮集训 Day4」Left"></a>LOJ 6136. 「2017 山东三轮集训 Day4」Left</h1><p>内存限制：512 MiB<br>时间限制：1000 ms<br>标准输入输出<br>题目类型：传统<br>评测方式：文本比较</p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>JOHNKRAM 最近在研究排序网络，但他发现他不会制作比较器，于是他用交换器来代替比较器。</p>
+<p>一个交换器有两个输入端 $x, y$ 和两个输出端 $x’, y’$​​。如果交换器处于关闭状态，则 $x $ 收到的信号会从 $x’$ 发出，$y$ 收到的信号会从 $y’$ 发出。如果交换器处于开启状态，则 $x$ 收到的信号会从 $y’$​​ 发出。</p>
+<p>JOHNKRAM 设计了这样一个递归定义的网络：</p>
 <ul>
-<li>自反性：a≤a&lt;/br&gt;&lt;/br&gt;</li>
-<li>反对称性：如果a≤b且b≤a，则有a=b&lt;/br&gt;&lt;/br&gt;</li>
-<li>传递性：如果a≤b且b≤c，则a≤c &lt;/br&gt;&lt;/br&gt;</li>
+<li>$1$ 阶网络就是一个交换器。</li>
+<li>$n(n &gt; 1)$ 阶网络的第一排是 $2 ^ {n - 1}$​​ 个交换器，接下来是两个 $n - 1$ 阶网络,最后一排也是 $2 ^ {n - 1}$​​ 个交换器。将第一排的输出端和第二排的输入端分别从左到右标号为 $0 \sim 2 ^ n - 1$，第一排的 $i$ 输出端连接到第二排的 i&gt;&gt;1 输入端，其中 &gt;&gt; 指 $n$ 位二进制数的循环右移。类似，将倒数第一排的输入端和倒数第二排的输出端分别从左到右标号为 $0\sim 2 ^ n - 1$，倒数第二排的 $i$ 输出端连接到倒数第一排的 i&lt;&lt;1 输入端，其中 &lt;&lt; 指 $n$ 位二进制数的循环左移。</li>
 </ul>
-<p>带有偏序关系的集合称为偏序集</p>
-<p>令(X,≤)是一个偏序集，对于集合中的两个元素a、b，如果有a≤b或者b≤a，则称a和b是可比的，否则a和b不可比</p>
-<p>例：(A,≤)是偏序集，其中A={1,2,3,4,5}，其中≤是整除关系，那么对任意的x∈p都有1≤x,所以1和1,2,3,4,5都是可比的，但是2不能整除3，且3不能整除2，所以2和3是不可比的</p>
-<p>在X中，对于元素a，如果任意元素b，由b≤a得出b=a，则称a为极小元</p>
-<h2 id="链和反链"><a href="#链和反链" class="headerlink" title="链和反链"></a>链和反链</h2><p>一个反链A是X的一个子集，它的任意两个元素都不能进行比较<br>一个链C是X的一个子集，它的任意两个元素都可比</p>
-<h2 id="Dilworth-Theorem"><a href="#Dilworth-Theorem" class="headerlink" title="Dilworth Theorem"></a>Dilworth Theorem</h2><p>下面是两个重要定理：</p>
-<p>定理1 令（X,≤）是一个有限偏序集，并令r是其最大链的大小。则X可以被划分成r个但不能再少的反链<br>其对偶定理称为Dilworth定理：</p>
-<p>定理2 令（X,≤）是一个有限偏序集，并令m是反链的最大的大小。则X可以被划分成m个但不能再少的链</p>
-<p>证明：设p为最少反链个数</p>
-<ol>
-<li>先证明X不能划分成小于r个反链。由于r是最大链C的大小，C中任两个元素都可比，因此C中任两个元素都不能属于同一反链。所以p&gt;=r&lt;/br&gt;&lt;/br&gt;</li>
-<li>设X1＝X，A1是X1中的极小元的集合。从X1中删除A1得到X2。注意到对于X2中任意元素a2，必存在X1中的元素a1，使得a1&lt;=a2。令A2是X2中极小元的集合，从X2中删除A2得到X3……最终，会有一个Xk非空而X(k+1)为空。于是A1,A2,…,Ak就是X的反链的划分，同时存在链a1&lt;=a2&lt;=…&lt;=ak，其中ai在Ai内。由于r是最长链大小，因此r&gt;=k。由于X被划分成了k个反链，因此r&gt;=k&gt;=p。因此r=p，定理1得证</li>
-</ol>
-<h2 id="Hasse-Diagram"><a href="#Hasse-Diagram" class="headerlink" title="Hasse Diagram"></a>Hasse Diagram</h2><blockquote>
-<p>In order theory, a Hasse diagram (/ˈhæsə/; German: [ˈhasə]) is a type of mathematical diagram used to represent a <strong>finite partially ordered set</strong>, in the form of a drawing of its <strong>transitive reduction</strong>. Concretely, for a partially ordered set (S, ≤) one represents each element of S as a vertex in the plane and draws a line segment or curve that goes upward from x to y whenever y covers x (that is, whenever x &lt; y and <strong>there is no z such that x &lt; z &lt; y</strong>). These curves may cross each other but must not touch any vertices other than their endpoints. Such a diagram, with labeled vertices, uniquely determines its partial order.</p>
-</blockquote>
-<p>大概翻译过来，就是哈赛图是一个有向无环图，它的每条边都是紧密相连的，换句话说它就是一个有向无环图的传递规约——去掉了所有多余的边的图，例如有边A-&gt;B, B-&gt;C,这时如果A-&gt;C也存在，那么它就是一条多余的边</p>
-<p>搞清楚了反链和链的定义，就能够很好的从Hasse Diagram中得到理解。链就是从纵向的角度看 Hasse Diagram ,反链是从横向的角度看Hasse Diagram，这一点应该很好理解</p>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>先列举几道，有时间再做一下：</p>
-<ul>
-<li>hdu 3335</li>
-<li>poj 1065</li>
-<li>poj 1548</li>
-<li>poj 3636</li>
-<li>nyist 255</li>
-</ul>
+<p>一个 $3$ 阶的网络如下图所示：<br><img src="https://ooo.0o0.ooo/2017/07/05/595c70f8362a9.png" alt=""></p>
+<p>JOHNKRAM 通过开关交换器来调整网络。现在他对一个 $n$ 阶网络的 $2 ^ n$​​ 个输入端分别输入了一个数，第 $i(0 &lt; i &lt; 2 ^ n)$ 个输入端输入的是 $i$。然后他给出了一个长度为 $2 ^ n$​​ 的排列 $p$。他希望你给出一种网络的状态，使得第 $i(0 &lt; i &lt; 2 ^ n)$ 个输出端输出的是 $p_i$​​。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输入文件包含不超过 10 组测试数据。<br>每个测试数据包含两行，第一行一个整数 $n$，表示是一个 $n$ 阶网络。<br>第二行 $2 ^ n$​​ 个整数，表示排列 $p$。<br>输入文件以一个 0 结尾。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>对于每组数据，如果没有合法的解，则输出 $-1$，否则输出 $2n - 1$ 行 $2 ^ n$​​ 位二进制数，表示网络状态。如果一个交换器是开启的，则对应的位置上是 $1$，否则是 $0$。如果有多解，输出字典序最小的。</p>
+<p>每个答案后打印一个空行。</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">2</span></div><div class="line"><span class="symbol">3 </span><span class="number">2</span> <span class="number">1</span> <span class="number">0</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="symbol">3 </span><span class="number">7</span> <span class="number">4</span> <span class="number">0</span> <span class="number">2</span> <span class="number">6</span> <span class="number">1</span> <span class="number">5</span></div><div class="line"><span class="number">0</span></div></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="number">00</span></div><div class="line"><span class="number">11</span></div><div class="line"><span class="number">11</span></div><div class="line"></div><div class="line"><span class="number">0011</span></div><div class="line"><span class="number">0000</span></div><div class="line"><span class="number">0110</span></div><div class="line"><span class="number">1111</span></div><div class="line"><span class="number">1101</span></div></pre></td></tr></table></figure>
+<h2 id="数据范围与提示"><a href="#数据范围与提示" class="headerlink" title="数据范围与提示"></a>数据范围与提示</h2><p>对于 $20\%$ 的数据，保证 $n \leq 3$；<br>对于 $100\%$ 的数据，保证 $1 \leq n \leq 13$。</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>其实这道题还是非常好的，正如前文的那句话，”宏观是微观的表现，微观是宏观的本质”，我们考虑对这道题递归和分解，使得我们每次只去分析一个小过程，这样就会简便很多，我们可以观察规律，发现<strong>$n$阶网络最后每两组中的数($k <em> 2,k </em> 2+1 $)一定不在$n-1$阶网络的同一侧</strong>，这样我们可以对每层$O(2^n)$进行处理，同时使用<strong>贪心法</strong>，如果当前的这个组没被标记（即是否已经决定开或关），就让它关着，然后用自身的状态以及网络特征，尽可能多的更新其他的组，可以证明这样做是完全正确的，把两个排列放在一起（置换），<strong>用2-SAT的思路进行连边</strong>，同时每两组内的数($k <em> 2, k </em> 2 + 1$)也连边，根据题目性质，<strong>只能形成偶环</strong>，无论怎么染色都不会矛盾（即无解），所以，我们对每一层都进行这样的处理，同时更新上下的序列，就可以在$O(T <em> n </em> 2 ^ n)$的复杂度内解决本题，而这是完全可以接受的</p>
+<p>这道题思路非常巧妙，其实也是要<strong>对题目进行深度的理解</strong>，理解网络的<strong>工作原理与特征</strong>，然而代码还是非常恶心。。。细节巨多，最后还是先WA了一次才A的QAQ</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 13</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> up[<span class="number">1</span> &lt;&lt; maxn];</div><div class="line"><span class="keyword">int</span> low[<span class="number">1</span> &lt;&lt; maxn];</div><div class="line"><span class="keyword">int</span> ori[<span class="number">1</span> &lt;&lt; maxn];</div><div class="line"><span class="keyword">int</span> line[<span class="number">1</span> &lt;&lt; maxn];</div><div class="line"><span class="keyword">int</span> ans[(maxn &lt;&lt; <span class="number">1</span>) - <span class="number">1</span>][<span class="number">1</span> &lt;&lt; maxn];</div><div class="line"><span class="keyword">bool</span> vis[(maxn &lt;&lt; <span class="number">1</span>) - <span class="number">1</span>][<span class="number">1</span> &lt;&lt; maxn];</div><div class="line"><span class="keyword">int</span> temp[<span class="number">1</span> &lt;&lt; maxn];</div><div class="line"><span class="keyword">int</span> judge[<span class="number">1</span> &lt;&lt; maxn];</div><div class="line"><span class="keyword">int</span> n, x, con, con2;  <span class="comment">//con = n - 1 - (x - 1);</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">BFS</span><span class="params">(<span class="keyword">int</span> j)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> side = line[j ^ <span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span> _j = up[side];</div><div class="line">    <span class="keyword">if</span> (vis[con][_j &gt;&gt; <span class="number">1</span>]) <span class="keyword">return</span>;</div><div class="line">    vis[con][_j &gt;&gt; <span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">    ans[con][_j &gt;&gt; <span class="number">1</span>] = ans[con][up[line[j]] &gt;&gt; <span class="number">1</span>] ^ ((line[j] &amp; (<span class="number">1</span> &lt;&lt; con)) &gt;&gt; con) ^ ((line[j ^ <span class="number">1</span>] &amp; (<span class="number">1</span> &lt;&lt; con)) &gt;&gt; con) ^ <span class="number">1</span>;<span class="comment">//WA的原因，原先的写法如下：</span></div><div class="line">    <span class="comment">//ans[con][_j &gt;&gt; 1] = ans[con][up[line[j]] &gt;&gt; 1] ^ (line[j] &amp; 1) ^ (line[j ^ 1] &amp; 1) ^ 1;</span></div><div class="line">    <span class="comment">//中间测试时是这样写的：</span></div><div class="line">    <span class="comment">//ans[con][_j &gt;&gt; 1] = ans[con][up[line[j]] &gt;&gt; 1] ^ (line[j] &amp; (1 &lt;&lt; con)) ^ (line[j ^ 1] &amp; (1 &lt;&lt; con)) ^ 1;</span></div><div class="line">    BFS(low[ori[_j ^ <span class="number">1</span>]]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*void BFS2(int j)&#123;</span></div><div class="line">    int side = ori[j ^ 1];</div><div class="line">    int _j = low[side];</div><div class="line">    if (vis[con2][_j &gt;&gt; 1]) return;</div><div class="line">    vis[con2][_j &gt;&gt; 1] = 1;</div><div class="line">    ans[con2][_j &gt;&gt; 1] = ans[con2][j &gt;&gt; 1] ^ 1;</div><div class="line">    BFS2(j ^ 1);</div><div class="line">&#125;*/</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*int shift_left(int n, int x)&#123;</span></div><div class="line">    int a = n &amp; ((1 &lt;&lt; x) - 1);</div><div class="line">    int b = n - a;</div><div class="line">    a = (a &lt;&lt; 1) | (a &gt;&gt; (x - 1)) &amp; ((1 &lt;&lt; x) - 1);</div><div class="line">    return a | b;</div><div class="line">&#125;*/</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">shift_right</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> a = n &amp; ((<span class="number">1</span> &lt;&lt; x) - <span class="number">1</span>);</div><div class="line">    <span class="keyword">int</span> b = n - a;</div><div class="line">    a = (a &gt;&gt; <span class="number">1</span>) | (a &lt;&lt; (x - <span class="number">1</span>)) &amp; ((<span class="number">1</span> &lt;&lt; x) - <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> a | b;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (x == <span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); i += <span class="number">2</span>)&#123;</div><div class="line">            ans[con][i &gt;&gt; <span class="number">1</span>] = <span class="number">1</span> ^ (line[i] == ori[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); i += <span class="number">1</span> &lt;&lt; x)&#123;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; i + (<span class="number">1</span> &lt;&lt; x); j++) low[line[j]] = j;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; i + (<span class="number">1</span> &lt;&lt; x); j++) up[ori[j]] = j;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; i + (<span class="number">1</span> &lt;&lt; x); j += <span class="number">2</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (!vis[con][j &gt;&gt; <span class="number">1</span>])&#123;</div><div class="line">                vis[con][j &gt;&gt; <span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">                ans[con][j &gt;&gt; <span class="number">1</span>] = <span class="number">0</span>;</div><div class="line">                BFS(low[ori[j]]), BFS(low[ori[j + <span class="number">1</span>]]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; i + (<span class="number">1</span> &lt;&lt; x); j += <span class="number">2</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (ans[con][j &gt;&gt; <span class="number">1</span>])&#123;</div><div class="line">                temp[shift_right(j, x)] = ori[j ^ <span class="number">1</span>];</div><div class="line">                judge[ori[j ^ <span class="number">1</span>]] = <span class="number">0</span>;</div><div class="line">                temp[shift_right(j ^ <span class="number">1</span>, x)] = ori[j];</div><div class="line">                judge[ori[j]] = <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                temp[shift_right(j, x)] = ori[j];</div><div class="line">                judge[ori[j]] = <span class="number">0</span>;</div><div class="line">                temp[shift_right(j ^ <span class="number">1</span>, x)] = ori[j ^ <span class="number">1</span>];</div><div class="line">                judge[ori[j ^ <span class="number">1</span>]] = <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; i + (<span class="number">1</span> &lt;&lt; x); j++) ori[j] = temp[j];</div><div class="line"></div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; i + (<span class="number">1</span> &lt;&lt; x); j += <span class="number">2</span>)</div><div class="line">            ans[con2][j &gt;&gt; <span class="number">1</span>] = judge[line[j]];</div><div class="line"></div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; i + (<span class="number">1</span> &lt;&lt; x); j += <span class="number">2</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (ans[con2][j &gt;&gt; <span class="number">1</span>])&#123;</div><div class="line">                temp[shift_right(j, x)] = line[j ^ <span class="number">1</span>];</div><div class="line">                temp[shift_right(j ^ <span class="number">1</span>, x)] = line[j];</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                temp[shift_right(j, x)] = line[j];</div><div class="line">                temp[shift_right(j ^ <span class="number">1</span>, x)] = line[j ^ <span class="number">1</span>];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; i + (<span class="number">1</span> &lt;&lt; x); j++) line[j] = temp[j];</div><div class="line">        <span class="comment">/*for (int j = i; j &lt; i + (1 &lt;&lt; x); j += 2)&#123;</span></div><div class="line">            if (!vis[con2][j &gt;&gt; 1])&#123;</div><div class="line">                vis[con2][j &gt;&gt; 1] = 1;</div><div class="line">                ans[con2][j &gt;&gt; 1] = 0;</div><div class="line">                BFS2(up[line[j]]), BFS2(up[line[j + 1]]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        */</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    x--;</div><div class="line">    con++;</div><div class="line">    con2--;</div><div class="line">    solve();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    freopen(<span class="string">"left.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"left.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</div><div class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n) == <span class="number">1</span> &amp;&amp; n != <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1</span> &lt;&lt; n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;line[i]);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1</span> &lt;&lt; n; i++) ori[i] = i;</div><div class="line">        con = <span class="number">0</span>;</div><div class="line">        con2 = (n - <span class="number">1</span>) &lt;&lt; <span class="number">1</span>;</div><div class="line">        x = n;</div><div class="line">        solve();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (n &lt;&lt; <span class="number">1</span>) - <span class="number">1</span>; i++)&#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">1</span> &lt;&lt; (n - <span class="number">1</span>); j++)&#123;</div><div class="line">                <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans[i][j]);</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">        <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>还是很考察代码能力的。。。现场发明循环移位。。。</p>
 
             
         </div>
@@ -278,7 +249,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Dilworth定理/">Dilworth定理</a> <a class="tag tag--primary tag--small t-link" href="/tags/序理论/">序理论</a> <a class="tag tag--primary tag--small t-link" href="/tags/数学/">数学</a> <a class="tag tag--primary tag--small t-link" href="/tags/组合数学/">组合数学</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Codility/">Codility</a> <a class="tag tag--primary tag--small t-link" href="/tags/模拟/">模拟</a> <a class="tag tag--primary tag--small t-link" href="/tags/贪心/">贪心</a>
 
             </div>
         
@@ -288,7 +259,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/"  data-tooltip="#6164. 「美团 CodeM 初赛 Round A」数列互质">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -296,7 +267,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/06/30/狄利克雷卷积详解/" data-tooltip="狄利克雷卷积详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/" data-tooltip="#6075. 「2017 山东一轮集训 Day6」重建">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -314,7 +285,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/01/Dilworth定理/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -322,7 +293,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/01/Dilworth定理/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -330,7 +301,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/01/Dilworth定理/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -480,7 +451,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/"  data-tooltip="#6164. 「美团 CodeM 初赛 Round A」数列互质">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -488,7 +459,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/06/30/狄利克雷卷积详解/" data-tooltip="狄利克雷卷积详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/" data-tooltip="#6075. 「2017 山东一轮集训 Day6」重建">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -506,7 +477,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/01/Dilworth定理/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -514,7 +485,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/01/Dilworth定理/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -522,7 +493,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/01/Dilworth定理/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -547,7 +518,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/01/Dilworth定理/">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
                     <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
                 </a>
             </li>
@@ -555,7 +526,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/01/Dilworth定理/">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
                     <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
                 </a>
             </li>
@@ -563,7 +534,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/01/Dilworth定理/">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
                     <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
                 </a>
             </li>
