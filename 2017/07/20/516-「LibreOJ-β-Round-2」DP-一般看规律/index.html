@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Goseqh&#39;s Blog">
-    <title>#6190. 序列查询 - Goseqh&#39;s Blog</title>
+    <title>#516. 「LibreOJ β Round #2」DP 一般看规律 - Goseqh&#39;s Blog</title>
     <meta name="author" content="Goseqh">
     
     
@@ -15,17 +15,17 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="引言题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询">
-<meta name="keywords" content="数据结构,树套树,线段树套平衡树">
+    <meta name="description" content="引言题解：$Libre$ $Online$ $Judge$ # $516$. 「LibreOJ β Round #2」DP 一般看规律">
+<meta name="keywords" content="数据结构,离散化,平衡树,启发式合并">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="#6190. 序列查询">
-<meta property="og:url" content="https://goseqh.tk/2017/07/11/6190-序列查询/index.html">
+<meta property="og:title" content="#516. 「LibreOJ β Round #2」DP 一般看规律">
+<meta property="og:url" content="https://goseqh.tk/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/index.html">
 <meta property="og:site_name" content="Goseqh&#39;s Blog">
-<meta property="og:description" content="引言题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询">
-<meta property="og:updated_time" content="2017-07-11T06:21:06.348Z">
+<meta property="og:description" content="引言题解：$Libre$ $Online$ $Judge$ # $516$. 「LibreOJ β Round #2」DP 一般看规律">
+<meta property="og:updated_time" content="2017-07-20T08:29:58.175Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="#6190. 序列查询">
-<meta name="twitter:description" content="引言题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询">
+<meta name="twitter:title" content="#516. 「LibreOJ β Round #2」DP 一般看规律">
+<meta name="twitter:description" content="引言题解：$Libre$ $Online$ $Judge$ # $516$. 「LibreOJ β Round #2」DP 一般看规律">
     
     
         
@@ -34,12 +34,12 @@
         <meta property="og:image" content="https://goseqh.tk/assets/images/2016-02-23.png"/>
     
     
-        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg" />
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498830243/85762_wf7vgv.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498830243/85762_wf7vgv.jpg" />
     
     
-        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg" />
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498830243/85762_wf7vgv.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498830243/85762_wf7vgv.jpg" />
     
     
     <!--STYLES-->
@@ -180,20 +180,20 @@
         <div class="post-header-cover
                     text-left
                     "
-             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg');"
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1498830243/85762_wf7vgv.jpg');"
              data-behavior="5">
             
                 <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            #6190. 序列查询
+            #516. 「LibreOJ β Round #2」DP 一般看规律
         </h1>
     
     
         <div class="post-meta">
-    <time itemprop="datePublished" datetime="2017-07-11T13:46:46+08:00">
+    <time itemprop="datePublished" datetime="2017-07-20T14:17:19+08:00">
 	
-		    7月 11, 2017
+		    7月 20, 2017
     	
     </time>
     
@@ -211,24 +211,31 @@
                 
 <article class="post" itemscope itemType="http://schema.org/BlogPosting">
     
-        <span class="post-header-cover-caption caption">发现细节，敢于尝试，坚持创新</span>
+        <span class="post-header-cover-caption caption">有层次的思考不可或缺</span>
     
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LOJ-6190-序列查询"><span class="toc-text">LOJ 6190. 序列查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入格式"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出格式"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样例"><span class="toc-text">样例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输入-1"><span class="toc-text">样例输入 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输出-1"><span class="toc-text">样例输出 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据范围与提示"><span class="toc-text">数据范围与提示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询<br><a id="more"></a></p>
-<h1 id="LOJ-6190-序列查询"><a href="#LOJ-6190-序列查询" class="headerlink" title="LOJ 6190. 序列查询"></a>LOJ 6190. 序列查询</h1><p>内存限制：256 MiB<br>时间限制：2000 ms<br>标准输入输出<br>题目类型：传统<br>评测方式：文本比较</p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给出序列 ${a_n}$<br>给出 $m$ 个询问 $[L_i,R_i]$ : 询问 $min{|a_s−a_t|},s,t∈[Li,Ri],s≠t$</p>
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行一个整数 $n$。<br>第二行 $n$ 个整数，表示 $a_i$​​。<br>第三行一个整数 $m$，表示询问个数。<br>之后的 $m$ 行，每行两个正整数，表示 $L_i, R_i$​​。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>共 $m$ 行，表示询问的答案。<br>特别的，如果不存在答案，输出 $2147483647$。</p>
-<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入 1"></a>样例输入 1</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">4</span></div><div class="line"><span class="symbol">2 </span><span class="number">2</span> <span class="number">3</span> <span class="number">4</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="symbol">1 </span><span class="number">2</span></div><div class="line"><span class="symbol">2 </span><span class="number">4</span></div></pre></td></tr></table></figure>
-<h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出 1"></a>样例输出 1</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span></div><div class="line"><span class="number">1</span></div></pre></td></tr></table></figure>
-<h2 id="数据范围与提示"><a href="#数据范围与提示" class="headerlink" title="数据范围与提示"></a>数据范围与提示</h2><p>$1\le n\le 10^5,1\le a_i \le 10^9,1\le m \le 3\times 10^5$</p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>显然一道数据结构题，全都是套路。。。然而今天才猛然发现线段树套平衡树空间复杂度为$O(n\log{n})$</p>
-<p>方法很独特，我称之为<strong>定序积累法</strong>，首先把所有的询问读入，然后按照左端点排序，同时从右向左逐个更新答案，在达到左端点时取出询问，这样总复杂度就是$O(n\log n)$，这要求答案是可以逐个积累的，就像上面说的那样，具体细节可参见代码</p>
-<p>同时这次又看见了大佬在线段树内部调用线段树函数的操作，神不可言～</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 300005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 2147483647</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> line[maxn];</div><div class="line"><span class="keyword">int</span> n, m;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">query</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> t, l, r, ans;</div><div class="line">    query(<span class="keyword">int</span> t, <span class="keyword">int</span> l, <span class="keyword">int</span> r) : t(t), l(l), r(r)&#123;&#125;</div><div class="line">    query()&#123;&#125;</div><div class="line">&#125;q[maxn];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(query a, query b)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (a.l != b.l) <span class="keyword">return</span> a.l &lt; b.l;</div><div class="line">    <span class="keyword">return</span> a.r &lt; b.r;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(query a, query b)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> a.t &lt; b.t;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span>&amp; x)</span></span>&#123;</div><div class="line">    <span class="keyword">char</span> ch;</div><div class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) ch = getchar();</div><div class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) x = <span class="number">10</span> * x + ch - <span class="string">'0'</span>, ch = getchar();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s[maxn &lt;&lt; <span class="number">2</span>];</div><div class="line"><span class="keyword">int</span> ans[maxn &lt;&lt; <span class="number">2</span>];</div><div class="line"><span class="keyword">int</span> qx, qy, qd;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (l == r)&#123;</div><div class="line">        ans[o] = INF;</div><div class="line">        s[o].insert(line[l]);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    init(l, mid, o &lt;&lt; <span class="number">1</span>);</div><div class="line">    init(mid + <span class="number">1</span>, r, o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt;= r; i++) s[o].insert(line[i]);</div><div class="line">    ans[o] = INF;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy) <span class="keyword">return</span> ans[o];</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    <span class="keyword">int</span> ans = INF;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= mid) ans = min(ans, get(l, mid, o &lt;&lt; <span class="number">1</span>));</div><div class="line">    <span class="keyword">if</span> (qy &gt; mid) ans = min(ans, get(mid + <span class="number">1</span>, r, o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>));</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o, <span class="keyword">int</span>&amp; now)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (qx &gt; qy) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span> (l == r)&#123;</div><div class="line">        ans[o] = min(<span class="built_in">abs</span>(line[l] - qd), ans[o]);</div><div class="line">        now = min(now, ans[o]);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; :: iterator k = s[o].lower_bound(qd);</div><div class="line">    <span class="keyword">if</span> (((k == s[o].end()) || (<span class="built_in">abs</span>(*k - qd)) &gt;= now) &amp;&amp; ((k == s[o].begin()) || (<span class="built_in">abs</span>(*(--k) - qd) &gt;= now)))&#123;</div><div class="line">        now = min(now, get(l, r, o));</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= mid) update(l, mid, o &lt;&lt; <span class="number">1</span>, now);</div><div class="line">    <span class="keyword">if</span> (qy &gt; mid) update(mid + <span class="number">1</span>, r, o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, now);</div><div class="line">    ans[o] = min(ans[o &lt;&lt; <span class="number">1</span>], ans[o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    freopen(<span class="string">"query.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"query.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</div><div class="line">    read(n);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) read(line[i]);</div><div class="line">    read(m);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</div><div class="line">        read(q[i].l), read(q[i].r);</div><div class="line">        q[i].t = i;</div><div class="line">    &#125;</div><div class="line">    init(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">    sort(q, q + m, cmp1);</div><div class="line">    <span class="keyword">int</span> j = n;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</div><div class="line">        <span class="keyword">for</span>(; j &gt;= q[i].l; j--)&#123;</div><div class="line">            <span class="keyword">int</span> now = INF;</div><div class="line">            qx = j + <span class="number">1</span>, qy = n, qd = line[j];</div><div class="line">            update(<span class="number">1</span>, n, <span class="number">1</span>, now);</div><div class="line">        &#125;</div><div class="line">        qx = q[i].l, qy = q[i].r;</div><div class="line">        q[i].ans = get(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    sort(q, q + m, cmp2);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, q[i].ans);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LOJ-516-「LibreOJ-β-Round-2」DP-一般看规律"><span class="toc-text">LOJ 516. 「LibreOJ β Round #2」DP 一般看规律</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入格式"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出格式"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样例"><span class="toc-text">样例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输入"><span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输出"><span class="toc-text">样例输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据范围与提示"><span class="toc-text">数据范围与提示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#题目分析"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $516$. 「LibreOJ β Round #2」DP 一般看规律<br><a id="more"></a></p>
+<h1 id="LOJ-516-「LibreOJ-β-Round-2」DP-一般看规律"><a href="#LOJ-516-「LibreOJ-β-Round-2」DP-一般看规律" class="headerlink" title="LOJ 516. 「LibreOJ β Round #2」DP 一般看规律"></a>LOJ 516. 「LibreOJ β Round #2」DP 一般看规律</h1><p>内存限制：512 MiB<br>时间限制：1000 ms<br>标准输入输出<br>题目类型：传统<br>评测方式：文本比较</p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个长度为 $n$ 的序列 $a$，一共有 $m$ 个操作。<br>每次操作的内容为：给定 $x,y$，序列中所有 $x$ 会变成 $y$。</p>
+<p>同时我们有一份代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> ans = <span class="number">2147483647</span>;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= n; j++) &#123;</div><div class="line">        <span class="keyword">if</span> (a[i] == a[j])</div><div class="line">            ans = <span class="built_in">std</span>::min(ans, j - i);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div></pre></td></tr></table></figure></p>
+<p>请在每次修改后输出代码运行的结果。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行两个数，表示 $n,m$。<br>第二行 $n$ 个数，表示 $a_1,a_2,\cdots, a_n$​​。<br>然后 $m$ 行每行两个数 $x$ 和 $y$，表示序列中所有 $x$ 会变成 $y$。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>对于每次修改，输出答案。</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">5 </span><span class="number">10</span></div><div class="line"><span class="symbol">2 </span><span class="number">7</span> <span class="number">6</span> <span class="number">3</span> <span class="number">8</span></div><div class="line"><span class="symbol">6 </span><span class="number">1</span></div><div class="line"><span class="symbol">7 </span><span class="number">1</span></div><div class="line"><span class="symbol">1 </span><span class="number">3</span></div><div class="line"><span class="symbol">5 </span><span class="number">6</span></div><div class="line"><span class="symbol">1 </span><span class="number">7</span></div><div class="line"><span class="symbol">9 </span><span class="number">5</span></div><div class="line"><span class="symbol">1 </span><span class="number">10</span></div><div class="line"><span class="symbol">7 </span><span class="number">6</span></div><div class="line"><span class="symbol">7 </span><span class="number">5</span></div><div class="line"><span class="symbol">3 </span><span class="number">9</span></div></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="number">2147483647</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">1</span></div></pre></td></tr></table></figure>
+<h2 id="数据范围与提示"><a href="#数据范围与提示" class="headerlink" title="数据范围与提示"></a>数据范围与提示</h2><p>$1\le n , m \le 100000$</p>
+<p>每个出现的数字绝对值在 int 范围内。</p>
+<h1 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h1><p>在这篇文章的开头，我写了一句话：“有层次的思考不可或缺”，什么意思呢，就是在我们思考每一道题的时候，最好不要使用过于跳跃的思维，而是要从最初始的想法一步一步进行思考改进，最终得到正确算法</p>
+<p>尽管有的时候，灵感来源于一瞬间，但是，这种比较稳定的思维方法还是要有所接受，多听一听各地的讲课，就会发现，一道难题，大佬们讲它的时候，往往都是先给出最简单的暴力方法，然后观察信息的冗余或浪费，或是进行各种联想，逐渐改进得到最后的正解</p>
+<p>上面是对一种思维方法的阐述，与本题无关</p>
+<p>下面说一说这道题，我们先透彻地理解一下题意，然后发现操作只有合并，而没有分裂，这启发我们向并查集/启发式合并的方向上思考，然后寻找下标差的最小值，我们可以联想到平衡树里面的前驱与后继，所以本题就是启发式合并的平衡树，同时每次插入时寻找前驱后继即可</p>
+<p>最后为了方便处理，我们搞一个离散化，就可以了</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 300005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 2147483647</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">qu</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> x, y;</div><div class="line">    qu(<span class="keyword">int</span> x, <span class="keyword">int</span> y) : x(x), y(y)&#123;&#125;</div><div class="line">    qu()&#123;&#125;</div><div class="line">&#125;q[maxn];</div><div class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; save[maxn];</div><div class="line"><span class="keyword">int</span> a[maxn];</div><div class="line"><span class="keyword">int</span> c[maxn];</div><div class="line"><span class="keyword">int</span> tag[maxn];</div><div class="line"><span class="keyword">int</span> n, m;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span>&amp; x)</span></span>&#123;</div><div class="line">    <span class="keyword">char</span> ch = getchar();</div><div class="line">    x = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) ch = getchar();</div><div class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>, ch = getchar();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    freopen(<span class="string">"dp.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"dp.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</div><div class="line">    read(n), read(m);</div><div class="line">    <span class="keyword">int</span> ct = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) read(a[i]), c[ct++] = a[i];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</div><div class="line">        read(q[i].x), read(q[i].y);</div><div class="line">        c[ct++] = q[i].x, c[ct++] = q[i].y;</div><div class="line">    &#125;</div><div class="line">    sort(c, c + ct);</div><div class="line">    ct = unique(c, c + ct) - c;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ct; i++) tag[i] = i;</div><div class="line">    <span class="keyword">int</span> ans = INF;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</div><div class="line">        a[i] =  lower_bound(c, c + ct, a[i]) - c;</div><div class="line">        save[a[i]].insert(i);</div><div class="line"></div><div class="line">        <span class="keyword">auto</span> it = save[a[i]].lower_bound(i);</div><div class="line">        <span class="comment">//auto it = lower_bound(save[a[i]].begin(), save[a[i]].end(), i);</span></div><div class="line">        <span class="keyword">if</span> (it != save[a[i]].begin()) ans = min(ans, i - *(--it));</div><div class="line">        it = save[a[i]].upper_bound(i);</div><div class="line">        <span class="comment">//it = upper_bound(save[a[i]].begin(), save[a[i]].end(), i);</span></div><div class="line">        <span class="keyword">if</span> (it != save[a[i]].end()) ans = min(ans, *it - i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</div><div class="line">        q[i].x = lower_bound(c, c + ct, q[i].x) - c,</div><div class="line">        q[i].y = lower_bound(c, c + ct, q[i].y) - c;</div><div class="line">        <span class="keyword">int</span> x = q[i].x, y = q[i].y;</div><div class="line">        <span class="keyword">if</span> (x == y)&#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (save[tag[x]].size() &gt; save[tag[y]].size()) swap(tag[x], tag[y]);</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it = save[tag[x]].begin(); it != save[tag[x]].end(); it++)&#123;</div><div class="line">            save[tag[y]].insert(*it);</div><div class="line"></div><div class="line">            <span class="keyword">auto</span> it2 = save[tag[y]].lower_bound(*it);</div><div class="line">            <span class="comment">//auto it2 = lower_bound(save[tag[y]].begin(), save[tag[y]].end(), *it);</span></div><div class="line">            <span class="keyword">if</span> (it2 != save[tag[y]].begin()) ans = min(ans, *it - *(--it2));</div><div class="line">            it2 = save[tag[y]].upper_bound(*it);</div><div class="line">            <span class="comment">//it2 = upper_bound(save[tag[y]].begin(), save[tag[y]].end(), *it);</span></div><div class="line">            <span class="keyword">if</span> (it2 != save[tag[y]].end()) ans = min(ans, *it2 - *it);</div><div class="line">        &#125;</div><div class="line">        save[tag[x]].clear();</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码细节：不要使用$STL$中的$lower_bound/upper_bound$来操作set容器，否则算法会变得十分缓慢，很容易超时，所以，我们要使用set自带的$lower_bound/upper_bound$，具体都体现在上面的代码中</p>
+<p>同时注意$tag$数组的必要性，因为它可以调节合并的顺序，否则会导致因启发式合并而带来的合并方向错误</p>
 
             
         </div>
@@ -238,7 +245,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/数据结构/">数据结构</a> <a class="tag tag--primary tag--small t-link" href="/tags/树套树/">树套树</a> <a class="tag tag--primary tag--small t-link" href="/tags/线段树套平衡树/">线段树套平衡树</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/启发式合并/">启发式合并</a> <a class="tag tag--primary tag--small t-link" href="/tags/平衡树/">平衡树</a> <a class="tag tag--primary tag--small t-link" href="/tags/数据结构/">数据结构</a> <a class="tag tag--primary tag--small t-link" href="/tags/离散化/">离散化</a>
 
             </div>
         
@@ -248,7 +255,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/"  data-tooltip="#6075. 「2017 山东一轮集训 Day6」重建">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/20/6062-「2017-山东一轮集训-Day2」Pair/"  data-tooltip="#6062. 「2017 山东一轮集训 Day2」Pair">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -256,7 +263,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/" data-tooltip="#6161. 「美团 CodeM 初赛 Round A」倒水">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/" data-tooltip="#6136. 「2017 山东三轮集训 Day4」Left">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -274,7 +281,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/11/6190-序列查询/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -282,7 +289,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/11/6190-序列查询/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -290,7 +297,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/11/6190-序列查询/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -440,7 +447,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/"  data-tooltip="#6075. 「2017 山东一轮集训 Day6」重建">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/20/6062-「2017-山东一轮集训-Day2」Pair/"  data-tooltip="#6062. 「2017 山东一轮集训 Day2」Pair">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -448,7 +455,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/" data-tooltip="#6161. 「美团 CodeM 初赛 Round A」倒水">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/" data-tooltip="#6136. 「2017 山东三轮集训 Day4」Left">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -466,7 +473,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/11/6190-序列查询/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -474,7 +481,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/11/6190-序列查询/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -482,7 +489,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/11/6190-序列查询/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -507,7 +514,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/11/6190-序列查询/">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
                     <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
                 </a>
             </li>
@@ -515,7 +522,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/11/6190-序列查询/">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
                     <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
                 </a>
             </li>
@@ -523,7 +530,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/11/6190-序列查询/">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
                     <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
                 </a>
             </li>
