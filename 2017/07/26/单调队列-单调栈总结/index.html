@@ -1,0 +1,905 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Goseqh&#39;s Blog">
+    <title>单调队列&amp;单调栈总结 - Goseqh&#39;s Blog</title>
+    <meta name="author" content="Goseqh">
+    
+    
+        <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1498830214/86545_qwhjrk.jpg">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="引言最近刷了一波JCY大神的课件，打算认真练习一发单调队列/单调栈，于是有了这篇总结，同时作为之后学习单调优化DP的基础">
+<meta name="keywords" content="数据结构,单调队列,单调栈">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="单调队列&amp;单调栈总结">
+<meta property="og:url" content="https://goseqh.tk/2017/07/26/单调队列-单调栈总结/index.html">
+<meta property="og:site_name" content="Goseqh&#39;s Blog">
+<meta property="og:description" content="引言最近刷了一波JCY大神的课件，打算认真练习一发单调队列/单调栈，于是有了这篇总结，同时作为之后学习单调优化DP的基础">
+<meta property="og:image" content="http://otp08noas.bkt.clouddn.com/3.png">
+<meta property="og:image" content="http://otp08noas.bkt.clouddn.com/4.png">
+<meta property="og:image" content="http://otp08noas.bkt.clouddn.com/1.png">
+<meta property="og:image" content="http://otp08noas.bkt.clouddn.com/2.png">
+<meta property="og:updated_time" content="2017-07-27T00:48:45.665Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="单调队列&amp;单调栈总结">
+<meta name="twitter:description" content="引言最近刷了一波JCY大神的课件，打算认真练习一发单调队列/单调栈，于是有了这篇总结，同时作为之后学习单调优化DP的基础">
+<meta name="twitter:image" content="http://otp08noas.bkt.clouddn.com/3.png">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://goseqh.tk/assets/images/2016-02-23.png"/>
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498830135/86962_mlgkrv.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498830135/86962_mlgkrv.jpg" />
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1498830135/86962_mlgkrv.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1498830135/86962_mlgkrv.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
+    <!--STYLES END-->
+    
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+    </div>
+    
+        
+            <a  class="header-right-icon "
+                href="#about">
+        
+        
+            <i class="fa fa-lg fa-home"></i>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/2016-02-23.png" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Goseqh</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    "
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1498830135/86962_mlgkrv.jpg');"
+             data-behavior="5">
+            
+                <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            单调队列&amp;单调栈总结
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2017-07-26T15:44:05+08:00">
+	
+		    7月 26, 2017
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+            
+        </div>
+
+            <div id="main" data-behavior="5"
+                 class="hasCover
+                        hasCoverMetaIn
+                        hasCoverCaption">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <span class="post-header-cover-caption caption">珍惜逝去的时光</span>
+    
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单调队列-单调栈概念介绍"><span class="toc-text">单调队列/单调栈概念介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#例题讲解"><span class="toc-text">例题讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#51nod-1102-面积最大的矩形"><span class="toc-text">51nod 1102 面积最大的矩形</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input示例"><span class="toc-text">Input示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output示例"><span class="toc-text">Output示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#51nod-1158-全是1的最大子矩阵"><span class="toc-text">51nod 1158 全是1的最大子矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input示例-1"><span class="toc-text">Input示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output示例-1"><span class="toc-text">Output示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析-1"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-1"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#51nod-1215-数组的宽度"><span class="toc-text">51nod 1215 数组的宽度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-2"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-2"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input示例-2"><span class="toc-text">Input示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output示例-2"><span class="toc-text">Output示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析-2"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-2"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#51nod-1272-最大距离"><span class="toc-text">51nod 1272 最大距离</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-3"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-3"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input示例-3"><span class="toc-text">Input示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output示例-3"><span class="toc-text">Output示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析-3"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-3"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#51nod-1962-区间计数"><span class="toc-text">51nod 1962 区间计数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#样例解释："><span class="toc-text">样例解释：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-4"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-4"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input示例-4"><span class="toc-text">Input示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output示例-4"><span class="toc-text">Output示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析-4"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-4"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#51nod-1153-选择子序列"><span class="toc-text">51nod 1153 选择子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-5"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-5"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input示例-5"><span class="toc-text">Input示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output示例-5"><span class="toc-text">Output示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析-5"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-5"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#51nod-1275-连续子段的差异"><span class="toc-text">51nod 1275 连续子段的差异</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-6"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-6"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input示例-6"><span class="toc-text">Input示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output示例-6"><span class="toc-text">Output示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析-6"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-6"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#模型"><span class="toc-text">模型</span></a></li></ol></li></ol>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>最近刷了一波JCY大神的课件，打算认真练习一发单调队列/单调栈，于是有了这篇总结，同时作为之后学习单调优化DP的基础<br><a id="more"></a></p>
+<h1 id="单调队列-单调栈概念介绍"><a href="#单调队列-单调栈概念介绍" class="headerlink" title="单调队列/单调栈概念介绍"></a>单调队列/单调栈概念介绍</h1><p>由于个人认为这两者基本没什么区别，所以放在一起进行讲解</p>
+<p>单调队列就是一个队列，里面的元素具有单调性，所以就可以在里面进行各种操作，比如在里面进行二分啊什么的，但是如果只能二分那其实也没有什么学习的必要性，更加重点的作用就是它能够同时维护多个区间的信息，具体原因下文会有所讲述<br><img src="http://otp08noas.bkt.clouddn.com/3.png" alt=""><br>而单调栈很显然就是一个栈，它里面的元素也是具有单调性的，但是每次只能从一个方向进出<br><img src="http://otp08noas.bkt.clouddn.com/4.png" alt=""></p>
+<p>首先说一下个人的理解，单调队列和单调栈其实没有什么本质区别，首先单调栈，看上去它是一个内部元素有序化的这么一个数据结构，但如果深入挖掘栈内各个元素的本质，就会发现，实际上栈内每个元素都代表着一个区间，这个区间中的极值就是这个元素的值（极值可以使最大值或最小值，这个看你如何进行维护）</p>
+<p>为什么这么说呢？我们可以看一下这个图：<br><img src="http://otp08noas.bkt.clouddn.com/1.png" alt=""><br>这时我们已经处理了两个大括号之间的所有数据，然后，我们把单调栈里的每一项都用一种颜色进行标记，同时标出它们在原序列上对应的区间，如下图：<br><img src="http://otp08noas.bkt.clouddn.com/2.png" alt=""><br>我们会发现，每个元素在它自己的区间内，都是最大值，这就是单调栈的实质，通过许多单个元素同时维护“许多区间”</p>
+<p>为什么这么说呢，大家可以把当前单调栈中维护的区间看作这样子：</p>
+<p>首先，我们不是标记出了每个颜色的范围吗，把这个每个颜色中的元素的在原序列中的下标视为左端点，现在更新到的原序列中的位置视为右端点，那么这个栈里面就总共维护着已经更新的原序列中的元素的个数这么多个区间，我们每次都会使右端点向右移动一个单位，这样总共就会维护到 $\frac{n ∗ (n + 1)}{2}$ 个区间，对应原序列的全部子区间，这种理解，我个人称作 <strong>区间化理解</strong></p>
+<p>所以，单调栈往往可以解决具有如下特征的问题：</p>
+<ul>
+<li>涉及最值</li>
+<li>询问全部区间的情况（个数为$O(n^2)$)<br>显然，单调栈的特性在于第二点，它能同时维护许多区间，所以就可以把原本暴力$O(n^2)$才能解决问题的算法优化到了$O(n)$，其实这是一个极为优秀的优化</li>
+</ul>
+<p>我们可以在每次加入元素的同时，直接把答案进行批量累加（即再维护一个当前栈内所有区间的贡献和，每次把答案加上这个总贡献），这样就能够非常高效的维护与所有区间有关的信息，我把这种方法称为<strong>整体化处理</strong>，这种方法有时虽然可以被替代，但更多时候它能简化出栈时更新答案的复杂性，因为<strong>整体化处理</strong>是随时更新答案的</p>
+<p>或者是在每次弹出元素的时候，对答案进行更新，这样可以保证相对于单个区间来说的答案最优性（相当于<strong>极大化</strong>区间贡献）</p>
+<p>而单调队列就相当于，我们移动了元素的起始位置，像是一个滑动的窗口，在左端点向右移动时，我们永远地舍弃掉了那些掉出窗口的元素，这样做的目的会在下文的讲解中体现</p>
+<p>下面举几个例题，来简单介绍一下它的具体用法与应用范围</p>
+<h1 id="例题讲解"><a href="#例题讲解" class="headerlink" title="例题讲解"></a>例题讲解</h1><h2 id="51nod-1102-面积最大的矩形"><a href="#51nod-1102-面积最大的矩形" class="headerlink" title="51nod 1102 面积最大的矩形"></a>51nod 1102 面积最大的矩形</h2><p>基准时间限制：1 秒<br>空间限制：131072 KB<br>分值：20<br>难度：3级算法题</p>
+<p>有一个正整数的数组，化为直方图，求此直方图包含的最大矩形面积。例如 $2,1,5,6,2,3$，对应的直方图如下：</p>
+<p>面积最大的矩形为$5,6$组成的宽度为$2$的矩形，面积为$10$。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>$第1行：1个数N，表示数组的长度(0 &lt;= N &lt;= 50000)$<br>$第2 - N + 1行：数组元素A[i]。(1 &lt;= A[i] &lt;= 10^9)$</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出最大的矩形面积</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">6</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="number">6</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">10</span></div></pre></td></tr></table></figure>
+<h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>求最大矩形面积，这是单调栈的一个常见应用，考虑到当高度下降的时候，被卡住的那些矩形就永远只能被卡在那里了，所以这时它们就应该出栈，于是我们就知道应该维护一个单调上升的单调栈，细节可见代码</p>
+<p>维护方法：我们对于每个进栈的元素定义结构体，里面有两个成员变量，分别代表它入栈的位置和它自己的高度（用于比较的键值），出栈时用当前的位置与它入栈的位置的距离减一作为矩形一边，高度作为另一边计算面积并更新答案</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 50005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long int</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line">LL line[maxn];</div><div class="line"><span class="keyword">int</span> n;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">rec</span>&#123;</span></div><div class="line">    LL val, idx;</div><div class="line">    rec(LL val, LL idx) : val(val), idx(idx)&#123;&#125;</div><div class="line">    rec()&#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">stack</span>&lt;rec&gt; save;</div><div class="line">LL ans = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</div><div class="line">        rec op;</div><div class="line">        <span class="keyword">int</span> l = i;</div><div class="line">        <span class="keyword">while</span>(!save.empty() &amp;&amp; (save.top()).val &gt; line[i])&#123;</div><div class="line">            op = save.top();</div><div class="line">            ans = max(ans, (i - op.idx) * op.val);</div><div class="line">            l = op.idx;</div><div class="line">            save.pop();</div><div class="line">        &#125;</div><div class="line">        save.push(rec(line[i], l));</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">while</span> (!save.empty())&#123;</div><div class="line">        rec op = save.top();</div><div class="line">        ans = max(ans, (n - op.idx + <span class="number">1</span>) * op.val);</div><div class="line">        save.pop();</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>, ans);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">/*freopen("rec.in", "r", stdin);</span></div><div class="line">    freopen("rec.out", "w", stdout);*/</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;line[i]);</div><div class="line">    work();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="51nod-1158-全是1的最大子矩阵"><a href="#51nod-1158-全是1的最大子矩阵" class="headerlink" title="51nod 1158 全是1的最大子矩阵"></a>51nod 1158 全是1的最大子矩阵</h2><p>基准时间限制：1 秒<br>空间限制：131072 KB<br>分值：80<br>难度：5级算法题</p>
+<p>给出1个$M*N$的矩阵$M_1$，里面的元素只有0或1，找出$M_1$的一个子矩阵$M_2$，$M_2$中的元素只有1，并且$M_2$的面积是最大的。输出$M_2$的面积。</p>
+<h3 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h3><p>$第1行:2个数m,n中间用空格分隔(2 &lt;= m,n &lt;= 500)$<br>$第2 - N + 1行：每行m个数，中间用空格分隔，均为0或1。$</p>
+<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h3><p>$输出最大全是1的子矩阵的面积。$</p>
+<h3 id="Input示例-1"><a href="#Input示例-1" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">3 </span><span class="number">3</span></div><div class="line"><span class="symbol">1 </span><span class="number">1</span> <span class="number">0</span></div><div class="line"><span class="symbol">1 </span><span class="number">1</span> <span class="number">1</span></div><div class="line"><span class="symbol">0 </span><span class="number">1</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+<h3 id="Output示例-1"><a href="#Output示例-1" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">4</span></div></pre></td></tr></table></figure>
+<h2 id="题目分析-1"><a href="#题目分析-1" class="headerlink" title="题目分析"></a>题目分析</h2><p>上一题的二维加强版，直接对每一行套用上一题方法即可</p>
+<p>维护方法：同上一题</p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 505</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> n, m;</div><div class="line"><span class="keyword">int</span> geo[maxn][maxn];</div><div class="line"><span class="keyword">int</span> low[maxn][maxn];</div><div class="line"><span class="keyword">int</span> up[maxn][maxn];</div><div class="line"><span class="keyword">int</span> line[maxn];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)&#123;</div><div class="line">        low[n - <span class="number">1</span>][j] = (geo[n - <span class="number">1</span>][j]) ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)&#123;</div><div class="line">            low[i][j] = (geo[i][j]) ? low[i + <span class="number">1</span>][j] + <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">mat</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> val, idx;</div><div class="line">    mat(<span class="keyword">int</span> val, <span class="keyword">int</span> idx) : val(val), idx(idx)&#123;&#125;</div><div class="line">    mat()&#123;&#125;</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> row)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">    <span class="built_in">stack</span>&lt;mat&gt; save;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) line[i] = low[row][i];</div><div class="line">    save.push(mat(line[<span class="number">0</span>], <span class="number">0</span>));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++)&#123;</div><div class="line">        mat op = save.top();</div><div class="line">        <span class="keyword">int</span> l = i;</div><div class="line">        <span class="keyword">while</span> (!save.empty() &amp;&amp; op.val &gt;= line[i])&#123;</div><div class="line">            l = op.idx;</div><div class="line">            ans = max(ans, (i - l) * op.val);</div><div class="line">            save.pop();</div><div class="line">            <span class="keyword">if</span> (save.empty()) <span class="keyword">break</span>;</div><div class="line">            op = save.top();</div><div class="line">        &#125;</div><div class="line">        save.push(mat(line[i], l));</div><div class="line">        ans = max(ans, (i - l + <span class="number">1</span>) * line[i]);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*--------------------*/</span></div><div class="line">    <span class="keyword">while</span> (!save.empty())&#123;</div><div class="line">        mat op = save.top();</div><div class="line">        ans = max(ans, (m - op.idx) * op.val);</div><div class="line">        save.pop();</div><div class="line">        <span class="keyword">if</span> (save.empty()) <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*--------------------*/</span></div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) ans = max(ans, cal(i));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">/*freopen("mat.in", "r", stdin);</span></div><div class="line">    freopen("mat.out", "w" ,stdout);*/</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;geo[i][j]);</div><div class="line">    init();</div><div class="line">    work();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="51nod-1215-数组的宽度"><a href="#51nod-1215-数组的宽度" class="headerlink" title="51nod 1215 数组的宽度"></a>51nod 1215 数组的宽度</h2><p>题目来源： Javaman<br>基准时间限制：1 秒<br>空间限制：131072 KB<br>分值： 80<br>难度：5级算法题</p>
+<p>N个整数组成的数组，定义子数组$a[i]..a[j]$的宽度为：$max(a[i]..a[j]) - min(a[i]..a[j])$，求所有子数组的宽度和。</p>
+<h3 id="Input-2"><a href="#Input-2" class="headerlink" title="Input"></a>Input</h3><p>$第1行：1个数N，表示数组的长度。(1 &lt;= N &lt;= 50000)$<br>$第2 - N + 1行：每行1个数，表示数组中的元素(1 &lt;= A[i] &lt;= 50000)$</p>
+<h3 id="Output-2"><a href="#Output-2" class="headerlink" title="Output"></a>Output</h3><p>输出所有子数组的宽度和。</p>
+<h3 id="Input示例-2"><a href="#Input示例-2" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="number">5</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div></pre></td></tr></table></figure>
+<h3 id="Output示例-2"><a href="#Output示例-2" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">20</span></div></pre></td></tr></table></figure>
+<h2 id="题目分析-2"><a href="#题目分析-2" class="headerlink" title="题目分析"></a>题目分析</h2><p>发现最大值与最小值可以分开维护，这样就简单了许多，我们可以通过单调栈快速求出所有区间的极值之和，具体方法需要我上面的对于单调栈的<strong>区间化理解</strong>，细节见代码</p>
+<p>维护方法，由于对称性，仅讲解最大值的求法：对每个入栈的元素定义结构体，内含两个成员变量，其中一个代表在<strong>区间化理解</strong>的意义下，这个元素所代表的区间的左端点，另一个变量代表它本身的值（键值），出栈时，由于它一定小于把它挤出去的那个元素，于是需要把它自己的左端点传给那个新来的元素，然后自己出栈，对于答案，我们采用<strong>整体化处理</strong>，用一个全局变量维护当前栈内元素所代表的所有区间的最大值的和，每次把一个元素入栈以后，我们需要把出栈的那些元素对这个全局变量的贡献减掉，然后加上刚入栈的那个元素的贡献，然后直接加入最终答案即可</p>
+<p>p.s. 其实也不一定用到整体化处理，我们考察区间化理解的意义后，可以直接在每个元素出栈时再用它们的贡献更新答案，所以这不算是整体化处理的典型用法</p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 50005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long int</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line">LL line[maxn];</div><div class="line"><span class="keyword">int</span> n;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">inter</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> val, l, r;</div><div class="line">    inter(<span class="keyword">int</span> val, <span class="keyword">int</span> l, <span class="keyword">int</span> r) : val(val), l(l), r(r)&#123;&#125;</div><div class="line">    inter()&#123;&#125;</div><div class="line">&#125;;</div><div class="line"><span class="function">LL <span class="title">get_max</span><span class="params">()</span></span>&#123;</div><div class="line">    LL ans = <span class="number">0</span>, now = <span class="number">0</span>;</div><div class="line">    <span class="built_in">stack</span>&lt;inter&gt; save;</div><div class="line">    save.push(inter(line[<span class="number">1</span>], <span class="number">1</span>, <span class="number">1</span>));</div><div class="line">    ans = now = line[<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</div><div class="line">        <span class="keyword">int</span> l = i;</div><div class="line">        inter op = save.top();</div><div class="line">        <span class="keyword">while</span> (!save.empty() &amp;&amp; op.val &lt;= line[i])&#123;</div><div class="line">            now -= (LL)(op.r - op.l + <span class="number">1</span>) * op.val;</div><div class="line">            l = op.l;</div><div class="line">            save.pop();</div><div class="line">            <span class="keyword">if</span> (save.empty()) <span class="keyword">break</span>;</div><div class="line">            op = save.top();</div><div class="line">        &#125;</div><div class="line">        save.push(inter(line[i], l, i));</div><div class="line">        now += (i - l + <span class="number">1</span>) * line[i];</div><div class="line">        ans += now;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"><span class="function">LL <span class="title">get_min</span><span class="params">()</span></span>&#123;</div><div class="line">    LL ans = <span class="number">0</span>, now = <span class="number">0</span>;</div><div class="line">    <span class="built_in">stack</span>&lt;inter&gt; save;</div><div class="line">    save.push(inter(line[<span class="number">1</span>], <span class="number">1</span>, <span class="number">1</span>));</div><div class="line">    ans = now = line[<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</div><div class="line">        <span class="keyword">int</span> l = i;</div><div class="line">        inter op = save.top();</div><div class="line">        <span class="keyword">while</span> (!save.empty() &amp;&amp; op.val &gt;= line[i])&#123;</div><div class="line">            now -= (LL)(op.r - op.l + <span class="number">1</span>) * op.val;</div><div class="line">            l = op.l;</div><div class="line">            save.pop();</div><div class="line">            <span class="keyword">if</span> (save.empty()) <span class="keyword">break</span>;</div><div class="line">            op = save.top();</div><div class="line">        &#125;</div><div class="line">        save.push(inter(line[i], l, i));</div><div class="line">        now += (i - l + <span class="number">1</span>) * line[i];</div><div class="line">        ans += now;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">/*freopen("width.in", "r", stdin);</span></div><div class="line">    freopen("width.out", "w", stdout);*/</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;line[i]);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>, get_max() - get_min());</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="51nod-1272-最大距离"><a href="#51nod-1272-最大距离" class="headerlink" title="51nod 1272 最大距离"></a>51nod 1272 最大距离</h2><p>题目来源： Codility<br>基准时间限制：1 秒<br>空间限制：131072 KB<br>分值： 20<br>难度：3级算法题</p>
+<p>给出一个长度为$N$的整数数组$A$，对于每一个数组元素，如果他后面存在大于等于该元素的数，则这两个数可以组成一对。每个元素和自己也可以组成一对。例如：${5, 3, 6, 3, 4, 2}$，可以组成$11$对，如下（数字为下标）：<br>$(0,0), (0, 2), (1, 1), (1, 2), (1, 3), (1, 4), (2, 2), (3, 3), (3, 4), (4, 4), (5, 5)$。其中$(1, 4)$是距离最大的一对，距离为3。</p>
+<h3 id="Input-3"><a href="#Input-3" class="headerlink" title="Input"></a>Input</h3><p>$第1行：1个数N，表示数组的长度(2 &lt;= N &lt;= 50000)。$<br>$第2 - N + 1行：每行1个数，对应数组元素A_i(1 &lt;= A_i &lt;= 10^9)。$</p>
+<h3 id="Output-3"><a href="#Output-3" class="headerlink" title="Output"></a>Output</h3><p>输出最大距离。</p>
+<h3 id="Input示例-3"><a href="#Input示例-3" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">6</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">6</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">2</span></div></pre></td></tr></table></figure>
+<h3 id="Output示例-3"><a href="#Output示例-3" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
+<h2 id="题目分析-3"><a href="#题目分析-3" class="headerlink" title="题目分析"></a>题目分析</h2><p>这道题算是比较经典的单调栈内二分的题目，这就是单调栈的一种比较简单的操作，其实这题我是搞了一段时间的，主要是想有没有$O(n)$的算法，然而最后还是没能想出来。。。</p>
+<p>维护方法：本题采用了一种不同的维护方式，即不保留刚入栈元素的方式，每次对于刚入栈的元素，如果它小于栈顶元素，我们把它直接入栈，否则，我们不将它入栈，而是在原栈中二分寻找答案，并更新最终答案，容易知道这样做是正确的</p>
+<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 50005</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">num</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> val, idx;</div><div class="line">    num(<span class="keyword">int</span> val, <span class="keyword">int</span> idx) : val(val), idx(idx)&#123;&#125;</div><div class="line">    num()&#123;&#125;</div><div class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> num b) <span class="keyword">const</span>&#123;</div><div class="line">        <span class="keyword">return</span> val &gt; b.val;</div><div class="line">    &#125;</div><div class="line">&#125;save[maxn];</div><div class="line"><span class="keyword">int</span> head;</div><div class="line"><span class="keyword">int</span> line[maxn];</div><div class="line"><span class="keyword">int</span> n;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(num x)</span></span>&#123;</div><div class="line">    save[head++] = x;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">(num x)</span></span>&#123;</div><div class="line">    head--;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">inline</span> num <span class="title">top</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> save[head - <span class="number">1</span>];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> ans = <span class="number">1</span>;</div><div class="line">    push(num(line[<span class="number">1</span>], <span class="number">1</span>));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</div><div class="line">        num op = top();</div><div class="line">        <span class="keyword">if</span> (line[i] &lt; op.val) push(num(line[i], i));</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            num* op2 = lower_bound(save, save + head, num(line[i], i));</div><div class="line">            ans = max(ans, i - op2 -&gt; idx);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">/*freopen("maxlen.in", "r", stdin);</span></div><div class="line">    freopen("maxlen.out", "w", stdout);*/</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;line[i]);</div><div class="line">    work();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="51nod-1962-区间计数"><a href="#51nod-1962-区间计数" class="headerlink" title="51nod 1962 区间计数"></a>51nod 1962 区间计数</h2><p>基准时间限制：1.5 秒<br>空间限制：262144 KB<br>分值： 80<br>难度：5级算法题</p>
+<p>两个数列 ${A_n} ， {B_n}$ ，请求出$Ans$, $Ans$定义如下：</p>
+<script type="math/tex; mode=display">Ans=\sum_{i = 1}^{n}\sum_{j = 1}^{n}[j=i][max\{A_i,A_{i+1},...,A_j\}=max\{B_i,B_{i+1},...,B_j\}]</script><p>注：[ ]内表达式为真，则为1，否则为0.</p>
+<p>$1≤N≤3.5×10^5$<br>$1≤A_i,B_i≤N $</p>
+<h3 id="样例解释："><a href="#样例解释：" class="headerlink" title="样例解释："></a>样例解释：</h3><p>7个区间分别为：$（1,4），（1,5），（2,4），（2,5），（3,3），（3,5），（4,5）$</p>
+<h3 id="Input-4"><a href="#Input-4" class="headerlink" title="Input"></a>Input</h3><p>$第一行一个整数N$<br>$第二行N个整数A_i$<br>$第三行N个整数B_i$</p>
+<h3 id="Output-4"><a href="#Output-4" class="headerlink" title="Output"></a>Output</h3><p>一行，一个整数$Ans$</p>
+<h3 id="Input示例-4"><a href="#Input示例-4" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">5</span></div><div class="line"><span class="symbol">1 </span><span class="number">4</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></div><div class="line"><span class="symbol">3 </span><span class="number">2</span> <span class="number">2</span> <span class="number">4</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+<h3 id="Output示例-4"><a href="#Output示例-4" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">7</span></div></pre></td></tr></table></figure>
+<h2 id="题目分析-4"><a href="#题目分析-4" class="headerlink" title="题目分析"></a>题目分析</h2><p>其实我是先做的这道题，然后再看的其他题。。。<br>这题就是，我们同样使用区间化理解，先分别为两个序列维护两个栈，然后对栈内每个数记录一个区间，每次我们就是要求两个栈内的相同的数所对应的区间的交，我们每次插入元素，就把所有的交的和累加进答案，这就是我说的整体化处理</p>
+<p>维护方法：对每个元素记录一个区间，和它本身的值，对值相同的元素我们求交，并把交的长度加入整体维护的全局变量中，出栈入栈分别删除或增加，每次当前位置更新完毕后，我们直接把答案加入最终答案即可</p>
+<h2 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 400005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long int</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">inter</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> l, r;</div><div class="line">    inter(<span class="keyword">int</span> l, <span class="keyword">int</span> r) : l(l), r(r)&#123;&#125;</div><div class="line">    inter()&#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_insect</span><span class="params">(inter a, inter b)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (a.l &gt; b.l) swap(a, b);</div><div class="line">    <span class="keyword">if</span> (a.r &lt; b.l) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> min(a.r, b.r) - b.l + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; savea, saveb;</div><div class="line"><span class="keyword">int</span> linea[maxn], lineb[maxn];</div><div class="line">inter reca[maxn], recb[maxn];</div><div class="line">LL ans, now;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) reca[i] = recb[i] = inter(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    savea.push(linea[<span class="number">1</span>]);</div><div class="line">    reca[linea[<span class="number">1</span>]] = inter(<span class="number">1</span>, <span class="number">1</span>);</div><div class="line">    saveb.push(lineb[<span class="number">1</span>]);</div><div class="line">    recb[lineb[<span class="number">1</span>]] = inter(<span class="number">1</span>, <span class="number">1</span>);</div><div class="line">    now = ans = get_insect(recb[lineb[<span class="number">1</span>]], reca[lineb[<span class="number">1</span>]]);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</div><div class="line">        <span class="keyword">int</span> op;</div><div class="line">        inter ka = inter(i, i);</div><div class="line">        <span class="keyword">while</span> (!savea.empty() &amp;&amp; (op = savea.top()) &lt;= linea[i])&#123;</div><div class="line">            now -= get_insect(reca[op], recb[op]);</div><div class="line">            ka.l = reca[op].l;</div><div class="line">            reca[op] = inter(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">            savea.pop();</div><div class="line">        &#125;</div><div class="line">        savea.push(linea[i]);</div><div class="line"></div><div class="line">        inter kb = inter(i, i);</div><div class="line">        <span class="keyword">while</span> (!saveb.empty() &amp;&amp; (op = saveb.top()) &lt;= lineb[i])&#123;</div><div class="line">            now -= get_insect(reca[op], recb[op]);</div><div class="line">            kb.l = recb[op].l;</div><div class="line">            recb[op] = inter(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">            saveb.pop();</div><div class="line">        &#125;</div><div class="line">        saveb.push(lineb[i]);</div><div class="line"></div><div class="line">        reca[linea[i]] = ka;</div><div class="line">        recb[lineb[i]] = kb;</div><div class="line">        <span class="keyword">if</span>  (linea[i] == lineb[i])&#123;</div><div class="line">            now += get_insect(ka, kb);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            now += get_insect(reca[linea[i]], recb[linea[i]]);</div><div class="line">            now += get_insect(reca[lineb[i]], recb[lineb[i]]);</div><div class="line">        &#125;</div><div class="line">        ans += now;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>, ans);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">/*freopen("inter.in", "r", stdin);</span></div><div class="line">    freopen("inter.out" ,"w", stdout);*/</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;linea[i]);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;lineb[i]);</div><div class="line">    work();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="51nod-1153-选择子序列"><a href="#51nod-1153-选择子序列" class="headerlink" title="51nod 1153 选择子序列"></a>51nod 1153 选择子序列</h2><p>题目来源： Codility<br>基准时间限制：1 秒<br>空间限制：131072 KB<br>分值： 40<br>难度：4级算法题</p>
+<p>长度为$N的整数数组A$，所有的数均不相同，假设下标从$0$开始。找到一个最长的数组B，B数组的长度为K，数值范围是$0 - N - 1$，记录的是A数组的下标。</p>
+<p>满足$A[B[0]] &gt; A[B[1]] &gt; A[B[2]] &gt;…A[B[K]]$，并且对任意连续的两项$B[i]及B[i + 1]$，满足$min(B[i]，B[i + 1]) &lt; j &lt; max(B[i]，B[i + 1])$ 均有$A[j] &lt; A[B[i + 1]] $，求最大的K。</p>
+<p>例如：$9, 10, 2, -1, 3, -5, 0, -3, 1, 12, 5, 8, -2, 6, 4$。可以选出：$12, 10, 3, 1, 0, -3。$对应的下标为$：9, 1, 4, 8, 6, 7$（就是B数组），输出$6$。</p>
+<h3 id="Input-5"><a href="#Input-5" class="headerlink" title="Input"></a>Input</h3><p>$第1行：一个数N，表示A数组的长度。（1 &lt;= N &lt;= 50000)$<br>$第2 - N + 1行：每行1个数对应A数组的元素Ai（0 &lt; Ai &lt; 10^9)$</p>
+<h3 id="Output-5"><a href="#Output-5" class="headerlink" title="Output"></a>Output</h3><p>$输出B数组最长的长度K。$</p>
+<h3 id="Input示例-5"><a href="#Input示例-5" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="number">15</span></div><div class="line"><span class="number">9</span></div><div class="line"><span class="number">10</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">-1</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">-5</span></div><div class="line"><span class="number">0</span></div><div class="line"><span class="number">-3</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">12</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="number">8</span></div><div class="line"><span class="number">-2</span></div><div class="line"><span class="number">6</span></div><div class="line"><span class="number">4</span></div></pre></td></tr></table></figure>
+<h3 id="Output示例-5"><a href="#Output示例-5" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">6</span></div></pre></td></tr></table></figure>
+<h2 id="题目分析-5"><a href="#题目分析-5" class="headerlink" title="题目分析"></a>题目分析</h2><p>我们很容易发现本题的贪心策略，每次选当前区间中最大的数，然后在分出的左右两个小区间中重复上述过程，找到最长的那个序列就可以了，正常的想法就是维护线段树，然后$O(n\log n)$解决，但是我觉得，既然是在做单调栈，为什么不在$O(n)$内解决呢？于是我就想到了单调栈的做法</p>
+<p>维护方法：对每个元素维护一个结构体，内含两个成员变量，分别为当前求出的DP值和元素本身的值，我们每次在pop出一个元素后，我们用这个元素的最长长度加一，更新新的栈顶元素的最长长度，同时对于每次进栈的那个元素，用所有被它挤出去的那些元素的最长长度加一来更新它的最长长度，最后在每次操作时都用元素的最长长度更新答案，并且把所有元素都出栈检查即可</p>
+<h2 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 50005</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">num</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> val, ans;</div><div class="line">    num(<span class="keyword">int</span> val, <span class="keyword">int</span> ans) : val(val), ans(ans)&#123;&#125;</div><div class="line">    num()&#123;&#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">int</span> line[maxn];</div><div class="line"><span class="keyword">int</span> n;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> tot = <span class="number">0</span>;</div><div class="line">    <span class="built_in">stack</span>&lt;num&gt; save;</div><div class="line">    save.push(num(line[<span class="number">1</span>], <span class="number">1</span>));</div><div class="line">    tot = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</div><div class="line">        num op = save.top();</div><div class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (!save.empty() &amp;&amp; op.val &lt;= line[i])&#123;</div><div class="line">            ans = max(ans, op.ans);</div><div class="line">            save.pop();</div><div class="line">            <span class="keyword">if</span> (!save.empty())&#123;</div><div class="line">                num op2 = save.top();</div><div class="line">                save.pop();</div><div class="line">                op2.ans = max(op2.ans, op.ans + <span class="number">1</span>);</div><div class="line">                save.push(op2);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">            op = save.top();</div><div class="line">        &#125;</div><div class="line">        save.push(num(line[i], ans + <span class="number">1</span>));</div><div class="line">        tot = max(tot, ans + <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">while</span> (!save.empty())&#123;</div><div class="line">        num op = save.top();</div><div class="line">        tot = max(tot, op.ans);</div><div class="line">        save.pop();</div><div class="line">        <span class="keyword">if</span> (!save.empty())&#123;</div><div class="line">            num op2 = save.top();</div><div class="line">            save.pop();</div><div class="line">            op2.ans = max(op2.ans, op.ans + <span class="number">1</span>);</div><div class="line">            save.push(op2);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, tot);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">/*freopen("sub.in", "r", stdin);</span></div><div class="line">    freopen("sub.out", "w", stdout);*/</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;line[i]);</div><div class="line">    work();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="51nod-1275-连续子段的差异"><a href="#51nod-1275-连续子段的差异" class="headerlink" title="51nod 1275 连续子段的差异"></a>51nod 1275 连续子段的差异</h2><p>题目来源： Codility<br>基准时间限制：1 秒<br>空间限制：131072 KB<br>分值： 80<br>难度：5级算法题</p>
+<p>给出一个包括N个元素的整数数组A，包括A本身在内，共有 $\frac{n * (n + 1)}{2}$个非空子段。例如：1 3 2的子段为{1} {3} {2} {1 3} {3 2} {1 3 2}。在这些子段中，如果最大值同最小值的差异不超过K，则认为这是一个合格的子段。给出数组A和K，求有多少符合条件的子段。例如：3 5 7 6 3，K = 2，符合条件的子段包括：{3} {5} {7} {6} {3} {3 5} {5 7} {7 6} {5 7 6}，共9个。</p>
+<h3 id="Input-6"><a href="#Input-6" class="headerlink" title="Input"></a>Input</h3><p>$第1行：2个数N, K（1 &lt;= N &lt;= 50000, 0 &lt;= K &lt;= 10^9)$<br>$第2 - N + 1行：每行1个数，对应数组的元素A_i(0 &lt;= A[i] &lt;= 10^9)$</p>
+<h3 id="Output-6"><a href="#Output-6" class="headerlink" title="Output"></a>Output</h3><p>输出符合条件的子段数量。</p>
+<h3 id="Input示例-6"><a href="#Input示例-6" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">5 </span><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="number">7</span></div><div class="line"><span class="number">6</span></div><div class="line"><span class="number">2</span></div></pre></td></tr></table></figure>
+<h3 id="Output示例-6"><a href="#Output示例-6" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">9</span></div></pre></td></tr></table></figure>
+<h2 id="题目分析-6"><a href="#题目分析-6" class="headerlink" title="题目分析"></a>题目分析</h2><p>这就是一个需要用到单调队列的题目了，同时根据本题的特性，本题还需要使用尺取法，我们先维护两个队列，一个维护最大值，另一个维护最小值，我们每次同时向两个队列中加入元素并更新，然后直到两个队列最大和最小的元素之差超过$K$，然后我们统计数量并向右移动队列的左端点（同时移动两个队列的），再重复上述尺取过程，这样就可以解决问题了，这种问题的解决，需要基于同时性处理，即同时入队一个元素，同时出队一个元素</p>
+<h2 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; inc;</div><div class="line"><span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; dec;</div><div class="line"></div><div class="line"><span class="keyword">int</span> line[maxn];</div><div class="line"><span class="keyword">int</span> n, k;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">/*freopen("diff.in", "r", stdin);</span></div><div class="line">    freopen("diff.out", "w", stdout);*/</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;k);</div><div class="line">    <span class="keyword">int</span> cur = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;line[i]);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</div><div class="line">        <span class="keyword">while</span>(cur &lt; n)&#123;</div><div class="line">            <span class="keyword">while</span> (!dec.empty() &amp;&amp; line[dec.back()] &lt;= line[cur]) dec.pop_back();</div><div class="line">            dec.push_back(cur);</div><div class="line">            <span class="keyword">while</span> (!inc.empty() &amp;&amp; line[inc.back()] &gt;= line[cur]) inc.pop_back();</div><div class="line">            inc.push_back(cur);</div><div class="line">            <span class="keyword">if</span> (line[dec.front()] - line[inc.front()] &lt;= k) cur++;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        ans += (cur - i);</div><div class="line">        <span class="keyword">if</span> (inc.front() == i) inc.pop_front();</div><div class="line">        <span class="keyword">if</span> (dec.front() == i) dec.pop_front();</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><ul>
+<li><p>单调栈</p>
+<ul>
+<li>上升栈<ul>
+<li>求最大矩形面积</li>
+<li>求最小值的整体和</li>
+<li>求包含末元素的最长上升子序列长度</li>
+</ul>
+</li>
+<li>下降栈<ul>
+<li>求最大值的整体和</li>
+<li>求包含末元素的最长下降子序列长度</li>
+</ul>
+</li>
+<li>栈内二分<ul>
+<li>不保留维护，分情况更新</li>
+</ul>
+</li>
+<li>区间化理解<ul>
+<li>把元素区间化，用区间交解决问题</li>
+</ul>
+</li>
+<li>整体化处理<ul>
+<li>常用于多个栈的相关联信息维护</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>单调队列</p>
+<ul>
+<li>二分答案</li>
+<li>尺取法</li>
+<li>滑动窗口式问题</li>
+</ul>
+</li>
+</ul>
+<p>感觉题还是做得少。。。没什么内容</p>
+<p>所以大致就是这样，单调栈/单调队列其实还是很好理解的，我们熟悉了几种常见的操作以后，就能够感受到单调栈/单调队列这种数据结构的强大之处，也能对它们有更深刻的理解</p>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/单调栈/">单调栈</a> <a class="tag tag--primary tag--small t-link" href="/tags/单调队列/">单调队列</a> <a class="tag tag--primary tag--small t-link" href="/tags/数据结构/">数据结构</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/29/烤肉？烤肉。/"  data-tooltip="烤肉？烤肉。">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/25/骗分导论/" data-tooltip="骗分导论">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/26/单调队列-单调栈总结/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/26/单调队列-单调栈总结/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/26/单调队列-单调栈总结/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2017 Goseqh. All Rights Reserved.
+    </span>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/29/烤肉？烤肉。/"  data-tooltip="烤肉？烤肉。">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/25/骗分导论/" data-tooltip="骗分导论">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/26/单调队列-单调栈总结/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/26/单调队列-单调栈总结/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/26/单调队列-单调栈总结/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/07/26/单调队列-单调栈总结/">
+                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/07/26/单调队列-单调栈总结/">
+                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/07/26/单调队列-单调栈总结/">
+                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/2016-02-23.png" alt="作者的图片"/>
+        
+            <h4 id="about-card-name">Goseqh</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                China, Liaoning, NEYC
+            </div>
+        
+    </div>
+</div>
+
+        <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-close"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <h3 class="media-heading">莫比乌斯反演总结</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <h3 class="media-heading">莫比乌斯反演详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830262/83053_kwvev3.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <h3 class="media-heading">杜教筛原理详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830177/86548_fqol95.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <h3 class="media-heading">狄利克雷卷积详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <h3 class="media-heading">Dilworth定理</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月1日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830261/85371_fltskc.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <h3 class="media-heading">#6164. 「美团 CodeM 初赛 Round A」数列互质</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6164$. 「美团 CodeM 初赛 Round A」数列互质<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830238/86242_qg6y9f.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <h3 class="media-heading">#6161. 「美团 CodeM 初赛 Round A」倒水</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6161$. 「美团 CodeM 初赛 Round A」倒水<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <h3 class="media-heading">#6190. 序列查询</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830203/85373_qtkof1.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <h3 class="media-heading">#6075. 「2017 山东一轮集训 Day6」重建</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6075$. 「2017 山东一轮集训 Day6」重建<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <h3 class="media-heading">#6136. 「2017 山东三轮集训 Day4」Left</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="没有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 20 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1498830214/86545_qwhjrk.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('Z7A3XW4R2I', '12db1ad54372045549ef465881c17e743');
+        var algoliaIndex = algoliaClient.initIndex('tranquilpeak');
+    </script>
+
+    </body>
+</html>
