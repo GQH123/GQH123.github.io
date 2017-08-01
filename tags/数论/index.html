@@ -244,12 +244,9 @@
             </div>
             
                 <div class="postShorten-content" itemprop="articleBody">
-                    <!--<div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="%E7%82%AB%E9%85%B7%E5%8F%8D%E6%BC%94%E9%AD%94%E6%9C%AF%20-%20%E5%B9%BB%E7%81%AF%E7%89%87%20-%20vfleaking%E7%9A%84%E5%8D%9A%E5%AE%A2.html"></iframe>
-</div>-->
-<div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="http://vfleaking.blog.uoj.ac/slide/87#/" width="1000" height="600" frameborder="no"></iframe>
-</div>
+                    <p><div class="embed-responsive embed-responsive-16by9"></div></p>
+<p><iframe class="embed-responsive-item" src="%E7%82%AB%E9%85%B7%E5%8F%8D%E6%BC%94%E9%AD%94%E6%9C%AF%20-%20%E5%B9%BB%E7%81%AF%E7%89%87%20-%20vfleaking%E7%9A%84%E5%8D%9A%E5%AE%A2.html" width="1000" height="600" frameborder="no"></iframe><br>&lt;/div&gt;<br>&lt;!—<div class="embed-responsive embed-responsive-16by9"></div></p>
+<p><iframe class="embed-responsive-item" src="http://vfleaking.blog.uoj.ac/slide/87#/" width="1000" height="600" frameborder="no"></iframe><br>&lt;/div&gt;—&gt;</p>
 
                     
                         
@@ -555,7 +552,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2017 Goseqh. All Rights Reserved.
+        Copyrights &copy; <%= date(new Date(), 'YYYY') + ' ' + config.author || config.title %>. All Rights Reserved.
     </span>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
@@ -902,7 +899,7 @@
                 data-message-zero="没有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 21 篇文章
+                找到 22 篇文章
             </p>
         </div>
     </div>
