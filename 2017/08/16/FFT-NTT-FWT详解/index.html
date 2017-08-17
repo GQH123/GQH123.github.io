@@ -1,0 +1,1041 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Goseqh&#39;s Blog">
+    <title>FFT,NTT,FWT详解 - Goseqh&#39;s Blog</title>
+    <meta name="author" content="Goseqh">
+    
+    
+        <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1501464937/new2_qgnz5x.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="引言最近集中攻略了一下数学内容，感觉对FFT,NTT,FWT这三种变换有了新的理解与感受，所以用这篇文章来分享最近新的收获">
+<meta name="keywords" content="数论,数学,快速傅里叶变换(FFT),快速数论变换(NTT),快速沃尔什变换(FWT),线性代数,位运算">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="FFT,NTT,FWT详解">
+<meta property="og:url" content="https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/index.html">
+<meta property="og:site_name" content="Goseqh&#39;s Blog">
+<meta property="og:description" content="引言最近集中攻略了一下数学内容，感觉对FFT,NTT,FWT这三种变换有了新的理解与感受，所以用这篇文章来分享最近新的收获">
+<meta property="og:image" content="https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/img1.png">
+<meta property="og:image" content="https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/img2.png">
+<meta property="og:image" content="https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/img3.png">
+<meta property="og:updated_time" content="2017-08-17T05:30:03.673Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FFT,NTT,FWT详解">
+<meta name="twitter:description" content="引言最近集中攻略了一下数学内容，感觉对FFT,NTT,FWT这三种变换有了新的理解与感受，所以用这篇文章来分享最近新的收获">
+<meta name="twitter:image" content="https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/img1.png">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://goseqh.tk/assets/images/new2.png"/>
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772138/1456293217710_w1kxfp.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772138/1456293217710_w1kxfp.jpg" />
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772138/1456293217710_w1kxfp.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772138/1456293217710_w1kxfp.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
+    <!--STYLES END-->
+    
+    
+    <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?9505a5af654a2478f93fd6c0ae4f687d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+    </div>
+    
+        
+            <a  class="header-right-icon open-algolia-search"
+                href="#search">
+        
+        
+            <i class="fa fa-lg fa-search"></i>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Goseqh</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>For what I cherish forever.</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/GQH123" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="mailto:572694553@qq.com" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc">QQmail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    "
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1502772138/1456293217710_w1kxfp.jpg');"
+             data-behavior="4">
+            
+                <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            FFT,NTT,FWT详解
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2017-08-16T21:41:59+08:00">
+	
+		    8月 16, 2017
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaIn
+                        hasCoverCaption">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <span class="post-header-cover-caption caption">Mathematics was once dubbed the handmaiden of the sciences.</span>
+    
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#快速傅里叶变换-FFT"><span class="toc-text">快速傅里叶变换(FFT)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#总述"><span class="toc-text">总述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前置技能"><span class="toc-text">前置技能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#讲解"><span class="toc-text">讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板"><span class="toc-text">模板</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数论快速变换-NTT"><span class="toc-text">数论快速变换(NTT)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前置技能-1"><span class="toc-text">前置技能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#讲解-1"><span class="toc-text">讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板-1"><span class="toc-text">模板</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#快速沃尔什变换-FWT"><span class="toc-text">快速沃尔什变换(FWT)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#总述-1"><span class="toc-text">总述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#讲解-2"><span class="toc-text">讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#与运算和或运算的FWT"><span class="toc-text">与运算和或运算的FWT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异或运算的FWT"><span class="toc-text">异或运算的FWT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板-2"><span class="toc-text">模板</span></a></li></ol></li></ol>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>最近集中攻略了一下数学内容，感觉对FFT,NTT,FWT这三种变换有了新的理解与感受，所以用这篇文章来分享最近新的收获<br><a id="more"></a><br>那么还是按照标题的顺序逐个予以讲解</p>
+<h1 id="快速傅里叶变换-FFT"><a href="#快速傅里叶变换-FFT" class="headerlink" title="快速傅里叶变换(FFT)"></a>快速傅里叶变换(FFT)</h1><h2 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h2><p>这种变化十分重要，不仅仅是在信息学竞赛上，这个算法曾被称为二十世纪最伟大的发明之一，由此，它的重要性可见一斑。下面，我们就要解开这个算法的神秘面纱，考虑到它的难度，本文讲解着力于使概念清晰易懂（当然，前提是你已经熟练掌握了前置技能，因为如果再加上前置技能的讲解，本文的篇幅就太长了），深入浅出，避免知其然而不知其所以然的常见学习问题，那么，这就开始吧！</p>
+<h2 id="前置技能"><a href="#前置技能" class="headerlink" title="前置技能"></a>前置技能</h2><p>高中数学的复数相关知识以及基础的线性代数知识（矩阵运算及逆矩阵）</p>
+<h2 id="讲解"><a href="#讲解" class="headerlink" title="讲解"></a>讲解</h2><p>我们采用这样的记号：$\xi_k^i$，来表示$n$次单位根的$k$次方，其中$\xi_k^0 = 1$<br>那么，大家应该都学过复数（就是没学过是不是也听说过一些呢），复数里面的单位根有些比较优美的性质，就是这两个：</p>
+<ul>
+<li><script type="math/tex; mode=display">\xi_n^{k + \frac{n}{2}} =- \xi_n^{k}</script></li>
+<li><script type="math/tex; mode=display">\xi_n^{2k} = \xi_{\frac{n}{2}}^k</script>应该是挺显然的，放在复平面上一眼就看得出来</li>
+</ul>
+<p>然后，我们需要知道的是，原本DFT的时间复杂度是$O(n ^ 2)$的，就是采用$O(n)$个不同的点($x$值)，代入到多项式中，求出点值，这样就是离散傅里叶变换，就是把多项式从系数表达转向点值表达的过程</p>
+<p>那么，FFT是如何做到在$O(n \log n)$时间内就求出$O(n)$个点的点值的呢？原因就在于，它利用了复数单位根的性质，而且必须是一个$2$的整数次幂的单位根，才能很好地实现快速运算</p>
+<p>具体的实现方法，很显然就是要使用上面刚介绍过的两个性质，我们可以考虑这样的计算式:</p>
+<script type="math/tex; mode=display">f(x)=  a_0x^0+a_1x^1+a_2x^2+\cdots + a_{n -1}x^{n - 1}</script><p>我们此时把某个单位根代入，则有:</p>
+<script type="math/tex; mode=display">f({\xi_n^k})=  a_0{(\xi_n^k)}^0+a_1{(\xi_n^k)}^1+a_2{(\xi_n^k)}^2+\cdots + a_{n -1}{(\xi_n^k)}^{n - 1}</script><p>由单位根的定义及运算，我们可以得到：</p>
+<script type="math/tex; mode=display">f({\xi_n^k})=  a_0\xi_n^{0}+a_1\xi_n^{k}+a_2\xi_n^{2k}+\cdots + a_{n -1}\xi_n^{(n - 1)k}</script><p>这时，我们进行蝴蝶操作，同时结合上面提到的第二条性质，可以得到：</p>
+<script type="math/tex; mode=display">f({\xi_n^k})=  (a_0\xi_{\frac{n}{2}}^{0}+a_2\xi_{\frac{n}{2}}^{k}+\cdots +a_{n - 2}\xi_{\frac{n}{2}}^{\frac{(n -2)k}{2}})+ \xi_n ^ k * (a_1\xi_{\frac{n}{2}}^{0}+a_3\xi_{\frac{n}{2}}^{k}+\cdots +a_{n - 1}\xi_{\frac{n}{2}}^{\frac{(n -2)k}{2}} )</script><p>我们观察式子的这两个部分。可以发现，左右两部分就是与原问题本质相同，但规模仅为原问题一半的递归子问题（因为相当于对左右两部分分别代入了$\xi_{\frac{n}{2}}^{k}$继续进行计算），这样我们就可以通过递归来进行求解</p>
+<p>但是，如果你在计算的时候，是把每一个点都这样直接代入计算的话，复杂度并没有什么变化，仍然是$O(n^2)$，还会因为递归而变慢，显然FFT不是这样处理的</p>
+<p>那么我们该怎么办呢？我们考虑同时计算这$O(n)$个点的点值，在合并的时候，少计算一些点，利用性质直接运算得出某个点的点值，这样不就可以节约很多的时间了吗？我们继续考虑上面的式子，假设递归返回到这一步的时候（注意，如果这样说的话那么式子中的$n$就不一定是原序列的长度了，而有可能是它的子序列的长度），对于上个式子中的两个部分，我们已经分别求出了$\xi_\frac{n}{2}^{ik}(i = 0,1,2,\cdots ,\frac{n - 2}{2})$这些点对应的点值，那么，我们要思考的就是如何把这些点值在这一层合并在一起</p>
+<p>我们可以发现，对于$k = 0,1,2,\cdots ,\frac{n - 2}{2}$，我们只需要直接合并就可以了（$左 +\xi_n ^ k * 右$）</p>
+<p>而对于$k = \frac{n}{2},\frac{n}{2} + 1,\frac{n}{2} + 2,\cdots , n - 1$，在左右两边已经求出的点值的点集中，似乎并没有，这应该很显然，左右只有$\frac{n}{2}$个点的点值</p>
+<p>那么我们该怎么办呢？考虑上面的两个性质中的第一条，可以知道对于$k = \frac{n}{2},\frac{n}{2} + 1,\frac{n}{2} + 2,\cdots , n - 1$，有$\xi_{n}^{k}= -{\xi_{n}^{k - \frac{n}{2}}}$，这样，我们只要在右边添一个负号，就可以像上面一样直接合并了，因为此时$k$相当于被限定在了$0,1,2,\cdots ,\frac{n - 2}{2}$这个范围中，而左右两边式子里面的指数都是偶数，所以负号就被和谐掉了，只有外边单独提出来的那个单位根$\xi_n^k$产生了一个负号，所以在右边直接添上即可直接合并（$左 -{\xi_{n}^{k - \frac{n}{2}}} * 右$）</p>
+<p>这样，我们每次需要$O(n)$的时间进行合并，一共只会进行$O(\log n)$次这样的合并，所以复杂度为$O(n \log n)$</p>
+<p>那么我们现在就是以很高的效率求出了点值，对于多项式卷积，我们就可以对每个点都对应地进行两个点值的相乘，得到了新的点值表达的多项式，然而我们并不喜欢点值表达的多项式，所以我们需要IDFT，即逆离散傅里叶变换，当然，你要是暴力求的话，就是高斯消元解方程的复杂度，前面的工作就都变得毫无意义了，很明显，我们需要$O(n \log n)$复杂度的逆算法，即IFFT，逆快速傅里叶变换</p>
+<p>怎么做呢？我们考虑刚才都做了什么，我们先构造一个系数矩阵：</p>
+<script type="math/tex; mode=display">
+A=
+\begin{bmatrix}
+{\xi_n^{0}}&{\xi_n^{0}}&{\xi_n^{0}}&\cdots &{\xi_n^{0}}\\
+{\xi_n^{0}}&{\xi_n^{1}}&{\xi_n^{2}}&\cdots &{\xi_n^{n - 1}}\\
+\xi_n^{0}&{\xi_n^{2}}&{\xi_n^{4}}&\cdots &{\xi_n^{2*(n - 1)}}\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+\xi_n^{0}&\xi_n^{n - 1}&\xi_n^{2*(n - 1)}&\cdots&\xi_n^{(n - 1)^2}
+\end{bmatrix}</script><p>然后我们做的事情可以用下面的式子来表达：</p>
+<script type="math/tex; mode=display">
+
+\begin{bmatrix}
+a_0 & a_1 & a_2 & \cdots&  a_{n - 1}
+\end{bmatrix} * A
+ = 
+\begin{bmatrix}
+f(\xi_n^0) & f(\xi_n^1) & f(\xi_n^2) & \cdots&  f(\xi_n^{n - 1})
+\end{bmatrix}</script><p>那么，我们现在要做的，就是乘一个逆矩阵，这个逆矩阵即为中间的那一堆复数形成的矩阵的逆矩阵，而这个逆矩阵即为：</p>
+<script type="math/tex; mode=display">
+A^{-1}=
+\frac{1}{n} * 
+\begin{bmatrix}
+{\xi_n^{0}}&{\xi_n^{0}}&{\xi_n^{0}}&\cdots &{\xi_n^{0}}\\
+{-\xi_n^{0}}&{-\xi_n^{1}}&{-\xi_n^{2}}&\cdots &{-\xi_n^{n - 1}}\\
+\xi_n^{0}&{\xi_n^{2}}&{\xi_n^{4}}&\cdots &{\xi_n^{2*(n - 1)}}\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+-\xi_n^{0}&-\xi_n^{n - 1}&-\xi_n^{2*(n - 1)}&\cdots&-\xi_n^{(n - 1)^2}
+\end{bmatrix}</script><p><del>我就不说明为什么是这样了，自学线代吧</del></p>
+<p>那么，乘上这个矩阵后，上面的式子就化为：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+a_0 & a_1 & a_2 & \cdots&  a_{n - 1}
+\end{bmatrix} 
+ = 
+\begin{bmatrix}
+f(\xi_n^0) & f(\xi_n^1) & f(\xi_n^2) & \cdots&  f(\xi_n^{n - 1})
+\end{bmatrix}*A^{-1}</script><p>这样看来，正逆变换的本质也是相同的，我们更深入的观察，这就是一个反演的优美例子，所以FFT大概就是这些内容，有没有理解呢？</p>
+<p>（其实非常简单，理解起来应该几乎没有任何难度吧。。。）<del>当然，前提是文章写的好</del></p>
+<p>下面提供一份代码，为了增进理解，在代码中的关键部分都标出了上面讲解在代码中的对应部分：</p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">complex</span>&#123;</span></div><div class="line">    <span class="keyword">double</span> r, i;</div><div class="line">    <span class="keyword">complex</span>(<span class="keyword">double</span> r, <span class="keyword">double</span> i) : r(r), i(i)&#123;&#125;</div><div class="line">    <span class="keyword">complex</span>()&#123;&#125;</div><div class="line">&#125;com;</div><div class="line"></div><div class="line">com <span class="keyword">operator</span> + (com a, com b)&#123;</div><div class="line">    <span class="keyword">return</span> com(a.r + b.r, a.i + b.i);</div><div class="line">&#125;</div><div class="line">com <span class="keyword">operator</span> - (com a, com b)&#123;</div><div class="line">    <span class="keyword">return</span> com(a.r - b.r, a.i - b.i);</div><div class="line">&#125;</div><div class="line">com <span class="keyword">operator</span> * (com a, com b)&#123;</div><div class="line">    <span class="keyword">return</span> com(a.r * b.r - a.i * b.i, a.r * b.i + a.i * b.r);</div><div class="line">&#125;</div><div class="line">com <span class="keyword">operator</span> / (com a, <span class="keyword">int</span> k)&#123;</div><div class="line">    <span class="keyword">return</span> com(a.r / k, a.i / k);</div><div class="line">&#125;</div><div class="line"><span class="function">com <span class="title">ex</span><span class="params">(<span class="keyword">double</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> com(<span class="built_in">cos</span>(x), <span class="built_in">sin</span>(x));</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> rev[maxn];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> bit)</span></span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; (<span class="number">1</span> &lt;&lt; bit); i++)&#123;</div><div class="line">        rev[i] = (rev[i &gt;&gt; <span class="number">1</span>] &gt;&gt; <span class="number">1</span>) | ((i &amp; <span class="number">1</span>) &lt;&lt; (bit - <span class="number">1</span>));<span class="comment">//蝴蝶操作需要的预处理，可以自己打出来看看是什么</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">FFT</span><span class="params">(com* a, <span class="keyword">int</span> n, <span class="keyword">int</span> dft)</span></span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="keyword">if</span> (i &gt; rev[i]) swap(a[i], a[rev[i]]);<span class="comment">//蝴蝶操作预处理</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> step = <span class="number">1</span>; step &lt; n; step &lt;&lt;= <span class="number">1</span>)&#123;<span class="comment">//枚举层数，一开始为最低层</span></div><div class="line">        com wn = ex(pi * dft / step);<span class="comment">//当前层的单位根，逆变换需要带负号</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += step &lt;&lt; <span class="number">1</span>)&#123;<span class="comment">//对应一个式子，step &lt;&lt; 1　即包含了这个式子的左半部分与右半部分</span></div><div class="line">            com wnk = com(<span class="number">1</span>, <span class="number">0</span>);<span class="comment">//当前合并到的点</span></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; i + step; j++)&#123;<span class="comment">//当前处理到的点所对应点值数组的位置</span></div><div class="line">                com x = a[j];</div><div class="line">                com y = wnk * a[j + step];<span class="comment">//这两个就是左右两个部分式子分别对应的点值</span></div><div class="line">                a[j] = x + y;</div><div class="line">                a[j + step] = x - y;<span class="comment">//这就是对左右两边的点值的合并</span></div><div class="line">                wnk = wnk * wn;<span class="comment">//处理下一个点</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (dft == <span class="number">-1</span>) <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) a[i] = a[i] / n;<span class="comment">//逆变换最后需要除以n</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="数论快速变换-NTT"><a href="#数论快速变换-NTT" class="headerlink" title="数论快速变换(NTT)"></a>数论快速变换(NTT)</h1><h2 id="前置技能-1"><a href="#前置技能-1" class="headerlink" title="前置技能"></a>前置技能</h2><p>初等数论（原根相关理论）</p>
+<h2 id="讲解-1"><a href="#讲解-1" class="headerlink" title="讲解"></a>讲解</h2><p>其实和FFT是完全相同的，可以说毫无差别。。。只是把复数体系换为了数论上的原根体系，而且那两个重要的性质仍然成立</p>
+<p>所以这需要取模的数必须形如$k * 2^\alpha + 1$，其中$k$与$\alpha$均为整数，且$k$为奇数，这样结合费马小定理与原根理论就可以和复数体系完全对应，推导过程也完全相同，故本处不再赘述</p>
+<p>简单介绍一下原根？<del>凑凑篇幅</del></p>
+<p>就是对于一个数$\xi$，如果最小的满足$\xi^k \equiv 1$（在模$P$意义下）的$k$等于$p-1$，那么这个数$\xi$就被称为模$P$意义下的原根</p>
+<p>怎么样，是不是很绕啊，那个$P$就是上文提到的，形如$k * 2^\alpha + 1$的质数，它是作为模数出现的</p>
+<p>这样的话，仔细想想应该就能发现它和复数体系的本质相同之处了</p>
+<h2 id="模板-1"><a href="#模板-1" class="headerlink" title="模板"></a>模板</h2><p>留坑待补。。。</p>
+<h1 id="快速沃尔什变换-FWT"><a href="#快速沃尔什变换-FWT" class="headerlink" title="快速沃尔什变换(FWT)"></a>快速沃尔什变换(FWT)</h1><h2 id="总述-1"><a href="#总述-1" class="headerlink" title="总述"></a>总述</h2><p>虽然这几个变换都有着相同的前缀和后缀，但是FWT的思想与前面两个并不相同，我们需要立足于位运算的本身特性来理解FWT，相对于FFT来说，FFT求的是多项式的卷积，而FWT则是位运算卷积，前面的多项式的点值求法应该很好理解，但是到了FWT，我们就要稍稍动一下脑筋了（虽然它们的处理过程是相同的，都是先转为点值表达，然后相乘，再由点值表达转回系数表达），与其说这是点值表达，不如说成是将两个数列中有相同特征的元素，聚到符合条件的下标$i$上，形成许多元素的集合，然后我们对应地把相同下标下的两个不同集合的元素做乘积（两个不同集合，指的是一个集合的元素来自于数列${a_i}$，另一个来源于数列${b_i}$），然后再把新的元素集合中的元素回归到新数列$${c_i}$中（此处如果看不懂可以跳过）</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>对应位置：指在当前的合并过程中，左半部分与右半部分相对各自的起始位置距离相同的位置</li>
+<li>当前位：指当前正在合并的二进制位（注意，当前被合并的子树中还不存在当前位）</li>
+<li>操作法则：指合并过程中的左右转移情况</li>
+</ul>
+<p>对于其他的概念，可能不是很常用，如果遇到可联系上下文进行体会</p>
+<h2 id="讲解-2"><a href="#讲解-2" class="headerlink" title="讲解"></a>讲解</h2><p>我们考虑这样的一个问题：</p>
+<p>给定两个数列${a_i}$与${b_i}$，我们现在要求一个数列${c_i}$，它的计算方式如下：</p>
+<script type="math/tex; mode=display">c_i = \sum_{j \oplus k = i}a_j * b_k</script><p>其中$\oplus$是任意的一个位运算符</p>
+<p>这个问题就是FWT的经典问题，被称作位运算卷积，由于位运算的多样性，我们对位运算进行逐个考虑</p>
+<h3 id="与运算和或运算的FWT"><a href="#与运算和或运算的FWT" class="headerlink" title="与运算和或运算的FWT"></a>与运算和或运算的FWT</h3><p>根据开头的总述所言，我们现在要做的就是找出这两种位运算的点值表达，下面我们以或运算为例进行讲解：</p>
+<p>如果我们求出了两个式子分别的点值表达，我们就需要把对应地它们乘在一起，这说明，对应的两个点值表达里面所包含的元素，如果我们在两个点值表达里面分别任选一个，那么这两个元素的组合一定是合法的组合，换句话说，就是把这两个点值表达看作是二分图，我们如果直接乘起来，相当于把二分图中所有能连的边都连了，而每条连边代表一个卷积项$a_j * b_k$的选择方案，所以这告诉我们，这两部分元素的任意组合都是合法的（根据总述的理解）</p>
+<p>那么，提到那么多次的“元素的集合”究竟是什么样子的呢？</p>
+<p>我们再考虑一个经典问题：给定一个数列${a_i}$，我们要求数列${b_i}$，计算方式如下：</p>
+<script type="math/tex; mode=display">b_i = \sum_{(j|i) = i}a_j</script><p>其中$|$表示或运算</p>
+<p>下面讲解求解这类问题的<strong>按位合并方法</strong>，这个十分重要，在几乎所有的FWT计算中都需要用到，所以请务必理解这样的计算过程</p>
+<p>根据位运算的<strong>位独立性</strong>，我们递归地考虑问题，假设我们现在从最低位开始，类比FFT的计算过程，就是这个样子的<br><img src="./img1.png" alt="img1"><br>然后我们考虑按位合并，在兄弟结点之间，左边的表示<strong>当前位</strong>为0，右边的表示<strong>当前位</strong>为1，那么，如何合并呢？我们定义一下结点表示什么，在当前层未进行合并时，结点上的数表示<strong>已经</strong>从自己的子树中拥有的所有$a_j$合并出来了答案，即从里面筛选出来了满足$(j|i)=i$的$j$，并把这样的$a_j$的值加入到了结点表示的答案中所得到的最终答案</p>
+<p>而在当前层合并完以后，我们就要把这样的值向上传递，他们就不在原来的位置了，而到了新位置后，又成为了当前层未进行合并的结点，所以无需定义当前层的已合并结点</p>
+<p>具体的合并方法是什么呢？我们这样想，如果一个$a_j$可以被算到左边结点的答案里，而左边结点当前位又是0，所以$j$的当前位一定是0，那么，我们把它们加到右边结点中，仍然满足$(j|i)=i$的性质，所以我们的合并过程就是，左边不变，把左边<strong>对应位置</strong>逐个加到右边的<strong>对应位置</strong>上，而左边显然无法继续添加上什么了</p>
+<p>注意，每个结点不止表示一个$b_i$，而是表示许多这样的$b_i$，且同一层节点表示的$b_i$数量相同，不同层的不同，且相邻两层表示的数量，上面层是下面层的二倍（因为发生了合并）</p>
+<p>于是就变成了这个样子：<br><img src="./img2.png" alt="img2"></p>
+<p>我们继续向上合并，可以得到这样的东西：<br><img src="./img3.png" alt="img3"><br>注意理解<strong>对应位置</strong>的含义，对应位置这个概念很重要，会用在几乎所有的推导中，在FFT里面忘了说了。。。</p>
+<p>这样应该能理解了吧，如果还不懂，就结合讲解与操作过程图相互照应地看即可</p>
+<p>这样，根节点只有一个，所以我们不需要再合并了，根节点对应的数列，就是我们想要的数列${b_i}$</p>
+<p>我们概括地说，在这个问题中，我们的操作法则为$左=左，右=左+右$，为了方便，我们称这个问题是或运算FWT的求点值过程，简称或FWT</p>
+<p>以后，我们对于一个问题，只写出它的操作法则，就不会再详细地重现上面合并的过程了</p>
+<p>回到原来的思路上，我们求出了这样的数列${b_i}$，那么它究竟有什么用呢？其实，数列${b_i}$就是我上文所说的“元素的集合”，它相当于有许多个集合，每个集合里面都聚集了一些符合条件($(j|i)=i$)的$a_j$，也就是总述里“将数列中有相同特征的元素，聚到符合条件的下标$i$上，形成许多元素的集合”，仔细想想，是不是这样的？</p>
+<p>然后，我们还有一个式子，证明应该很容易，但是想要独立想到。。。</p>
+<script type="math/tex; mode=display">(j|i)=i,(k|i)=i\leftrightarrow ((j|k)|i)=i</script><p>这个命题是充分必要的，证明直接联系或运算定义即可</p>
+<p>这样，再回到更远的思路上来，我们在解决或运算FWT，我们分别对给定的两个数列${a_i}$与${b_i}$，像上文一样进行或FWT操作，求出新的数列${a’_i}$与${b’_i}$，然后对应位置直接相乘，这就是总述里面说的“将两个数列中有相同特征的元素，聚到符合条件的下标$i$上，形成许多元素的集合，然后我们对应地把相同下标下的两个不同集合的元素做乘积”</p>
+<p>所以，我们相当于得到了一个数列${c’_i}$，即${c_i}$做或FWT的结果，我们要求${c_i}$，那么就要把这个过程逆过来，即总述里面的“把新的元素集合中的元素回归到新数列中”</p>
+<p>我们成这个过程为或IFWT（逆FWT），即或运算的求系数过程</p>
+<p>那么，现在正变换已经讲完了，逆变换还不会？这里面不需要线性代数的那一套东西，因为我们就是像上文一样的操作的，所以我们直接把操作逆过来即可，操作法则：$左=左，右=右-左$</p>
+<p>根据神TM的位运算的位独立性，在IFWT中，我们无论是先递归，再处理当前位，还是反过来都没有关系，因为位与位之间互不影响（其实我觉得不是这样理解的。。。自己用四个数试一试应该就能发现了）</p>
+<p>显然你FWT就需要先递归再处理当前位，否则你当前位上什么都没有合并个×啊。。。</p>
+<p>那么，这就是或运算FWT的整个过程，思路是不是非常巧妙啊？</p>
+<p>对于与运算的FWT，和或运算的完全相同，把所有的或运算符替换为与运算符即可，与FWT操作法则：$左=左+右，右=右$，与IFWT操作法则：$左=左-右，右=右$</p>
+<h3 id="异或运算的FWT"><a href="#异或运算的FWT" class="headerlink" title="异或运算的FWT"></a>异或运算的FWT</h3><p>为什么要单独把异或拎出来裱呢？因为这种运算和上面的两个不太相同，思考，如果我们还是用与上面完全相同的正变换过程（<script type="math/tex">(j|i)=i,(k|i)=i\leftrightarrow ((j|k)|i)=i</script>），就会出现非常尴尬的事，每个元素的集合中只有一个数，且都是相同的$a_0$，这样就毫无意义了</p>
+<p>我们需要新的正变换方法，下面的这个构造就非常神奇了：</p>
+<p>我们再考虑一个经典问题：给定一个数列${a_i}$，我们要求数列${b_i}$，计算方式如下：</p>
+<script type="math/tex; mode=display">b_i  = \left(\sum_{(bitcount(i\&j)\&1)= 0}a_j\right)- \left(\sum_{(bitcount(i\&j)\&1)= 1}a_j\right)</script><p>其中$bitcount(x)$表示$x$的二进制表示中1的个数</p>
+<p>柿子应该能看懂吧。。。其实就是考虑$bitcount$的奇偶性。。。</p>
+<p>我们还是像上文那样进行合并操作，考虑当前位，这时所有左结点的子树中的$j$和$i$的当前位都是0，右结点的子树中的$j$和$i$的当前位都是1，那么，右边的$j$，如果搞到左边，那么它的$bitcount$不变（$1\&amp;0= 0 $)，奇偶性也不变，左边的到右边，显然它的$bitcount$也不会改变（$0\&amp;0=0,0\&amp;1= 0$)，奇偶性不变，而对于留守在左结点中的那些$j$来说，它们加上当前位以后没有变化，因为当前位为0，而对于右边的留守的$j$，它们的当前位是1，而$i$的当前位也是1,所以它们的$bitcount$会加一，奇偶性也随之改变，所以只有右边的留守$j$需要添加一个负号，这样的话，操作法则就呼之欲出了：$左=左+右，右=左-右$</p>
+<p><strong>注意</strong>，这里有一个十分常见的错误，那就是认为右边的$j$搞到左边后需要添加负号，这又是怎么理解的呢？这种错误是<strong>当前位</strong>概念不清楚导致的，当前位此时还并没有添加到$i$和$j$上，在讨论左右的转移情况时不能连带着当前位一起考虑，只有当合并完以后，合并到父亲结点了，那么这个父亲结点的子树中的$i$与$j$才具有刚才的“当前位”</p>
+<p><del>不明白吗？你一定是在逗我</del></p>
+<p>这样，我们就成功地搞出了异或FWT，求完后两个做完异或FWT的数列直接乘起来，再逆回去，逆的过程很显然，就是解二元一次满秩方程解回去，操作法则：$左=\frac{左+右}{2}，右=\frac{左-右}{2}$</p>
+<p>所以到这里，异或FWT的全部过程也搞完了。。。等等，为什么可以直接相乘呢？</p>
+<p>我们考虑相乘的时候，发生了什么，首先我们需要一个小定理：</p>
+<script type="math/tex; mode=display">(bitcount(j\&i)\&1)\land (bitcount(k\&i)\&1) = bitcount((j \land k)\&i)\&1</script><p>这个应该还是很显然的，只要考虑$i$中的二进制位就可以了</p>
+<p>下面我们进行证明：<br>因为数学公式太大写不下，所以先在前面预定义一下</p>
+<ul>
+<li><script type="math/tex; mode=display">A_0=\left(\sum_{(bitcount(i\&j)\&1)= 0}a_j\right)</script></li>
+<li><script type="math/tex; mode=display">A_1=\left(\sum_{(bitcount(i\&j)\&1)= 1}a_j\right)</script></li>
+<li><script type="math/tex; mode=display">B_0=\left(\sum_{(bitcount(i\&k)\&1)= 0}b_k\right)</script></li>
+<li><script type="math/tex; mode=display">B_1=\left(\sum_{(bitcount(i\&k)\&1)= 1}b_k\right)</script></li>
+<li><script type="math/tex; mode=display">C_0=\left(\sum_{(bitcount(i\&(j\land k))\&1)= 0}c_{j\land k}\right)</script></li>
+<li><script type="math/tex; mode=display">C_1=\left(\sum_{(bitcount(i\&(j\land k))\&1)= 1}c_{j\land k}\right)</script>那么推导过程就是这样的：<script type="math/tex; mode=display">
+\begin{align}
+a'_i ∗ b'_i&=(A_0-A_1)∗(B_0-B_1)\\
+&=A_0 * B_0 + A_1 * B_1 - (A_0 * B_1 + A_1 * B_0)\\
+&=C_0 - C_1&\mbox{(由上文的小定理知)}\\
+&=c'_i
+\end{align}</script>所以，我们就可以直接相乘求得${c_i}$的异或FWT，只要逆回去就可以了，上面已经提到</li>
+</ul>
+<p>当然，上面的全部推导过程换成或运算来完成也是可以的，但并不是完全一样，有兴趣可以自行推导</p>
+<p>注意，不要只看到异或FWT的推导过程，这里面隐藏着一个重要考点，我们考虑一下这个问题：</p>
+<p>给定一个数列${a_i}$，我们要求数列${b_i}$，计算方式如下：</p>
+<script type="math/tex; mode=display">b_j = \sum_{0\leq j < n}((bitcount((i \mbox{ or } j)\mbox{ xor }i) + 1)\bmod 2)a_j</script><p>其中$bitcount(x)$表示$x$的二进制表示中1的个数</p>
+<p>我们发现，要求的，就是一些$j$，满足将$i$中是1的位置在这样的$j$之中去除后，$j$中的1的个数为偶数，然后把这样的$j$对应的$a_j$累加进$b_i$即可</p>
+<p>那么，这个东西该怎么求呢？考虑到如果我们也将$i$中的1的情况包含在内，情况会比较复杂，$j$中1的个数的奇偶性无法确定，因为有$i$的影响，所以我们想要去除$i$的影响，我们就把$i$取反，得到$i’$，那么我们要求的就是一些$j$，满足${(bitcount(j\&amp;i’)\&amp;1)=0}$，而这正是我们做异或FWT时得到的结果的一部分（<script type="math/tex">b_i  = \left(\sum_{(bitcount(i\&j)\&1)= 0}a_j\right)- \left(\sum_{(bitcount(i\&j)\&1)= 1}a_j\right)</script>的前半部分），所以此时我们需要求出<script type="math/tex">\left(\sum_{(bitcount(i\&j)\&1)= 0}a_j\right)+ \left(\sum_{(bitcount(i\&j)\&1)= 1}a_j\right)</script>，而这个就十分地显然了，因为一个数必定满足这两个部分的其中一个，所以这个式子就等于所有$a_j$的和，我们把它加到做完异或FWT的结果上，除以二，再考虑取反操作，把序列反转，得到的序列就是$b_j$了，这题让我们解密，那么我们就逆着上述过程跑一边就可以了</p>
+<p>这题很好，考察的点十分隐蔽，要求我们<strong>对知识的掌握必须全面细致</strong>，而且本题也反映了一个常见思路，我们要破译由位运算组成的公式加密而成的数列，最好搞清楚它加密的操作过程，细化到操作法则，最后对于破译只需要逆过来就可以了，是一种<strong>正难则反，执果索因的思维过程</strong>（当然，是站在破译的角度说的，因为直接破译太困难，我们就先搞清它的加密过程）</p>
+<h2 id="模板-2"><a href="#模板-2" class="headerlink" title="模板"></a>模板</h2><p>留坑待补。。。<del>其实很好写的，懒得写了</del></p>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/位运算/">位运算</a> <a class="tag tag--primary tag--small t-link" href="/tags/快速傅里叶变换-FFT/">快速傅里叶变换(FFT)</a> <a class="tag tag--primary tag--small t-link" href="/tags/快速数论变换-NTT/">快速数论变换(NTT)</a> <a class="tag tag--primary tag--small t-link" href="/tags/快速沃尔什变换-FWT/">快速沃尔什变换(FWT)</a> <a class="tag tag--primary tag--small t-link" href="/tags/数学/">数学</a> <a class="tag tag--primary tag--small t-link" href="/tags/数论/">数论</a> <a class="tag tag--primary tag--small t-link" href="/tags/线性代数/">线性代数</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/08/17/Catalan数详解/"  data-tooltip="Catalan数详解">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/08/15/2031-「SDOI2016」数字配对/" data-tooltip="#2031. 「SDOI2016」数字配对">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/&amp;title=FFT,NTT,FWT详解">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2017 Goseqh. All Rights Reserved.
+    </span>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/08/17/Catalan数详解/"  data-tooltip="Catalan数详解">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/08/15/2031-「SDOI2016」数字配对/" data-tooltip="#2031. 「SDOI2016」数字配对">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/&amp;title=FFT,NTT,FWT详解">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/&amp;title=FFT,NTT,FWT详解">
+                    <i class="fa fa-qq"></i><span>分享到 QQ</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-star"></i><span>分享到 Qzone</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/">
+                    <i class="fa fa-renren"></i><span>分享到 Renren</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+        
+            <h4 id="about-card-name">Goseqh</h4>
+        
+            <div id="about-card-bio"><p>For what I cherish forever.</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>NEYC的<strong>OI狗</strong></p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                China, Liaoning, NEYC
+            </div>
+        
+    </div>
+</div>
+
+        <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-close"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <h3 class="media-heading">莫比乌斯反演总结</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <h3 class="media-heading">莫比乌斯反演详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830262/83053_kwvev3.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <h3 class="media-heading">杜教筛原理详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830177/86548_fqol95.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <h3 class="media-heading">狄利克雷卷积详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <h3 class="media-heading">Dilworth定理</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月1日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830261/85371_fltskc.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <h3 class="media-heading">#6164. 「美团 CodeM 初赛 Round A」数列互质</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6164$. 「美团 CodeM 初赛 Round A」数列互质<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830238/86242_qg6y9f.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <h3 class="media-heading">#6161. 「美团 CodeM 初赛 Round A」倒水</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6161$. 「美团 CodeM 初赛 Round A」倒水<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <h3 class="media-heading">#6190. 序列查询</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830203/85373_qtkof1.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <h3 class="media-heading">#6075. 「2017 山东一轮集训 Day6」重建</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6075$. 「2017 山东一轮集训 Day6」重建<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <h3 class="media-heading">#6136. 「2017 山东三轮集训 Day4」Left</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="没有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 29 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1501465056/85754_kmawco.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('CVL5M7VURH', '14d1d65fe890a7fa4482dd38cb49fb35');
+        var algoliaIndex = algoliaClient.initIndex('Goseqh');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    </body>
+</html>
