@@ -1,0 +1,952 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Goseqh&#39;s Blog">
+    <title>序列莫队算法详解 - Goseqh&#39;s Blog</title>
+    <meta name="author" content="Goseqh">
+    
+    
+        <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1501464937/new2_qgnz5x.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="引言又扒了一篇老文章，感觉年轻时的我真是太强了。。。">
+<meta name="keywords" content="分块法,莫队">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="序列莫队算法详解">
+<meta property="og:url" content="https://goseqh.tk/2017/08/27/序列莫队算法详解/index.html">
+<meta property="og:site_name" content="Goseqh&#39;s Blog">
+<meta property="og:description" content="引言又扒了一篇老文章，感觉年轻时的我真是太强了。。。">
+<meta property="og:updated_time" content="2017-08-27T05:23:25.645Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="序列莫队算法详解">
+<meta name="twitter:description" content="引言又扒了一篇老文章，感觉年轻时的我真是太强了。。。">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://goseqh.tk/assets/images/new2.png"/>
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772118/1449046359603_g7esu2.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772118/1449046359603_g7esu2.jpg" />
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772118/1449046359603_g7esu2.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772118/1449046359603_g7esu2.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
+    <!--STYLES END-->
+    
+    
+    <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?9505a5af654a2478f93fd6c0ae4f687d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+    </div>
+    
+        
+            <a  class="header-right-icon open-algolia-search"
+                href="#search">
+        
+        
+            <i class="fa fa-lg fa-search"></i>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Goseqh</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>For what I cherish forever.</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/GQH123" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="mailto:572694553@qq.com" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc">QQmail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    "
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1502772118/1449046359603_g7esu2.jpg');"
+             data-behavior="4">
+            
+                <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            序列莫队算法详解
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2017-08-27T12:37:22+08:00">
+	
+		    8月 27, 2017
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaIn
+                        hasCoverCaption">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <span class="post-header-cover-caption caption">Meet success like a gentleman and disaster like a man.</span>
+    
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#序列莫队算法详解"><span class="toc-text">序列莫队算法详解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#序列莫队"><span class="toc-text">序列莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2009国家集训队-小Z的袜子-hose"><span class="toc-text">[2009国家集训队]小Z的袜子(hose)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入"><span class="toc-text">输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出"><span class="toc-text">输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样例输入"><span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样例输出"><span class="toc-text">样例输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提示"><span class="toc-text">提示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#【样例解释】"><span class="toc-text">【样例解释】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#【数据规模和约定】"><span class="toc-text">【数据规模和约定】</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#序列带修改莫队"><span class="toc-text">序列带修改莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#意义"><span class="toc-text">意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理-1"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题-D-维护队列"><span class="toc-text">问题 D: 维护队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入-1"><span class="toc-text">输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出-1"><span class="toc-text">输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样例输入-1"><span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样例输出-1"><span class="toc-text">样例输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提示-1"><span class="toc-text">提示</span></a></li></ol></li></ol>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>又扒了一篇老文章，感觉年轻时的我真是太强了。。。<br><a id="more"></a></p>
+<h1 id="序列莫队算法详解"><a href="#序列莫队算法详解" class="headerlink" title="序列莫队算法详解"></a>序列莫队算法详解</h1><hr>
+<p>今天开始跑个人计划，于是这个时候我开始学习序列莫队算法，参考的是<strong>黄学长(hzwer)</strong>的小Z的袜子的那道题。莫队算法用于处理一类关于<strong>区间</strong>的问题，效果相对来说不错，可以在某些情况下作为正式算法使用，莫队算法的种类有四个，我们在这里先予以汇总，再进行详解</p>
+<ul>
+<li>莫队算法<ul>
+<li><strong>序列莫队</strong>  &lt;—</li>
+<li><strong>序列带修改莫队</strong>  &lt;—</li>
+<li>树上莫队</li>
+<li>树上带修改莫队</li>
+</ul>
+</li>
+</ul>
+<p>那两个是明天要搞的</p>
+<h1 id="序列莫队"><a href="#序列莫队" class="headerlink" title="序列莫队"></a>序列莫队</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>这里，我们以2009年国家集训队题目《小Z的袜子》为例，进行对莫队算法的详解。这道题，我们首先很容易求出对于一个区间来说的答案，然后，我们还可以发现我们可以在$O(1)$的时间内根据当前区间$[l,r]$的答案求出$[l+1,r]$,$[l-1,r]$,$[l,r-1]$,$[l,r+1]$的答案（分别求出），于是这个时候我们就可以对询问进行适当的排序，然后用一些时间暴力转移，这就是本题的算法</p>
+<p>这个时候，我们可以想到需要对查询区间进行排序，但如果直接按照$l$为第一关键字，$r$为第二关键字的方法，算法的效率将得不到保障，因为我们完全可以造出一组需要使转移时间非常大的数据。正宗的算法是采用<strong>曼哈顿距离最小生成树</strong>来达到减少低效转移的目的，然而曼哈顿距离最小生成树的代码复杂度很高，还需要使用线段树这样的数据结构来进行维护，为了简化这一过程，并保障效率，我们考虑分块方法</p>
+<p>分块，我们按照$\sqrt{n}$为块的大小，将l即第一关键字进行分块，而r则不动，我们给l维护一个数组$pos[]$，表示l处于那一块中，然后对这个块的编号作为第一关键字进行排序（r不动），这样，我们可以得到一个相对高效的算法，它的时间复杂度为$O(n\sqrt{n})$，证明并不复杂</p>
+<p>这样，我们就可以快乐地通过本题的数据啦 O(∩_∩)O哈哈~</p>
+<p>下面贴上《小Z的袜子》题面以及代码</p>
+<h2 id="2009国家集训队-小Z的袜子-hose"><a href="#2009国家集训队-小Z的袜子-hose" class="headerlink" title="[2009国家集训队]小Z的袜子(hose)"></a><a href="http://218.62.22.209:8080/problem.php?cid=1262&amp;pid=6" target="_blank" rel="external">[2009国家集训队]小Z的袜子(hose)</a></h2><p><strong>时间限制: 2 Sec  内存限制: 256 MB</strong></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>作为一个生活散漫的人，小Z每天早上都要耗费很久从一堆五颜六色的袜子中找出一双来穿。终于有一天，小Z再也无法忍受这恼人的找袜子过程，于是他决定听天由命……<br>具体来说，小Z把这N只袜子从1到N编号，然后从编号L到R(L 尽管小Z并不在意两只袜子是不是完整的一双，甚至不在意两只袜子是否一左一右，他却很在意袜子的颜色，毕竟穿两只不同色的袜子会很尴尬。<br>你的任务便是告诉小Z，他有多大的概率抽到两只颜色相同的袜子。当然，小Z希望这个概率尽量高，所以他可能会询问多个(L,R)以方便自己选择。</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入文件第一行包含两个正整数N和M。N为袜子的数量，M为小Z所提的询问的数量。接下来一行包含N个正整数Ci，其中Ci表示第i只袜子的颜色，相同的颜色用相同的数字表示。再接下来M行，每行两个正整数L，R表示一个询问。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>包含M行，对于每个询问在一行中输出分数A/B表示从该询问的区间$[L,R]$中随机抽出两只袜子颜色相同的概率。若该概率为0则输出0/1，否则输出的A/B必须为最简分数。（详见样例）</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>6 4<br>1 2 3 3 3 2<br>2 6<br>1 3<br>3 5<br>1 6</p>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>2/5<br>0/1<br>1/1<br>4/15</p>
+<h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><h3 id="【样例解释】"><a href="#【样例解释】" class="headerlink" title="【样例解释】"></a>【样例解释】</h3><p>询问1：共$\dbinom{5}{2}=10$种可能，其中抽出两个2有1种可能，抽出两个3有3种可能，概率为$(1+3)/10=4/10=2/5$。</p>
+<p>询问2：共$\dbinom{3}{2}=3$种可能，无法抽到颜色相同的袜子，概率为$0/3=0/1$。</p>
+<p>询问3：共$\dbinom{3}{2}=3$种可能，均为抽出两个3，概率为$3/3=1/1$。</p>
+<p>注：上述$\dbinom{b}{a}$表示组合数，组合数$\dbinom{b}{a}$等价于在a个不同的物品中选取b个的选取方案数。</p>
+<h3 id="【数据规模和约定】"><a href="#【数据规模和约定】" class="headerlink" title="【数据规模和约定】"></a>【数据规模和约定】</h3><p>30%的数据中 $N,M ≤ 5000$；</p>
+<p>60%的数据中 $N,M ≤ 25000$；</p>
+<p>100%的数据中 $N,M ≤ 50000，1 ≤ L &lt; R ≤ N，Ci ≤ N$。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long int </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 50005</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> l,r,id;</div><div class="line">    LL a,b;</div><div class="line">    task():l(<span class="number">0</span>),r(<span class="number">0</span>),id(<span class="number">0</span>),a(<span class="number">0</span>),b(<span class="number">0</span>)&#123;&#125;</div><div class="line">    task(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> id):l(l),r(r),id(id),a(<span class="number">0</span>),b(<span class="number">0</span>)&#123;&#125;</div><div class="line">&#125;query[maxn];</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">state</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> rec[maxn],len,l,r;</div><div class="line">    state():len(<span class="number">0</span>)&#123;<span class="built_in">memset</span>(rec,<span class="number">0</span>,<span class="keyword">sizeof</span>(rec));&#125;</div><div class="line">&#125;now;</div><div class="line"><span class="keyword">int</span> n,m,line[maxn],pos[maxn],blo,siz;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">    blo=(<span class="keyword">int</span>)<span class="built_in">sqrt</span>(n)+<span class="number">1</span>;</div><div class="line">    siz=n/blo;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">        pos[i]=i/blo;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(task a,task b)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(pos[a.l]==pos[b.l])<span class="keyword">return</span> a.r&lt;b.r;</div><div class="line">    <span class="keyword">return</span> pos[a.l]&lt;pos[b.l];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(task a,task b)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> a.id&lt;b.id;</div><div class="line">&#125;</div><div class="line"><span class="function">LL <span class="title">gcd</span><span class="params">(LL a,LL b)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)<span class="keyword">return</span> a;</div><div class="line">    <span class="keyword">return</span> gcd(b,a%b);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(task &amp;o,<span class="keyword">int</span> pos,<span class="keyword">int</span> op)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(op==<span class="number">1</span>)&#123;</div><div class="line">        o.a+=<span class="number">2</span>*now.rec[line[pos]];</div><div class="line">        o.b+=<span class="number">2</span>*now.len;</div><div class="line">        now.rec[line[pos]]++;</div><div class="line">        now.len++;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        o.a-=<span class="number">2</span>*now.rec[line[pos]]<span class="number">-2</span>;</div><div class="line">        o.b-=<span class="number">2</span>*now.len<span class="number">-2</span>;</div><div class="line">        now.rec[line[pos]]--;</div><div class="line">        now.len--;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=query[<span class="number">0</span>].l;i&lt;=query[<span class="number">0</span>].r;i++)&#123;</div><div class="line">        now.rec[line[i]]++;</div><div class="line">        now.len++;</div><div class="line">    &#125;</div><div class="line">    now.l=query[<span class="number">0</span>].l;</div><div class="line">    now.r=query[<span class="number">0</span>].r;</div><div class="line">    LL sum=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">        sum+=now.rec[i]*now.rec[i];</div><div class="line">    &#125;</div><div class="line">    query[<span class="number">0</span>].a=sum-now.len;</div><div class="line">    query[<span class="number">0</span>].b=now.len*now.len-now.len;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;m;i++)&#123;</div><div class="line">        query[i].a=query[i<span class="number">-1</span>].a;</div><div class="line">        query[i].b=query[i<span class="number">-1</span>].b;</div><div class="line">        <span class="keyword">for</span>(;now.r&lt;query[i].r;now.r++)&#123;</div><div class="line">            update(query[i],now.r+<span class="number">1</span>,<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(;now.r&gt;query[i].r;now.r--)&#123;</div><div class="line">            update(query[i],now.r,<span class="number">-1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(;now.l&lt;query[i].l;now.l++)&#123;</div><div class="line">            update(query[i],now.l,<span class="number">-1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(;now.l&gt;query[i].l;now.l--)&#123;</div><div class="line">            update(query[i],now.l<span class="number">-1</span>,<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</div><div class="line">        LL d=gcd(max(query[i].a,query[i].b),min(query[i].a,query[i].b));</div><div class="line">        query[i].a/=d;</div><div class="line">        query[i].b/=d;</div><div class="line">        <span class="comment">//if(query[i].a==0)query[i].b=1;</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    freopen(<span class="string">"input.txt"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">    freopen(<span class="string">"output.txt"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;line[i]);</div><div class="line">    &#125;</div><div class="line">    init();</div><div class="line">    <span class="keyword">int</span> x,y;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</div><div class="line">        query[i]=task(x<span class="number">-1</span>,y<span class="number">-1</span>,i);</div><div class="line">    &#125;</div><div class="line">    sort(query,query+m,cmp1);</div><div class="line">    work();</div><div class="line">    sort(query,query+m,cmp2);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%lld/%lld\n"</span>,query[i].a,query[i].b);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述代码即为本题AC代码，是不是与hzwer的代码很像？然而并不是</p>
+<p>那么序列莫队就先到这里啦</p>
+<h1 id="序列带修改莫队"><a href="#序列带修改莫队" class="headerlink" title="序列带修改莫队"></a>序列带修改莫队</h1><p>下面我们来学习一下序列莫队的升级版——<strong>序列带修改莫队</strong></p>
+<h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><p>这个该怎么搞呢？我们现在加入了一个修改的操作，让人联想起当年的CDQ分治，其实感觉上比较像，实际上并不像，这是为什么呢?</p>
+<p>CDQ分治实际上是对<strong>查询与修改操作的一个合理排序及分治</strong>，使得每个修改操作能够精确地对应到每一个查询操作上，而且因为它<strong>排序及分治的巧妙性</strong>，使得我们可以通过一些数据结构如Fenwick树（树状数组）来方便地进行维护，同时使得时间复杂度达到我们想要的结果</p>
+<p>然而带修改序列莫队是怎么实现修改与操作的对应的呢？暴力，就是这样，我们每次通过对序列中修改与查询的分割，在查询之前把所有能够影响到它的操作暴力更新一下，其实说是暴力，其中也还是会有一些巧妙之处的</p>
+<p>那么为什么我们还需要莫队算法呢？这是因为对于某些问题，我们可以发现使用常规的CDQ分治方法或者是数据结构嵌套的方法难以维护。究其本质，是因为在我们需要维护的信息之中又产生了<strong>隐性的一个维度</strong>，比如上题《小Z的袜子》，我们可以知道其中每种颜色袜子的个数也是一个需要考虑的维度，这便是一个新的维度</p>
+<p>这可以概括为<strong>维护的区间信息中的离散的具体信息开始对整体答案产生影响的情况</strong><sup><a href="#fn_1" id="reffn_1">1</a></sup>.</p>
+<p>因此在这时，线段树什么的就不管用了，而主席树中虽然也有这种具体化的信息（如每个元素的排名大小），但是它每次只是对其中单个元素的一种查询，可以类比为是对区间信息内部信息的<strong>单点查询</strong></p>
+<p>而采用莫队算法的题，往往需要一种对这样的信息的一种<strong>整体/全部查询</strong>，而且<strong>不能化为整体</strong>来考虑，这样就十分尴尬了，所以我们利用这种情况下产生的新的性质：<strong>相邻单个元素的更新复杂度为$O(1)$</strong>的性质，来进行“暴力更新”</p>
+<p>这样我们就阐明了莫队算法的意义</p>
+<h2 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h2><p>接下来我们可以说一说原理</p>
+<p>基本上来说，我们先把修改与查询分开处理，存入两个不同的数组中，同时使用两种结构体来进行保存，然后基本的方法与无修序列莫队基本相同，只是在处理修改的时候，我们判断一下这个修改是否在上次查询中有所作用，这个可以通过一个布尔数组来进行维护，然后我们就可以减掉原信息，加上修改后信息，然后继续更新即可，本质上并无什么太大的改变</p>
+<p>下面贴上一道有关的题目《维护队列》</p>
+<h2 id="问题-D-维护队列"><a href="#问题-D-维护队列" class="headerlink" title="问题 D: 维护队列"></a><a href="http://218.62.22.209:8080/problem.php?cid=1262&amp;pid=3" target="_blank" rel="external">问题 D: 维护队列</a></h2><p><strong>时间限制: 1 Sec  内存限制: 128 MB</strong></p>
+<h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>你小时候玩过弹珠吗？<br>小朋友A有一些弹珠，A喜欢把它们排成队列，从左到右编号为1到N。为了整个队列鲜艳美观，小朋友想知道某一段连续弹珠中，不同颜色的弹珠有多少。当然，A有时候会依据个人喜好，替换队列中某个弹珠的颜色。但是A还没有学过编程，且觉得头脑风暴太浪费脑力了，所以向你来寻求帮助。</p>
+<h2 id="输入-1"><a href="#输入-1" class="headerlink" title="输入"></a>输入</h2><p>输入文件第一行包含两个整数N和M。<br>第二行N个整数，表示初始队列中弹珠的颜色。<br>接下来M行，每行的形式为“Q L R”或“R x c”，“Q L R”表示A想知道从队列第L个弹珠到第R个弹珠中，一共有多少不同颜色的弹珠，“R x c”表示A把x位置上的弹珠换成了c颜色。</p>
+<h2 id="输出-1"><a href="#输出-1" class="headerlink" title="输出"></a>输出</h2><p>对于每个Q操作，输出一行表示询问结果。</p>
+<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><p>2 3<br>1 2<br>Q 1 2<br>R 1 2<br>Q 1 2</p>
+<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><p>2<br>1</p>
+<h2 id="提示-1"><a href="#提示-1" class="headerlink" title="提示"></a>提示</h2><p>对于100%的数据，有$1 ≤ N ≤ 10000, 1 ≤ M ≤ 10000$，小朋友A不会修改超过1000次，所有颜色均用1到$10^6$的整数表示。</p>
+<p>下面贴代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1000005</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">query</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> l,r,id,pre,ans;</div><div class="line">    query():l(<span class="number">0</span>),r(<span class="number">0</span>),id(<span class="number">0</span>),pre(<span class="number">0</span>),ans(<span class="number">0</span>)&#123;&#125;</div><div class="line">    query(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> id,<span class="keyword">int</span> pre):l(l),r(r),id(id),pre(pre),ans(<span class="number">0</span>)&#123;&#125;</div><div class="line">&#125;que[maxn];</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">modify</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> pos,val,ori;</div><div class="line">    modify():pos(<span class="number">0</span>),val(<span class="number">0</span>),ori(<span class="number">0</span>)&#123;&#125;</div><div class="line">    modify(<span class="keyword">int</span> pos,<span class="keyword">int</span> val,<span class="keyword">int</span> ori):pos(pos),val(val),ori(ori)&#123;&#125;</div><div class="line">&#125;mod[maxn];</div><div class="line"><span class="keyword">int</span> n,m,line[maxn],sline[maxn],if_in[maxn],pos[maxn],s[maxn],blo,siz,ans=<span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">    blo=(<span class="keyword">int</span>)<span class="built_in">sqrt</span>(n)+<span class="number">1</span>;</div><div class="line">    siz=n/blo;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">        pos[i]=i/blo;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(query a,query b)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(pos[a.l]!=pos[b.l])<span class="keyword">return</span> pos[a.l]&lt;pos[b.l];</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a.r!=b.r)<span class="keyword">return</span> a.r&lt;b.r;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> a.pre&lt;b.pre;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(query a,query b)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> a.id&lt;b.id;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(if_in[p])&#123;</div><div class="line">        s[line[p]]--;</div><div class="line">        <span class="keyword">if</span>(s[line[p]]==<span class="number">0</span>)ans--;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">if</span>(s[line[p]]==<span class="number">0</span>)ans++;</div><div class="line">        s[line[p]]++;</div><div class="line">    &#125;</div><div class="line">    if_in[p]^=<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> val)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(if_in[p])&#123;</div><div class="line">        update(p);</div><div class="line">        line[p]=val;</div><div class="line">        update(p);</div><div class="line">    &#125;<span class="keyword">else</span> line[p]=val;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> now=<span class="number">-1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,l=<span class="number">0</span>,r=<span class="number">-1</span>;i&lt;m;i++)&#123;</div><div class="line">        <span class="keyword">for</span>(;now&lt;que[i].pre;now++)change(mod[now+<span class="number">1</span>].pos,mod[now+<span class="number">1</span>].val);</div><div class="line">        <span class="keyword">for</span>(;now&gt;que[i].pre;now--)change(mod[now].pos,mod[now].ori);</div><div class="line">        <span class="keyword">for</span>(;r&lt;que[i].r;r++)update(r+<span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span>(;r&gt;que[i].r;r--)update(r);</div><div class="line">        <span class="keyword">for</span>(;l&lt;que[i].l;l++)update(l);</div><div class="line">        <span class="keyword">for</span>(;l&gt;que[i].l;l--)update(l<span class="number">-1</span>);</div><div class="line">        que[i].ans=ans;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">/*freopen("input.txt","r",stdin);</span></div><div class="line">    freopen("output.txt","w",stdout);*/</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;line[i]);</div><div class="line">        sline[i]=line[i];</div><div class="line">    &#125;</div><div class="line">    init();</div><div class="line">    <span class="keyword">int</span> x,y,tot=<span class="number">0</span>,cnt=<span class="number">0</span>;</div><div class="line">    <span class="keyword">char</span> ch[<span class="number">20</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s%d%d\n"</span>,ch,&amp;x,&amp;y);</div><div class="line">        <span class="keyword">if</span>(ch[<span class="number">0</span>]==<span class="string">'Q'</span>)&#123;</div><div class="line">            que[tot]=query(x<span class="number">-1</span>,y<span class="number">-1</span>,tot,cnt<span class="number">-1</span>);</div><div class="line">            tot++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            mod[cnt]=modify(x<span class="number">-1</span>,y,sline[x<span class="number">-1</span>]);</div><div class="line">            sline[x<span class="number">-1</span>]=y;</div><div class="line">            cnt++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    sort(que,que+tot,cmp1);</div><div class="line">    work();</div><div class="line">    sort(que,que+tot,cmp2);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tot;i++)&#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,que[i].ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>再怎么说，今天搞掉了两道题，还是颇高兴的</p>
+<p>那么，序列莫队的算法到此就比较圆满啦，完结撒花(^o^)/~</p>
+<blockquote id="fn_1">
+<sup>1</sup>. 这句话可能不是那么容易理解，实际的意思是指我们在分析一般题目的时候，会发现我们可以很轻易地合并两个区间的信息，这个时候并不受内部元素/信息的干扰，而莫队类题目不能通过简单的区间信息合并来解决，这是因为它的<strong>具体信息对整体信息有干扰作用</strong><a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/分块法/">分块法</a> <a class="tag tag--primary tag--small t-link" href="/tags/莫队/">莫队</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/08/27/进阶网络流算法/"  data-tooltip="进阶网络流算法">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/08/26/BZOJ阶段性汇总II/" data-tooltip="BZOJ阶段性汇总II">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/08/27/序列莫队算法详解/&amp;title=序列莫队算法详解">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2017 Goseqh. All Rights Reserved.
+    </span>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/08/27/进阶网络流算法/"  data-tooltip="进阶网络流算法">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/08/26/BZOJ阶段性汇总II/" data-tooltip="BZOJ阶段性汇总II">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/08/27/序列莫队算法详解/&amp;title=序列莫队算法详解">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/08/27/序列莫队算法详解/&amp;title=序列莫队算法详解">
+                    <i class="fa fa-qq"></i><span>分享到 QQ</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-star"></i><span>分享到 Qzone</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/08/27/序列莫队算法详解/">
+                    <i class="fa fa-renren"></i><span>分享到 Renren</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+        
+            <h4 id="about-card-name">Goseqh</h4>
+        
+            <div id="about-card-bio"><p>For what I cherish forever.</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>NEYC的<strong>OI狗</strong></p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                China, Liaoning, NEYC
+            </div>
+        
+    </div>
+</div>
+
+        <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-close"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <h3 class="media-heading">莫比乌斯反演总结</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <h3 class="media-heading">莫比乌斯反演详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830262/83053_kwvev3.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <h3 class="media-heading">杜教筛原理详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830177/86548_fqol95.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <h3 class="media-heading">狄利克雷卷积详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <h3 class="media-heading">Dilworth定理</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月1日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830261/85371_fltskc.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <h3 class="media-heading">#6164. 「美团 CodeM 初赛 Round A」数列互质</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6164$. 「美团 CodeM 初赛 Round A」数列互质<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830238/86242_qg6y9f.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <h3 class="media-heading">#6161. 「美团 CodeM 初赛 Round A」倒水</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6161$. 「美团 CodeM 初赛 Round A」倒水<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <h3 class="media-heading">#6190. 序列查询</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830203/85373_qtkof1.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <h3 class="media-heading">#6075. 「2017 山东一轮集训 Day6」重建</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6075$. 「2017 山东一轮集训 Day6」重建<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <h3 class="media-heading">#6136. 「2017 山东三轮集训 Day4」Left</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="没有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 36 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1501465056/85754_kmawco.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('CVL5M7VURH', '14d1d65fe890a7fa4482dd38cb49fb35');
+        var algoliaIndex = algoliaClient.initIndex('Goseqh');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    </body>
+</html>
