@@ -16,13 +16,13 @@
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
     <meta name="description" content="引言BZOJ的题解目录">
-<meta name="keywords" content="BZOJ">
+<meta name="keywords" content="BZOJ,题解目录">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="BZOJ题解目录">
 <meta property="og:url" content="https://goseqh.tk/2017/08/26/BZOJ题解目录/index.html">
 <meta property="og:site_name" content="Goseqh&#39;s Blog">
 <meta property="og:description" content="引言BZOJ的题解目录">
-<meta property="og:updated_time" content="2017-08-26T11:28:42.573Z">
+<meta property="og:updated_time" content="2017-09-04T00:10:21.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BZOJ题解目录">
 <meta name="twitter:description" content="引言BZOJ的题解目录">
@@ -62,23 +62,38 @@
     <body>
         <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
             <!-- Define author's picture -->
-
-
-<header id="header" data-behavior="4">
+<% var authorPicture = null; %>
+<% if (!theme.header.right_link.icon) { %>
+    <% if (theme.gravatar_email && theme.gravatar_email.length) { %>
+        <% authorPicture = gravatar(theme.gravatar_email, 90); %>
+    <% } else if (theme.author.picture && theme.author.picture.length) { %>
+        <% if (is_remote_url(theme.author.picture)) { %>
+            <% authorPicture = theme.author.picture; %>
+        <% } else { %>
+            <% authorPicture = url_for(theme.image_dir + '/' + theme.author.picture); %>
+        <% } %>
+    <% } %>
+<% } %>
+<header id="header" data-behavior="<%= sidebarBehavior %>">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+        <a class="header-title-link" href="<%- url_for(' ') %>"><%= config.title %></a>
     </div>
-    
-        
-            <a  class="header-right-icon open-algolia-search"
-                href="#search">
-        
-        
-            <i class="fa fa-lg fa-search"></i>
-        
+    <% if (theme.header && theme.header.right_link) { %>
+        <% if (theme.header.right_link.url && url_for(theme.header.right_link.url).indexOf(config.url) < 0 && url_for(theme.header.right_link.url).indexOf(':') >= 0) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<%- url_for(theme.header.right_link.url) %>" target="_blank" rel="noopener">
+        <% } else if (theme.header.right_link.url) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<% if (theme.header.right_link.url.indexOf("/") === 0) { %><%- url_for(theme.header.right_link.url.substr(1)) %><% } else { %><%- url_for(theme.header.right_link.url) %><% } %>">
+        <% } %>
+        <% if (theme.header.right_link.icon) { %>
+            <i class="fa fa-lg fa-<%= theme.header.right_link.icon %>"></i>
+        <% } else if (authorPicture) { %>
+            <img class="header-picture" src="<%= authorPicture %>" alt="<%= __('global.author_picture') %>"/>
+        <% } %>
         </a>
-    
+    <% } %>
 </header>
 
             <!-- Define author's picture -->
@@ -303,7 +318,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/BZOJ/">BZOJ</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/BZOJ/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tags/题解目录/">题解目录</a>
 
             </div>
         
@@ -900,7 +915,7 @@
                 data-message-zero="没有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 36 篇文章
+                找到 51 篇文章
             </p>
         </div>
     </div>

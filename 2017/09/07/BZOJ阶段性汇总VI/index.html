@@ -1,0 +1,1140 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Goseqh&#39;s Blog">
+    <title>BZOJ阶段性汇总VI - Goseqh&#39;s Blog</title>
+    <meta name="author" content="Goseqh">
+    
+    
+        <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1501464937/new2_qgnz5x.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="引言I love you, really … don’t forgive me …">
+<meta name="keywords" content="BZOJ,题解">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="BZOJ阶段性汇总VI">
+<meta property="og:url" content="https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/index.html">
+<meta property="og:site_name" content="Goseqh&#39;s Blog">
+<meta property="og:description" content="引言I love you, really … don’t forgive me …">
+<meta property="og:updated_time" content="2017-09-07T23:26:07.520Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BZOJ阶段性汇总VI">
+<meta name="twitter:description" content="引言I love you, really … don’t forgive me …">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://goseqh.tk/assets/images/new2.png"/>
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg" />
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
+    <!--STYLES END-->
+    
+    
+    <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?9505a5af654a2478f93fd6c0ae4f687d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+<% var authorPicture = null; %>
+<% if (!theme.header.right_link.icon) { %>
+    <% if (theme.gravatar_email && theme.gravatar_email.length) { %>
+        <% authorPicture = gravatar(theme.gravatar_email, 90); %>
+    <% } else if (theme.author.picture && theme.author.picture.length) { %>
+        <% if (is_remote_url(theme.author.picture)) { %>
+            <% authorPicture = theme.author.picture; %>
+        <% } else { %>
+            <% authorPicture = url_for(theme.image_dir + '/' + theme.author.picture); %>
+        <% } %>
+    <% } %>
+<% } %>
+<header id="header" data-behavior="<%= sidebarBehavior %>">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="<%- url_for(' ') %>"><%= config.title %></a>
+    </div>
+    <% if (theme.header && theme.header.right_link) { %>
+        <% if (theme.header.right_link.url && url_for(theme.header.right_link.url).indexOf(config.url) < 0 && url_for(theme.header.right_link.url).indexOf(':') >= 0) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<%- url_for(theme.header.right_link.url) %>" target="_blank" rel="noopener">
+        <% } else if (theme.header.right_link.url) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<% if (theme.header.right_link.url.indexOf("/") === 0) { %><%- url_for(theme.header.right_link.url.substr(1)) %><% } else { %><%- url_for(theme.header.right_link.url) %><% } %>">
+        <% } %>
+        <% if (theme.header.right_link.icon) { %>
+            <i class="fa fa-lg fa-<%= theme.header.right_link.icon %>"></i>
+        <% } else if (authorPicture) { %>
+            <img class="header-picture" src="<%= authorPicture %>" alt="<%= __('global.author_picture') %>"/>
+        <% } %>
+        </a>
+    <% } %>
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Goseqh</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>For what I cherish forever.</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/GQH123" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="mailto:572694553@qq.com" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc">QQmail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    "
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg');"
+             data-behavior="4">
+            
+                <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            BZOJ阶段性汇总VI
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2017-09-07T18:04:53+08:00">
+	
+		    9月 07, 2017
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaIn
+                        hasCoverCaption">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <span class="post-header-cover-caption caption">Don&#39;t wait for the perfect moment. Take the moment and make it perfect.</span>
+    
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">3697: 采药人的路径</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">HINT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Source</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">3626: [LNOI2014]LCA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">HINT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Source</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">3381: [Usaco2004 Open]Cave Cows 2 洞穴里的牛之二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">HINT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Source</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">4146:  [AMPPZ2014]Divisors</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">HINT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Source</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析-1"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-1"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">4390: [Usaco2015 dec]Max Flow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">HINT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Source</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Platinum鸣谢Claris提供译文"><span class="toc-text">Platinum鸣谢Claris提供译文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析-2"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-2"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">4896: [Thu Summer Camp2016]补退选</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">HINT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">Source</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鸣谢Sengxian上传"><span class="toc-text">鸣谢Sengxian上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析-3"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-3"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>I love you, really … don’t forgive me …<br><a id="more"></a></p>
+<p><title>Problem 3697. -- 采药人的路径</title><center><h2>3697: 采药人的路径</h2><span class="green">Time Limit: </span>10 Sec&nbsp;&nbsp;<span class="green">Memory Limit: </span>128 MB<br><span class="green">Submit: </span>1240&nbsp;&nbsp;<span class="green">Solved: </span>428<br>[<a href="submitpage.php?id=3697">Submit</a>][<a href="problemstatus.php?id=3697">Status</a>][<a href="bbs.php?id=3697">Discuss</a>]</center></p><h3>Description</h3><div class="content"><p><span style="font-size: medium">采药人的药田是一个树状结构，每条路径上都种植着同种药材。<br>
+采药人以自己对药材独到的见解，对每种药材进行了分类。大致分为两类，一种是阴性的，一种是阳性的。<br>
+采药人每天都要进行采药活动。他选择的路径是很有讲究的，他认为阴阳平衡是很重要的，所以他走的一定是两种药材数目相等的路径。采药工作是很辛苦的，所以他希望他选出的路径中有一个可以作为休息站的节点（不包括起点和终点），满足起点到休息站和休息站到终点的路径也是阴阳平衡的。他想知道他一共可以选择多少种不同的路径。</span></p></div><h3>Input</h3><div class="content"><p><span style="font-size: medium">第1行包含一个整数N。<br>
+接下来N-1行，每行包含三个整数a_i、b_i和t_i，表示这条路上药材的类型。</span></p></div><h3>Output</h3><div class="content"><p><span style="font-size: medium">输出符合采药人要求的路径数目。</span></p></div><h3>Sample Input</h3><p></p>
+<div class="content"><span class="sampledata">7<br>
+1 2 0<br>
+3 1 1<br>
+2 4 0<br>
+5 2 0<br>
+6 3 1<br>
+5 7 1<br>
+</span></div><h3>Sample Output</h3>
+<div class="content"><span class="sampledata">1</span></div><h3>HINT</h3>
+<div class="content"><p></p><p><span style="font-size: medium">对于100%的数据，N &le; 100,000。<br><br>
+</span></p><p></p></div><h3>Source</h3>
+<div class="content"><p><a href="problemset.php?search="></a></p></div>
+
+
+<hr>
+<p><strong>Tags</strong>:</p>
+<ul>
+<li>树</li>
+<li>点分治</li>
+</ul>
+<hr>
+<h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p><strong>树上链状信息统计问题</strong></p>
+<p>本题显然是要使用点分治的，那么主要的问题就是如何表示中间有一个休息站，我们首先定义一下结点的权值：从根到这个点的路径中阳性-阴性的草药的差，则中间有一个休息站就是一个节点的前面有一个与它权值相同的结点，或是另外一条链上有这样的点对，再或者就是两条链上分别有权值互为相反数的点</p>
+<p>于是我们分类讨论一下就可以了，另外要特别注意权值为0的点的处理（其实需要特别处理吗？？？好像不需要。。。）</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>注意：注意全局变量的全局性，不要在递归几次以后继续在当前层使用全局变量！！！<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1000005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long int</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> next, to, len;</div><div class="line">    edge(<span class="keyword">int</span> next, <span class="keyword">int</span> to, <span class="keyword">int</span> len) : next(next), to(to), len(len)&#123;&#125;</div><div class="line">    edge()&#123;&#125;</div><div class="line">&#125;e[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"><span class="keyword">int</span> h[maxn], cnt = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add_Edge</span><span class="params">(<span class="keyword">int</span> fr, <span class="keyword">int</span> to, <span class="keyword">int</span> len)</span></span>&#123;</div><div class="line">    e[++cnt] = edge(h[fr], to, len);</div><div class="line">    h[fr] = cnt;</div><div class="line">    e[++cnt] = edge(h[to], fr, len);</div><div class="line">    h[to] = cnt;</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> as;</div><div class="line"><span class="keyword">bool</span> vis[maxn];</div><div class="line"><span class="keyword">int</span> si[maxn];</div><div class="line"><span class="keyword">int</span> g;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">find_r</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> fa)</span></span>&#123;</div><div class="line">    si[x] = <span class="number">0</span>;</div><div class="line">    <span class="keyword">bool</span> f = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x]; i; i = e[i].next)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (op == fa || vis[op]) <span class="keyword">continue</span>;</div><div class="line">        find_r(op, x);</div><div class="line">        si[x] += si[op];</div><div class="line">        <span class="keyword">if</span> (si[op] &gt; as &gt;&gt; <span class="number">1</span>) f = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    si[x]++;</div><div class="line">    <span class="keyword">if</span> (as - si[x] &gt; as &gt;&gt; <span class="number">1</span>) f = <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (f) g = x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> s[<span class="number">2</span>][maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"><span class="keyword">int</span> t[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line">LL ans = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_ans</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> fa, <span class="keyword">int</span> now)</span></span>&#123;</div><div class="line">    t[now + maxn]++;</div><div class="line">    <span class="keyword">if</span> (t[now + maxn] == <span class="number">1</span>) ans += s[<span class="number">1</span>][maxn - now];</div><div class="line">    <span class="keyword">else</span> ans += s[<span class="number">0</span>][maxn - now] + s[<span class="number">1</span>][maxn - now];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x]; i; i = e[i].next)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (op == fa || vis[op]) <span class="keyword">continue</span>;</div><div class="line">        get_ans(op, x, now + e[i].len);</div><div class="line">    &#125;</div><div class="line">    t[now + maxn]--;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> fa, <span class="keyword">int</span> now, <span class="keyword">int</span> p)</span></span>&#123;</div><div class="line">    t[now + maxn]++;</div><div class="line">    <span class="keyword">if</span> (t[now + maxn] == <span class="number">1</span>) s[<span class="number">0</span>][now + maxn] += p;</div><div class="line">    <span class="keyword">else</span> s[<span class="number">1</span>][now + maxn] += p;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x]; i; i = e[i].next)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (op == fa || vis[op]) <span class="keyword">continue</span>;</div><div class="line">        update(op, x, now + e[i].len, p);</div><div class="line">    &#125;</div><div class="line">    t[now + maxn]--;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> ns)</span></span>&#123;</div><div class="line">    as = ns;</div><div class="line">    find_r(x, x);</div><div class="line">    x = g;</div><div class="line">    s[<span class="number">0</span>][maxn]++;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x]; i; i = e[i].next)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (vis[op]) <span class="keyword">continue</span>;</div><div class="line">        get_ans(op, x, e[i].len);</div><div class="line">        t[maxn]++;</div><div class="line">        update(op, x, e[i].len, <span class="number">1</span>);</div><div class="line">        t[maxn]--;</div><div class="line">    &#125;</div><div class="line">    update(x, x, <span class="number">0</span>, <span class="number">-1</span>);</div><div class="line">    vis[x] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x]; i; i = e[i].next)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (vis[op]) <span class="keyword">continue</span>;</div><div class="line">        <span class="keyword">if</span> (si[op] &gt; si[x]) work(op, ns - si[x]);</div><div class="line">        <span class="keyword">else</span> work(op, si[op]);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> n, x, y, z;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n - <span class="number">1</span>; i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;x, &amp;y, &amp;z);</div><div class="line">        <span class="keyword">if</span> (z == <span class="number">1</span>) Add_Edge(x, y, <span class="number">1</span>);</div><div class="line">        <span class="keyword">else</span> Add_Edge(x, y, <span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line">    work(<span class="number">1</span>, n);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>, ans);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><title>Problem 3626. -- [LNOI2014]LCA</title><center><h2>3626: [LNOI2014]LCA</h2><span class="green">Time Limit: </span>10 Sec&nbsp;&nbsp;<span class="green">Memory Limit: </span>128 MB<br><span class="green">Submit: </span>2998&nbsp;&nbsp;<span class="green">Solved: </span>1178<br>[<a href="submitpage.php?id=3626">Submit</a>][<a href="problemstatus.php?id=3626">Status</a>][<a href="bbs.php?id=3626">Discuss</a>]</center></p><h3>Description</h3><div class="content"><p><span style="font-size: medium">给出一个n个节点的有根树（编号为0到n-1，根节点为0）。一个点的深度定义为这个节点到根的距离+1。<br>
+设dep[i]表示点i的深度，LCA(i,j)表示i与j的最近公共祖先。<br>
+有q次询问，每次询问给出l r z，求sigma_{l&lt;=i&lt;=r}dep[LCA(i,z)]。<br>
+（即，求在[l,r]区间内的每个节点i与z的最近公共祖先的深度之和）</span></p><p></p>
+<p></p></div><h3>Input</h3><div class="content"><p><span style="font-size: medium">第一行2个整数n q。<br>
+接下来n-1行，分别表示点1到点n-1的父节点编号。<br>
+接下来q行，每行3个整数l r z。</span></p>
+<p></p></div><h3>Output</h3><div class="content"><p><span style="font-size: medium">输出q行，每行表示一个询问的答案。<span style="widows: 2; text-transform: none; text-indent: 0px; display: inline !important; font: 14px/23px Arial; white-space: normal; orphans: 2; float: none; letter-spacing: normal; color: rgb(0,0,0); word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px">每个答案对201314取模输出</span></span></p>
+<p></p></div><h3>Sample Input</h3>
+<div class="content"><span class="sampledata">5 2<br>
+0<br>
+0<br>
+1<br>
+1<br>
+1 4 3<br>
+1 4 2<br>
+<br>
+</span></div><h3>Sample Output</h3>
+<div class="content"><span class="sampledata">8<br>
+5<br>
+<br>
+</span></div><h3>HINT</h3>
+<div class="content"><p></p><p><span style="font-size: medium">共5组数据，n与q的规模分别为10000,20000,30000,40000,50000。</span></p><br>
+<p></p><p></p></div><h3>Source</h3>
+<div class="content"><p><a href="problemset.php?search=数据已加强 by saffah">数据已加强 by saffah<br><br></a></p></div>
+
+
+
+
+
+---        
+
+**Tags**:
+ - 树
+ - LCA
+ - LCA理解
+ - 询问拆分法
+
+---        
+
+## 题目分析
+**批量LCA深度和问题**
+
+这题的思路非常好，我们发现一个一个求肯定是不行的对吧， 肯定要把信息记录在树上便于以后的查询，联系LCA的定义，我们可以发现，我们可以把从根到每个在询问区间内的结点的路径上的点的权值都加1，然后直接求当前结点到根的路径权值就可以了
+
+最后为了方便处理，我们使用询问拆分法，把一个询问拆分成两个前缀作差的形式
+
+
+## 代码
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1000005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> M 201314</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n, m;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> next, to;</div><div class="line">    edge(<span class="keyword">int</span> next, <span class="keyword">int</span> to) : next(next), to(to)&#123;&#125;</div><div class="line">    edge()&#123;&#125;</div><div class="line">&#125;e[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="keyword">int</span> cnt = <span class="number">1</span>, h[maxn];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add_Edge</span><span class="params">(<span class="keyword">int</span> fr, <span class="keyword">int</span> to)</span></span>&#123;</div><div class="line">    e[++cnt] = edge(h[fr], to);</div><div class="line">    h[fr] = cnt;</div><div class="line">    e[++cnt] = edge(h[to], fr);</div><div class="line">    h[to] = cnt;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> f[maxn];</div><div class="line"><span class="keyword">int</span> son[maxn];</div><div class="line"><span class="keyword">int</span> si[maxn];</div><div class="line"><span class="keyword">int</span> dfs[maxn];</div><div class="line"><span class="keyword">int</span> idfs[maxn];</div><div class="line"><span class="keyword">int</span> top[maxn];</div><div class="line"><span class="keyword">int</span> d[maxn];</div><div class="line"><span class="keyword">int</span> t;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS1</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x]; i; i = e[i].next)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (op == f[x]) <span class="keyword">continue</span>;</div><div class="line">        f[op] = x;</div><div class="line">        d[op] = d[x] + <span class="number">1</span>;</div><div class="line">        DFS1(op);</div><div class="line">        si[x] += si[op];</div><div class="line">        <span class="keyword">if</span> (si[op] &gt; si[son[x]]) son[x] = op;</div><div class="line">    &#125;</div><div class="line">    si[x]++;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS2</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> tp)</span></span>&#123;</div><div class="line">    dfs[x] = ++t;</div><div class="line">    idfs[t] = x;</div><div class="line">    top[x] = tp;</div><div class="line">    <span class="keyword">if</span> (son[x]) DFS2(son[x], tp);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x]; i; i = e[i].next)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (op == f[x] || op == son[x]) <span class="keyword">continue</span>;</div><div class="line">        DFS2(op, op);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> sum[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"><span class="keyword">int</span> add[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"><span class="keyword">int</span> qx, qy, qd;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (l == r) <span class="keyword">return</span>;</div><div class="line">    sum[o] = sum[o &lt;&lt; <span class="number">1</span>] + sum[o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (add[o] &amp;&amp; l != r)&#123;</div><div class="line">        <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">        add[o &lt;&lt; <span class="number">1</span>] += add[o];</div><div class="line">        sum[o &lt;&lt; <span class="number">1</span>] += add[o] * (mid + <span class="number">1</span> - l);</div><div class="line"></div><div class="line">        add[o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] += add[o];</div><div class="line">        sum[o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] += add[o] * (r - mid);</div><div class="line"></div><div class="line">        add[o] = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    pushdown(l, r, o);</div><div class="line">    <span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy)&#123;</div><div class="line">        add[o] += qd;</div><div class="line">        sum[o] += (r - l + <span class="number">1</span>) * qd;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= mid) modify(l, mid, o &lt;&lt; <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span> (qy &gt; mid) modify(mid + <span class="number">1</span>, r, o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</div><div class="line">    pushup(l, r, o);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    pushdown(l, r, o);</div><div class="line">    <span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy)&#123;</div><div class="line">        <span class="keyword">return</span> sum[o];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= mid) ans += get(l, mid, o &lt;&lt; <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span> (qy &gt; mid) ans += get(mid + <span class="number">1</span>, r, o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</div><div class="line">    pushup(l, r, o);</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">    DFS1(<span class="number">1</span>);</div><div class="line">    DFS2(<span class="number">1</span>, <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> ans[maxn];</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">query</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> x, z, id, t;</div><div class="line">    query(<span class="keyword">int</span> x, <span class="keyword">int</span> z, <span class="keyword">int</span> id, <span class="keyword">int</span> t) : x(x), z(z), id(id), t(t)&#123;&#125;</div><div class="line">    query()&#123;&#125;</div><div class="line">&#125;q[maxn];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(query a, query b)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> a.x &lt; b.x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify_path_to_root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> f1 = top[x];</div><div class="line">    <span class="keyword">while</span> (f1 != <span class="number">1</span>)&#123;</div><div class="line">        qx = dfs[f1], qy = dfs[x], qd = <span class="number">1</span>;</div><div class="line">        modify(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">        x = f[f1];</div><div class="line">        f1 = top[x];</div><div class="line">    &#125;</div><div class="line">    qx = <span class="number">1</span>, qy = dfs[x], qd = <span class="number">1</span>;</div><div class="line">    modify(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_path_to_root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> f1 = top[x];</div><div class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (f1 != <span class="number">1</span>)&#123;</div><div class="line">        qx = dfs[f1], qy = dfs[x];</div><div class="line">        ans += get(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">        x = f[f1];</div><div class="line">        f1 = top[x];</div><div class="line">    &#125;</div><div class="line">    qx = <span class="number">1</span>, qy = dfs[x];</div><div class="line">    ans += get(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> cur = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m &lt;&lt; <span class="number">1</span>; i++)&#123;</div><div class="line">        <span class="keyword">while</span> (cur &lt; q[i].x)&#123;</div><div class="line">            modify_path_to_root(++cur);</div><div class="line">        &#125;</div><div class="line">        ans[q[i].id] += q[i].t * get_path_to_root(q[i].z);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</div><div class="line">    <span class="keyword">int</span> x, z, l, r;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x);</div><div class="line">        Add_Edge(x + <span class="number">1</span>, i);</div><div class="line">    &#125;</div><div class="line">    init();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;l, &amp;r, &amp;z);</div><div class="line">        q[i &lt;&lt; <span class="number">1</span>] = query(l, z + <span class="number">1</span>, i, <span class="number">-1</span>);</div><div class="line">        q[(i &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>] = query(r + <span class="number">1</span>, z + <span class="number">1</span>, i, <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    sort(q, q + (m &lt;&lt; <span class="number">1</span>), cmp1);</div><div class="line">    work();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans[i] % M);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<title>Problem 3381. -- [Usaco2004 Open]Cave Cows 2 洞穴里的牛之二</title><center><h2>3381: [Usaco2004 Open]Cave Cows 2 洞穴里的牛之二</h2><span class="green">Time Limit: </span>10 Sec&nbsp;&nbsp;<span class="green">Memory Limit: </span>128 MB<br><span class="green">Submit: </span>73&nbsp;&nbsp;<span class="green">Solved: </span>58<br>[<a href="submitpage.php?id=3381">Submit</a>][<a href="problemstatus.php?id=3381">Status</a>][<a href="bbs.php?id=3381">Discuss</a>]</center><h3>Description</h3><div class="content"><div><span style="font-size: medium">&nbsp;&nbsp;&nbsp;&nbsp;洞窟里有一道长长的通道．它由N(1&le;N&le;25000)段道尾相连构成，编号分别为1到N．每个通道有一个阈值，其范围在[1，10^9]依次通过i..j的通道，那奶牛的体重指数就不能超过i..j通道中阈值的最小值．贝茜有Q(1&le;Q&le;25000)个问题，想请教你由i到j的通道的阈值的最小值．</span></div></div><h3>Input</h3><div class="content"><div><span style="font-size: medium">&nbsp;&nbsp;&nbsp;&nbsp;第1行输入N和Q，接下来N行输入每个通道的阈值，之后Q行每行两个整数，对应问题中的i和j（i&lt;j）．</span></div></div><h3>Output</h3><div class="content"><div><span style="font-size: medium">&nbsp;&nbsp;&nbsp;对于每个问题，输出其结果．</span></div></div><h3>Sample Input</h3>
+<div class="content"><span class="sampledata">10 4<br>
+75<br>
+30<br>
+100<br>
+38<br>
+50<br>
+51<br>
+52<br>
+20<br>
+81<br>
+5<br>
+1 10<br>
+3 5<br>
+6 9<br>
+8 10</span></div><h3>Sample Output</h3>
+<div class="content"><span class="sampledata">5<br>
+38<br>
+20<br>
+5</span></div><h3>HINT</h3>
+<div class="content"><p></p></div><h3>Source</h3>
+<div class="content"><p><a href="problemset.php?search=Orange">Orange</a></p></div>
+
+
+---        
+**Tags**:
+ - 数据结构
+ - ST表
+---    
+
+
+
+## 题目分析
+**区间静态最小问题**
+直接RMQ即可。。。
+
+
+## 代码
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100005</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n;</div><div class="line"><span class="keyword">int</span> line[maxn];</div><div class="line"><span class="keyword">int</span> lo[maxn];</div><div class="line"><span class="keyword">int</span> mi[maxn];</div><div class="line"><span class="keyword">int</span> rmq[maxn][<span class="number">30</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">    mi[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">30</span>; i++) mi[i] = mi[i - <span class="number">1</span>] &lt;&lt; <span class="number">1</span>;</div><div class="line">    lo[<span class="number">0</span>] = lo[<span class="number">1</span>] = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) lo[i] = lo[i &gt;&gt; <span class="number">1</span>] + <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) rmq[i][<span class="number">0</span>] = line[i];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; mi[j] &lt;= n; j++)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</div><div class="line">            <span class="keyword">if</span> (i + mi[j - <span class="number">1</span>] &lt;= n)</div><div class="line">                rmq[i][j] = min(rmq[i][j - <span class="number">1</span>], rmq[i + mi[j - <span class="number">1</span>]][j - <span class="number">1</span>]);</div><div class="line">            <span class="keyword">else</span> </div><div class="line">                rmq[i][j] = rmq[i][j - <span class="number">1</span>];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> now = lo[y - x + <span class="number">1</span>];</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, min(rmq[x][now], rmq[y - mi[now] + <span class="number">1</span>][now]));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x, y, q;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;q);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;line[i]);</div><div class="line">    init();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; q; i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;x ,&amp;y);</div><div class="line">        query(x, y);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<title>Problem 4146. --  [AMPPZ2014]Divisors</title><center><h2>4146:  [AMPPZ2014]Divisors</h2><span class="green">Time Limit: </span>20 Sec&nbsp;&nbsp;<span class="green">Memory Limit: </span>256 MB<br><span class="green">Submit: </span>675&nbsp;&nbsp;<span class="green">Solved: </span>374<br>[<a href="submitpage.php?id=4146">Submit</a>][<a href="problemstatus.php?id=4146">Status</a>][<a href="bbs.php?id=4146">Discuss</a>]</center><h3>Description</h3><div class="content"><div>给定一个序列a[1],a[2],...,a[n]。求满足i!=j且a[i]|a[j]的二元组(i,j)的个数。</div>
+<p></p></div><h3>Input</h3><div class="content"><div>第一行包含一个正整数n(1&lt;=n&lt;=2000000)，表示序列长度。</div>
+<div>第二行包含n个正整数，依次表示a[1],a[2],...,a[n](1&lt;=a[i]&lt;=2000000)。</div>
+<p></p></div><h3>Output</h3><div class="content"><div>一个整数，即满足条件的二元组的个数。</div>
+<p></p></div><h3>Sample Input</h3>
+<div class="content"><span class="sampledata">5<br>
+2 4 5 2 6</span></div><h3>Sample Output</h3>
+<div class="content"><span class="sampledata">6</span></div><h3>HINT</h3>
+<div class="content"><p><div>满足条件的6组分别为(1,2),(1,4),(1,5),(4,1),(4,2),(4,5)。</div><br>
+<div></div><br>
+</p><p></p><p></p></div><h3>Source</h3>
+<div class="content"><p><a href="problemset.php?search=鸣谢Claris上传">鸣谢Claris上传</a></p>
+
+<hr>
+<p><strong>Tags</strong>:</p>
+<ul>
+<li>数学</li>
+<li>整除问题</li>
+</ul>
+<hr>
+<h2 id="题目分析-1"><a href="#题目分析-1" class="headerlink" title="题目分析"></a>题目分析</h2><p><strong>多基数整除问题</strong><br>处理这样的问题，我们要联想到一个结论：调和级数上界</p>
+<p>我们继续考虑这样的思路，那么我们只需要先保存每种数字有多少个，然后从小到大对倍数进行扫描求和即可</p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 2000005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long int</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> num[maxn];</div><div class="line"><span class="keyword">int</span> line[maxn];</div><div class="line"><span class="keyword">int</span> n;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    <span class="keyword">int</span> tn = n;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;line[i]);</div><div class="line">        num[line[i]]++;</div><div class="line">    &#125;</div><div class="line">    sort(line + <span class="number">1</span>, line + <span class="number">1</span> + n);</div><div class="line">    n = unique(line + <span class="number">1</span>, line + <span class="number">1</span> + n) - line - <span class="number">1</span>;</div><div class="line">    LL ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; line[i] * j &lt;= line[n]; j++)&#123;</div><div class="line">            ans += (LL)num[line[i]] * num[j * line[i]];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>, ans - tn);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><title>Problem 4390. -- [Usaco2015 dec]Max Flow</title><center><h2>4390: [Usaco2015 dec]Max Flow</h2><span class="green">Time Limit: </span>10 Sec&nbsp;&nbsp;<span class="green">Memory Limit: </span>128 MB<br><span class="green">Submit: </span>270&nbsp;&nbsp;<span class="green">Solved: </span>169<br>[<a href="submitpage.php?id=4390">Submit</a>][<a href="problemstatus.php?id=4390">Status</a>][<a href="bbs.php?id=4390">Discuss</a>]</center></p><h3>Description</h3><div class="content"><p>Farmer John has installed a new system of N&minus;1 pipes to transport milk between the N stalls in his barn (2&le;N&le;50,000), conveniently numbered 1&hellip;N. Each pipe connects a pair of stalls, and all stalls are connected to each-other via paths of pipes.<br>
+<br>
+FJ is pumping milk between KK pairs of stalls (1&le;K&le;100,000). For the iith such pair, you are told two stalls sisi and titi, endpoints of a path along which milk is being pumped at a unit rate. FJ is concerned that some stalls might end up overwhelmed with all the milk being pumped through them, since a stall can serve as a waypoint along many of the KK paths along which milk is being pumped. Please help him determine the maximum amount of milk being pumped through any stall. If milk is being pumped along a path from sisi to titi, then it counts as being pumped through the endpoint stalls sisi and titi, as well as through every stall along the path between them.</p><p></p>
+<p></p><p></p><p></p>
+<p></p><p>给定一棵有N个点的树，所有节点的权值都为0。</p><p></p>
+<p></p><p>有K次操作，每次指定两个点s,t，将s到t路径上所有点的权值都加一。</p><p></p>
+<p></p><p>请输出K次操作完毕后权值最大的那个点的权值。</p><p></p>
+<p></p><p></p></div><h3>Input</h3><div class="content"><p>The first line of the input contains NN and KK.<br>
+<br>
+The next N&minus;1 lines each contain two integers x and y (x&ne;y，x&ne;y) describing a pipe between stalls x and y.<br>
+<br>
+The next K lines each contain two integers ss and t describing the endpoint stalls of a path through which milk is being pumped.</p>&lt;/div&gt;<h3>Output</h3><div class="content"><p>An integer specifying the maximum amount of milk pumped through any stall in the barn.</p></div><h3>Sample Input</h3><p></p>
+<p><div class="content"><span class="sampledata">5 10<br>
+3 4<br>
+1 5<br>
+4 2<br>
+5 4<br>
+5 4<br>
+5 4<br>
+3 5<br>
+4 3<br>
+4 3<br>
+1 3<br>
+3 5<br>
+5 4<br>
+1 5<br>
+3 4</span></div></p><h3>Sample Output</h3><p></p>
+<p><div class="content"><span class="sampledata">9</span></div></p><h3>HINT</h3><p></p>
+<p><div class="content"><p></p></div></p><h3>Source</h3><p></p>
+<h2 id="Platinum鸣谢Claris提供译文"><a href="#Platinum鸣谢Claris提供译文" class="headerlink" title="Platinum鸣谢Claris提供译文"></a><div class="content"><p><a href="problemset.php?search=Platinum鸣谢Claris提供译文">Platinum鸣谢Claris提供译文</a></p></div></h2><p><strong>Tags</strong>:</p>
+<ul>
+<li>树</li>
+<li>树上差分</li>
+</ul>
+<hr>
+<h2 id="题目分析-2"><a href="#题目分析-2" class="headerlink" title="题目分析"></a>题目分析</h2><p><strong>树上链状信息维护问题</strong></p>
+<p>我也不知道这种问题应该称作什么。。。其实树剖即可解决，但为了体现本题的价值，我们使用树上差分，就是LCA与其父亲各减一，两个端点加一，注意LCA为根时的情况</p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 2000000005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 200005</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> n, k; </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> next, to;</div><div class="line">    edge(<span class="keyword">int</span> next, <span class="keyword">int</span> to) : next(next), to(to)&#123;&#125;</div><div class="line">    edge()&#123;&#125;</div><div class="line">&#125;e[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="keyword">int</span> h[maxn], cnt = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add_Edge</span><span class="params">(<span class="keyword">int</span> fr, <span class="keyword">int</span> to)</span></span>&#123;</div><div class="line">    e[++cnt] = edge(h[fr], to);</div><div class="line">    h[fr] = cnt;</div><div class="line">    e[++cnt] = edge(h[to], fr);</div><div class="line">    h[to] = cnt;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> d[maxn];</div><div class="line"><span class="keyword">int</span> fa[maxn][<span class="number">30</span>];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">30</span>; i++)&#123;</div><div class="line">        fa[x][i] = fa[fa[x][i - <span class="number">1</span>]][i - <span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x]; i; i = e[i].next)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (op == fa[x][<span class="number">0</span>]) <span class="keyword">continue</span>;</div><div class="line">        fa[op][<span class="number">0</span>] = x;</div><div class="line">        d[op] = d[x] + <span class="number">1</span>;</div><div class="line">        DFS(op);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (x == y) <span class="keyword">return</span> x;</div><div class="line">    <span class="keyword">if</span> (d[x] &lt; d[y]) swap(x, y);</div><div class="line">    <span class="keyword">int</span> k = d[x] - d[y];</div><div class="line">    <span class="keyword">int</span> con = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (k)&#123;</div><div class="line">        <span class="keyword">if</span> (k &amp; <span class="number">1</span>) x = fa[x][con];</div><div class="line">        con++;</div><div class="line">        k &gt;&gt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (x == y) <span class="keyword">return</span> y;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</div><div class="line">        <span class="keyword">int</span> s = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (fa[x][s] != fa[y][s]) s++;</div><div class="line">        <span class="keyword">if</span> (s == <span class="number">0</span>) <span class="keyword">return</span> fa[x][<span class="number">0</span>];</div><div class="line">        s--;</div><div class="line">        x = fa[x][s];</div><div class="line">        y = fa[y][s];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> val[maxn];</div><div class="line"><span class="keyword">int</span> ans = -INF;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x]; i; i = e[i].next)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (op == fa[x][<span class="number">0</span>]) <span class="keyword">continue</span>;</div><div class="line">        get(op);</div><div class="line">        val[x] += val[op];</div><div class="line">    &#125;</div><div class="line">    ans = max(ans, val[x]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;k);</div><div class="line">    <span class="keyword">int</span> x, y;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;x, &amp;y);</div><div class="line">        Add_Edge(x, y);</div><div class="line">    &#125;</div><div class="line">    fa[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">    DFS(<span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;x, &amp;y);</div><div class="line">        <span class="keyword">int</span> lca = get_lca(x, y);</div><div class="line">        val[lca]--, val[fa[lca][<span class="number">0</span>]]--;</div><div class="line">        val[x]++, val[y]++;</div><div class="line">    &#125;</div><div class="line">    get(<span class="number">1</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><title>Problem 4896. -- [Thu Summer Camp2016]补退选</title><center><h2>4896: [Thu Summer Camp2016]补退选</h2><span class="green">Time Limit: </span>20 Sec&nbsp;&nbsp;<span class="green">Memory Limit: </span>512 MB<br><span class="green">Submit: </span>505&nbsp;&nbsp;<span class="green">Solved: </span>165<br>[<a href="submitpage.php?id=4896">Submit</a>][<a href="problemstatus.php?id=4896">Status</a>][<a href="bbs.php?id=4896">Discuss</a>]</center></p><h3>Description</h3><div class="content"><div>X是T大的一名老师，每年他都要教授许多学生基础的C++知识。在T大，每个学生在每学期的开学前都需要选课，每</div><p></p>
+<p><div>次选课一共分为三个阶段：预选，正选，补退选；其中&quot;补退选&quot;阶段最忙碌。在补退选阶段，学生即可以选课，也</div></p>
+<p><div>可以退课。对于X老师来说，在补退选阶段可能发生以下两种事件：</div></p>
+<p><div>1:一个姓名为S的学生选了他的课（姓名S将出现在X的已选课学生名单中）</div></p>
+<p><div>2:一个姓名为S的学生退了他的课（姓名S将从X的已选课学生名单中移除）</div></p>
+<p><div>同时，X老师对于有哪些学生选了他的课非常关心，所以他会不定时的查询已选课学生名单，每次查询的格式如下</div></p>
+<p><div>：最早在哪个事件之后，姓名以S为前缀的学生数量超过了vX老师看你骨骼惊奇，所以想用这个问题考考你，你当</div></p>
+<p><div>然不会畏惧，所以勇敢的接下了这个任务。</div></p>
+<p><div>注意1：学生的姓名可能相同，如果有p个姓名相同的学生都选了X老师的课，则他们的姓名将出现在X老师的名单上p次。</div></p>
+<p><div>注意2：只有已经选了课的学生才会退课，如果姓名为S的学生退课，则在他退课之前X老师的名单上一定有姓名S。</div></p>
+<p><div>注意3：选课，退课和查询都被定义为&quot;事件&quot;，&quot;事件&quot;的编号从1开始</div>&lt;/div&gt;</p><h3>Input</h3><div class="content"><div><p></p>
+<p><div>第一行包含一个正整数n，表示一共发生了n个事件。</div></p>
+<p><div>接下来n行，每行描述一个事件；每行第一个正整数k表示事件类型：</div></p>
+<p><div>1.如果k=1，表示选课事件，接下来一个字符串S，表示一个姓名为S的学生选了X老师的课</div></p>
+<p><div>2.如果k=2，表示退课事件，接下来一个字符串S，表示一个姓名为S的学生退了X老师的课</div></p>
+<p><div>3.如果k=3，表示查询事件，接下来一个字符串S以及三个非负整数a,b,c，表示X老师想知道最早在第几个事件之后</div></p>
+<p><div>，姓名以S为前缀的学生数量超过了(a*|ANS|+b)%c，|ANS|表示上次查询事件的答案的绝对值，如果当前是第一次</div></p>
+<p><div>查询，则|ANS|=0；如果任何时刻都没有超过该值，则答案为-1。注：输入中的所有字符串均只包含小写字母。</div><br>&lt;/div&gt;</p>
+<p><div></div></p></div><h3>Output</h3><div class="content"><div><p></p>
+<p><div>对于每个查询事件，输出一行表示该查询答案。</div><br>&lt;/div&gt;&lt;/div&gt;</p><h3>Sample Input</h3><p></p>
+<p><div class="content"><span class="sampledata">6<br>
+1 lcaq<br>
+3 lca 0 0 5<br>
+1 lcq<br>
+3 lc 0 1 5<br>
+2 lcaq<br>
+3 lc 0 1 5</span></div></p><h3>Sample Output</h3><p></p>
+<p><div class="content"><span class="sampledata">1<br>
+3<br>
+3</span></div></p><h3>HINT</h3><p></p>
+<p><div class="content"><p></p><p>n&lt;=100000，字符串长度 &lt;= 60，输入中的所有字符串只会包含前 10 个小写字母</p></div></p></div><h3>Source</h3><p></p>
+<h2 id="鸣谢Sengxian上传"><a href="#鸣谢Sengxian上传" class="headerlink" title="鸣谢Sengxian上传"></a><div class="content"><p><a href="problemset.php?search=鸣谢Sengxian上传">鸣谢Sengxian上传</a></p></div></h2><p><strong>Tags</strong>:</p>
+<ul>
+<li>二分答案</li>
+<li>字符串</li>
+<li>可持久化Trie</li>
+</ul>
+<hr>
+<h2 id="题目分析-3"><a href="#题目分析-3" class="headerlink" title="题目分析"></a>题目分析</h2><p><strong>多版本信息维护问题</strong><br>清华夏令营好题，我们首先肯定能想到可持久化Trie对吧，实际上确实可以这样写，我们多维护一个maxval成员变量，表示这个节点的历史最大值是多少，然后直接二分查找即可</p>
+<p>但是还有人好像是用vector直接暴力存储的，个人感觉不是很好。。。</p>
+<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 5000005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> sigma 12</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> ch[maxn][sigma];</div><div class="line"><span class="keyword">int</span> maxnum[maxn];</div><div class="line"><span class="keyword">int</span> h[maxn];</div><div class="line"><span class="keyword">int</span> val[maxn];</div><div class="line"><span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">char</span> s[maxn];</div><div class="line"><span class="keyword">int</span> len;</div><div class="line"><span class="keyword">int</span> k;</div><div class="line"><span class="keyword">int</span> ord[maxn];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> v)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> now = ++cnt; h[k] = cnt;</div><div class="line">    <span class="keyword">int</span> pre = h[k - <span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len; i++)&#123;</div><div class="line">        <span class="built_in">memcpy</span>(ch[now], ch[pre], <span class="keyword">sizeof</span>(ch[pre]));</div><div class="line">        maxnum[now] = maxnum[pre];</div><div class="line">        val[now] = val[pre];</div><div class="line"></div><div class="line">        val[now] += v;</div><div class="line">        <span class="keyword">if</span> (val[now] &gt; maxnum[now]) maxnum[now] = val[now];</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (i &lt; len)&#123;</div><div class="line">            ch[now][s[i] - <span class="string">'a'</span>] = ++cnt;</div><div class="line">            pre = ch[pre][s[i] - <span class="string">'a'</span>];</div><div class="line">            now = ch[now][s[i] - <span class="string">'a'</span>];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">char</span> qs[maxn];</div><div class="line"><span class="keyword">int</span> lenq;</div><div class="line"><span class="keyword">int</span> qd;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> pos)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> now = h[pos];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenq; i++)&#123;</div><div class="line">        now = ch[now][qs[i] - <span class="string">'a'</span>];</div><div class="line">        <span class="keyword">if</span> (!now) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (maxnum[now] &gt; qd) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (l == r) <span class="keyword">return</span> l;</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    <span class="keyword">if</span> (query(mid)) <span class="keyword">return</span> binary_search(l, mid);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> binary_search(mid + <span class="number">1</span>, r);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> n, a, b, c, op;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;op);</div><div class="line">        <span class="keyword">if</span> (op == <span class="number">1</span>)&#123;</div><div class="line">            ord[++k] = i;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);</div><div class="line">            len = <span class="built_in">strlen</span>(s);</div><div class="line">            insert(<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (op == <span class="number">2</span>)&#123;</div><div class="line">            ord[++k] = i;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);</div><div class="line">            len = <span class="built_in">strlen</span>(s);</div><div class="line">            insert(<span class="number">-1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%s%d%d%d"</span>, qs, &amp;a, &amp;b, &amp;c);</div><div class="line">            lenq = <span class="built_in">strlen</span>(qs);</div><div class="line">            qd = ((<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>)a * <span class="built_in">abs</span>(ans) + b) % (<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>)c;</div><div class="line">            ans = binary_search(<span class="number">1</span>, k + <span class="number">1</span>);</div><div class="line">            <span class="keyword">if</span> (ans == k + <span class="number">1</span>) ans = <span class="number">-1</span>;</div><div class="line">            <span class="keyword">else</span> ans = ord[ans];</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本期题型：</p>
+<ul>
+<li><strong>树上链状信息统计问题</strong></li>
+<li><strong>批量LCA深度和问题</strong></li>
+<li><strong>区间静态最小问题</strong></li>
+<li><strong>多基数整除问题</strong></li>
+<li><strong>树上链状信息维护问题</strong></li>
+<li><strong>多版本信息维护问题</strong></li>
+</ul>
+</div></div></div></div></div>
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/BZOJ/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tags/题解/">题解</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/07/Libre-Online-Judge阶段性汇总III/"  data-tooltip="Libre Online Judge阶段性汇总III">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/07/BZOJ阶段性汇总V/" data-tooltip="BZOJ阶段性汇总V">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/&amp;title=BZOJ阶段性汇总VI">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2017 Goseqh. All Rights Reserved.
+    </span>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/07/Libre-Online-Judge阶段性汇总III/"  data-tooltip="Libre Online Judge阶段性汇总III">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/07/BZOJ阶段性汇总V/" data-tooltip="BZOJ阶段性汇总V">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/&amp;title=BZOJ阶段性汇总VI">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/&amp;title=BZOJ阶段性汇总VI">
+                    <i class="fa fa-qq"></i><span>分享到 QQ</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-star"></i><span>分享到 Qzone</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/09/07/BZOJ阶段性汇总VI/">
+                    <i class="fa fa-renren"></i><span>分享到 Renren</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+        
+            <h4 id="about-card-name">Goseqh</h4>
+        
+            <div id="about-card-bio"><p>For what I cherish forever.</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>NEYC的<strong>OI狗</strong></p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                China, Liaoning, NEYC
+            </div>
+        
+    </div>
+</div>
+
+        <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-close"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <h3 class="media-heading">莫比乌斯反演总结</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <h3 class="media-heading">莫比乌斯反演详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830262/83053_kwvev3.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <h3 class="media-heading">杜教筛原理详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830177/86548_fqol95.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <h3 class="media-heading">狄利克雷卷积详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <h3 class="media-heading">Dilworth定理</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月1日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830261/85371_fltskc.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <h3 class="media-heading">#6164. 「美团 CodeM 初赛 Round A」数列互质</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6164$. 「美团 CodeM 初赛 Round A」数列互质<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830238/86242_qg6y9f.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <h3 class="media-heading">#6161. 「美团 CodeM 初赛 Round A」倒水</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6161$. 「美团 CodeM 初赛 Round A」倒水<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <h3 class="media-heading">#6190. 序列查询</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830203/85373_qtkof1.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <h3 class="media-heading">#6075. 「2017 山东一轮集训 Day6」重建</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6075$. 「2017 山东一轮集训 Day6」重建<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <h3 class="media-heading">#6136. 「2017 山东三轮集训 Day4」Left</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="没有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 51 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1501465056/85754_kmawco.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('CVL5M7VURH', '14d1d65fe890a7fa4482dd38cb49fb35');
+        var algoliaIndex = algoliaClient.initIndex('Goseqh');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    </body>
+</html>
