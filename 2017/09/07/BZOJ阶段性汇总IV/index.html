@@ -22,12 +22,12 @@
 <meta property="og:url" content="https://goseqh.tk/2017/09/07/BZOJ阶段性汇总IV/index.html">
 <meta property="og:site_name" content="Goseqh&#39;s Blog">
 <meta property="og:description" content="引言I’m alone still…">
-<meta property="og:image" content="https://goseqh.tk/2017/09/07/BZOJ阶段性汇总IV/aaa.PNG">
-<meta property="og:updated_time" content="2017-09-07T23:24:41.928Z">
+<meta property="og:image" content="http://218.106.205.134/uploads/aaa.PNG">
+<meta property="og:updated_time" content="2017-11-02T07:27:29.613Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BZOJ阶段性汇总IV">
 <meta name="twitter:description" content="引言I’m alone still…">
-<meta name="twitter:image" content="https://goseqh.tk/2017/09/07/BZOJ阶段性汇总IV/aaa.PNG">
+<meta name="twitter:image" content="http://218.106.205.134/uploads/aaa.PNG">
     
     
         
@@ -36,12 +36,12 @@
         <meta property="og:image" content="https://goseqh.tk/assets/images/new2.png"/>
     
     
-        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg" />
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772145/1456293209543_c2aj7p.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772145/1456293209543_c2aj7p.jpg" />
     
     
-        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg" />
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772145/1456293209543_c2aj7p.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772145/1456293209543_c2aj7p.jpg" />
     
     
     <!--STYLES-->
@@ -64,32 +64,38 @@
     <body>
         <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
             <!-- Define author's picture -->
-
-
-<header id="header" data-behavior="4">
+<% var authorPicture = null; %>
+<% if (!theme.header.right_link.icon) { %>
+    <% if (theme.gravatar_email && theme.gravatar_email.length) { %>
+        <% authorPicture = gravatar(theme.gravatar_email, 90); %>
+    <% } else if (theme.author.picture && theme.author.picture.length) { %>
+        <% if (is_remote_url(theme.author.picture)) { %>
+            <% authorPicture = theme.author.picture; %>
+        <% } else { %>
+            <% authorPicture = url_for(theme.image_dir + '/' + theme.author.picture); %>
+        <% } %>
+    <% } %>
+<% } %>
+<header id="header" data-behavior="<%= sidebarBehavior %>">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+        <a class="header-title-link" href="<%- url_for(' ') %>"><%= config.title %></a>
     </div>
-    
-        
-            <a  class="header-right-icon open-algolia-search"
-                href="#search">
-        
-        
-            <i class="fa fa-lg fa-search"></i>
-        
+    <% if (theme.header && theme.header.right_link) { %>
+        <% if (theme.header.right_link.url && url_for(theme.header.right_link.url).indexOf(config.url) < 0 && url_for(theme.header.right_link.url).indexOf(':') >= 0) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<%- url_for(theme.header.right_link.url) %>" target="_blank" rel="noopener">
+        <% } else if (theme.header.right_link.url) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<% if (theme.header.right_link.url.indexOf("/") === 0) { %><%- url_for(theme.header.right_link.url.substr(1)) %><% } else { %><%- url_for(theme.header.right_link.url) %><% } %>">
+        <% } %>
+        <% if (theme.header.right_link.icon) { %>
+            <i class="fa fa-lg fa-<%= theme.header.right_link.icon %>"></i>
+        <% } else if (authorPicture) { %>
+            <img class="header-picture" src="<%= authorPicture %>" alt="<%= __('global.author_picture') %>"/>
+        <% } %>
         </a>
-    
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?5fc847eb9d9d78d9abdc859c2181ec2f";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
+    <% } %>
 </header>
 
             <!-- Define author's picture -->
@@ -235,7 +241,7 @@
         <div class="post-header-cover
                     text-left
                     "
-             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg');"
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1502772145/1456293209543_c2aj7p.jpg');"
              data-behavior="4">
             
                 <div class="post-header main-content-wrap text-left">
@@ -306,7 +312,7 @@
 <h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p><strong>最小割基础模型</strong></p>
 <p>就是一道结点容量的最小割问题。。。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 2000000005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1000005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long int</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> n, m, s, t;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> next, to, flow;</div><div class="line">    edge(<span class="keyword">int</span> next, <span class="keyword">int</span> to, <span class="keyword">int</span> flow) : next(next), to(to), flow(flow)&#123;&#125;</div><div class="line">    edge()&#123;&#125;</div><div class="line">&#125;e[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="keyword">int</span> h[maxn], cnt = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add_Edge</span><span class="params">(<span class="keyword">int</span> fr, <span class="keyword">int</span> to, <span class="keyword">int</span> flow)</span></span>&#123;</div><div class="line">    e[++cnt] = edge(h[fr], to, flow);</div><div class="line">    h[fr] = cnt;</div><div class="line">    e[++cnt] = edge(h[to], fr, <span class="number">0</span>);</div><div class="line">    h[to] = cnt;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> d[maxn];</div><div class="line"><span class="keyword">bool</span> vis[maxn];</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">BFS</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; bfs;</div><div class="line">    bfs.push(s);</div><div class="line">    <span class="built_in">memset</span>(d, <span class="number">0</span>, <span class="keyword">sizeof</span>(d));</div><div class="line">    <span class="keyword">while</span>(!bfs.empty())&#123;</div><div class="line">        <span class="keyword">int</span> op = bfs.front(); bfs.pop();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = h[op]; i; i = e[i].next)&#123;</div><div class="line">            <span class="keyword">if</span> (!e[i].flow) <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">int</span> k = e[i].to;</div><div class="line">            <span class="keyword">if</span> (k == s || d[k]) <span class="keyword">continue</span>;</div><div class="line">            d[k] = d[op] + <span class="number">1</span>;</div><div class="line">            bfs.push(k);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (d[t]) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> a)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (x == t) <span class="keyword">return</span> a;</div><div class="line">    <span class="keyword">int</span> rest = a;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = h[x]; i; i = e[i].next)&#123;</div><div class="line">        <span class="keyword">if</span> (!e[i].flow) <span class="keyword">continue</span>;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (d[op] != d[x] + <span class="number">1</span>) <span class="keyword">continue</span>;</div><div class="line">        LL k = DFS(op, min(rest, e[i].flow));</div><div class="line">        e[i].flow -= k;</div><div class="line">        e[i ^ <span class="number">1</span>].flow += k;</div><div class="line">        rest -= k;</div><div class="line">        <span class="keyword">if</span> (!rest) <span class="keyword">return</span> a;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> a - rest;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dinic</span><span class="params">(LL&amp; maxflow)</span></span>&#123;</div><div class="line">    <span class="keyword">while</span>(BFS()) maxflow += DFS(s, INF);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x, y;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;n, &amp;m, &amp;s, &amp;t);</div><div class="line">    s = s &lt;&lt; <span class="number">1</span>;</div><div class="line">    t = (t &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x), Add_Edge(i &lt;&lt; <span class="number">1</span>, (i &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>, x);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;x, &amp;y);</div><div class="line">        Add_Edge((x &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>, y &lt;&lt; <span class="number">1</span>, INF);</div><div class="line">        Add_Edge((y &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>, x &lt;&lt; <span class="number">1</span>, INF);</div><div class="line">    &#125;</div><div class="line">    LL maxflow = <span class="number">0</span>;</div><div class="line">    Dinic(maxflow);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>, maxflow);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><title>Problem 3944. -- Sum</title><center><h2>3944: Sum</h2><span class="green">Time Limit: </span>10 Sec&nbsp;&nbsp;<span class="green">Memory Limit: </span>128 MB<br><span class="green">Submit: </span>4139&nbsp;&nbsp;<span class="green">Solved: </span>1092<br>[<a href="submitpage.php?id=3944">Submit</a>][<a href="problemstatus.php?id=3944">Status</a>][<a href="bbs.php?id=3944">Discuss</a>]</center></p><h3>Description</h3><div class="content"><p><img src="aaa.PNG" width="424" height="129" alt=""></p><p></p>
+<p><title>Problem 3944. -- Sum</title><center><h2>3944: Sum</h2><span class="green">Time Limit: </span>10 Sec&nbsp;&nbsp;<span class="green">Memory Limit: </span>128 MB<br><span class="green">Submit: </span>4139&nbsp;&nbsp;<span class="green">Solved: </span>1092<br>[<a href="submitpage.php?id=3944">Submit</a>][<a href="problemstatus.php?id=3944">Status</a>][<a href="bbs.php?id=3944">Discuss</a>]</center></p><h3>Description</h3><div class="content"><p><img src="http://218.106.205.134/uploads/aaa.PNG" height="px" width="px"></p><p></p>
 <p></p><p></p>&lt;/div&gt;<h3>Input</h3><div class="content"><div>一共T+1行</div><p></p>
 <div>第1行为数据组数T(T&lt;=10)</div>
 <div>第2~T+1行每行一个<span style="color: rgb(255, 0, 0);">非负</span>整数N，代表一组询问</div>

@@ -6,7 +6,7 @@
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Goseqh&#39;s Blog">
-    <title>【置顶】编程错误汇总 - Goseqh&#39;s Blog</title>
+    <title>归档: 2018 - Goseqh&#39;s Blog</title>
     <meta name="author" content="Goseqh">
     
     
@@ -15,17 +15,15 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="引言大家喜闻乐见的引起众吐（槽）的文章&amp;lt;（￣︶￣）/">
-<meta name="keywords" content="编程错误">
+    <meta name="description" content="OI Dog,work in NEYC">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="【置顶】编程错误汇总">
-<meta property="og:url" content="https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/index.html">
+<meta property="og:title" content="Goseqh&#39;s Blog">
+<meta property="og:url" content="https://goseqh.tk/archives/2018/index.html">
 <meta property="og:site_name" content="Goseqh&#39;s Blog">
-<meta property="og:description" content="引言大家喜闻乐见的引起众吐（槽）的文章&amp;lt;（￣︶￣）/">
-<meta property="og:updated_time" content="2017-10-10T23:16:40.579Z">
+<meta property="og:description" content="OI Dog,work in NEYC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【置顶】编程错误汇总">
-<meta name="twitter:description" content="引言大家喜闻乐见的引起众吐（槽）的文章&amp;lt;（￣︶￣）/">
+<meta name="twitter:title" content="Goseqh&#39;s Blog">
+<meta name="twitter:description" content="OI Dog,work in NEYC">
     
     
         
@@ -34,12 +32,6 @@
         <meta property="og:image" content="https://goseqh.tk/assets/images/new2.png"/>
     
     
-        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg" />
-    
-    
-        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg" />
     
     
     <!--STYLES-->
@@ -62,32 +54,38 @@
     <body>
         <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
             <!-- Define author's picture -->
-
-
-<header id="header" data-behavior="4">
+<% var authorPicture = null; %>
+<% if (!theme.header.right_link.icon) { %>
+    <% if (theme.gravatar_email && theme.gravatar_email.length) { %>
+        <% authorPicture = gravatar(theme.gravatar_email, 90); %>
+    <% } else if (theme.author.picture && theme.author.picture.length) { %>
+        <% if (is_remote_url(theme.author.picture)) { %>
+            <% authorPicture = theme.author.picture; %>
+        <% } else { %>
+            <% authorPicture = url_for(theme.image_dir + '/' + theme.author.picture); %>
+        <% } %>
+    <% } %>
+<% } %>
+<header id="header" data-behavior="<%= sidebarBehavior %>">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+        <a class="header-title-link" href="<%- url_for(' ') %>"><%= config.title %></a>
     </div>
-    
-        
-            <a  class="header-right-icon open-algolia-search"
-                href="#search">
-        
-        
-            <i class="fa fa-lg fa-search"></i>
-        
+    <% if (theme.header && theme.header.right_link) { %>
+        <% if (theme.header.right_link.url && url_for(theme.header.right_link.url).indexOf(config.url) < 0 && url_for(theme.header.right_link.url).indexOf(':') >= 0) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<%- url_for(theme.header.right_link.url) %>" target="_blank" rel="noopener">
+        <% } else if (theme.header.right_link.url) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<% if (theme.header.right_link.url.indexOf("/") === 0) { %><%- url_for(theme.header.right_link.url.substr(1)) %><% } else { %><%- url_for(theme.header.right_link.url) %><% } %>">
+        <% } %>
+        <% if (theme.header.right_link.icon) { %>
+            <i class="fa fa-lg fa-<%= theme.header.right_link.icon %>"></i>
+        <% } else if (authorPicture) { %>
+            <img class="header-picture" src="<%= authorPicture %>" alt="<%= __('global.author_picture') %>"/>
+        <% } %>
         </a>
-    
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?5fc847eb9d9d78d9abdc859c2181ec2f";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
+    <% } %>
 </header>
 
             <!-- Define author's picture -->
@@ -230,208 +228,112 @@
 </nav>
 
             
-        <div class="post-header-cover
-                    text-left
-                    "
-             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg');"
-             data-behavior="4">
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+    <section class="postShorten-group main-content-wrap">
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
             
-                <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title" itemprop="headline">
-            【置顶】编程错误汇总
-        </h1>
-    
-    
-        <div class="post-meta">
-    <time itemprop="datePublished" datetime="2017-09-09T15:17:39+08:00">
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2018/09/09/【置顶】黑科技汇总/">
+                            【置顶】黑科技汇总
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2018-09-09T16:01:20+08:00">
 	
-		    9月 09, 2017
+		    9月 09, 2018
     	
     </time>
     
 </div>
 
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在这神秘的光芒背后，有着怎样的奥秘？（纯胡扯<br>
+                    
+                        <a href="/2018/09/09/【置顶】黑科技汇总/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2018/09/09/【置顶】黑科技汇总/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772073/86004_x108ut.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2018/09/09/【置顶】编程错误汇总/">
+                            【置顶】编程错误汇总
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2018-09-09T15:17:39+08:00">
+	
+		    9月 09, 2018
+    	
+    </time>
     
 </div>
-            
-        </div>
-
-            <div id="main" data-behavior="4"
-                 class="hasCover
-                        hasCoverMetaIn
-                        hasCoverCaption">
-                
-<article class="post" itemscope itemType="http://schema.org/BlogPosting">
-    
-        <span class="post-header-cover-caption caption">We read the world wrong and say that it deceives us.</span>
-    
-    
-    <div class="post-content markdown" itemprop="articleBody">
-        <div class="main-content-wrap">
-            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#语法类"><span class="toc-text">语法类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#循环语句"><span class="toc-text">循环语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件语句"><span class="toc-text">条件语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支语句"><span class="toc-text">分支语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#宏定义"><span class="toc-text">宏定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STL"><span class="toc-text">STL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#set"><span class="toc-text">set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map"><span class="toc-text">map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#priority-queue"><span class="toc-text">priority_queue</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法类"><span class="toc-text">算法类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前缀和-积"><span class="toc-text">前缀和/积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速幂"><span class="toc-text">快速幂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线段树"><span class="toc-text">线段树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划（DP）"><span class="toc-text">动态规划（DP）</span></a></li></ol></li></ol>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>大家喜闻乐见的引起众吐（槽）的文章&lt;（￣︶￣）/<br><a id="more"></a></p>
-<h1 id="语法类"><a href="#语法类" class="headerlink" title="语法类"></a>语法类</h1><h2 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h2><ul>
-<li><strong>注意内外层循环变量的冲突</strong></li>
-<li>注意内部语句循环变量的正确使用</li>
-<li>注意循环变量与全局变量（循环外部变量）的冲突</li>
-</ul>
-<h2 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h2><ul>
-<li>注意if…else的对应性，不要把内层的if对应到外层的else上，为避免这一错误可多使用’{}’</li>
-<li>注意<gqh style="font-family:Goseqh;color:red">运算符的优先级</gqh></li>
-</ul>
-<h2 id="分支语句"><a href="#分支语句" class="headerlink" title="分支语句"></a>分支语句</h2><ul>
-<li>保险起见，在每个分支后面加上break;</li>
-</ul>
-<h2 id="宏定义"><a href="#宏定义" class="headerlink" title="宏定义"></a>宏定义</h2><ul>
-<li><gqh style="font-family:Goseqh;color:red">严重问题:注意宏定义的不安全性</gqh>，代码示例如下：</li>
-</ul>
-<p>我们想计算$(a + b) * c$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A a + b</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> a, b, c;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, A * c);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>但这样做的结果是$a + b * c$<br>要想得到正确结果，多使用’()’：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A (a + b)</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> a, b, c;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, A * c);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h2><ul>
-<li><p style="font-family:verdana;color:orange">尽可能避免在任何STL中存放比较方法定义与外部数组存在关联的元素，否则会导致排序紊乱产生错误</p>
-
-</li>
-</ul>
-<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><ul>
-<li><p style="font-family:verdana;color:red">严重问题：绝对不要使用STL的二分查找功能来查找set中的元素，只能使用set自带的二分查找成员函数，否则会导致严重的TLE问题</p>
-
-</li>
-</ul>
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><ul>
-<li>不要在未对要访问的map键值赋值的情况下访问它，否则会RE</li>
-</ul>
-<h3 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h3><ul>
-<li>注意cmp的定义方法：当$a$比$b$优先级小的时候返回true</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cmp</span>&#123;</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> a &lt; b;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">priority_queue&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, cmp&gt; p;</div></pre></td></tr></table></figure>
-<p>$p$是一个大根堆</p>
-<h1 id="算法类"><a href="#算法类" class="headerlink" title="算法类"></a>算法类</h1><h2 id="前缀和-积"><a href="#前缀和-积" class="headerlink" title="前缀和/积"></a>前缀和/积</h2><ul>
-<li>不要使最开头累加/乘的操作访问不该访问的内存</li>
-<li>如果是求前缀积，一定不要忘记第一个元素应该手动设为$1$</li>
-</ul>
-<h2 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h2><ul>
-<li>注意不要忘记每次对幂数进行的右移操作，否则会TLE（当然，这个本地也是很容易测试出来的，但可能会不知道问题出在哪里）</li>
-<li><gqh style="font-family:verdana;color:red">严重问题：注意绝对不要使幂数为一个负数</gqh>，如果容易出现此错误，最好提前判断一下</li>
-<li>在取模的题目中，不要忘记每次乘法都是需要取模的</li>
-</ul>
-<h2 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h2><ul>
-<li><gqh style="font-family:verdana;color:red">严重问题：注意不要让查询的区间为不合法区间</gqh>，否则会RE，这种错误往往比较隐蔽，所以可能出现此情况时最好提前判断一下</li>
-<li><p>注意线段树的基本架构不要写错：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Operate</span> <span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="comment">//pushdown(l, r, o);</span></div><div class="line">    <span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy)&#123;</div><div class="line">        <span class="comment">//do something</span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= mid) Operate(l, mid, o &lt;&lt; <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span> (qy &gt; mid) Operate(mid + <span class="number">1</span>, r, o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><gqh style="font-family:verdana;color:orange">有的时候，当题目卡常数时，我们需要把线段树改写为迭代形式，以加快运行速度</gqh>
-
-</li>
-</ul>
-<h2 id="动态规划（DP）"><a href="#动态规划（DP）" class="headerlink" title="动态规划（DP）"></a>动态规划（DP）</h2>
-            
-        </div>
-    </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
-        
-            <div class="post-footer-tags">
-                <span class="text-color-light text-small">标签</span><br/>
-                
-    <a class="tag tag--primary tag--small t-link" href="/tags/编程错误/">编程错误</a>
 
             </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>大家喜闻乐见的引起众吐（槽）的文章&lt;（￣︶￣）/<br>
+                    
+                        <a href="/2018/09/09/【置顶】编程错误汇总/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
         
-        
-            <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/09/【置顶】黑科技汇总/"  data-tooltip="【置顶】黑科技汇总">
-                
-                    <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/09/东北育才NOIP校内模拟赛总结/" data-tooltip="东北育才NOIP校内模拟赛总结">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
+            <a href="/2018/09/09/【置顶】编程错误汇总/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg"/>
+                </div>
             </a>
-        </li>
+            
         
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-facebook-official"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-twitter"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/&amp;title=【置顶】编程错误汇总">
-                    <i class="fa fa-qq"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-star"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-renren"></i>
-                </a>
-            </li>
+    </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
         
         
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#table-of-contents">
-            
-                <i class="fa fa-list"></i>
-            </a>
-        </li>
+        <li class="pagination-number">第 1 页 共 1 页</li>
     </ul>
 </div>
 
-
-        
-        
-            
-        
-    </div>
-</article>
+</section>
 
 
 
@@ -458,152 +360,6 @@
 </footer>
 
             </div>
-            
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/09/【置顶】黑科技汇总/"  data-tooltip="【置顶】黑科技汇总">
-                
-                    <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/09/09/东北育才NOIP校内模拟赛总结/" data-tooltip="东北育才NOIP校内模拟赛总结">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-facebook-official"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-twitter"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/&amp;title=【置顶】编程错误汇总">
-                    <i class="fa fa-qq"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-star"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-renren"></i>
-                </a>
-            </li>
-        
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#table-of-contents">
-            
-                <i class="fa fa-list"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-                </div>
-                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-    <i id="btn-close-shareoptions" class="fa fa-close"></i>
-    <ul class="share-options">
-        
-            
-            
-            <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/&amp;title=【置顶】编程错误汇总">
-                    <i class="fa fa-qq"></i><span>分享到 QQ</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-star"></i><span>分享到 Qzone</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/09/09/【置顶】编程错误汇总/">
-                    <i class="fa fa-renren"></i><span>分享到 Renren</span>
-                </a>
-            </li>
-        
-    </ul>
-</div>
-
             
         </div>
         
@@ -941,8 +697,6 @@
         <!--SCRIPTS-->
 <script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
 <!--SCRIPTS END-->
-
-    
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>

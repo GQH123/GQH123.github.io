@@ -54,32 +54,38 @@
     <body>
         <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
             <!-- Define author's picture -->
-
-
-<header id="header" data-behavior="4">
+<% var authorPicture = null; %>
+<% if (!theme.header.right_link.icon) { %>
+    <% if (theme.gravatar_email && theme.gravatar_email.length) { %>
+        <% authorPicture = gravatar(theme.gravatar_email, 90); %>
+    <% } else if (theme.author.picture && theme.author.picture.length) { %>
+        <% if (is_remote_url(theme.author.picture)) { %>
+            <% authorPicture = theme.author.picture; %>
+        <% } else { %>
+            <% authorPicture = url_for(theme.image_dir + '/' + theme.author.picture); %>
+        <% } %>
+    <% } %>
+<% } %>
+<header id="header" data-behavior="<%= sidebarBehavior %>">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+        <a class="header-title-link" href="<%- url_for(' ') %>"><%= config.title %></a>
     </div>
-    
-        
-            <a  class="header-right-icon open-algolia-search"
-                href="#search">
-        
-        
-            <i class="fa fa-lg fa-search"></i>
-        
+    <% if (theme.header && theme.header.right_link) { %>
+        <% if (theme.header.right_link.url && url_for(theme.header.right_link.url).indexOf(config.url) < 0 && url_for(theme.header.right_link.url).indexOf(':') >= 0) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<%- url_for(theme.header.right_link.url) %>" target="_blank" rel="noopener">
+        <% } else if (theme.header.right_link.url) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<% if (theme.header.right_link.url.indexOf("/") === 0) { %><%- url_for(theme.header.right_link.url.substr(1)) %><% } else { %><%- url_for(theme.header.right_link.url) %><% } %>">
+        <% } %>
+        <% if (theme.header.right_link.icon) { %>
+            <i class="fa fa-lg fa-<%= theme.header.right_link.icon %>"></i>
+        <% } else if (authorPicture) { %>
+            <img class="header-picture" src="<%= authorPicture %>" alt="<%= __('global.author_picture') %>"/>
+        <% } %>
         </a>
-    
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?5fc847eb9d9d78d9abdc859c2181ec2f";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
+    <% } %>
 </header>
 
             <!-- Define author's picture -->
@@ -236,15 +242,15 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
-                        <a class="link-unstyled" href="/2017/09/09/【置顶】黑科技汇总/">
-                            【置顶】黑科技汇总
+                        <a class="link-unstyled" href="/2017/11/02/BZOJ阶段性汇总VIII/">
+                            BZOJ阶段性汇总VIII
                         </a>
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-09-09T16:01:20+08:00">
+    <time itemprop="datePublished" datetime="2017-11-02T18:39:00+08:00">
 	
-		    9月 09, 2017
+		    11月 02, 2017
     	
     </time>
     
@@ -254,9 +260,9 @@
             
                 <div class="postShorten-excerpt" itemprop="articleBody">
                     <!-- toc -->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在这神秘的光芒背后，有着怎样的奥秘？（纯胡扯<br>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>Some day we’ll meet again….<br>
                     
-                        <a href="/2017/09/09/【置顶】黑科技汇总/" class="postShorten-excerpt_link link">
+                        <a href="/2017/11/02/BZOJ阶段性汇总VIII/" class="postShorten-excerpt_link link">
                             阅读全文
                         </a>
                         
@@ -265,9 +271,9 @@
             
         </div>
         
-            <a href="/2017/09/09/【置顶】黑科技汇总/">
+            <a href="/2017/11/02/BZOJ阶段性汇总VIII/">
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772073/86004_x108ut.jpg"/>
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772130/1456293196491_yllfl0.jpg"/>
                 </div>
             </a>
             
@@ -281,15 +287,15 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
-                        <a class="link-unstyled" href="/2017/09/09/【置顶】编程错误汇总/">
-                            【置顶】编程错误汇总
+                        <a class="link-unstyled" href="/2017/11/02/BZOJ阶段性汇总VII/">
+                            BZOJ阶段性汇总VII
                         </a>
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-09-09T15:17:39+08:00">
+    <time itemprop="datePublished" datetime="2017-11-02T15:58:15+08:00">
 	
-		    9月 09, 2017
+		    11月 02, 2017
     	
     </time>
     
@@ -299,9 +305,9 @@
             
                 <div class="postShorten-excerpt" itemprop="articleBody">
                     <!-- toc -->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>大家喜闻乐见的引起众吐（槽）的文章&lt;（￣︶￣）/<br>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>Can you hear me ? I have arrived at this place, it’s far from where we start, isn’t it?<br>
                     
-                        <a href="/2017/09/09/【置顶】编程错误汇总/" class="postShorten-excerpt_link link">
+                        <a href="/2017/11/02/BZOJ阶段性汇总VII/" class="postShorten-excerpt_link link">
                             阅读全文
                         </a>
                         
@@ -310,9 +316,9 @@
             
         </div>
         
-            <a href="/2017/09/09/【置顶】编程错误汇总/">
+            <a href="/2017/11/02/BZOJ阶段性汇总VII/">
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg"/>
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772118/1449046374211_vfbjke.jpg"/>
                 </div>
             </a>
             
@@ -365,47 +371,6 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/09/09/东北师大附中九月集训省选模拟赛总结/">
-                            东北师大附中九月集训省选模拟赛总结
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-09-09T14:57:13+08:00">
-	
-		    9月 09, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/2017/09/09/东北师大附中九月集训省选模拟赛总结/#post-footer" class="postShorten-excerpt_link link">
-                                评论和共享
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
     <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
         <div class="postShorten-wrap">
             
@@ -451,47 +416,6 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/09/07/Libre-Online-Judge阶段性汇总III/">
-                            Libre Online Judge阶段性汇总III
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-09-07T18:05:45+08:00">
-	
-		    9月 07, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/2017/09/07/Libre-Online-Judge阶段性汇总III/#post-footer" class="postShorten-excerpt_link link">
-                                评论和共享
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
     <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
         <div class="postShorten-wrap">
             
@@ -516,7 +440,7 @@
             
                 <div class="postShorten-excerpt" itemprop="articleBody">
                     <!-- toc -->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>I love you, really … don’t forgive me …<br>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>I love you, really … don’t forget me …<br>
                     
                         <a href="/2017/09/07/BZOJ阶段性汇总VI/" class="postShorten-excerpt_link link">
                             阅读全文
@@ -529,7 +453,7 @@
         
             <a href="/2017/09/07/BZOJ阶段性汇总VI/">
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg"/>
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772110/1449046364680_pvs3mr.jpg"/>
                 </div>
             </a>
             
@@ -574,7 +498,7 @@
         
             <a href="/2017/09/07/BZOJ阶段性汇总V/">
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg"/>
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772151/1456293224732_sxxslo.jpg"/>
                 </div>
             </a>
             
@@ -619,7 +543,7 @@
         
             <a href="/2017/09/07/BZOJ阶段性汇总IV/">
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg"/>
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772145/1456293209543_c2aj7p.jpg"/>
                 </div>
             </a>
             
@@ -664,7 +588,97 @@
         
             <a href="/2017/09/07/BZOJ阶段性汇总III/">
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg"/>
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046384695_nfb5kx.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/09/03/Libre-Online-Judge阶段性汇总II/">
+                            Libre Online Judge阶段性汇总II
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-09-03T20:53:29+08:00">
+	
+		    9月 03, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <!--toc-->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>题解第二篇<del>MDZZ写题解太累了555</del><br>
+                    
+                        <a href="/2017/09/03/Libre-Online-Judge阶段性汇总II/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2017/09/03/Libre-Online-Judge阶段性汇总II/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772101/1405563549408_hkfanw.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/08/29/常用图表汇总/">
+                            常用图表汇总
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-08-29T19:41:14+08:00">
+	
+		    8月 29, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <!--toc-->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>存放以前编写的图表汇总，便于查找<br>
+                    
+                        <a href="/2017/08/29/常用图表汇总/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2017/08/29/常用图表汇总/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772160/1405563600788_lmjc0t.jpg"/>
                 </div>
             </a>
             
@@ -682,7 +696,7 @@
             </a>
         </li>
         
-        <li class="pagination-number">第 1 页 共 6 页</li>
+        <li class="pagination-number">第 1 页 共 5 页</li>
     </ul>
 </div>
 

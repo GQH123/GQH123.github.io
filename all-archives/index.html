@@ -55,32 +55,38 @@
     <body>
         <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
             <!-- Define author's picture -->
-
-
-<header id="header" data-behavior="4">
+<% var authorPicture = null; %>
+<% if (!theme.header.right_link.icon) { %>
+    <% if (theme.gravatar_email && theme.gravatar_email.length) { %>
+        <% authorPicture = gravatar(theme.gravatar_email, 90); %>
+    <% } else if (theme.author.picture && theme.author.picture.length) { %>
+        <% if (is_remote_url(theme.author.picture)) { %>
+            <% authorPicture = theme.author.picture; %>
+        <% } else { %>
+            <% authorPicture = url_for(theme.image_dir + '/' + theme.author.picture); %>
+        <% } %>
+    <% } %>
+<% } %>
+<header id="header" data-behavior="<%= sidebarBehavior %>">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+        <a class="header-title-link" href="<%- url_for(' ') %>"><%= config.title %></a>
     </div>
-    
-        
-            <a  class="header-right-icon open-algolia-search"
-                href="#search">
-        
-        
-            <i class="fa fa-lg fa-search"></i>
-        
+    <% if (theme.header && theme.header.right_link) { %>
+        <% if (theme.header.right_link.url && url_for(theme.header.right_link.url).indexOf(config.url) < 0 && url_for(theme.header.right_link.url).indexOf(':') >= 0) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<%- url_for(theme.header.right_link.url) %>" target="_blank" rel="noopener">
+        <% } else if (theme.header.right_link.url) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<% if (theme.header.right_link.url.indexOf("/") === 0) { %><%- url_for(theme.header.right_link.url.substr(1)) %><% } else { %><%- url_for(theme.header.right_link.url) %><% } %>">
+        <% } %>
+        <% if (theme.header.right_link.icon) { %>
+            <i class="fa fa-lg fa-<%= theme.header.right_link.icon %>"></i>
+        <% } else if (authorPicture) { %>
+            <img class="header-picture" src="<%= authorPicture %>" alt="<%= __('global.author_picture') %>"/>
+        <% } %>
         </a>
-    
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?5fc847eb9d9d78d9abdc859c2181ec2f";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
+    <% } %>
 </header>
 
             <!-- Define author's picture -->
@@ -243,6 +249,41 @@
             
                 
                 
+                <div class="archive archive-year box" data-date="2018">
+                    <h4 class="archive-title">
+                        <a class="link-unstyled" href="/archives/2018">2018</a>
+                    </h4>
+            
+            
+                
+                <ul class="archive-posts archive-month" data-date="201809">
+                    <h5 class="archive-title">
+                        <a class="link-unstyled" href="/archives/2018/09">September</a>
+                    </h5>
+                
+            
+            <li class="archive-post archive-day" data-date="20180909">
+                <a class="archive-post-title" href="/2018/09/09/【置顶】黑科技汇总/">【置顶】黑科技汇总</a>
+                <span class="archive-post-date"> - 9月 09, 2018</span>
+            </li>
+        
+            
+            
+            
+            
+            <li class="archive-post archive-day" data-date="20180909">
+                <a class="archive-post-title" href="/2018/09/09/【置顶】编程错误汇总/">【置顶】编程错误汇总</a>
+                <span class="archive-post-date"> - 9月 09, 2018</span>
+            </li>
+        
+            
+            
+            
+                
+                    </div>
+                    
+                
+                
                 <div class="archive archive-year box" data-date="2017">
                     <h4 class="archive-title">
                         <a class="link-unstyled" href="/archives/2017">2017</a>
@@ -250,29 +291,38 @@
             
             
                 
+                <ul class="archive-posts archive-month" data-date="201711">
+                    <h5 class="archive-title">
+                        <a class="link-unstyled" href="/archives/2017/11">November</a>
+                    </h5>
+                
+            
+            <li class="archive-post archive-day" data-date="20171102">
+                <a class="archive-post-title" href="/2017/11/02/BZOJ阶段性汇总VIII/">BZOJ阶段性汇总VIII</a>
+                <span class="archive-post-date"> - 11月 02, 2017</span>
+            </li>
+        
+            
+            
+            
+            
+            <li class="archive-post archive-day" data-date="20171102">
+                <a class="archive-post-title" href="/2017/11/02/BZOJ阶段性汇总VII/">BZOJ阶段性汇总VII</a>
+                <span class="archive-post-date"> - 11月 02, 2017</span>
+            </li>
+        
+            
+            
+            
+            
+                
+                    </ul>
+                
                 <ul class="archive-posts archive-month" data-date="201709">
                     <h5 class="archive-title">
                         <a class="link-unstyled" href="/archives/2017/09">September</a>
                     </h5>
                 
-            
-            <li class="archive-post archive-day" data-date="20170909">
-                <a class="archive-post-title" href="/2017/09/09/【置顶】黑科技汇总/">【置顶】黑科技汇总</a>
-                <span class="archive-post-date"> - 9月 09, 2017</span>
-            </li>
-        
-            
-            
-            
-            
-            <li class="archive-post archive-day" data-date="20170909">
-                <a class="archive-post-title" href="/2017/09/09/【置顶】编程错误汇总/">【置顶】编程错误汇总</a>
-                <span class="archive-post-date"> - 9月 09, 2017</span>
-            </li>
-        
-            
-            
-            
             
             <li class="archive-post archive-day" data-date="20170909">
                 <a class="archive-post-title" href="/2017/09/09/东北育才NOIP校内模拟赛总结/">东北育才NOIP校内模拟赛总结</a>
@@ -284,26 +334,8 @@
             
             
             <li class="archive-post archive-day" data-date="20170909">
-                <a class="archive-post-title" href="/2017/09/09/东北师大附中九月集训省选模拟赛总结/">东北师大附中九月集训省选模拟赛总结</a>
-                <span class="archive-post-date"> - 9月 09, 2017</span>
-            </li>
-        
-            
-            
-            
-            
-            <li class="archive-post archive-day" data-date="20170909">
                 <a class="archive-post-title" href="/2017/09/09/东北师大附中九月集训NOIP模拟赛总结/">东北师大附中九月集训NOIP模拟赛总结</a>
                 <span class="archive-post-date"> - 9月 09, 2017</span>
-            </li>
-        
-            
-            
-            
-            
-            <li class="archive-post archive-day" data-date="20170907">
-                <a class="archive-post-title" href="/2017/09/07/Libre-Online-Judge阶段性汇总III/">Libre Online Judge阶段性汇总III</a>
-                <span class="archive-post-date"> - 9月 07, 2017</span>
             </li>
         
             

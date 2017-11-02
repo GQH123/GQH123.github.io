@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://goseqh.tk/2017/08/26/BZOJ题解目录/index.html">
 <meta property="og:site_name" content="Goseqh&#39;s Blog">
 <meta property="og:description" content="引言BZOJ的题解目录">
-<meta property="og:updated_time" content="2017-09-04T00:10:21.427Z">
+<meta property="og:updated_time" content="2017-11-02T07:55:42.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BZOJ题解目录">
 <meta name="twitter:description" content="引言BZOJ的题解目录">
@@ -62,32 +62,38 @@
     <body>
         <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
             <!-- Define author's picture -->
-
-
-<header id="header" data-behavior="4">
+<% var authorPicture = null; %>
+<% if (!theme.header.right_link.icon) { %>
+    <% if (theme.gravatar_email && theme.gravatar_email.length) { %>
+        <% authorPicture = gravatar(theme.gravatar_email, 90); %>
+    <% } else if (theme.author.picture && theme.author.picture.length) { %>
+        <% if (is_remote_url(theme.author.picture)) { %>
+            <% authorPicture = theme.author.picture; %>
+        <% } else { %>
+            <% authorPicture = url_for(theme.image_dir + '/' + theme.author.picture); %>
+        <% } %>
+    <% } %>
+<% } %>
+<header id="header" data-behavior="<%= sidebarBehavior %>">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+        <a class="header-title-link" href="<%- url_for(' ') %>"><%= config.title %></a>
     </div>
-    
-        
-            <a  class="header-right-icon open-algolia-search"
-                href="#search">
-        
-        
-            <i class="fa fa-lg fa-search"></i>
-        
+    <% if (theme.header && theme.header.right_link) { %>
+        <% if (theme.header.right_link.url && url_for(theme.header.right_link.url).indexOf(config.url) < 0 && url_for(theme.header.right_link.url).indexOf(':') >= 0) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<%- url_for(theme.header.right_link.url) %>" target="_blank" rel="noopener">
+        <% } else if (theme.header.right_link.url) { %>
+            <a  class="<%= (theme.header.right_link.icon ? 'header-right-icon ' : 'header-right-picture ') %><% if (theme.header.right_link.class) { %><%= theme.header.right_link.class %><% } %>"
+                href="<% if (theme.header.right_link.url.indexOf("/") === 0) { %><%- url_for(theme.header.right_link.url.substr(1)) %><% } else { %><%- url_for(theme.header.right_link.url) %><% } %>">
+        <% } %>
+        <% if (theme.header.right_link.icon) { %>
+            <i class="fa fa-lg fa-<%= theme.header.right_link.icon %>"></i>
+        <% } else if (authorPicture) { %>
+            <img class="header-picture" src="<%= authorPicture %>" alt="<%= __('global.author_picture') %>"/>
+        <% } %>
         </a>
-    
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?5fc847eb9d9d78d9abdc859c2181ec2f";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
+    <% } %>
 </header>
 
             <!-- Define author's picture -->
@@ -273,6 +279,7 @@
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>BZOJ的题解目录<br><a id="more"></a></p>
 <h1 id="题目目录及一句话题解汇总"><a href="#题目目录及一句话题解汇总" class="headerlink" title="题目目录及一句话题解汇总"></a>题目目录及一句话题解汇总</h1><p>为了给人以思考的空间，一句话题解使用白色字体</p>
 <ul>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=" target="_blank" rel="external"></a> <font color="#FFFFFF"></font></li>
 <li>题解目录<ul>
 <li>BZOJ阶段性汇总I<ul>
 <li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1010" target="_blank" rel="external">1010: [HNOI2008]玩具装箱toy</a> <font color="#FFFFFF">斜率优化DP </font></li>
@@ -298,6 +305,58 @@
 <li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3209" target="_blank" rel="external">3209: 花神的数论题</a> <font color="#FFFFFF">数位DP</font></li>
 <li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3358" target="_blank" rel="external">3358: [Usaco2004 Jan]洪水</a> <font color="#FFFFFF">二分答案</font></li>
 <li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3366" target="_blank" rel="external">3366: [Usaco2004 Feb]Breeding 奶牛饲育</a> <font color="#FFFFFF">递归</font></li>
+</ul>
+</li>
+<li>BZOJ阶段性汇总III<ul>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4726" target="_blank" rel="external">4726: [POI2017]Sabota?</a> <font color="#FFFFFF">二分答案/树型DP</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3004" target="_blank" rel="external">3004: 吊灯</a> <font color="#FFFFFF">思维题/结论题</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2662" target="_blank" rel="external">2662: [BeiJing wc2012]冻结 </a> <font color="#FFFFFF">图论拆点/边法</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4723" target="_blank" rel="external">4723: [POI2017]Flappy Bird</a> <font color="#FFFFFF">思维题+前缀和</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4724" target="_blank" rel="external">4724: [POI2017]Podzielno</a> <font color="#FFFFFF">数论+思维题</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4407" target="_blank" rel="external">4407: 于神之怒加强版</a> <font color="#FFFFFF">莫比乌斯反演套路题</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1922" target="_blank" rel="external">1922: [Sdoi2010]大陆争霸</a> <font color="#FFFFFF">带限制最短路+SPFA与Dijkstra的具体算法思想分析</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1168" target="_blank" rel="external">1168: [Baltic2008]Gloves</a> <font color="#FFFFFF">数学推导+单调栈+乱搞</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1340" target="_blank" rel="external">1340: [Baltic2007]Escape逃跑问题</a> <font color="#FFFFFF">网络流最小割模型</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1256" target="_blank" rel="external">1256: Baltic2004Rectangles</a> <font color="#FFFFFF">射线法（映射法）+线段树</font></li>
+</ul>
+</li>
+<li>BZOJ阶段性汇总IV<ul>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1339" target="_blank" rel="external">1339: [Baltic2008]Mafia</a> <font color="#FFFFFF">网络流最小割模型</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3944" target="_blank" rel="external">3944: Sum</a> <font color="#FFFFFF">卡常杜教筛</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=5015" target="_blank" rel="external">5015: [Snoi2017]礼物</a> <font color="#FFFFFF">数学推导+递归</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=5029" target="_blank" rel="external">5029: 贴小广告</a> <font color="#FFFFFF">线段树/逆向处理思想</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=5018" target="_blank" rel="external">5018: [Snoi2017]英雄联盟</a> <font color="#FFFFFF">二分答案+背包DP</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1778" target="_blank" rel="external">1778: [Usaco2010 Hol]Dotp 驱逐猪猡</a> <font color="#FFFFFF">概率与期望+图论中的高斯消元</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=" target="_blank" rel="external">1419: Red is good</a> <font color="#FFFFFF">概率与期望+最优值含义</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1419" target="_blank" rel="external">3270: 博物馆</a> <font color="#FFFFFF">概率与期望+图论中的高斯消元</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4551" target="_blank" rel="external">4551: [Tjoi2016&amp;Heoi2016]树</a> <font color="#FFFFFF">特殊技巧（01染色）+树链剖分+线段树二分</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3300" target="_blank" rel="external">3300: [USACO2011 Feb]Best Parenthesis</a> <font color="#FFFFFF">模拟操作</font></li>
+</ul>
+</li>
+<li>BZOJ阶段性汇总V<ul>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3400" target="_blank" rel="external">3400: [Usaco2009 Mar]Cow Frisbee Team 奶牛沙盘队</a> <font color="#FFFFFF">简单DP</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4817" target="_blank" rel="external">4817: [Sdoi2017]树点涂色</a> <font color="#FFFFFF">LCT+思维题</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3732" target="_blank" rel="external">3732: Network</a> <font color="#FFFFFF">生成树提取+树上LCA</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3702" target="_blank" rel="external">3702: 二叉树</a> <font color="#FFFFFF">线段树合并</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3669" target="_blank" rel="external">3669: [Noi2014]魔法森林</a> <font color="#FFFFFF">动点SPFA（正解LCT）</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3629" target="_blank" rel="external">3629: [JLOI2014]聪明的燕姿</a> <font color="#FFFFFF">DFS搜索质因子</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4552" target="_blank" rel="external">4552: [Tjoi2016&amp;Heoi2016]排序</a> <font color="#FFFFFF">思维题+二分答案（正解线段树合并）</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4281" target="_blank" rel="external">4281: [ONTAK2015]Związek Harcerstwa Bajtockiego</a> <font color="#FFFFFF">树上LCA</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3670" target="_blank" rel="external">3670: [Noi2014]动物园</a> <font color="#FFFFFF">KMP思维题</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3530" target="_blank" rel="external">3530: [Sdoi2014]数数</a> <font color="#FFFFFF">AC自动机+数位DP+分类讨论</font></li>
+</ul>
+</li>
+<li>BZOJ阶段性汇总VI<ul>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3697" target="_blank" rel="external">3697: 采药人的路径</a> <font color="#FFFFFF">点分治+分类讨论</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3626" target="_blank" rel="external">3626: [LNOI2014]LCA</a> <font color="#FFFFFF">特殊技巧（01染色）+定序思想+询问拆分+树链剖分</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3381" target="_blank" rel="external">3381: [Usaco2004 Open]Cave Cows 2 洞穴里的牛之二</a> <font color="#FFFFFF">辣鸡RMQ模板</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4146" target="_blank" rel="external">4146: [AMPPZ2014]Divisors</a> <font color="#FFFFFF">枚举+调和级数定理</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4390" target="_blank" rel="external">4390: [Usaco2015 dec]Max Flow</a> <font color="#FFFFFF">树链剖分/树上差分</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4896" target="_blank" rel="external">4896: [Thu Summer Camp2016]补退选</a> <font color="#FFFFFF">可持久化Trie+二分答案</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4757" target="_blank" rel="external">4757: [Usaco2017 Jan]Building a Tall Barn</a> <font color="#FFFFFF">数学推导+二分答案+乱搞</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3211" target="_blank" rel="external">3211: 花神游历各国</a> <font color="#FFFFFF">平摊分析线段树</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1856" target="_blank" rel="external">1856: [Scoi2010]字符串 </a> <font color="#FFFFFF">组合数学+Catalan+数形结合思想</font></li>
+<li><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3993" target="_blank" rel="external">3993: [SDOI2015]星际战争</a> <font color="#FFFFFF">二分答案+最大流模型+精度误差</font></li>
 </ul>
 </li>
 </ul>
