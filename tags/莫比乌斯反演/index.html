@@ -344,107 +344,152 @@
                         hasCoverMetaIn
                         ">
                 
-    <script language="JavaScript"><!--var password="";password=prompt('请输入密码 (本网站需输入密码才可进入):','');if (password != 'mima')   {alert("密码不正确,无法进入本站!!");    window.opener=null; window.close();}  // 密码不正确就关闭//--></script>
-
-<section class="postShorten-group main-content-wrap">
-    <% page.posts.each(function(post) { %>
-    <%
-        var tableOfContents = null;
-        var thumbnailImageUrl = post.thumbnailImageUrl;
-        var postContent = post.content;
-        // Define default position for the thumbnail image
-        var thumbnailImagePosition = theme.thumbnail_image_position;
-        /* Define thumbnail image */
-
-        // Define position of the thumbnail image
-        if (!post.excerpt && !post.link) {
-            thumbnailImagePosition = "bottom";
-        } else if (thumbnailImageUrl !== null) {
-            if (post.thumbnailImagePosition && post.thumbnailImagePosition.length)  {
-                thumbnailImagePosition = post.thumbnailImagePosition;
-            }
-        }
-
-        // Generate and insert table of contents in post content
-        if (!post.excerpt && (/<!--(\s*)[t|T][o|O][c|C](\s*)-->/).test(postContent)) {
-            if (__('post.toc_title')) {
-                tableOfContents = '<h1 id=\"table-of-contents\">' + __('post.toc') + '</h1>';
-            } else {
-                tableOfContents = '<span id="table-of-contents"></span>';
-            }
-            tableOfContents += toc(postContent, {list_number: false})
-            postContent = postContent.replace(/<!--(\s*)[t|T][o|O][c|C](\s*)-->/, tableOfContents)
-        }
-    %>
-    <article class="postShorten postShorten--thumbnailimg-<%= thumbnailImagePosition %>" itemscope itemType="http://schema.org/BlogPosting">
+    <section class="postShorten-group main-content-wrap">
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
         <div class="postShorten-wrap">
-            <% if (thumbnailImageUrl !== null && thumbnailImagePosition === "top") { %>
-                <a href="<%- url_for(post.path) %>">
-                    <div class="postShorten-thumbnailimg">
-                        <img alt="" itemprop="image" src="<%= thumbnailImageUrl %>"/>
-                    </div>
-                </a>
-                <% thumbnailImageUrl = null; %>
-            <% } %>
+            
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
-                    <% if (post.link) { %>
-                        <a class="link-unstyled" href="<%- url_for(post.link) %>">
-                            <%= post.title || '(' + __('post.no_title') + ')' %>
+                    
+                        <a class="link-unstyled" href="/2017/08/04/GCD-LCM相关问题讲解/">
+                            GCD&amp;LCM相关问题讲解
                         </a>
-                    <% } else { %>
-                        <a class="link-unstyled" href="<%- url_for(post.path) %>">
-                            <%= post.title || '(' + __('post.no_title') + ')' %>
-                        </a>
-                    <% } %>
+                    
                 </h1>
-                <%- partial('post/meta', {post: post, classes: ['postShorten-meta']}) %>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-08-04T12:19:05+08:00">
+	
+		    8月 04, 2017
+    	
+    </time>
+    
+</div>
+
             </div>
-            <% if (post.excerpt || post.link) { %>
+            
                 <div class="postShorten-excerpt" itemprop="articleBody">
-                    <%- post.excerpt %>
-                    <% if (post.link && _('post.go_to_website')) { %>
-                        <a href="<%- url_for(post.link) %>" target="new" class="postShorten-excerpt_link link">
-                            <%= __('post.go_to_website') %>
+                    <!--toc-->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>概括：《莫比乌斯反演总结》进阶篇</p>
+<p>不得不说这篇文章可能会是至今为止所有文章中最长的一篇，主要内容是借51nod上的与gcd&amp;lcm有关的题目进行的一个总结，由于我喜欢把许多东西整合进一篇文章，所以。。。<br>
+                    
+                        <a href="/2017/08/04/GCD-LCM相关问题讲解/" class="postShorten-excerpt_link link">
+                            阅读全文
                         </a>
-                    <% } else if (__('post.read_more')) { %>
-                        <a href="<%- url_for(post.path) %>" class="postShorten-excerpt_link link">
-                            <%- __('post.read_more') %>
-                        </a>
-                        <% if (post.readingtime) { %>
-                            <span class="postShorten-readingtime">
-                                <%= ' - ' + post.readingtime + ' min read' %>
-                            </span>
-                        <% } %>
-                    <% } %>
+                        
+                    
                 </div>
-            <% } else { %>
-                <div class="postShorten-content" itemprop="articleBody">
-                    <%- postContent %>
-                    <% if (theme.image_gallery) { %>
-                        <%- partial('post/gallery', {photos: post.photos, post: post})%>
-                    <% } %>
-                    <% if (__('post.comment_and_share')) { %>
-                        <p>
-                            <a href="<%- url_for(post.path + '#post-footer') %>" class="postShorten-excerpt_link link">
-                                <%- __('post.comment_and_share') %>
-                            </a>
-                        </p>
-                    <% } %>
-                </div>
-            <% } %>
+            
         </div>
-        <% if (thumbnailImageUrl !== null && thumbnailImagePosition !== "top") { %>
-            <a href="<%- url_for(post.path) %>">
+        
+            <a href="/2017/08/04/GCD-LCM相关问题讲解/">
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="<%= thumbnailImageUrl %>"/>
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1501465075/85755_nrhmac.jpg"/>
                 </div>
             </a>
-            <% thumbnailImageUrl = null; %>
-        <% } %>
+            
+        
     </article>
-    <% }) %>
-    <%- partial('pagination', {type: 'page'}) %>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/06/30/莫比乌斯反演详解/">
+                            莫比乌斯反演详解
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-06-30T17:35:03+08:00">
+	
+		    6月 30, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p>
+                    
+                        <a href="/2017/06/30/莫比乌斯反演详解/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2017/06/30/莫比乌斯反演详解/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/06/30/莫比乌斯反演总结/">
+                            莫比乌斯反演总结
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-06-30T17:19:21+08:00">
+	
+		    6月 30, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br>
+                    
+                        <a href="/2017/06/30/莫比乌斯反演总结/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2017/06/30/莫比乌斯反演总结/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
+        
+        
+        <li class="pagination-number">第 1 页 共 1 页</li>
+    </ul>
+</div>
+
 </section>
 
 

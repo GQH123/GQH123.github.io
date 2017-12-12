@@ -344,107 +344,61 @@
                         hasCoverMetaIn
                         ">
                 
-    <script language="JavaScript"><!--var password="";password=prompt('请输入密码 (本网站需输入密码才可进入):','');if (password != 'mima')   {alert("密码不正确,无法进入本站!!");    window.opener=null; window.close();}  // 密码不正确就关闭//--></script>
-
-<section class="postShorten-group main-content-wrap">
-    <% page.posts.each(function(post) { %>
-    <%
-        var tableOfContents = null;
-        var thumbnailImageUrl = post.thumbnailImageUrl;
-        var postContent = post.content;
-        // Define default position for the thumbnail image
-        var thumbnailImagePosition = theme.thumbnail_image_position;
-        /* Define thumbnail image */
-
-        // Define position of the thumbnail image
-        if (!post.excerpt && !post.link) {
-            thumbnailImagePosition = "bottom";
-        } else if (thumbnailImageUrl !== null) {
-            if (post.thumbnailImagePosition && post.thumbnailImagePosition.length)  {
-                thumbnailImagePosition = post.thumbnailImagePosition;
-            }
-        }
-
-        // Generate and insert table of contents in post content
-        if (!post.excerpt && (/<!--(\s*)[t|T][o|O][c|C](\s*)-->/).test(postContent)) {
-            if (__('post.toc_title')) {
-                tableOfContents = '<h1 id=\"table-of-contents\">' + __('post.toc') + '</h1>';
-            } else {
-                tableOfContents = '<span id="table-of-contents"></span>';
-            }
-            tableOfContents += toc(postContent, {list_number: false})
-            postContent = postContent.replace(/<!--(\s*)[t|T][o|O][c|C](\s*)-->/, tableOfContents)
-        }
-    %>
-    <article class="postShorten postShorten--thumbnailimg-<%= thumbnailImagePosition %>" itemscope itemType="http://schema.org/BlogPosting">
+    <section class="postShorten-group main-content-wrap">
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
         <div class="postShorten-wrap">
-            <% if (thumbnailImageUrl !== null && thumbnailImagePosition === "top") { %>
-                <a href="<%- url_for(post.path) %>">
-                    <div class="postShorten-thumbnailimg">
-                        <img alt="" itemprop="image" src="<%= thumbnailImageUrl %>"/>
-                    </div>
-                </a>
-                <% thumbnailImageUrl = null; %>
-            <% } %>
+            
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
-                    <% if (post.link) { %>
-                        <a class="link-unstyled" href="<%- url_for(post.link) %>">
-                            <%= post.title || '(' + __('post.no_title') + ')' %>
+                    
+                        <a class="link-unstyled" href="/2017/08/18/2017百度之星复赛参赛总结/">
+                            2017百度之星复赛参赛总结
                         </a>
-                    <% } else { %>
-                        <a class="link-unstyled" href="<%- url_for(post.path) %>">
-                            <%= post.title || '(' + __('post.no_title') + ')' %>
-                        </a>
-                    <% } %>
+                    
                 </h1>
-                <%- partial('post/meta', {post: post, classes: ['postShorten-meta']}) %>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-08-18T16:41:41+08:00">
+	
+		    8月 18, 2017
+    	
+    </time>
+    
+</div>
+
             </div>
-            <% if (post.excerpt || post.link) { %>
+            
                 <div class="postShorten-excerpt" itemprop="articleBody">
-                    <%- post.excerpt %>
-                    <% if (post.link && _('post.go_to_website')) { %>
-                        <a href="<%- url_for(post.link) %>" target="new" class="postShorten-excerpt_link link">
-                            <%= __('post.go_to_website') %>
+                    <!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>很显然，因为我进不了决赛所以只能在这里写一下复赛的参赛感想，我真是太弱了。。。<br>
+                    
+                        <a href="/2017/08/18/2017百度之星复赛参赛总结/" class="postShorten-excerpt_link link">
+                            阅读全文
                         </a>
-                    <% } else if (__('post.read_more')) { %>
-                        <a href="<%- url_for(post.path) %>" class="postShorten-excerpt_link link">
-                            <%- __('post.read_more') %>
-                        </a>
-                        <% if (post.readingtime) { %>
-                            <span class="postShorten-readingtime">
-                                <%= ' - ' + post.readingtime + ' min read' %>
-                            </span>
-                        <% } %>
-                    <% } %>
+                        
+                    
                 </div>
-            <% } else { %>
-                <div class="postShorten-content" itemprop="articleBody">
-                    <%- postContent %>
-                    <% if (theme.image_gallery) { %>
-                        <%- partial('post/gallery', {photos: post.photos, post: post})%>
-                    <% } %>
-                    <% if (__('post.comment_and_share')) { %>
-                        <p>
-                            <a href="<%- url_for(post.path + '#post-footer') %>" class="postShorten-excerpt_link link">
-                                <%- __('post.comment_and_share') %>
-                            </a>
-                        </p>
-                    <% } %>
-                </div>
-            <% } %>
+            
         </div>
-        <% if (thumbnailImageUrl !== null && thumbnailImagePosition !== "top") { %>
-            <a href="<%- url_for(post.path) %>">
+        
+            <a href="/2017/08/18/2017百度之星复赛参赛总结/">
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="<%= thumbnailImageUrl %>"/>
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772121/1449046375909_gat7ol.jpg"/>
                 </div>
             </a>
-            <% thumbnailImageUrl = null; %>
-        <% } %>
+            
+        
     </article>
-    <% }) %>
-    <%- partial('pagination', {type: 'page'}) %>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
+        
+        
+        <li class="pagination-number">第 1 页 共 1 页</li>
+    </ul>
+</div>
+
 </section>
 
 

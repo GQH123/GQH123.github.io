@@ -344,107 +344,329 @@
                         hasCoverMetaIn
                         ">
                 
-    <script language="JavaScript"><!--var password="";password=prompt('请输入密码 (本网站需输入密码才可进入):','');if (password != 'mima')   {alert("密码不正确,无法进入本站!!");    window.opener=null; window.close();}  // 密码不正确就关闭//--></script>
-
-<section class="postShorten-group main-content-wrap">
-    <% page.posts.each(function(post) { %>
-    <%
-        var tableOfContents = null;
-        var thumbnailImageUrl = post.thumbnailImageUrl;
-        var postContent = post.content;
-        // Define default position for the thumbnail image
-        var thumbnailImagePosition = theme.thumbnail_image_position;
-        /* Define thumbnail image */
-
-        // Define position of the thumbnail image
-        if (!post.excerpt && !post.link) {
-            thumbnailImagePosition = "bottom";
-        } else if (thumbnailImageUrl !== null) {
-            if (post.thumbnailImagePosition && post.thumbnailImagePosition.length)  {
-                thumbnailImagePosition = post.thumbnailImagePosition;
-            }
-        }
-
-        // Generate and insert table of contents in post content
-        if (!post.excerpt && (/<!--(\s*)[t|T][o|O][c|C](\s*)-->/).test(postContent)) {
-            if (__('post.toc_title')) {
-                tableOfContents = '<h1 id=\"table-of-contents\">' + __('post.toc') + '</h1>';
-            } else {
-                tableOfContents = '<span id="table-of-contents"></span>';
-            }
-            tableOfContents += toc(postContent, {list_number: false})
-            postContent = postContent.replace(/<!--(\s*)[t|T][o|O][c|C](\s*)-->/, tableOfContents)
-        }
-    %>
-    <article class="postShorten postShorten--thumbnailimg-<%= thumbnailImagePosition %>" itemscope itemType="http://schema.org/BlogPosting">
+    <section class="postShorten-group main-content-wrap">
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
         <div class="postShorten-wrap">
-            <% if (thumbnailImageUrl !== null && thumbnailImagePosition === "top") { %>
-                <a href="<%- url_for(post.path) %>">
-                    <div class="postShorten-thumbnailimg">
-                        <img alt="" itemprop="image" src="<%= thumbnailImageUrl %>"/>
-                    </div>
-                </a>
-                <% thumbnailImageUrl = null; %>
-            <% } %>
+            
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
-                    <% if (post.link) { %>
-                        <a class="link-unstyled" href="<%- url_for(post.link) %>">
-                            <%= post.title || '(' + __('post.no_title') + ')' %>
+                    
+                        <a class="link-unstyled" href="/2017/08/15/6203-可持久化队列/">
+                            #6203. 可持久化队列
                         </a>
-                    <% } else { %>
-                        <a class="link-unstyled" href="<%- url_for(post.path) %>">
-                            <%= post.title || '(' + __('post.no_title') + ')' %>
-                        </a>
-                    <% } %>
+                    
                 </h1>
-                <%- partial('post/meta', {post: post, classes: ['postShorten-meta']}) %>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-08-15T11:07:38+08:00">
+	
+		    8月 15, 2017
+    	
+    </time>
+    
+</div>
+
             </div>
-            <% if (post.excerpt || post.link) { %>
+            
                 <div class="postShorten-excerpt" itemprop="articleBody">
-                    <%- post.excerpt %>
-                    <% if (post.link && _('post.go_to_website')) { %>
-                        <a href="<%- url_for(post.link) %>" target="new" class="postShorten-excerpt_link link">
-                            <%= __('post.go_to_website') %>
+                    <!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6203$. 可持久化队列<br>
+                    
+                        <a href="/2017/08/15/6203-可持久化队列/" class="postShorten-excerpt_link link">
+                            阅读全文
                         </a>
-                    <% } else if (__('post.read_more')) { %>
-                        <a href="<%- url_for(post.path) %>" class="postShorten-excerpt_link link">
-                            <%- __('post.read_more') %>
-                        </a>
-                        <% if (post.readingtime) { %>
-                            <span class="postShorten-readingtime">
-                                <%= ' - ' + post.readingtime + ' min read' %>
-                            </span>
-                        <% } %>
-                    <% } %>
+                        
+                    
                 </div>
-            <% } else { %>
-                <div class="postShorten-content" itemprop="articleBody">
-                    <%- postContent %>
-                    <% if (theme.image_gallery) { %>
-                        <%- partial('post/gallery', {photos: post.photos, post: post})%>
-                    <% } %>
-                    <% if (__('post.comment_and_share')) { %>
-                        <p>
-                            <a href="<%- url_for(post.path + '#post-footer') %>" class="postShorten-excerpt_link link">
-                                <%- __('post.comment_and_share') %>
-                            </a>
-                        </p>
-                    <% } %>
-                </div>
-            <% } %>
+            
         </div>
-        <% if (thumbnailImageUrl !== null && thumbnailImagePosition !== "top") { %>
-            <a href="<%- url_for(post.path) %>">
+        
+            <a href="/2017/08/15/6203-可持久化队列/">
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="<%= thumbnailImageUrl %>"/>
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772152/1405563558200_jqfj7d.jpg"/>
                 </div>
             </a>
-            <% thumbnailImageUrl = null; %>
-        <% } %>
+            
+        
     </article>
-    <% }) %>
-    <%- partial('pagination', {type: 'page'}) %>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/07/26/单调队列-单调栈总结/">
+                            单调队列&amp;单调栈总结
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-07-26T15:44:05+08:00">
+	
+		    7月 26, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <!--toc-->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>最近刷了一波JCY大神的课件，打算认真练习一发单调队列/单调栈，于是有了这篇总结，同时作为之后学习单调优化DP的基础<br>
+                    
+                        <a href="/2017/07/26/单调队列-单调栈总结/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2017/07/26/单调队列-单调栈总结/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830135/86962_mlgkrv.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/07/24/2016-LNWC-讲解/">
+                            2016 LNWC 讲解
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-07-24T23:06:33+08:00">
+	
+		    7月 24, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>这里存放一下2016 LNWC的讲课课件，用于以后的知识复习<br>
+                    
+                        <a href="/2017/07/24/2016-LNWC-讲解/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2017/07/24/2016-LNWC-讲解/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830160/86958_t3aihv.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/07/24/数据结构详解/">
+                            数据结构详解
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-07-24T18:29:20+08:00">
+	
+		    7月 24, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>这里存放一下JCY大神的讲课课件，用于数据结构的复习<br>
+                    
+                        <a href="/2017/07/24/数据结构详解/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2017/07/24/数据结构详解/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="https://raw.githubusercontent.com/GQH123/GQH123.github.io/master/2017/07/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/83059.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/07/20/6062-「2017-山东一轮集训-Day2」Pair/">
+                            #6062. 「2017 山东一轮集训 Day2」Pair
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-07-20T14:17:32+08:00">
+	
+		    7月 20, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <!--toc-->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解： $Libre$ $Online$ $Judge$ # $6062$. 「2017 山东一轮集训 Day2」Pair<br>
+                    
+                        <a href="/2017/07/20/6062-「2017-山东一轮集训-Day2」Pair/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2017/07/20/6062-「2017-山东一轮集训-Day2」Pair/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830156/83065_zns1mp.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
+                            #516. 「LibreOJ β Round #2」DP 一般看规律
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-07-20T14:17:19+08:00">
+	
+		    7月 20, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <!--toc-->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $516$. 「LibreOJ β Round #2」DP 一般看规律<br>
+                    
+                        <a href="/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2017/07/20/516-「LibreOJ-β-Round-2」DP-一般看规律/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830243/85762_wf7vgv.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2017/07/11/6190-序列查询/">
+                            #6190. 序列查询
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-07-11T13:46:46+08:00">
+	
+		    7月 11, 2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询<br>
+                    
+                        <a href="/2017/07/11/6190-序列查询/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/2017/07/11/6190-序列查询/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
+        
+        
+        <li class="pagination-number">第 1 页 共 1 页</li>
+    </ul>
+</div>
+
 </section>
 
 
