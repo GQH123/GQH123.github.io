@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/img1.png">
 <meta property="og:image" content="https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/img2.png">
 <meta property="og:image" content="https://goseqh.tk/2017/08/16/FFT-NTT-FWT详解/img3.png">
-<meta property="og:updated_time" content="2017-08-17T05:30:03.673Z">
+<meta property="og:updated_time" content="2017-11-05T04:11:31.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FFT,NTT,FWT详解">
 <meta name="twitter:description" content="引言最近集中攻略了一下数学内容，感觉对FFT,NTT,FWT这三种变换有了新的理解与感受，所以用这篇文章来分享最近新的收获">
@@ -388,7 +388,7 @@ f(\xi_n^0) & f(\xi_n^1) & f(\xi_n^2) & \cdots&  f(\xi_n^{n - 1})
 <p>我们再考虑一个经典问题：给定一个数列${a_i}$，我们要求数列${b_i}$，计算方式如下：</p>
 <script type="math/tex; mode=display">b_i  = \left(\sum_{(bitcount(i\&j)\&1)= 0}a_j\right)- \left(\sum_{(bitcount(i\&j)\&1)= 1}a_j\right)</script><p>其中$bitcount(x)$表示$x$的二进制表示中1的个数</p>
 <p>柿子应该能看懂吧。。。其实就是考虑$bitcount$的奇偶性。。。</p>
-<p>我们还是像上文那样进行合并操作，考虑当前位，这时所有左结点的子树中的$j$和$i$的当前位都是0，右结点的子树中的$j$和$i$的当前位都是1，那么，右边的$j$，如果搞到左边，那么它的$bitcount$不变（$1\&amp;0= 0 $)，奇偶性也不变，左边的到右边，显然它的$bitcount$也不会改变（$0\&amp;0=0,0\&amp;1= 0$)，奇偶性不变，而对于留守在左结点中的那些$j$来说，它们加上当前位以后没有变化，因为当前位为0，而对于右边的留守的$j$，它们的当前位是1，而$i$的当前位也是1,所以它们的$bitcount$会加一，奇偶性也随之改变，所以只有右边的留守$j$需要添加一个负号，这样的话，操作法则就呼之欲出了：$左=左+右，右=左-右$</p>
+<p>我们还是像上文那样进行合并操作，考虑当前位，这时所有左结点的子树中的$j$和$i$的当前位都是0，右结点的子树中的$j$和$i$的当前位都是1，那么，右边的$j$，如果搞到左边，那么它的$bitcount$不变（$1\&amp;0= 0 $)，奇偶性也不变，左边的到右边，显然它的$bitcount$也不会改变（$0\&amp;1= 0$) ， 奇偶性不变，而对于留守在左结点中的那些$j$来说，它们加上当前位以后没有变化（$0\&amp;0=0$）， 因为当前位为$0$，而对于右边的留守的$j$，它们的当前位是1，而$i$的当前位也是1,所以它们的$bitcount$会加一，奇偶性也随之改变，所以只有右边的留守$j$需要添加一个负号，这样的话，操作法则就呼之欲出了：$左=左+右，右=左-右$</p>
 <p><strong>注意</strong>，这里有一个十分常见的错误，那就是认为右边的$j$搞到左边后需要添加负号，这又是怎么理解的呢？这种错误是<strong>当前位</strong>概念不清楚导致的，当前位此时还并没有添加到$i$和$j$上，在讨论左右的转移情况时不能连带着当前位一起考虑，只有当合并完以后，合并到父亲结点了，那么这个父亲结点的子树中的$i$与$j$才具有刚才的“当前位”</p>
 <p><del>不明白吗？你一定是在逗我</del></p>
 <p>这样，我们就成功地搞出了异或FWT，求完后两个做完异或FWT的数列直接乘起来，再逆回去，逆的过程很显然，就是解二元一次满秩方程解回去，操作法则：$左=\frac{左+右}{2}，右=\frac{左-右}{2}$</p>
@@ -397,12 +397,12 @@ f(\xi_n^0) & f(\xi_n^1) & f(\xi_n^2) & \cdots&  f(\xi_n^{n - 1})
 <script type="math/tex; mode=display">(bitcount(j\&i)\&1)\land (bitcount(k\&i)\&1) = bitcount((j \land k)\&i)\&1</script><p>这个应该还是很显然的，只要考虑$i$中的二进制位就可以了</p>
 <p>下面我们进行证明：<br>因为数学公式太大写不下，所以先在前面预定义一下</p>
 <ul>
-<li><script type="math/tex; mode=display">A_0=\left(\sum_{(bitcount(i\&j)\&1)= 0}a_j\right)</script></li>
-<li><script type="math/tex; mode=display">A_1=\left(\sum_{(bitcount(i\&j)\&1)= 1}a_j\right)</script></li>
-<li><script type="math/tex; mode=display">B_0=\left(\sum_{(bitcount(i\&k)\&1)= 0}b_k\right)</script></li>
-<li><script type="math/tex; mode=display">B_1=\left(\sum_{(bitcount(i\&k)\&1)= 1}b_k\right)</script></li>
-<li><script type="math/tex; mode=display">C_0=\left(\sum_{(bitcount(i\&(j\land k))\&1)= 0}c_{j\land k}\right)</script></li>
-<li><script type="math/tex; mode=display">C_1=\left(\sum_{(bitcount(i\&(j\land k))\&1)= 1}c_{j\land k}\right)</script>那么推导过程就是这样的：<script type="math/tex; mode=display">
+<li><script type="math/tex; mode=display">A_0=\sum_{(bitcount(i\&j)\&1)= 0}a_j</script></li>
+<li><script type="math/tex; mode=display">A_1=\sum_{(bitcount(i\&j)\&1)= 1}a_j</script></li>
+<li><script type="math/tex; mode=display">B_0=\sum_{(bitcount(i\&k)\&1)= 0}b_k</script></li>
+<li><script type="math/tex; mode=display">B_1=\sum_{(bitcount(i\&k)\&1)= 1}b_k</script></li>
+<li><script type="math/tex; mode=display">C_0=\sum_{(bitcount(i\&(j\land k))\&1)= 0}c_{j\land k}</script></li>
+<li><script type="math/tex; mode=display">C_1=\sum_{(bitcount(i\&(j\land k))\&1)= 1}c_{j\land k}</script>那么推导过程就是这样的：<script type="math/tex; mode=display">
 \begin{align}
 a'_i ∗ b'_i&=(A_0-A_1)∗(B_0-B_1)\\
 &=A_0 * B_0 + A_1 * B_1 - (A_0 * B_1 + A_1 * B_0)\\
@@ -413,7 +413,7 @@ a'_i ∗ b'_i&=(A_0-A_1)∗(B_0-B_1)\\
 <p>当然，上面的全部推导过程换成或运算来完成也是可以的，但并不是完全一样，有兴趣可以自行推导</p>
 <p>注意，不要只看到异或FWT的推导过程，这里面隐藏着一个重要考点，我们考虑一下这个问题：</p>
 <p>给定一个数列${a_i}$，我们要求数列${b_i}$，计算方式如下：</p>
-<script type="math/tex; mode=display">b_j = \sum_{0\leq j < n}((bitcount((i \mbox{ or } j)\mbox{ xor }i) + 1)\bmod 2)a_j</script><p>其中$bitcount(x)$表示$x$的二进制表示中1的个数</p>
+<script type="math/tex; mode=display">b_i = \sum_{0\leq j < n}((bitcount((i \mbox{ or } j)\mbox{ xor }i) + 1)\bmod 2)a_j</script><p>其中$bitcount(x)$表示$x$的二进制表示中1的个数</p>
 <p>我们发现，要求的，就是一些$j$，满足将$i$中是1的位置在这样的$j$之中去除后，$j$中的1的个数为偶数，然后把这样的$j$对应的$a_j$累加进$b_i$即可</p>
 <p>那么，这个东西该怎么求呢？考虑到如果我们也将$i$中的1的情况包含在内，情况会比较复杂，$j$中1的个数的奇偶性无法确定，因为有$i$的影响，所以我们想要去除$i$的影响，我们就把$i$取反，得到$i’$，那么我们要求的就是一些$j$，满足${(bitcount(j\&amp;i’)\&amp;1)=0}$，而这正是我们做异或FWT时得到的结果的一部分（<script type="math/tex">b_i  = \left(\sum_{(bitcount(i\&j)\&1)= 0}a_j\right)- \left(\sum_{(bitcount(i\&j)\&1)= 1}a_j\right)</script>的前半部分），所以此时我们需要求出<script type="math/tex">\left(\sum_{(bitcount(i\&j)\&1)= 0}a_j\right)+ \left(\sum_{(bitcount(i\&j)\&1)= 1}a_j\right)</script>，而这个就十分地显然了，因为一个数必定满足这两个部分的其中一个，所以这个式子就等于所有$a_j$的和，我们把它加到做完异或FWT的结果上，除以二，再考虑取反操作，把序列反转，得到的序列就是$b_j$了，这题让我们解密，那么我们就逆着上述过程跑一边就可以了</p>
 <p>这题很好，考察的点十分隐蔽，要求我们<strong>对知识的掌握必须全面细致</strong>，而且本题也反映了一个常见思路，我们要破译由位运算组成的公式加密而成的数列，最好搞清楚它加密的操作过程，细化到操作法则，最后对于破译只需要逆过来就可以了，是一种<strong>正难则反，执果索因的思维过程</strong>（当然，是站在破译的角度说的，因为直接破译太困难，我们就先搞清它的加密过程）</p>
@@ -1024,7 +1024,7 @@ a'_i ∗ b'_i&=(A_0-A_1)∗(B_0-B_1)\\
                 data-message-zero="没有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 51 篇文章
+                找到 56 篇文章
             </p>
         </div>
     </div>

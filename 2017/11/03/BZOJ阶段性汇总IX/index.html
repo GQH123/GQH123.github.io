@@ -1,0 +1,976 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Goseqh&#39;s Blog">
+    <title>BZOJ阶段性汇总IX - Goseqh&#39;s Blog</title>
+    <meta name="author" content="Goseqh">
+    
+    
+        <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1501464937/new2_qgnz5x.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="引言I’ll keep fighting, just wait for my triumph….">
+<meta name="keywords" content="BZOJ,题解">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="BZOJ阶段性汇总IX">
+<meta property="og:url" content="https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/index.html">
+<meta property="og:site_name" content="Goseqh&#39;s Blog">
+<meta property="og:description" content="引言I’ll keep fighting, just wait for my triumph….">
+<meta property="og:updated_time" content="2017-11-03T03:41:56.441Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BZOJ阶段性汇总IX">
+<meta name="twitter:description" content="引言I’ll keep fighting, just wait for my triumph….">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://goseqh.tk/assets/images/new2.png"/>
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772110/1449046364680_pvs3mr.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772110/1449046364680_pvs3mr.jpg" />
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772110/1449046364680_pvs3mr.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772110/1449046364680_pvs3mr.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
+    <!--STYLES END-->
+    
+    
+    <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?9505a5af654a2478f93fd6c0ae4f687d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+    </div>
+    
+        
+            <a  class="header-right-icon open-algolia-search"
+                href="#search">
+        
+        
+            <i class="fa fa-lg fa-search"></i>
+        
+        </a>
+    
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5fc847eb9d9d78d9abdc859c2181ec2f";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Goseqh</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>For what I cherish forever.</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/GQH123" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="mailto:572694553@qq.com" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc">QQmail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    "
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1502772110/1449046364680_pvs3mr.jpg');"
+             data-behavior="4">
+            
+                <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            BZOJ阶段性汇总IX
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2017-11-03T09:34:02+08:00">
+	
+		    11月 03, 2017
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaIn
+                        hasCoverCaption">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <span class="post-header-cover-caption caption">Don&#39;t wait for the perfect moment. Take the moment and make it perfect.</span>
+    
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">3100: 排列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">HINT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">1318: [Spoj744] Longest Permutation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">HINT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目分析-1"><span class="toc-text">题目分析</span></a></li></ol></li></ol>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>I’ll keep fighting, just wait for my triumph….<br><a id="more"></a></p>
+<p><title>Problem 3100. -- 排列</title><center><h2>3100: 排列</h2><span class="green">Time Limit: </span>10 Sec&nbsp;&nbsp;<span class="green">Memory Limit: </span>16 MB<br><span class="green">Submit: </span>723&nbsp;&nbsp;<span class="green">Solved: </span>208<br>[<a href="submitpage.php?id=3100">Submit</a>][<a href="problemstatus.php?id=3100">Status</a>][<a href="bbs.php?id=3100">Discuss</a>]</center></p><h2>Description</h2><div class="content"><div><p></p>
+<div>给定一个长度为n的序列a，选取连续的一段使其为1~k的一个排列。</div>
+<div>求k的最大值。</div>
+</div></div><h2>Input</h2><div class="content"><div>
+<div>输入的第一行包含一个整数n。接下来n个数描述序列a</div>
+<div>1&lt;=N&lt;=1000000，1 &lt;= ai &lt;=n</div>
+</div></div><h2>Output</h2><div class="content"><p>输出一个整数表示k的最大值。</p></div><h2>Sample Input</h2>
+            <div class="content"><span class="sampledata">5<br>
+1 2 3 4 5<br>
+</span></div><h2>Sample Output</h2>
+            <div class="content"><span class="sampledata">5</span></div><h2>HINT</h2>
+            <div class="content"><p><div>2017.522新加数据2组By 150137</div></p></div>
+
+<h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>刚才水完的一道题，感觉细节很多于是赶紧滚过来写Blog了…</p>
+<p>首先说一下我的辣鸡思路，我的方(bao)法(li)是用ST表倍增预处理mex值以及max值，（mex是当前区间中未出现的最小正整数）然后可以做到$O(1)$查询子区间内的这两个信息，然后枚举左端点，向右不断地跳，同时判断合法性，如果合法更新答案</p>
+<p>但是这显然有一种数据可以卡，比如前半部分都是$1$，后半部分是$2, 3, 4, \cdots$这样的，这样肯定就是$O(n ^ n)$的了，于是我又想维护每个数的相同数的前驱后继，然后每跳一个区间，就把里面的前驱的最大值更新一下，如果最大值大于等于左端点，那么肯定就有重复元素了，于是就可以skip掉了</p>
+<p>这样我们需要ST表预处理三个东西，mex, max以及pre的最大值</p>
+<p>但是这样的方法复杂度并没有保证，我个人感觉好像可以证明不会很大，可能均摊$O(n\log n)$，但是又不会证。。。也没构造出可以卡的数据。。。</p>
+<p>然而后来我发现，，，本题卡内存 《(⊙＿⊙)</p>
+<p>所以上面方法肯定不行啦，但是我后来发现一道一样的而且不卡内存的题，就是BZOJ1318，一会写一下那个方法(^o^)/~</p>
+<p>这题还是看了下题解。。。发现思路还是很巧妙的，我们以$1$的位置作为分割进行分块，然后我们每次考虑一个$1$的两侧，由于最大值可能在$1$的左右任一侧，所以我们需要都跑一遍，但是由于这两种情况对称，所以我们可以先只考虑最大值在$1$右侧的情况</p>
+<p>假设当前考虑的这个$1$位置为$p$, 而且我们当前还枚举了一个右端点$r$，我们需要保证这个$r$与$p$之间只有一个$1$，也即当前的$r$没有越过自己所在的块，然后我们就可以求出$[p, r]$的最大值$mx$，我们显然知道，当前只可能是区间$[r - mx + 1, r]$合法，而且$r - mx + 1 &lt;= p$</p>
+<p>这里你可能有疑问，如果$[r - mx + 1, p]$里面的最大值$mx’$大于$mx$了怎么办？我当时也很奇怪这件事，但是我们先不管它，后文会提这件事</p>
+<p>此时，我们知道，$[r - mx + 1, r]$合法，需要满足下面几个条件：</p>
+<ul>
+<li><p>$[r - mx + 1, r]$ 中没有重复元素</p>
+</li>
+<li><p>$[r - mx + 1, r]$ 中的元素和为$\frac{mx * (mx + 1)}{2}$</p>
+</li>
+</ul>
+<p>反过来，满足这两个一定合法（充分性论证），这其实还是挺显然的。。。（必须是$1, 2, \cdots, mx$，所以上文说的如过左边有更大的值一定不合法，因为这样的话在满足第一个条件时，元素和一定会超）</p>
+<p>我们知道第二个条件很好判断，直接维护前缀和减一下就好了，但是第一个条件我们并不能很快地进行判断，于是我们就时刻保证满足第一个条件就行了</p>
+<p>这时如何保证呢？我们发现，如果我们只是单调地从$p$开始向右扫描，那么合法区间左端点有时会增大，有时会减小，这样子就十分麻烦， 我们肯定也不能每次都暴力地去乱搞</p>
+<p>其实我们可以看到，当我们不断加入右边元素的时候，最远左端点的位置显然是不降的，因为会出现重复元素，为了保证条件必须向右移动最远左端点，但是这件事我自己并没有细想，于是去看了题解</p>
+<p>就是在这个时候，我发现网上很多题解都是GG的，他们都是在处理这件事情上采用了错误或是不完全的方法，于是被Hack了（甚至连CA爷的题解都是不正确的。。。）</p>
+<p>然而后来我还是找到一篇对的，这是因为我研究了一遍他的代码发现很有道理。。。</p>
+<p>是这样处理的，我们每次先把$l$一直向右扩展，但是不能越过自己所在的块，同时$[l, p]$内也不能出现相同的元素，得到了这样的最远的$l$以后，我们就可以顺序从$p$开始向右扫描，然后用当前扫到的元素的前驱更新最远左端点的位置，那么，我们可以知道，我们现在就是保证了$[l, r]$内没有相同元素，而且$[l - 1, r]$内一定有相同元素（其实就是极大无重复子区间），我们还需要确保$l &lt; p$，否则区间中就没有$1$了</p>
+<p>于是，我们在处理当前位置$r$的时候，只要满足$r - mx + 1 \geq l$即可，同时再求一下前缀差判断子区间元素和，就可以保证满足条件了</p>
+<p>由于本题卡内存，我们直接把原数组求前缀和，同时为了维护元素前驱，我们需要一个$save$数组，在线更新，但是这样我们就不能使用这个数组向左扩展$l$了（因为$l$所在的是前一块，而那块已经被更新完了），于是我们再维护一个bool型的$vis$数组，下标表示元素的值，然后用它扩展$l$即可，当前块扫完以后还要回滚回false的状态（为了保证复杂度）</p>
+<p>这样内存占用大概是$13$M,是可以通过本题的</p>
+<p>其实本题细节确实很多，网上题解大多不很详细，所以搞这样一篇长题解，如果还是不懂可以参考下面代码</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1000005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxm </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> eps </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i, l, r) for (register int i = l; i &lt;= r; i++)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i, r, l) for (register int i = r; i &gt;= l; i--)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> sline(i) (<span class="meta-keyword">line</span>[i] - <span class="meta-keyword">line</span>[i - 1])</span></div><div class="line"><span class="comment">//#define gc() ((p1 == p2 &amp;&amp; (p2 = (p1 = buffer) + fread(buffer, 1, maxn, stdin), p1 == p2)) ? EOF : *p1++)</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="comment">/*char *p1, *p2;</span></div><div class="line">char buffer[maxn];</div><div class="line">template &lt;class T&gt; void read(T&amp; x)&#123;</div><div class="line">    char ch = gc(); x = 0; bool f = 1;</div><div class="line">    while (!('0' &lt;= ch &amp;&amp; ch &lt;= '9') &amp;&amp; ch != '-') ch = gc();</div><div class="line">    if (ch == '-') f = 0, ch = gc();</div><div class="line">    while ('0' &lt;= ch &amp;&amp; ch &lt;= '9') x = (x &lt;&lt; 1) + (x &lt;&lt; 3) + ch - '0', ch = gc();</div><div class="line">    if (!f) x = -x;</div><div class="line">&#125;*/</div><div class="line"></div><div class="line"><span class="keyword">int</span> n;</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> line[maxn];</div><div class="line"><span class="keyword">int</span> save[maxn];</div><div class="line"><span class="keyword">bool</span> vis[maxn];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    rep(i, <span class="number">1</span>, n) <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;line[i]), line[i] += line[i - <span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span> ans = <span class="number">1</span>;</div><div class="line">    rep(i, <span class="number">1</span>, n)&#123;</div><div class="line">        <span class="keyword">if</span> (sline(i) == <span class="number">1</span>)&#123;</div><div class="line">            <span class="keyword">int</span> l = i - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span> (l &gt; <span class="number">0</span> &amp;&amp; sline(l) != <span class="number">1</span> &amp;&amp; !vis[sline(l)]) vis[sline(l)] = <span class="number">1</span>, l--;</div><div class="line">            <span class="keyword">int</span> tem = ++l;</div><div class="line">            <span class="keyword">int</span> r = i + <span class="number">1</span>;</div><div class="line">            <span class="keyword">int</span> mx = <span class="number">0</span>;</div><div class="line">            <span class="keyword">while</span> (r &lt;= n &amp;&amp; sline(r) != <span class="number">1</span>)&#123;</div><div class="line">                mx = max(sline(r), (<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>)mx);</div><div class="line">                l = max(l, save[sline(r)] + <span class="number">1</span>), save[sline(r)] = r;</div><div class="line">                <span class="keyword">if</span> (l &lt;= i &amp;&amp; r - mx + <span class="number">1</span> &gt;= l &amp;&amp; (line[r] - line[r - mx] == ((<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>) mx * (mx + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>))) ans = max(ans, mx);</div><div class="line">                r++;</div><div class="line">            &#125;</div><div class="line">            rep(j, tem, i - <span class="number">1</span>) vis[sline(j)] = <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> save[sline(i)] = i;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">memset</span>(save, <span class="number">0</span>, <span class="keyword">sizeof</span>(save));</div><div class="line"></div><div class="line">    per(i, n, <span class="number">1</span>) line[i] = sline(i);</div><div class="line">    reverse(line + <span class="number">1</span>, line + <span class="number">1</span> + n);</div><div class="line">    rep(i, <span class="number">1</span>, n) line[i] += line[i - <span class="number">1</span>];</div><div class="line">    rep(i, <span class="number">1</span>, n)&#123;</div><div class="line">        <span class="keyword">if</span> (sline(i) == <span class="number">1</span>)&#123;</div><div class="line">            <span class="keyword">int</span> l = i - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span> (l &gt; <span class="number">0</span> &amp;&amp; sline(l) != <span class="number">1</span> &amp;&amp; !vis[sline(l)]) vis[sline(l)] = <span class="number">1</span>, l--;</div><div class="line">            <span class="keyword">int</span> tem = ++l;</div><div class="line">            <span class="keyword">int</span> r = i + <span class="number">1</span>;</div><div class="line">            <span class="keyword">int</span> mx = <span class="number">0</span>;</div><div class="line">            <span class="keyword">while</span> (r &lt;= n &amp;&amp; sline(r) != <span class="number">1</span>)&#123;</div><div class="line">                mx = max(sline(r), (<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>)mx);</div><div class="line">                l = max(l, save[sline(r)] + <span class="number">1</span>), save[sline(r)] = r;</div><div class="line">                <span class="keyword">if</span> (l &lt;= i &amp;&amp; r - mx + <span class="number">1</span> &gt;= l &amp;&amp; (line[r] - line[r - mx] == ((<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>) mx * (mx + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>))) ans = max(ans, mx);</div><div class="line">                r++;</div><div class="line">            &#125;</div><div class="line">            rep(j, tem, i - <span class="number">1</span>) vis[sline(j)] = <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> save[sline(i)] = i;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>不要区别对待上下的两个大的$i$循环，因为我其实是直接从上面复制到下面的，没有一点区别。。。</p>
+<p>下面我再附上我参考的正确题解代码，<strong>来自 BraketBN</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Footprints In The Blood Soaked Snow */</span>  </div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;  </span></span></div><div class="line">    </div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;  </div><div class="line">    </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uint;  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;  </div><div class="line">    </div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1000005</span>, inf = <span class="number">0x3f3f3f3f</span>;  </div><div class="line">    </div><div class="line"><span class="keyword">int</span> n, last[maxn], next[maxn], ans;  </div><div class="line">uint sum[maxn];  </div><div class="line"><span class="keyword">bool</span> vis[maxn];  </div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">iread</span><span class="params">()</span> </span>&#123;  </div><div class="line">    <span class="keyword">int</span> f = <span class="number">1</span>, x = <span class="number">0</span>; <span class="keyword">char</span> ch = getchar();  </div><div class="line">    <span class="keyword">for</span>(; ch &lt; <span class="string">'0'</span> || ch &gt; <span class="string">'9'</span>; ch = getchar()) f = ch == <span class="string">'-'</span> ? <span class="number">-1</span> : <span class="number">1</span>;  </div><div class="line">    <span class="keyword">for</span>(; ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>; ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;  </div><div class="line">    <span class="keyword">return</span> f * x;  </div><div class="line">&#125;  </div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;  </div><div class="line">    <span class="keyword">int</span> len = <span class="number">0</span>, r = inf;  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = x + <span class="number">1</span>; i &lt;= n &amp;&amp; sum[i] - sum[i - <span class="number">1</span>] != <span class="number">1</span>; i++) &#123;  </div><div class="line">        <span class="keyword">int</span> now = sum[i] - sum[i - <span class="number">1</span>];  </div><div class="line">        <span class="keyword">if</span>(!vis[now]) vis[now] = <span class="number">1</span>;  </div><div class="line">        <span class="keyword">else</span> &#123;  </div><div class="line">            r = i;  </div><div class="line">            <span class="keyword">break</span>;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = x; i &gt;= <span class="number">1</span>; i--) &#123;  </div><div class="line">        <span class="keyword">int</span> now = sum[i] - sum[i - <span class="number">1</span>];  </div><div class="line">        <span class="keyword">if</span>(now == <span class="number">1</span> &amp;&amp; i != x) <span class="keyword">break</span>;  </div><div class="line">        len = max(len, now);  </div><div class="line">        r = min(r, next[i]);  </div><div class="line">        <span class="keyword">if</span>(i + len - <span class="number">1</span> &lt; r &amp;&amp; i + len - <span class="number">1</span> &lt;= n)  </div><div class="line">            <span class="keyword">if</span>(sum[i + len - <span class="number">1</span>] - sum[i - <span class="number">1</span>] == (LL)len * (len + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>)  </div><div class="line">                ans = max(ans, len);  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = x + <span class="number">1</span>; i &lt;= n &amp;&amp; sum[i] - sum[i - <span class="number">1</span>] != <span class="number">1</span>; i++)  </div><div class="line">        vis[sum[i] - sum[i - <span class="number">1</span>]] = <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) last[i] = inf;  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; i--) &#123;  </div><div class="line">        <span class="keyword">int</span> now = sum[i] - sum[i - <span class="number">1</span>];  </div><div class="line">        next[i] = last[now];  </div><div class="line">        last[now] = i;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="keyword">if</span>(sum[i] - sum[i - <span class="number">1</span>] == <span class="number">1</span>)  </div><div class="line">        calc(i);  </div><div class="line">&#125;  </div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </div><div class="line">    n = iread();  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) sum[i] = sum[i - <span class="number">1</span>] + iread();  </div><div class="line">    solve();  </div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; i--) sum[i] = sum[i] - sum[i - <span class="number">1</span>];  </div><div class="line">    reverse(sum + <span class="number">1</span>, sum + <span class="number">1</span> + n);  </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) sum[i] += sum[i - <span class="number">1</span>];  </div><div class="line">    solve();  </div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>再附上一份我发现的错误题解代码，<strong>来自 WerKeyTom_FT</strong>，这位同学下面的评论里已经有人指出问题，所以我就不评论了</p>
+<p>希望这位同学不要因为我引用您的代码作为错误范本而生气，只是为了更加深刻的理解，并无恶意。。。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> fo(i,a,b) for(i=a;i&lt;=b;i++)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> fd(i,a,b) for(i=a;i&gt;=b;i--)</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">1000000</span>+<span class="number">2</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line">ll a[maxn];</div><div class="line"><span class="keyword">int</span> last[maxn];</div><div class="line"><span class="keyword">int</span> i,n,ans,mx,wz;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> j,l;</div><div class="line">    ans=max(ans,<span class="number">1</span>);</div><div class="line">    mx=<span class="number">1</span>;</div><div class="line">    l=last[a[i]-a[i<span class="number">-1</span>]];</div><div class="line">    last[a[i]-a[i<span class="number">-1</span>]]=i;</div><div class="line">    wz=l+<span class="number">1</span>;</div><div class="line">    fo(j,i+<span class="number">1</span>,n+<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">if</span> (j&gt;n||a[j]-a[j<span class="number">-1</span>]==<span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">        l=last[a[j]-a[j<span class="number">-1</span>]];</div><div class="line">        last[a[j]-a[j<span class="number">-1</span>]]=j;</div><div class="line">        wz=max(wz,l);</div><div class="line">        mx=max(mx,<span class="keyword">int</span>(a[j]-a[j<span class="number">-1</span>]));</div><div class="line">        <span class="keyword">if</span> (wz&lt;=j-mx+<span class="number">1</span>)</div><div class="line">            <span class="keyword">if</span> (a[j]-a[j-mx]==(ll)mx*(mx+<span class="number">1</span>)/<span class="number">2</span>) ans=max(ans,mx);</div><div class="line">    &#125;</div><div class="line">    i=j;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">    fo(i,<span class="number">1</span>,n)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;a[i]);</div><div class="line">        <span class="comment">//sum[i]=sum[i-1]+(ll)a[i];</span></div><div class="line">        <span class="comment">//left[i]=last[a[i]];</span></div><div class="line">        <span class="comment">//last[a[i]]=i;</span></div><div class="line">    &#125;</div><div class="line">    fo(i,<span class="number">1</span>,n) a[i]+=a[i<span class="number">-1</span>];</div><div class="line">    fo(i,<span class="number">1</span>,n)&#123;</div><div class="line">        <span class="keyword">if</span> (a[i]-a[i<span class="number">-1</span>]==<span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">        last[a[i]-a[i<span class="number">-1</span>]]=i;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">while</span> (i&lt;=n)&#123;</div><div class="line">        calc();</div><div class="line">    &#125;</div><div class="line">    fd(i,n,<span class="number">1</span>) a[i]-=a[i<span class="number">-1</span>];</div><div class="line">    fo(i,<span class="number">1</span>,n/<span class="number">2</span>) swap(a[i],a[n-i+<span class="number">1</span>]);</div><div class="line">    fo(i,<span class="number">1</span>,n) a[i]+=a[i<span class="number">-1</span>];</div><div class="line">    fo(i,<span class="number">1</span>,n) last[i]=<span class="number">0</span>;</div><div class="line">    fo(i,<span class="number">1</span>,n)&#123;</div><div class="line">        <span class="keyword">if</span> (a[i]-a[i<span class="number">-1</span>]==<span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">        last[a[i]-a[i<span class="number">-1</span>]]=i;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">while</span> (i&lt;=n)&#123;</div><div class="line">        calc();</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">8  </div><div class="line">4 4 4 4 2 9 1 8 </div><div class="line">Hack数据</div><div class="line">*/</div></pre></td></tr></table></figure>
+<p>Hack数据<strong>来自 独立团团长李云龙</strong>，错在哪里就不解释了，根据上文的讲解应该可以自己比划出来</p>
+<p><del>尊重版权从我做起</del></p>
+<p>希望能对大家有所帮助，写得可真是累啊(<em>′O`</em>) /</p>
+<p><title>Problem 1318. -- [Spoj744] Longest Permutation</title><center><h2>1318: [Spoj744] Longest Permutation</h2><span class="green">Time Limit: </span>10 Sec&nbsp;&nbsp;<span class="green">Memory Limit: </span>162 MB<br><span class="green">Submit: </span>593&nbsp;&nbsp;<span class="green">Solved: </span>358<br>[<a href="submitpage.php?id=1318">Submit</a>][<a href="problemstatus.php?id=1318">Status</a>][<a href="bbs.php?id=1318">Discuss</a>]</center></p><h2>Description</h2><div class="content">给你一个序列A含有n个正整数(1&lt;=Ai&lt;=n)。A的子集形式类如Au, Au+1 … , Av (1&lt;=u&lt;=v&lt;=n)，即必须是连续的。我们感兴趣的是一种子集，它含有元素包括1,2,…k。（k是子集的大小）。<br>你的任务是找到这种类型的最长的子集。 <p></p>
+<p>&lt;/div&gt;</p><h2>Input</h2><div class="content">第一行，一个数n，表示序列A的长度 
+第二行，n个数，第I个数表示元素Ai 
+</div><h2>Output</h2><div class="content">一个数，表示可选子集的长度 
+</div><h2>Sample Input</h2><br>            <div class="content"><span class="sampledata">5<br>
+4 1 2 3 2<br>
+<br>
+</span></div><h2>Sample Output</h2><br>            <div class="content"><span class="sampledata">4<br>
+<br>
+</span></div><h2>HINT</h2><br>            <div class="content"><p>你可以选得子集从A1开始到A4,这个子集长度为4，包含了1，2，3，4）<br>
+1<=n<=100010<br>
+</=n<=100010<br></p></div><p></p>
+<h2 id="题目分析-1"><a href="#题目分析-1" class="headerlink" title="题目分析"></a>题目分析</h2><p>这道题就是和上文那道题完全一样但是不卡内存范围还小的一个弱化版，于是我用这题尝试了一下我上一题一开始的思路</p>
+<p>然而我后来发现mex无法快速地区间合并，也就是没法倍增预处理，于是我又想了另一种jump的方法，我们可以预处理上文提到的除了mex以外的那两个东西</p>
+<p>首先，我们枚举起始点，从起始点开始不停地jump，然后每次我们跳到$p$时，我们考虑$O(1)$搞出当前所有数前驱的最大值，如果这个最大值大于等于起点位置，那么肯定有重复元素，直接return，因为往后搜不会改变这个事实，所以就没有意义了</p>
+<p>但如果没有重复元素呢？我们知道，此时如果有这个子区间($[start, p]$)的最大值与此时子区间长度相同，那么这一定是一个合法区间，我们更新一下答案，否则，肯定有此时的最大值大于子区间长度</p>
+<p>这是为什么呢？我们可以考虑抽屉原理，如果最大值小于长度，那么肯定有一种数值重复出现了，那么肯定不行</p>
+<p>那这样不就是给了我一个天然的跳的下一个点的方式了吗？我们直接跳到$start + max - 1$这个位置，然后继续上面的玩法即可</p>
+<p>但如果当前区间合法，即最大值与长度相同，那么我们只需要把当前位置加一即可</p>
+<p>但其实这个方法并没有之前那种维护mex的方法那样玄学，这个方法是可以卡的，我们直接用$1, 2, \cdots, n$这样的数据就可以卡成$O(n ^ 2)$的，但不知为什么还AC了。。。</p>
+<p>如果能快速维护当前最小的没出现的是哪个数就好了。。。就能实现那个玄学的方法了</p>
+<p>总之当成一个失败的研究吧。。。附上暴力AC代码，跑了960ms。。。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 101005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i, l, r) for (register int i = l; i &lt;= r; i++)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i, r, l) for (register int i = r; i &gt;= l; i--)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> gc() ((p1 == p2 &amp;&amp; (p2 = (p1 = buffer) + fread(buffer, 1, maxn, stdin), p1 == p2)) ? EOF : *p1++)</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">char</span> *p1, *p2;</div><div class="line"><span class="keyword">char</span> buffer[maxn];</div><div class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">void</span> <span class="title">read</span>(<span class="title">T</span>&amp; <span class="title">x</span>)&#123;</span></div><div class="line">    <span class="keyword">char</span> ch = gc(); x = <span class="number">0</span>; <span class="keyword">bool</span> f = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (!(<span class="string">'0'</span> &lt;= ch &amp;&amp; ch &lt;= <span class="string">'9'</span>) &amp;&amp; ch != <span class="string">'-'</span>) ch = gc();</div><div class="line">    <span class="keyword">if</span> (ch == <span class="string">'-'</span>) f = <span class="number">0</span>, ch = gc();</div><div class="line">    <span class="keyword">while</span> (<span class="string">'0'</span> &lt;= ch &amp;&amp; ch &lt;= <span class="string">'9'</span>) x = (x &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">3</span>) + ch - <span class="string">'0'</span>, ch = gc();</div><div class="line">    <span class="keyword">if</span> (!f) x = -x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> line[maxn];</div><div class="line"><span class="keyword">int</span> n;</div><div class="line"><span class="keyword">int</span> mx[maxn][<span class="number">20</span>];</div><div class="line"><span class="keyword">int</span> mxl[maxn][<span class="number">20</span>];</div><div class="line"><span class="keyword">int</span> mi[<span class="number">20</span>];</div><div class="line"><span class="keyword">int</span> lo[maxn];</div><div class="line"><span class="keyword">int</span> left[maxn];</div><div class="line"><span class="keyword">int</span> save[maxn];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">    rep(i, <span class="number">1</span>, n) left[i] = save[line[i]], save[line[i]] = i;</div><div class="line">    rep(i, <span class="number">1</span>, n) mx[i][<span class="number">0</span>] = line[i], mxl[i][<span class="number">0</span>] = left[i];</div><div class="line">    mi[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    rep(i, <span class="number">1</span>, <span class="number">19</span>) mi[i] = mi[i - <span class="number">1</span>] &lt;&lt; <span class="number">1</span>;</div><div class="line">    rep(i, <span class="number">2</span>, n) lo[i] = lo[i &gt;&gt; <span class="number">1</span>] + <span class="number">1</span>;</div><div class="line">    rep(i, <span class="number">1</span>, <span class="number">19</span>)&#123;</div><div class="line">        rep(j, <span class="number">1</span>, n - mi[i] + <span class="number">1</span>)&#123;</div><div class="line">            mx[j][i] = max(mx[j][i - <span class="number">1</span>], mx[j + mi[i - <span class="number">1</span>]][i - <span class="number">1</span>]);</div><div class="line">            mxl[j][i] = max(mxl[j][i - <span class="number">1</span>], mxl[j + mi[i - <span class="number">1</span>]][i - <span class="number">1</span>]);</div><div class="line">        &#125;</div><div class="line">        rep(j, max(<span class="number">1</span>, n - mi[i] + <span class="number">2</span>), n)&#123;</div><div class="line">            mx[j][i] = mx[j][i - <span class="number">1</span>];</div><div class="line">            mxl[j][i] = mxl[j][i - <span class="number">1</span>];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> op)</span></span>&#123; </div><div class="line">    <span class="keyword">int</span> x = lo[r - l + <span class="number">1</span>];</div><div class="line">    <span class="keyword">if</span> (!op) <span class="keyword">return</span> max(mx[l][x], mx[r - mi[x] + <span class="number">1</span>][x]); </div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (op == <span class="number">1</span>) <span class="keyword">return</span> max(mxl[l][x], mxl[r - mi[x] + <span class="number">1</span>][x]); </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> ans = <span class="number">1</span>, sta;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">jump</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> ml = get(sta, x, <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span> (ml &gt;= sta) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">int</span> mxn = get(sta, x, <span class="number">0</span>);</div><div class="line">    <span class="keyword">if</span> (mxn == x - sta + <span class="number">1</span>) ans = max(ans, mxn);</div><div class="line">    <span class="keyword">int</span> _x = sta + mxn - <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span> (_x == x) _x++;</div><div class="line">    <span class="keyword">if</span> (_x &gt; n) <span class="keyword">return</span>;</div><div class="line">    jump(_x);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    read(n);</div><div class="line">    rep(i, <span class="number">1</span>, n) read(line[i]);</div><div class="line">    init();</div><div class="line">    rep(i, <span class="number">1</span>, n) sta = i, jump(i);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</div>
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/BZOJ/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tags/题解/">题解</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/06/子集和问题详解/"  data-tooltip="子集和问题详解">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/02/BZOJ阶段性汇总VIII/" data-tooltip="BZOJ阶段性汇总VIII">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/&amp;title=BZOJ阶段性汇总IX">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2017 Goseqh. All Rights Reserved.
+    </span>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/06/子集和问题详解/"  data-tooltip="子集和问题详解">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/02/BZOJ阶段性汇总VIII/" data-tooltip="BZOJ阶段性汇总VIII">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/&amp;title=BZOJ阶段性汇总IX">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/&amp;title=BZOJ阶段性汇总IX">
+                    <i class="fa fa-qq"></i><span>分享到 QQ</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-star"></i><span>分享到 Qzone</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2017/11/03/BZOJ阶段性汇总IX/">
+                    <i class="fa fa-renren"></i><span>分享到 Renren</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+        
+            <h4 id="about-card-name">Goseqh</h4>
+        
+            <div id="about-card-bio"><p>For what I cherish forever.</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>NEYC的<strong>OI狗</strong></p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                China, Liaoning, NEYC
+            </div>
+        
+    </div>
+</div>
+
+        <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-close"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <h3 class="media-heading">莫比乌斯反演总结</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <h3 class="media-heading">莫比乌斯反演详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830262/83053_kwvev3.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <h3 class="media-heading">杜教筛原理详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830177/86548_fqol95.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <h3 class="media-heading">狄利克雷卷积详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <h3 class="media-heading">Dilworth定理</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月1日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830261/85371_fltskc.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <h3 class="media-heading">#6164. 「美团 CodeM 初赛 Round A」数列互质</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6164$. 「美团 CodeM 初赛 Round A」数列互质<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830238/86242_qg6y9f.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <h3 class="media-heading">#6161. 「美团 CodeM 初赛 Round A」倒水</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6161$. 「美团 CodeM 初赛 Round A」倒水<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <h3 class="media-heading">#6190. 序列查询</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830203/85373_qtkof1.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <h3 class="media-heading">#6075. 「2017 山东一轮集训 Day6」重建</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6075$. 「2017 山东一轮集训 Day6」重建<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <h3 class="media-heading">#6136. 「2017 山东三轮集训 Day4」Left</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="没有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 56 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1501465056/85754_kmawco.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('CVL5M7VURH', '14d1d65fe890a7fa4482dd38cb49fb35');
+        var algoliaIndex = algoliaClient.initIndex('Goseqh');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    </body>
+</html>
