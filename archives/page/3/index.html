@@ -1,54 +1,171 @@
 
 <!DOCTYPE html>
 <html lang="zh-cn">
-    
-<head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Goseqh&#39;s Blog">
-    <title>归档 - Goseqh&#39;s Blog</title>
-    <meta name="author" content="Goseqh">
-    
-    
-        <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1501464937/new2_qgnz5x.png">
-    
-    
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
-    
-    <meta name="description" content="OI Dog,work in NEYC">
-<meta property="og:type" content="blog">
-<meta property="og:title" content="Goseqh&#39;s Blog">
-<meta property="og:url" content="https://goseqh.tk/archives/page/3/index.html">
-<meta property="og:site_name" content="Goseqh&#39;s Blog">
-<meta property="og:description" content="OI Dog,work in NEYC">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Goseqh&#39;s Blog">
-<meta name="twitter:description" content="OI Dog,work in NEYC">
-    
-    
-        
-    
-    
-        <meta property="og:image" content="https://goseqh.tk/assets/images/new2.png"/>
-    
-    
-    
-    
-    <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
-    <!--STYLES END-->
-    
-    
-    <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?9505a5af654a2478f93fd6c0ae4f687d";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <%
+    var title = '';
+    var title_suffix = ' - ' + config.title;
+    var fb_admin_ids = [];
+    var keywords = '';
+    var photos = [];
+    var publisher = '';
 
+    /**
+     * Separate fb admin ids
+     */
+    (function() {
+        if (theme.fb_admin_ids) {
+            fb_admin_ids = String(theme.fb_admin_ids).split(',');
+        }
+    })();
+
+    /**
+     * Pick publisher G+ profile
+     */
+    (function() {
+        if (theme.author.google_plus_business) {
+            publisher = theme.author.google_plus_business;
+        }
+        else if (theme.author.google_plus) {
+            publisher = theme.author.google_plus;
+        }
+    })();
+
+    /**
+     * Generate page title
+     */
+    (function() {
+        if (is_home()) {
+            title += config.title;
+        }
+        else if (is_archive()){
+            title += __('global.archives');
+
+            if (is_month()) {
+                title += ': ' + page.year + '/' + page.month;
+            }
+            else if (is_year()) {
+                title += ': ' + page.year;
+            }
+
+            title += title_suffix;
+        }
+        else if (is_tag()) {
+            if (page.tag) {
+                title += __('global.tag') + ': ' + page.tag;
+            }
+            else {
+                title += __('global.tags');
+            }
+
+            title += title_suffix;
+        }
+        else if (is_category()) {
+            if (page.category) {
+                title += __('global.category') + ': ' + page.category;
+            }
+            else {
+                title += __('global.categories');
+            }
+
+            title += title_suffix;
+        }
+        else {
+            title += page.title + title_suffix;
+        }
+    })();
+
+    /**
+     * Get global and page keywords
+     */
+    (function() {
+        if (config.keywords) {
+            keywords += config.keywords;
+            keywords += ',';
+        }
+        if (page.keywords) {
+            keywords += page.keywords;
+        }
+    })();
+
+    /**
+     * Extract original url of page photos and store it
+     * to add them in open graph and swiftype meta tag
+     */
+    (function() {
+        /**
+         * Extract original url of a photo and store it
+         */
+        function processImage(img) {
+            var rPhoto = /([\w:\-\/._#]+)(?:\s+([\w:\-\/._#]+))*(?:\s*["|'](.+)["|'])*/;
+            match = img.match(rPhoto);
+            photos.push(resolve_asset_url(page.path, match[1]));
+        }
+
+        if (page.gallery && page.gallery.length) {
+            page.gallery.forEach(function(photo) {
+                processImage(photo)
+            });
+        }
+        else if (page.photos && page.photos.length) {
+            page.photos.forEach(function(photo) {
+                processImage(photo);
+            });
+        }
+    })();
+%>
+<head>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script language="JavaScript"><var password="";password=prompt('请输入密码 (本网站需输入密码才可进入):','');if (password != 'mima')   {alert("密码不正确,无法进入本站!!");    window.opener=null; window.close();}  // 密码不正确就关闭//></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="<%= config.title %>">
+    <title><%= title %></title>
+    <meta name="author" content="<%= config.author %>">
+    <% if (keywords) { %>
+        <meta name="keywords" content="<%= keywords %>">
+    <% } %>
+    <% if (theme.favicon) { %>
+        <link rel="icon" href="<%= resolve_asset_url(theme.image_dir, theme.favicon) %>">
+    <% } %>
+    <% if ((config.feed) && (config.feed.path.length)) { %>
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="<%- url_for(config.feed.path) %>">
+    <% } %>
+    <%- open_graph({
+        type: 'blog',
+        twitter_id: theme.author.twitter,
+        fb_app_id: theme.fb_app_id
+    }) %>
+    <% if (publisher) { %>
+        <link rel="publisher" href="https://plus.google.com/<%= publisher %>"/>
+    <% } %>
+    <% if (typeof fb_admin_ids !== 'undefined') { %>
+        <% fb_admin_ids.forEach(function(fb_admin_id) { %>
+            <meta property="fb:admins" content="<%= fb_admin_id %>" />
+        <% }) %>
+    <% } %>
+    <% if (theme.gravatar_email) { %>
+        <meta property="og:image" content="<%- gravatar(theme.gravatar_email, 640) %>"/>
+    <% } else if (theme.author.picture) { %>
+        <meta property="og:image" content="<%= resolve_asset_url(theme.image_dir, theme.author.picture) %>"/>
+    <% } %>
+    <% if (page.thumbnailImage && page.thumbnailImage.length) { %>
+        <meta property="og:image" content="<%= resolve_asset_url(page.path, page.thumbnailImage) %>"/>
+        <meta class="swiftype" name="image" data-type="enum" content="<%= resolve_asset_url(page.path, page.thumbnailImage) %>" />
+    <% } %>
+    <% if (page.coverImage && page.coverImage.length) { %>
+        <meta property="og:image" content="<%= resolve_asset_url(page.path, page.coverImage) %>"/>
+        <meta class="swiftype" name="image" data-type="enum" content="<%= resolve_asset_url(page.path, page.coverImage) %>" />
+    <% } %>
+    <% if (photos && photos.length) { %>
+        <% photos.forEach(function(photo) { %>
+            <meta property="og:image" content="<%= photo %>" />
+            <meta class="swiftype" name="image" data-type="enum" content="<%= photo %>" />
+        <% }) %>
+    <% } %>
+    <!--STYLES-->
+    <%- css('assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css') %>
+    <!--STYLES END-->
+    <%- partial('google-analytics') %>
+    <%- partial('baidu-analytics') %><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
     <body>
@@ -227,489 +344,114 @@
                         hasCoverMetaIn
                         ">
                 
-    <section class="postShorten-group main-content-wrap">
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
+    <script language="JavaScript"><!--var password="";password=prompt('请输入密码 (本网站需输入密码才可进入):','');if (password != 'mima')   {alert("密码不正确,无法进入本站!!");    window.opener=null; window.close();}  // 密码不正确就关闭//--></script>
+
+<section class="postShorten-group main-content-wrap">
+    <% page.posts.each(function(post) { %>
+    <%
+        var tableOfContents = null;
+        var thumbnailImageUrl = post.thumbnailImageUrl;
+        var postContent = post.content;
+        // Define default position for the thumbnail image
+        var thumbnailImagePosition = theme.thumbnail_image_position;
+        /* Define thumbnail image */
+
+        // Define position of the thumbnail image
+        if (!post.excerpt && !post.link) {
+            thumbnailImagePosition = "bottom";
+        } else if (thumbnailImageUrl !== null) {
+            if (post.thumbnailImagePosition && post.thumbnailImagePosition.length)  {
+                thumbnailImagePosition = post.thumbnailImagePosition;
+            }
+        }
+
+        // Generate and insert table of contents in post content
+        if (!post.excerpt && (/<!--(\s*)[t|T][o|O][c|C](\s*)-->/).test(postContent)) {
+            if (__('post.toc_title')) {
+                tableOfContents = '<h1 id=\"table-of-contents\">' + __('post.toc') + '</h1>';
+            } else {
+                tableOfContents = '<span id="table-of-contents"></span>';
+            }
+            tableOfContents += toc(postContent, {list_number: false})
+            postContent = postContent.replace(/<!--(\s*)[t|T][o|O][c|C](\s*)-->/, tableOfContents)
+        }
+    %>
+    <article class="postShorten postShorten--thumbnailimg-<%= thumbnailImagePosition %>" itemscope itemType="http://schema.org/BlogPosting">
         <div class="postShorten-wrap">
-            
+            <% if (thumbnailImageUrl !== null && thumbnailImagePosition === "top") { %>
+                <a href="<%- url_for(post.path) %>">
+                    <div class="postShorten-thumbnailimg">
+                        <img alt="" itemprop="image" src="<%= thumbnailImageUrl %>"/>
+                    </div>
+                </a>
+                <% thumbnailImageUrl = null; %>
+            <% } %>
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/08/27/zkw费用流详解/">
-                            zkw费用流详解
+                    <% if (post.link) { %>
+                        <a class="link-unstyled" href="<%- url_for(post.link) %>">
+                            <%= post.title || '(' + __('post.no_title') + ')' %>
                         </a>
-                    
+                    <% } else { %>
+                        <a class="link-unstyled" href="<%- url_for(post.path) %>">
+                            <%= post.title || '(' + __('post.no_title') + ')' %>
+                        </a>
+                    <% } %>
                 </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-08-27T13:25:22+08:00">
-	
-		    8月 27, 2017
-    	
-    </time>
-    
-</div>
-
+                <%- partial('post/meta', {post: post, classes: ['postShorten-meta']}) %>
             </div>
-            
+            <% if (post.excerpt || post.link) { %>
                 <div class="postShorten-excerpt" itemprop="articleBody">
-                    <!--toc-->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>还是扒了一篇老文章，感觉年轻时的我真是太强了。。。<br>
-                    
-                        <a href="/2017/08/27/zkw费用流详解/" class="postShorten-excerpt_link link">
-                            阅读全文
+                    <%- post.excerpt %>
+                    <% if (post.link && _('post.go_to_website')) { %>
+                        <a href="<%- url_for(post.link) %>" target="new" class="postShorten-excerpt_link link">
+                            <%= __('post.go_to_website') %>
                         </a>
-                        
-                    
+                    <% } else if (__('post.read_more')) { %>
+                        <a href="<%- url_for(post.path) %>" class="postShorten-excerpt_link link">
+                            <%- __('post.read_more') %>
+                        </a>
+                        <% if (post.readingtime) { %>
+                            <span class="postShorten-readingtime">
+                                <%= ' - ' + post.readingtime + ' min read' %>
+                            </span>
+                        <% } %>
+                    <% } %>
                 </div>
-            
+            <% } else { %>
+                <div class="postShorten-content" itemprop="articleBody">
+                    <%- postContent %>
+                    <% if (theme.image_gallery) { %>
+                        <%- partial('post/gallery', {photos: post.photos, post: post})%>
+                    <% } %>
+                    <% if (__('post.comment_and_share')) { %>
+                        <p>
+                            <a href="<%- url_for(post.path + '#post-footer') %>" class="postShorten-excerpt_link link">
+                                <%- __('post.comment_and_share') %>
+                            </a>
+                        </p>
+                    <% } %>
+                </div>
+            <% } %>
         </div>
-        
-            <a href="/2017/08/27/zkw费用流详解/">
+        <% if (thumbnailImageUrl !== null && thumbnailImagePosition !== "top") { %>
+            <a href="<%- url_for(post.path) %>">
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772088/135597442558_mxzkvz.jpg"/>
+                    <img alt="" itemprop="image" src="<%= thumbnailImageUrl %>"/>
                 </div>
             </a>
-            
-        
+            <% thumbnailImageUrl = null; %>
+        <% } %>
     </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/08/27/进阶网络流算法/">
-                            进阶网络流算法
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-08-27T12:48:49+08:00">
-	
-		    8月 27, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <!--toc-->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>又双叒叕扒了一篇老文章，感觉年轻时的我真是太强了。。。<br>
-                    
-                        <a href="/2017/08/27/进阶网络流算法/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2017/08/27/进阶网络流算法/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772116/1449046372442_t1zdsf.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/08/27/序列莫队算法详解/">
-                            序列莫队算法详解
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-08-27T12:37:22+08:00">
-	
-		    8月 27, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <!--toc-->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>又扒了一篇老文章，感觉年轻时的我真是太强了。。。<br>
-                    
-                        <a href="/2017/08/27/序列莫队算法详解/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2017/08/27/序列莫队算法详解/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772118/1449046359603_g7esu2.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/08/26/BZOJ阶段性汇总II/">
-                            BZOJ阶段性汇总II
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-08-26T18:12:56+08:00">
-	
-		    8月 26, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <!-- toc -->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>第二篇。。。<br>
-                    
-                        <a href="/2017/08/26/BZOJ阶段性汇总II/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2017/08/26/BZOJ阶段性汇总II/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772124/1449046381876_lnkdjk.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/08/26/BZOJ阶段性汇总I/">
-                            BZOJ阶段性汇总I
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-08-26T17:12:35+08:00">
-	
-		    8月 26, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <!-- toc -->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>第一篇BZOJ题解出现啦！<br>
-                    
-                        <a href="/2017/08/26/BZOJ阶段性汇总I/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2017/08/26/BZOJ阶段性汇总I/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772113/1449046367782_bbj7ix.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/08/26/BZOJ题解目录/">
-                            BZOJ题解目录
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-08-26T17:00:01+08:00">
-	
-		    8月 26, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <!-- toc -->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>BZOJ的题解目录<br>
-                    
-                        <a href="/2017/08/26/BZOJ题解目录/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2017/08/26/BZOJ题解目录/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772142/1456293221764_qtr9wp.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/08/18/2017百度之星复赛参赛总结/">
-                            2017百度之星复赛参赛总结
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-08-18T16:41:41+08:00">
-	
-		    8月 18, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <!-- toc -->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>很显然，因为我进不了决赛所以只能在这里写一下复赛的参赛感想，我真是太弱了。。。<br>
-                    
-                        <a href="/2017/08/18/2017百度之星复赛参赛总结/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2017/08/18/2017百度之星复赛参赛总结/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772121/1449046375909_gat7ol.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/08/17/Catalan数详解/">
-                            Catalan数详解
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-08-17T13:29:06+08:00">
-	
-		    8月 17, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <!-- toc -->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>翻以前的老文章突然看到这一篇，感觉不错所以放到博客上。。。<br>
-                    
-                        <a href="/2017/08/17/Catalan数详解/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2017/08/17/Catalan数详解/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772138/1456293200987_l5q67w.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/08/16/FFT-NTT-FWT详解/">
-                            FFT,NTT,FWT详解
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-08-16T21:41:59+08:00">
-	
-		    8月 16, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <!-- toc -->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>最近集中攻略了一下数学内容，感觉对FFT,NTT,FWT这三种变换有了新的理解与感受，所以用这篇文章来分享最近新的收获<br>
-                    
-                        <a href="/2017/08/16/FFT-NTT-FWT详解/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2017/08/16/FFT-NTT-FWT详解/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772138/1456293217710_w1kxfp.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/08/15/2031-「SDOI2016」数字配对/">
-                            #2031. 「SDOI2016」数字配对
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-08-15T11:51:01+08:00">
-	
-		    8月 15, 2017
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <!--toc-->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ #$2031$. 「SDOI$2016$」数字配对<br>
-                    
-                        <a href="/2017/08/15/2031-「SDOI2016」数字配对/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2017/08/15/2031-「SDOI2016」数字配对/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://res.cloudinary.com/goseqh/image/upload/v1502772143/1456293213722_uhr5fr.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        <li class="pagination-prev">
-            
-                <a class="btn btn--default btn--small" href="/archives/page/2/">
-            
-                <i class="fa fa-angle-left text-base icon-mr"></i>
-                    <span>上一页</span>
-            </a>
-        </li>
-        
-        
-        <li class="pagination-next">
-            <a class="btn btn--default btn--small" href="/archives/page/4/">
-                    <span>下一页</span>
-                <i class="fa fa-angle-right text-base icon-ml"></i>
-            </a>
-        </li>
-        
-        <li class="pagination-number">第 3 页 共 6 页</li>
-    </ul>
-</div>
-
+    <% }) %>
+    <%- partial('pagination', {type: 'page'}) %>
 </section>
 
 
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2017 Goseqh. All Rights Reserved.
+        Copyrights &copy; <%= date(new Date(), 'YYYY') + ' ' + config.author || config.title %>. All Rights Reserved.
     </span>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
