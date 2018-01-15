@@ -1,0 +1,1064 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Goseqh&#39;s Blog">
+    <title>UOJ #274. 【清华集训2016】温暖会指引我们前行 - Goseqh&#39;s Blog</title>
+    <meta name="author" content="Goseqh">
+    
+    
+        <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1501464937/new2_qgnz5x.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="引言UOJ #274. 【清华集训2016】温暖会指引我们前行  题解">
+<meta name="keywords" content="题解,LCT,UOJ,生成树,最小生成树">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="UOJ #274. 【清华集训2016】温暖会指引我们前行">
+<meta property="og:url" content="https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/index.html">
+<meta property="og:site_name" content="Goseqh&#39;s Blog">
+<meta property="og:description" content="引言UOJ #274. 【清华集训2016】温暖会指引我们前行  题解">
+<meta property="og:updated_time" content="2018-01-13T11:03:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UOJ #274. 【清华集训2016】温暖会指引我们前行">
+<meta name="twitter:description" content="引言UOJ #274. 【清华集训2016】温暖会指引我们前行  题解">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://goseqh.tk/assets/images/new2.png"/>
+    
+    
+        <meta property="og:image" content="http://218.106.205.134/uploads/second.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://218.106.205.134/uploads/second.jpg" />
+    
+    
+        <meta property="og:image" content="http://218.106.205.134/uploads/second.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://218.106.205.134/uploads/second.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
+    <!--STYLES END-->
+    
+    
+    <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?9505a5af654a2478f93fd6c0ae4f687d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+    </div>
+    
+        
+            <a  class="header-right-icon open-algolia-search"
+                href="#search">
+        
+        
+            <i class="fa fa-lg fa-search"></i>
+        
+        </a>
+    
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5fc847eb9d9d78d9abdc859c2181ec2f";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Goseqh</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>For what I cherish forever.</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/GQH123" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="mailto:572694553@qq.com" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc">QQmail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    "
+             style="background-image:url('http://218.106.205.134/uploads/second.jpg');"
+             data-behavior="4">
+            
+                <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            UOJ #274. 【清华集训2016】温暖会指引我们前行
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2018-01-13T18:21:34+08:00">
+	
+		    1月 13, 2018
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <!--用真正的题解标题替换所有的<title>--->
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UOJ-274-【清华集训2016】温暖会指引我们前行"><span class="toc-text">UOJ #274. 【清华集训2016】温暖会指引我们前行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">任务描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">样例一</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">input</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">output</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">样例二</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">input</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-text">output</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">样例三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">限制与约定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目分析"><span class="toc-text">题目分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></li></ol></li></ol>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>UOJ #274. 【清华集训2016】温暖会指引我们前行  题解<br><a id="more"></a></p>
+<h1 id="UOJ-274-【清华集训2016】温暖会指引我们前行"><a href="#UOJ-274-【清华集训2016】温暖会指引我们前行" class="headerlink" title="UOJ #274. 【清华集训2016】温暖会指引我们前行"></a>UOJ #274. 【清华集训2016】温暖会指引我们前行</h1><div class="tab-content">
+    <div class="tab-pane active" id="tab-statement">
+        <article class="top-buffer-md"><p>寒冬又一次肆虐了北国大地</p>
+<p>无情的北风穿透了人们御寒的衣物</p>
+<p>可怜虫们在冬夜中发出无助的哀嚎</p>
+<p>“冻死宝宝了！”</p>
+<p>这时</p>
+<p>远处的天边出现了一位火焰之神</p>
+<p>“我将赐予你们温暖和希望！”</p>
+<p>只见他的身体中喷射出火焰之力</p>
+<p>通过坚固的钢铁，传遍了千家万户</p>
+<p>这时，只听见人们欢呼</p>
+<p>“暖气来啦！”</p>
+<h3>任务描述</h3>
+<p>虽然小R住的宿舍楼早已来了暖气，但是由于某些原因，宿舍楼中的某些窗户仍然开着（例如厕所的窗户），这就使得宿舍楼中有一些路上的温度还是很低。</p>
+<p>小R的宿舍楼中有$n$个地点和一些路，一条路连接了两个地点，小R可以通过这条路从其中任意一个地点到达另外一个地点。但在刚开始，小R还不熟悉宿舍楼中的任何一条路，所以他会慢慢地发现这些路，他在发现一条路时还会知道这条路的温度和长度。每条路的温度都是互不相同的。</p>
+<p>小R需要在宿舍楼中活动，每次他都需要从一个地点到达另一个地点。小R希望每次活动时经过一条最温暖的路径，最温暖的路径的定义为，将路径上各条路的温度从小到大排序后字典序最大。即温度最低的路温度尽量高，在满足该条件的情况下，温度第二低的路温度尽量高，以此类推。小R不会经过重复的路。由于每条路的温度互不相同，因此只存在一条最温暖的路径。</p>
+<p>对于小R的每次活动，你需要求出小R需要走过的路径总长度。如果小R通过当前发现的路不能完成这次活动，则输出 $-1$。</p>
+<p><strong>注意本题中的字典序与传统意义上的字典序定义有所不同，对于两个序列$a,b(a \neq b)$，若$a$是$b$的前缀则$a$的字典序较大，同时可以推出空串的字典序最大。</strong></p>
+<h3>输入格式</h3>
+<p>第一行两个正整数 $n,m$。表示小R的宿舍楼中有 $n$ 个地点，共发生了 $m$ 个事件。</p>
+<p>接下来 $m$ 行，每行描述一个事件，事件分为三类。</p>
+<ol><li><p>$\texttt{find id u v t l}$ 表示小R发现了一条连接$u$和$v$之间的路，编号为$id$。相同$id$的边只会出现一次。</p>
+</li>
+<li><p>$\texttt{move u v}$ 表示小R要从$u$到达$v$，你需要计算出最温暖的路径的长度 ，若不能从$u$到达$v$，则输出$-1$。</p>
+</li>
+<li><p>$\texttt{change id l}$ 表示从$u$到$v$这条边的长度变为了$l$（保证在当前时间点这条边存在）。 </p>
+</li>
+</ol><h3>输出格式</h3>
+<p>对于每个询问，输出一行整数，表示最温暖的路径长度。</p>
+<h3>样例一</h3>
+<h4>input</h4>
+<pre>
+8 19
+find 0 0 2 7 2
+find 1 2 4 4 4
+find 2 4 6 10 1
+find 3 6 7 8 6
+move 2 7
+move 1 6
+find 4 2 5 3 4
+move 0 5
+change 0 12
+find 5 4 5 5 10
+find 6 2 3 6 9
+move 3 5
+find 7 0 1 12 1
+move 1 6
+find 8 1 7 11 100
+move 1 6
+move 3 7
+move 5 6
+move 2 2
+
+</pre>
+
+<h4>output</h4>
+<pre>
+11
+-1
+6
+23
+18
+106
+122
+11
+0
+
+</pre>
+
+<h3>样例二</h3>
+<h4>input</h4>
+<pre>
+15 45
+find 0 1 0 8 5987
+find 1 2 0 14 5455
+find 2 3 0 27 8830
+find 3 4 3 42 7688
+find 4 5 0 25 1756
+find 5 6 5 35 1550
+find 6 7 4 43 9440
+move 3 9
+change 2 9113
+move 10 13
+move 3 3
+move 11 10
+find 7 8 7 6 7347
+find 8 9 8 26 8935
+move 8 4
+change 3 4466
+find 9 10 9 28 8560
+move 6 5
+find 10 11 10 31 6205
+change 9 9228
+find 11 12 10 23 948
+find 12 13 12 45 5945
+move 0 9
+move 2 5
+change 2 6118
+find 13 14 13 12 6906
+move 4 1
+change 2 504
+find 14 4 2 22 9796
+move 10 7
+move 1 14
+move 13 3
+find 15 12 9 39 8985
+find 16 9 8 17 3710
+change 1 5370
+find 17 1 0 36 4669
+find 18 7 6 37 8087
+move 9 0
+find 19 14 9 33 8234
+find 20 0 4 24 5209
+change 1 4883
+find 21 6 3 9 2461
+find 22 5 2 19 4291
+change 1 7219
+change 6 4846
+
+</pre>
+
+<h4>output</h4>
+<pre>
+-1
+-1
+0
+-1
+16787
+1550
+39301
+7211
+16571
+25510
+59706
+46309
+30692
+
+</pre>
+
+<h3>样例三</h3>
+<p>见样例数据下载</p>
+<h3>限制与约定</h3>
+<p>对于find操作：$(0\le id\lt m, 0\le u,v \lt n, u\ne v,0\le t\le 1000000000, 0 \le l \le 10000)$；</p>
+<p>对于move操作：$(0\le u,v \lt n)$；</p>
+<p>对于change操作：$(0 \le l \le 10000)$。</p>
+<p>对于100%的数据，$1\le n\le 100000, 1\le m \le 300000$ 。</p>
+<p>本题共有20个数据点，每个数据点5分。</p>
+<div class="table-responsive">
+<table class="table table-bordered table-text-center table-vertical-middle"><thead><tr><th rowspan="1">测试点</th><th rowspan="1">$n$</th><th rowspan="1">$m$</th><th rowspan="1">$其它$</th></tr></thead><tbody><tr><td rowspan="1">$1-2$</td><td rowspan="1">$\leq20$</td><td rowspan="1">$\leq50$</td><td rowspan="2">无特殊约定</td></tr><tr><td rowspan="1">$3-5$</td><td rowspan="1">$\leq1000$</td><td rowspan="1">$\leq3000$</td></tr><tr><td rowspan="1">$6-10$</td><td rowspan="3">$\leq100000$</td><td rowspan="3">$\leq300000$</td><td rowspan="1">所有的find事件都在move事件之前，且没有change事件</td></tr><tr><td rowspan="1">$11-14$</td><td rowspan="1">所有的find事件都在move事件之前</td></tr><tr><td rowspan="1">$15-20$</td><td rowspan="1">无特殊约定</td></tr></tbody></table></div>
+
+
+<p><strong>时间限制</strong>：$2\texttt{s}$</p>
+<p><strong>空间限制</strong>：$512\texttt{MB}$</p>
+<h3>下载</h3>
+<p><a href="/download.php?type=problem&amp;id=274">样例数据下载</a></p>
+
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>这道题，我们显然是要先维护一下当前温度的最大生成树，然后不断地向里面加边，替换已有的边，然后回答询问，大概就是这样的一个思路</p>
+<p>我们发现，要查询和要维护的信息都在边上，但是LCT很难直接维护边信息，怎么办呢？可以使用加点法</p>
+<p>我们新加入一些点，这些点的信息就是对应的边上的信息，就是说，我们是用这些新加入的点来代替原来的边的，假设原来的边的两端为$x$和$y$，那么这个新点就再和$x$, $y$连边即可</p>
+<p>然后就和普通的LCT一样了，维护一下当前子树中点权最小的那个点即可</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cassert&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 600005 </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 2000000005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ls ch[x][0]</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> rs ch[x][1]</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i, l, r) for (register int i = l; i &lt;= r; i++)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i, r, l) for (register int i = r; i &gt;= l; i--)</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n, m;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> x, y, t, l;</div><div class="line">    edge(<span class="keyword">int</span> x = INF, <span class="keyword">int</span> y = INF, <span class="keyword">int</span> t = INF, <span class="keyword">int</span> l = INF) : x(x), y(y), t(t), l(l)&#123;&#125;</div><div class="line">&#125;e[maxn];</div><div class="line"></div><div class="line"><span class="keyword">int</span> num[maxn];</div><div class="line"><span class="keyword">int</span> val[maxn];</div><div class="line"><span class="keyword">int</span> sum[maxn];</div><div class="line"><span class="keyword">int</span> fa[maxn];</div><div class="line"><span class="keyword">int</span> ch[maxn][<span class="number">2</span>];</div><div class="line"><span class="keyword">bool</span> rev[maxn];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> ch[fa[x]][<span class="number">0</span>] != x &amp;&amp; ch[fa[x]][<span class="number">1</span>] != x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    sum[x] = sum[ls] + sum[rs] + val[x];</div><div class="line">    num[x] = x;</div><div class="line">    <span class="keyword">if</span> (e[num[ls]].t &lt; e[num[x]].t) num[x] = num[ls];</div><div class="line">    <span class="keyword">if</span> (e[num[rs]].t &lt; e[num[x]].t) num[x] = num[rs];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (rev[x])&#123;</div><div class="line">        rev[ls] ^= <span class="number">1</span>, rev[rs] ^= <span class="number">1</span>;</div><div class="line">        rev[x] = <span class="number">0</span>;</div><div class="line">        swap(ls, rs);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> d)</span></span>&#123;</div><div class="line">    <span class="comment">//printf("rotate start-----------------------\n");</span></div><div class="line">    <span class="keyword">int</span> k = ch[x][d];</div><div class="line">    fa[k] = fa[x];</div><div class="line">    <span class="keyword">if</span> (!is_root(x)) ch[fa[x]][ch[fa[x]][<span class="number">1</span>] == x] = k;</div><div class="line">    ch[x][d] = ch[k][d ^ <span class="number">1</span>];</div><div class="line">    fa[ch[x][d]] = x;</div><div class="line">    ch[k][d ^ <span class="number">1</span>] = x;</div><div class="line">    fa[x] = k;</div><div class="line">    pushup(x);</div><div class="line">    pushup(k);</div><div class="line">    <span class="comment">//printf("rotate end-----------------------\n");</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">splay</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="comment">//printf("splay start-----------------------\n");</span></div><div class="line">    <span class="keyword">int</span> t = x;</div><div class="line">    <span class="keyword">while</span> (!is_root(x))&#123;</div><div class="line">        s.push(x);</div><div class="line">        x = fa[x];</div><div class="line">        <span class="keyword">if</span> (x == fa[x]) <span class="built_in">printf</span>(<span class="string">"%d"</span>, x), assert(<span class="literal">false</span>);</div><div class="line">    &#125;</div><div class="line">    s.push(x);</div><div class="line">    <span class="keyword">while</span> (!s.empty())&#123;</div><div class="line">        pushdown(s.top());</div><div class="line">        s.pop();</div><div class="line">    &#125;</div><div class="line">    x = t;</div><div class="line">    <span class="keyword">while</span> (!is_root(x))&#123;</div><div class="line">        <span class="keyword">int</span> f1 = fa[x];</div><div class="line">        <span class="keyword">int</span> d1 = ch[f1][<span class="number">1</span>] == x;</div><div class="line">        <span class="keyword">if</span> (!is_root(f1))&#123;</div><div class="line">            <span class="keyword">int</span> f2 = fa[f1];</div><div class="line">            <span class="keyword">int</span> d2 = ch[f2][<span class="number">1</span>] == f1;</div><div class="line">            <span class="keyword">if</span> (d1 ^ d2) rotate(f1, d1), rotate(f2, d2);</div><div class="line">            <span class="keyword">else</span> rotate(f2, d2), rotate(f1, d1);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> rotate(f1, d1);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//printf("splay end-----------------------\n");</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">access</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="comment">//printf("access start-----------------------\n");</span></div><div class="line">    <span class="keyword">int</span> t = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (x)&#123;</div><div class="line">        splay(x);</div><div class="line">        rs = t;</div><div class="line">        pushup(x);</div><div class="line">        t = x;</div><div class="line">        x = fa[x];</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//printf("access end-----------------------\n");</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">moveroot</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    access(x);</div><div class="line">    splay(x);</div><div class="line">    rev[x] ^= <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    moveroot(y);</div><div class="line">    access(x);</div><div class="line">    splay(x);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    access(x), splay(x);</div><div class="line">    <span class="keyword">while</span> (ls) x = ls;</div><div class="line">    splay(x);</div><div class="line">    <span class="keyword">int</span> f = x; x = y;</div><div class="line">    access(x), splay(x);</div><div class="line">    <span class="keyword">while</span> (ls) x = ls;</div><div class="line">    splay(x);</div><div class="line">    <span class="keyword">return</span> f == x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_edge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    split(x, y);</div><div class="line">    <span class="keyword">return</span> num[x];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_len</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (!check(x, y)) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"-1\n"</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    split(x, y);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, sum[x]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    split(x, y);</div><div class="line">    fa[y] = ls = <span class="number">0</span>;</div><div class="line">    pushup(x);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x = e[id].x, y = e[id].y;</div><div class="line">    <span class="keyword">if</span> (check(x, y))&#123;</div><div class="line">        <span class="keyword">int</span> k = get_edge(x, y);</div><div class="line">        <span class="keyword">if</span> (e[k].t &gt; e[id].t) <span class="keyword">return</span>;</div><div class="line">        cut(k, e[k].x);</div><div class="line">        cut(k, e[k].y);</div><div class="line">    &#125;</div><div class="line">    sum[id] = val[id] = e[id].l;</div><div class="line">    num[id] = id;</div><div class="line">    moveroot(x);</div><div class="line">    fa[x] = id;</div><div class="line">    moveroot(y);</div><div class="line">    fa[y] = id;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> id, <span class="keyword">int</span> len)</span></span>&#123; </div><div class="line">    access(id);</div><div class="line">    splay(id);</div><div class="line">    val[id] = len;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">        freopen(<span class="string">"warm.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</div><div class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    <span class="keyword">char</span> op[<span class="number">15</span>];</div><div class="line">    <span class="keyword">int</span> x, y, z, w, id;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</div><div class="line">    rep(i, <span class="number">1</span>, m)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>, op);</div><div class="line">        <span class="keyword">switch</span>(op[<span class="number">0</span>])&#123;</div><div class="line">            <span class="keyword">case</span> <span class="string">'f'</span>: <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d%d"</span>, &amp;id, &amp;x, &amp;y, &amp;z, &amp;w), id += n + <span class="number">1</span>, x++, y++, e[id] = edge(x, y, z, w), link(id); <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="string">'m'</span>: <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;x, &amp;y), x++, y++, get_len(x, y); <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="string">'c'</span>: <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;id, &amp;x), id += n + <span class="number">1</span>, modify(id, x); <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>: assert(<span class="literal">false</span>); <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</article></div></div>
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/LCT/">LCT</a> <a class="tag tag--primary tag--small t-link" href="/tags/UOJ/">UOJ</a> <a class="tag tag--primary tag--small t-link" href="/tags/最小生成树/">最小生成树</a> <a class="tag tag--primary tag--small t-link" href="/tags/生成树/">生成树</a> <a class="tag tag--primary tag--small t-link" href="/tags/题解/">题解</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/13/UOJ-207-共价大爷游长沙/"  data-tooltip="UOJ #207. 共价大爷游长沙">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/13/BZOJ-3510-首都/" data-tooltip="BZOJ 3510: 首都">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/&amp;title=UOJ #274. 【清华集训2016】温暖会指引我们前行">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2018 Goseqh. All Rights Reserved.
+    </span>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/13/UOJ-207-共价大爷游长沙/"  data-tooltip="UOJ #207. 共价大爷游长沙">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/13/BZOJ-3510-首都/" data-tooltip="BZOJ 3510: 首都">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/&amp;title=UOJ #274. 【清华集训2016】温暖会指引我们前行">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/&amp;title=UOJ #274. 【清华集训2016】温暖会指引我们前行">
+                    <i class="fa fa-qq"></i><span>分享到 QQ</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-star"></i><span>分享到 Qzone</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/">
+                    <i class="fa fa-renren"></i><span>分享到 Renren</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+        
+            <h4 id="about-card-name">Goseqh</h4>
+        
+            <div id="about-card-bio"><p>For what I cherish forever.</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>NEYC的<strong>OI狗</strong></p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                China, Liaoning, NEYC
+            </div>
+        
+    </div>
+</div>
+
+        <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-close"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <h3 class="media-heading">莫比乌斯反演总结</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <h3 class="media-heading">莫比乌斯反演详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830262/83053_kwvev3.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <h3 class="media-heading">杜教筛原理详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830177/86548_fqol95.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <h3 class="media-heading">狄利克雷卷积详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <h3 class="media-heading">Dilworth定理</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月1日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830261/85371_fltskc.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <h3 class="media-heading">#6164. 「美团 CodeM 初赛 Round A」数列互质</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6164$. 「美团 CodeM 初赛 Round A」数列互质<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830238/86242_qg6y9f.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <h3 class="media-heading">#6161. 「美团 CodeM 初赛 Round A」倒水</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6161$. 「美团 CodeM 初赛 Round A」倒水<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <h3 class="media-heading">#6190. 序列查询</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830203/85373_qtkof1.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <h3 class="media-heading">#6075. 「2017 山东一轮集训 Day6」重建</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6075$. 「2017 山东一轮集训 Day6」重建<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <h3 class="media-heading">#6136. 「2017 山东三轮集训 Day4」Left</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="没有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 81 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1501465056/85754_kmawco.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('CVL5M7VURH', '14d1d65fe890a7fa4482dd38cb49fb35');
+        var algoliaIndex = algoliaClient.initIndex('Goseqh');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    </body>
+</html>

@@ -1,0 +1,1120 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Goseqh&#39;s Blog">
+    <title>Link-Cut-Tree完全解析 - Goseqh&#39;s Blog</title>
+    <meta name="author" content="Goseqh">
+    
+    
+        <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1501464937/new2_qgnz5x.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="引言终于迎来这一刻啦O(∩_∩)O~，可以专心致志地写一篇完全解析了">
+<meta name="keywords" content="LCT,重要文章">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Link-Cut-Tree完全解析">
+<meta property="og:url" content="https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/index.html">
+<meta property="og:site_name" content="Goseqh&#39;s Blog">
+<meta property="og:description" content="引言终于迎来这一刻啦O(∩_∩)O~，可以专心致志地写一篇完全解析了">
+<meta property="og:updated_time" content="2018-01-14T22:48:19.430Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Link-Cut-Tree完全解析">
+<meta name="twitter:description" content="引言终于迎来这一刻啦O(∩_∩)O~，可以专心致志地写一篇完全解析了">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://goseqh.tk/assets/images/new2.png"/>
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772160/1405563600788_lmjc0t.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772160/1405563600788_lmjc0t.jpg" />
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772160/1405563600788_lmjc0t.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772160/1405563600788_lmjc0t.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
+    <!--STYLES END-->
+    
+    
+    <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?9505a5af654a2478f93fd6c0ae4f687d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+    </div>
+    
+        
+            <a  class="header-right-icon open-algolia-search"
+                href="#search">
+        
+        
+            <i class="fa fa-lg fa-search"></i>
+        
+        </a>
+    
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5fc847eb9d9d78d9abdc859c2181ec2f";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Goseqh</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>For what I cherish forever.</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/GQH123" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="mailto:572694553@qq.com" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc">QQmail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    "
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1502772160/1405563600788_lmjc0t.jpg');"
+             data-behavior="4">
+            
+                <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            Link-Cut-Tree完全解析
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2018-01-13T20:58:28+08:00">
+	
+		    1月 13, 2018
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaIn
+                        hasCoverCaption">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <span class="post-header-cover-caption caption">Sow an act, and you reap a habit. Sow a habit, and you reap a character. Sow a character, and you reap a destiny.</span>
+    
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#目录"><span class="toc-text">目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#讲解"><span class="toc-text">讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Link-Cut-Tree基础"><span class="toc-text">Link-Cut-Tree基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#讲解-1"><span class="toc-text">讲解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板"><span class="toc-text">模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例题"><span class="toc-text">例题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#易错点"><span class="toc-text">易错点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Link-Cut-Tree维护边信息"><span class="toc-text">Link-Cut-Tree维护边信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#讲解-2"><span class="toc-text">讲解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板-1"><span class="toc-text">模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例题-1"><span class="toc-text">例题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#易错点-1"><span class="toc-text">易错点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后记-1"><span class="toc-text">后记</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Link-Cut-Tree维护子树信息"><span class="toc-text">Link-Cut-Tree维护子树信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#讲解-3"><span class="toc-text">讲解</span></a></li></ol></li></ol></li></ol>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>终于迎来这一刻啦O(∩_∩)O~，可以专心致志地写一篇完全解析了<br><a id="more"></a></p>
+<p>先理一下先修知识</p>
+<p>先修知识：</p>
+<ul>
+<li>树链剖分 </li>
+<li>Splay平衡树</li>
+<li>Splay翻转树</li>
+</ul>
+<p>再介绍一下本文的目录</p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><p>Link-Cut-Tree基础</p>
+<ul>
+<li>讲解</li>
+<li>模板</li>
+<li>例题</li>
+<li>易错点</li>
+</ul>
+</li>
+<li><p>Link-Cut-Tree维护边信息</p>
+<ul>
+<li>讲解</li>
+<li>模板</li>
+<li>例题</li>
+<li>易错点</li>
+</ul>
+</li>
+<li><p>Link-Cut-Tree维护子树信息</p>
+<ul>
+<li>讲解</li>
+<li>模板</li>
+<li>例题</li>
+<li>易错点</li>
+</ul>
+</li>
+<li><p>Link-Cut-Tree高级应用</p>
+<ul>
+<li>前言</li>
+<li>例题</li>
+<li>易错点</li>
+</ul>
+</li>
+</ul>
+<p><del>当然，这只是期望的样子，要真的完成这么多恐怕要好长时间吧</del></p>
+<h1 id="讲解"><a href="#讲解" class="headerlink" title="讲解"></a>讲解</h1><p>那么，讲解就正式开始啦！</p>
+<h2 id="Link-Cut-Tree基础"><a href="#Link-Cut-Tree基础" class="headerlink" title="Link-Cut-Tree基础"></a>Link-Cut-Tree基础</h2><h3 id="讲解-1"><a href="#讲解-1" class="headerlink" title="讲解"></a>讲解</h3><p>首先，大家应该都学习过树链剖分对吧，我们知道，树链剖分维护的是一个固定的树剖分，我们通常采用轻重树链剖分法来实现这一点，但是，当树的形态可以发生改变的时候，这么做显然就不行了，因为如果我们继续使用当前的链剖分形式，就无法保证时间复杂度，而如果动态地去维护树剖分，听起来又好像是一件挺困难的事情</p>
+<p>实际上，我们正是采用后者进行维护的，这个东西，就是传说中的<strong>动态树</strong>了，而维护树的形态改变以后的新的树剖分的算法，就是这次的主要内容<strong>Link-Cut-Tree</strong></p>
+<p>我们知道，一个树剖分是由链组成的，而对于每一条链来说，这就是一个序列，而对于序列上的问题，我们可以采用许多方法进行解决，比如使用数据结构</p>
+<p>在树链剖分里面，我们正是这样做的，我们先求出一个树剖分，然后把它们放到线段树上进行统一的维护，这样就大大地降低了算法的复杂度和维护的难度。但是，对于动态树来说，它的形态在不断的发生变化，这样，我们很难记录每条链的顶端等信息，然后使用线段树维护</p>
+<p>这样，由于有了序列的动态操作，所以我们需要一种支持快速的序列分裂与合并操作的数据结构，这让我们想到Splay</p>
+<p>而Link-Cut-Tree正是采用了这样的方法，我们把每条链都放到一棵Splay上进行维护，然后进行某种操作</p>
+<p>既然是用Splay来维护，那么Splay本身的操作就很自然地加入到了Link-Cut-Tree中，所以，我们首先需要实现如下操作：</p>
+<ul>
+<li>is_root(x)操作，判断x是否已经是Splay的根</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">is_root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> (ch[fa[x]][<span class="number">0</span>] != x &amp;&amp; ch[fa[x]][<span class="number">1</span>] != x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>pushup(x)操作，把儿子信息上传到当前点</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    siz[x] = siz[ls] + siz[rs] + <span class="number">1</span>;<span class="comment">//此处维护了子树大小</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>pushdown(x)操作，把当前点标记下传给儿子</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (rev[x])&#123;</div><div class="line">        swap(ls, rs);</div><div class="line">        rev[ls] ^= <span class="number">1</span>, rev[rs] ^= <span class="number">1</span>;</div><div class="line">        rev[x] = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>rotate(x)操作，旋转平衡树的核心操作——旋转，此处不解释</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> k = x;</div><div class="line">    x = fa[x];</div><div class="line">    <span class="keyword">int</span> d = ch[x][<span class="number">1</span>] == k;</div><div class="line">    fa[k] = fa[x];</div><div class="line">    <span class="keyword">if</span> (!is_root(x)) ch[fa[x]][ch[fa[x]][<span class="number">1</span>] == x] = k;</div><div class="line">    ch[x][d] = ch[k][d ^ <span class="number">1</span>];</div><div class="line">    fa[ch[x][d]] = x;</div><div class="line">    ch[k][d ^ <span class="number">1</span>] = x;</div><div class="line">    fa[x] = k;</div><div class="line">    pushup(x);</div><div class="line">    pushup(k);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>splay(x)操作，Splay的核心操作——伸展，把某一个点“伸展”到根，其实就是旋转到根的位置</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> st[maxn];</div><div class="line"><span class="keyword">int</span> cst = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">splay</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> t = x;</div><div class="line">    <span class="keyword">while</span> (!is_root(x))&#123;</div><div class="line">        st[++cst] = x;</div><div class="line">        x = fa[x];</div><div class="line">    &#125;</div><div class="line">    st[++cst] = x;</div><div class="line">    <span class="keyword">while</span> (cst)&#123;</div><div class="line">        pushdown(st[cst]);</div><div class="line">        cst--;</div><div class="line">    &#125;<span class="comment">//为了方便我们事先pushdown所有会经过的结点</span></div><div class="line">    x = t;</div><div class="line">    <span class="keyword">while</span> (!is_root(x))&#123;</div><div class="line">        <span class="keyword">int</span> f1 = fa[x];</div><div class="line">        <span class="keyword">if</span> (!is_root(f1))&#123;</div><div class="line">            <span class="keyword">int</span> f2 = fa[f1];</div><div class="line">            <span class="keyword">if</span> ((ch[f1][<span class="number">1</span>] == x) ^ (ch[f2][<span class="number">1</span>] == f1)) rotate(x);</div><div class="line">            <span class="keyword">else</span> rotate(f1);</div><div class="line">        &#125;</div><div class="line">        rotate(x);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后，我们再对常见的树上形态改变操作进行逐个分析：</p>
+<ul>
+<li>Link(x, y)操作，连接两个不同点</li>
+</ul>
+<p>如果直接合并两棵树，那么就可能会导致两棵树的父子关系不匹配（或者说树的方向不一致，可以自行体会）</p>
+<p>我们发现，如果要调整父子关系体系使得这两棵树匹配的话，只需要调整其中的一棵就可以，而且为了理顺父子关系，我们肯定需要让连到另一棵树上的这个点成为自己所在树的根，然后连上去</p>
+<p>这个操作就是moveroot</p>
+<p>所以，我们现在需要实现moveroot，具体该怎么做呢？我们可以分析这个操作，我们需要让这个点先一路连到根，使它和根在同一条链里，也就是同一棵Splay里，然后，我们知道，点的深度决定了点在Splay里的键值，由于我们把一个点设置为根，相当于把这个点到根的路径的深度翻转，也就是把链翻转</p>
+<p>而把链翻转，其实就是序列翻转，而这个正好是Splay的标志性操作，我们就可以在Splay中直接翻转这个序列</p>
+<p>这样的话，我们在Splay就需要维护反转标记，下传时需要交换左右儿子</p>
+<p>但是我们发现，如果我们直接合并所有的从x到根的链，那么会导致一些原来在x下方的点也被包含了进来，这样的话，就会变得比较麻烦，因为这些点是不需要被翻转的，如果保留它们，在最后打翻转标记的时候就需要分裂Splay，那我们不妨一开始就舍弃他们，这样便没有了后顾之忧</p>
+<p>这个合并到根路径上所有链形成新的链的操作就是access</p>
+<p>先说一句，合并所有链，指的是在一条链被合并的时候，它不在这条路径上的部分是会被舍弃的，也就是说，我们最后合并完的东西，还是一条链，并且一端为x，另一端为根</p>
+<p>在这个操作中，我们需要不断的合并、分裂Splay，但是，我们发现，永远被合并、分裂的部分的深度是从链的底端向上的一部分，而合并也是从底端向下接上一端，这些恰好与Splay合并、分裂不相交序列的经典操作吻合（总之Splay无限好，看起来就像是专门为了LCT开发的……），所以我们只需要直接在Splay上操作就可以了，代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">access</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> tem = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (x)&#123;</div><div class="line">        splay(x);</div><div class="line">        rs = tem;</div><div class="line">        pushup(x);</div><div class="line">        tem = x;</div><div class="line">        x = fa[x];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>具体来说就是不断先把当前点旋到根，然后连接上新的右子树，然后爬向父亲，如此往复直到原树树根</p>
+<p>这样，我们解决了access操作</p>
+<p>回到moveroot，我们显然是要先进行一次access，然后翻转这棵Splay，那么这个也是Splay基础操作，我们把要打标记的那个点Splay到根，然后直接打上反转标记即可<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">moveroot</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    access(x);</div><div class="line">    splay(x);</div><div class="line">    rev[x] ^= <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样moveroot也解决了</p>
+<p>回到Link操作，我们也就是需要把其中一个点x设置为根，即moveroot(x)，然后直接把它连到另一个点上，即fa[x] = y，由于每个点维护的是Splay树中的信息，而x与y之间的边不在Splay中，所以不必更新y的任何信息（但是后文要讲的就不是这样(<em>^_^</em>) ……）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    moveroot(x);</div><div class="line">    fa[x] = y;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样Link操作就被我们解决了</p>
+<p>还有一个操作，因为既然有Link，那么一定有Cut对吧，这样才是Link-Cut-Tree嘛</p>
+<p>Cut还要用到一个额外的操作，但是一会再说…</p>
+<ul>
+<li>Cut(x, y)操作，断开x与y在原树上的连接</li>
+</ul>
+<p>我们先假设x与y之间存在这条边</p>
+<p>我们发现，我们很难直接Cut掉两个点之间的连接，因为它们要么在同一棵Splay里，要么不在，如果在的话，由于我们把链放在了Splay中，所以它们之间不一定有边相连，位置关系也很难确定，不在一棵Splay中则更是如此</p>
+<p>那么，我们首先要做的，是舍弃不在同一棵Splay中的情况，就是把它们两个放在一条链里，而我们现在有的操作，只有moveroot和access，能不能通过这两个操作实现这一目的呢？这是可以的</p>
+<p>我们先moveroot(y)，然后access(x)，这样x，y就很自然地在同一条链上了</p>
+<p>那么，在同一条链上以后呢？此时x, y在Splay里面的位置关系是未知的，我们要把情况归一来方便处理，那么我们可以splay(x)，这样就整洁多了</p>
+<p>由于x, y之间有边，y还是树根，那么x左子树里肯定只有一个点，那就是y，这时候，我们就可以放心的断开这条边啦，即fa[y] = ch[x][0] = 0，但是因为这样做改变了Splay的形态，所以我们需要对x进行一下pushup(x)操作</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    split(x, y);</div><div class="line">    fa[y] = ls = <span class="number">0</span>;</div><div class="line">    pushup(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面只剩下最后的一个部分啦，那就是链修改与查询的相关操作，无论是哪一种，为了正确地处理问题，我们都需要单独将这条链提取出来，其实就是直接类比Splay里面的修改与查询，这样，我们就还需要一种操作，那就是提取特定链</p>
+<ul>
+<li>split(x, y)操作，将x到y的链提取出来放进一棵Splay中维护，并且为了处理修改与查询，使x为Splay的根</li>
+</ul>
+<p>这样，我们需要做的，就是把x, y放进一棵Splay，等等，这个和刚才Cut时的操作有点像啊？</p>
+<p>其实就是一个操作，我们先moveroot(y)，然后access(x)，最后再splay(x)，这就是split(x, y)的全部操作</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    moveroot(y);</div><div class="line">    access(x);</div><div class="line">    splay(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所以，Cut中的操作，事实上是先提取链，然后断开连接</p>
+<p>这样，我们每次修改与查询的时候，直接作用于被操作链的Splay根就可以了，因为这棵Splay本身就是这条被操作链</p>
+<p>下面再讲一个东西，就是高鲁棒性的Link-Cut-Tree操作：</p>
+<p>有的时候，我们会Link两个已经连通的点，此时我们需要忽略此操作（后文有些时候就不会忽略），还有的时候，我们会Cut两个没有边直接相连的点，这时我们也需要忽略，那么这样该怎么做呢？</p>
+<p>我们再加入一个操作：</p>
+<ul>
+<li>check(x, y)操作，检查两个点是否已经连通</li>
+</ul>
+<p>具体做法应该很简单了吧，我们直接access(x)，然后splay(x)，然后一直向左跳找到原树树根，对y也这样做，然后看这两个树根是否相同即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    access(x); splay(x);</div><div class="line">    <span class="keyword">while</span> (ls) x = ls;</div><div class="line">    <span class="keyword">int</span> f1 = x;</div><div class="line">    x = y;</div><div class="line">    access(x); splay(x);</div><div class="line">    <span class="keyword">while</span> (ls) x = ls; </div><div class="line">    <span class="keyword">return</span> f1 == x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是常常会有另一种写法，那就是直接从这个点开始暴力跳父亲，跳到树根，这样好像也挺正确的</p>
+<p>实际上，我们最好不要这样写，虽然这样比较简便，但是这样做实际上是无法获得复杂度保证的，是一种错误的写法（个人认为）</p>
+<p>关于LCT的复杂度，下面会提到</p>
+<p>然后，对于Link，我们事先check一下x, y就可以了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (check(x, y)) <span class="keyword">return</span>;</div><div class="line">    moveroot(x);</div><div class="line">    fa[x] = y;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于Cut，我们也是要先Check一下，但是两个点即使在同一棵树里也不一定有边直接相连，所以，我们需要在split(x, y)以后，判断y的左右儿子是否存在，只要有一个存在，都是需要直接return掉的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    split(x, y);</div><div class="line">    <span class="keyword">if</span> (ls == y &amp;&amp; !ch[y][<span class="number">0</span>] &amp;&amp; !ch[y][<span class="number">1</span>])&#123;</div><div class="line">        fa[y] = ls = <span class="number">0</span>;</div><div class="line">        pushup(x);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>至于为什么，可以自己思考一下</p>
+<p>关于LCT的复杂度证明，首先用到的是Splay的均摊复杂度证明，这个可以证明是$O(\log n)$的，然后，对于LCT的access操作来说（因为别的操作都由此衍生，所以只分析这个就可以了），可以证明是一种差分相加的形式，最后可以势能分析仍然是$O(\log n)$的，这也就解释了为什么我认为暴力跳父亲是错误写法，因为这样失去了势能分析的前提条件</p>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>汇总一下，板子大概就是这个样子的：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> ch[maxn][<span class="number">2</span>];</div><div class="line"><span class="keyword">int</span> val[maxn];</div><div class="line"><span class="keyword">int</span> sum[maxn];</div><div class="line"><span class="keyword">int</span> fa[maxn];</div><div class="line"><span class="keyword">bool</span> rev[maxn];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> (ch[fa[x]][<span class="number">0</span>] != x &amp;&amp; ch[fa[x]][<span class="number">1</span>] != x);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    sum[x] = sum[ls] + sum[rs] + val[x];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (rev[x])&#123;</div><div class="line">        swap(ls, rs);</div><div class="line">        rev[ls] ^= <span class="number">1</span>, rev[rs] ^= <span class="number">1</span>;</div><div class="line">        rev[x] = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> k = x;</div><div class="line">    x = fa[x];</div><div class="line">    <span class="keyword">int</span> d = ch[x][<span class="number">1</span>] == k;</div><div class="line">    fa[k] = fa[x];</div><div class="line">    <span class="keyword">if</span> (!is_root(x)) ch[fa[x]][ch[fa[x]][<span class="number">1</span>] == x] = k;</div><div class="line">    ch[x][d] = ch[k][d ^ <span class="number">1</span>];</div><div class="line">    fa[ch[x][d]] = x;</div><div class="line">    ch[k][d ^ <span class="number">1</span>] = x;</div><div class="line">    fa[x] = k;</div><div class="line">    pushup(x);</div><div class="line">    pushup(k);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> st[maxn];</div><div class="line"><span class="keyword">int</span> cst = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">splay</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> t = x;</div><div class="line">    <span class="keyword">while</span> (!is_root(x))&#123;</div><div class="line">        st[++cst] = x;</div><div class="line">        x = fa[x];</div><div class="line">    &#125;</div><div class="line">    st[++cst] = x;</div><div class="line">    <span class="keyword">while</span> (cst)&#123;</div><div class="line">        pushdown(st[cst]);</div><div class="line">        cst--;</div><div class="line">    &#125;<span class="comment">//为了方便我们事先pushdown所有会经过的结点</span></div><div class="line">    x = t;</div><div class="line">    <span class="keyword">while</span> (!is_root(x))&#123;</div><div class="line">        <span class="keyword">int</span> f1 = fa[x];</div><div class="line">        <span class="keyword">if</span> (!is_root(f1))&#123;</div><div class="line">            <span class="keyword">int</span> f2 = fa[f1];</div><div class="line">            <span class="keyword">if</span> ((ch[f1][<span class="number">1</span>] == x) ^ (ch[f2][<span class="number">1</span>] == f1)) rotate(x);</div><div class="line">            <span class="keyword">else</span> rotate(f1);</div><div class="line">        &#125;</div><div class="line">        rotate(x);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">access</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> t = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (x)&#123;</div><div class="line">        splay(x);</div><div class="line">        rs = t;</div><div class="line">        pushup(x);</div><div class="line">        t = x;</div><div class="line">        x = fa[x];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">moveroot</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    access(x);</div><div class="line">    splay(x);</div><div class="line">    rev[x] ^= <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    moveroot(y);</div><div class="line">    access(x);</div><div class="line">    splay(x);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    access(x); splay(x);</div><div class="line">    <span class="keyword">while</span> (ls) x = ls;</div><div class="line">    <span class="keyword">int</span> f1 = x;</div><div class="line">    x = y;</div><div class="line">    access(x); splay(x);</div><div class="line">    <span class="keyword">while</span> (ls) x = ls;</div><div class="line">    <span class="keyword">int</span> f2 = x;</div><div class="line">    <span class="keyword">return</span> f1 == f2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (check(x, y)) <span class="keyword">return</span>;</div><div class="line">    moveroot(x);</div><div class="line">    fa[x] = y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    split(x, y);</div><div class="line">    <span class="keyword">if</span> (ls == y &amp;&amp; !ch[y][<span class="number">0</span>] &amp;&amp; !ch[y][<span class="number">1</span>])&#123;</div><div class="line">        fa[y] = ls = <span class="number">0</span>;</div><div class="line">        pushup(x);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    splay(x);</div><div class="line">    val[x] = y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    split(x, y);</div><div class="line">    <span class="keyword">return</span> sum[x];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个有两种操作，一个是单点修改，一个是链查询</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>既然都讲到这里了，那就放几道例题吧，一句话题解采用白色字体</p>
+<ul>
+<li><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2631" target="_blank" rel="external">BZOJ 2631: tree</a> <font color="#FFFFFF">基础标记下传LCT，正常搞就好了</font></p>
+<ul>
+<li><a href="http://goseqh.tk/2018/01/02/BZOJ-2631-tree/">题解</a></li>
+</ul>
+</li>
+<li><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3282" target="_blank" rel="external">BZOJ 3282: Tree</a> <font color="#FFFFFF">基础LCT，正常搞就好了 </font></p>
+<ul>
+<li><a href="http://goseqk.tk/2018/01/02/BZOJ-3282-Tree/" target="_blank" rel="external">题解</a></li>
+</ul>
+</li>
+<li><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1180" target="_blank" rel="external">BZOJ 1180: [CROATIAN2009]OTOCI</a> <font color="#FFFFFF">高鲁棒性LCT </font></p>
+<ul>
+<li><a href="http://goseqh.tk/2018/01/02/BZOJ-1180-CROATIAN2009-OTOCI/">题解</a></li>
+</ul>
+</li>
+<li><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2002" target="_blank" rel="external">BZOJ 2002: [Hnoi2010]Bounce 弹飞绵羊</a> <font color="#FFFFFF">稍微有一点思考难度的LCT（其实一点也没有…）但是这题还可以分块做 </font></p>
+</li>
+</ul>
+<h3 id="易错点"><a href="#易错点" class="headerlink" title="易错点"></a>易错点</h3><ul>
+<li><p>pushdown操作中，<strong>除了交换子树以外不可以将信息延迟更新</strong>，比如链加操作，必须在接收到add标记以后就立刻更新sum, mx, mi等信息，而rev标记不需要，但是如果rev标记也采用这种及时更新信息的方法，那么注意<strong>是否交换子树不取决于当前的rev标记，而在于传递的标记值</strong></p>
+</li>
+<li><p>如果有Splay的其他操作，比如找第K大这种<strong>需要从根向下游历的操作，必须沿路进行pushdown操作</strong>，因为不这样做无法保证左右子树的正确性和信息正确性。这种错误往往非常隐蔽，一定要小心！</p>
+</li>
+<li><p>在Splay中进行了查询某个点的操作以后，为了保证时间复杂度，<strong>必须将这个点Splay到根</strong>，这其实是Splay的有关内容，在那个里面也算是一个易错点吧</p>
+</li>
+<li><p>在注意Splay中预先pushdown时，<strong>最后到根的那个点也要加入栈中</strong>，而且在Splay时，不能因为当前点已经是根就直接不执行Splay操作，因为这样会影响access中的子树交换正确性</p>
+</li>
+<li><p>寻找当前原树树根的方法必须采用上文讲述的方法</p>
+</li>
+<li><p>注意Splay中每次需要rotate的点</p>
+</li>
+<li><p>注意pushup的时候要算上自己的信息</p>
+</li>
+<li><p>rotate时需要判断被rotate的点的父亲是否为Splay的根</p>
+</li>
+<li><p>注意题目中对Link, Cut操作鲁棒性的要求</p>
+</li>
+</ul>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>那么，本章就到此结束啦！对于LCT来说，把基本的概念理解的十分透彻是一件十分重要的事，因为所有的LCT题目都离不开对基本结构的理解与分析</p>
+<h2 id="Link-Cut-Tree维护边信息"><a href="#Link-Cut-Tree维护边信息" class="headerlink" title="Link-Cut-Tree维护边信息"></a>Link-Cut-Tree维护边信息</h2><h3 id="讲解-2"><a href="#讲解-2" class="headerlink" title="讲解"></a>讲解</h3><p>我们都知道，树上不只是有点，还是有边的，而边上往往也会负载许多的信息，比如长度什么的</p>
+<p>在树链剖分中，我们常用的做法是把边信息下放到深度较大的那一端上，这样是正确的，而且维护起来十分方便</p>
+<p>但是在LCT中，由于父子关系时常发生变化，所以，这样做很难维护正确性，我们必须考虑使用其他的方法</p>
+<p>既然LCT维护点信息十分方便，那么我们为什么不将边信息转化为点信息呢？考虑到图论中常用的加点法，我们可以把每一条边都看成点，然后这个新点向原来的两端连边，然后，我们把边信息附着在这个点上，我们就可以维护边信息啦</p>
+<p>当然，还有不用加点的方法，在neither_nor的博客中被提到了，那个方法比较复杂，所以像我这么菜肯定是不会的啦O(∩_∩)O！</p>
+<p>其实就是这么点东西……</p>
+<p>这样，我们就可以解决许多的问题了，比如动态最小生成树，线段树分治套最小生成树……之类的</p>
+<h3 id="模板-1"><a href="#模板-1" class="headerlink" title="模板"></a>模板</h3><p>有一道十分经典的题目，那就是[Noi2014]魔法森林这道题，相信很多人都是使用什么动点SPFA这种暴力的方法过的是吧……</p>
+<p>我们就以它为例吧！</p>
+<p><del>具体方法大家是不是都会……</del></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 300005 </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 2000000005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ls ch[x][0]</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> rs ch[x][1]</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i, l, r) for (register int i = l; i &lt;= r; i++)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i, r, l) for (register int i = r; i &gt;= l; i--)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> gc() ((p1 == p2 &amp;&amp; (p2 = (p1 = buffer) + fread(buffer, 1, maxn, stdin), p1 == p2)) ? EOF : *p1++)</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">char</span> *p1, *p2;</div><div class="line"><span class="keyword">char</span> buffer[maxn];</div><div class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">void</span> <span class="title">read</span>(<span class="title">T</span>&amp; <span class="title">x</span>)&#123;</span></div><div class="line">    <span class="keyword">char</span> ch = gc(); x = <span class="number">0</span>; <span class="keyword">bool</span> f = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (!(<span class="string">'0'</span> &lt;= ch &amp;&amp; ch &lt;= <span class="string">'9'</span>) &amp;&amp; ch != <span class="string">'-'</span>) ch = gc();</div><div class="line">    <span class="keyword">if</span> (ch == <span class="string">'-'</span>) f = <span class="number">0</span>, ch = gc();</div><div class="line">    <span class="keyword">while</span> (<span class="string">'0'</span> &lt;= ch &amp;&amp; ch &lt;= <span class="string">'9'</span>) x = (x &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">3</span>) + ch - <span class="string">'0'</span>, ch = gc();</div><div class="line">    <span class="keyword">if</span> (!f) x = -x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n, m;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> x, y, va, vb;</div><div class="line">    edge(<span class="keyword">int</span> x = <span class="number">0</span>, <span class="keyword">int</span> y = <span class="number">0</span>, <span class="keyword">int</span> va = <span class="number">0</span>, <span class="keyword">int</span> vb = <span class="number">0</span>) : x(x), y(y), va(va), vb(vb)&#123;&#125;</div><div class="line">&#125;e[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(edge a, edge b)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> (a.va != b.va) ? a.va &lt; b.va : a.vb &lt; b.vb;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> ch[maxn][<span class="number">2</span>];</div><div class="line"><span class="keyword">int</span> mx[maxn];</div><div class="line"><span class="keyword">int</span> val[maxn];</div><div class="line"><span class="keyword">int</span> fa[maxn];</div><div class="line"><span class="keyword">bool</span> rev[maxn];</div><div class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    mx[x] = x;</div><div class="line">    <span class="keyword">if</span> (val[mx[ls]] &gt; val[mx[x]]) mx[x] = mx[ls];</div><div class="line">    <span class="keyword">if</span> (val[mx[rs]] &gt; val[mx[x]]) mx[x] = mx[rs];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (rev[x])&#123;</div><div class="line">        rev[ls] ^= <span class="number">1</span>, rev[rs] ^= <span class="number">1</span>;</div><div class="line">        swap(ls, rs);</div><div class="line">        rev[x] = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> ch[fa[x]][<span class="number">0</span>] != x &amp;&amp; ch[fa[x]][<span class="number">1</span>] != x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> d)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> k = ch[x][d];</div><div class="line">    fa[k] = fa[x];</div><div class="line">    <span class="keyword">if</span> (!is_root(x)) ch[fa[x]][ch[fa[x]][<span class="number">1</span>] == x] = k;</div><div class="line">    ch[x][d] = ch[k][d ^ <span class="number">1</span>];</div><div class="line">    fa[ch[x][d]] = x;</div><div class="line">    ch[k][d ^ <span class="number">1</span>] = x;</div><div class="line">    fa[x] = k;</div><div class="line">    pushup(x);</div><div class="line">    pushup(k); </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">splay</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> tem = x; </div><div class="line">    <span class="keyword">while</span> (!is_root(x))&#123;</div><div class="line">        s.push(x);</div><div class="line">        x = fa[x];</div><div class="line">    &#125;</div><div class="line">    s.push(x);</div><div class="line">    <span class="keyword">while</span> (!s.empty())&#123;</div><div class="line">        pushdown(s.top());</div><div class="line">        s.pop();</div><div class="line">    &#125;</div><div class="line">    x = tem;</div><div class="line">    <span class="keyword">while</span> (!is_root(x))&#123;</div><div class="line">        <span class="keyword">int</span> f1 = fa[x];</div><div class="line">        <span class="keyword">int</span> d1 = ch[f1][<span class="number">1</span>] == x;</div><div class="line">        <span class="keyword">if</span> (!is_root(f1))&#123;</div><div class="line">            <span class="keyword">int</span> f2 = fa[f1];</div><div class="line">            <span class="keyword">int</span> d2 = ch[f2][<span class="number">1</span>] == f1;</div><div class="line">            <span class="keyword">if</span> (d1 ^ d2) rotate(f1, d1), rotate(f2, d2);</div><div class="line">            <span class="keyword">else</span> rotate(f2, d2), rotate(f1, d1);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> rotate(f1, d1);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">access</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (x)&#123;</div><div class="line">        splay(x);</div><div class="line">        rs = tmp;</div><div class="line">        pushup(x);</div><div class="line">        tmp = x;</div><div class="line">        x = fa[x];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">moveroot</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    access(x);</div><div class="line">    splay(x);</div><div class="line">    rev[x] ^= <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    moveroot(y);</div><div class="line">    access(x);</div><div class="line">    splay(x);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    moveroot(x);</div><div class="line">    fa[x] = y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    split(x, y);</div><div class="line">    fa[y] = ls = <span class="number">0</span>;</div><div class="line">    pushup(x);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_max_point</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    split(x, y);</div><div class="line">    <span class="keyword">return</span> mx[x];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    access(x), splay(x);</div><div class="line">    <span class="keyword">while</span> (ls) x = ls;</div><div class="line">    <span class="keyword">int</span> f1 = x;</div><div class="line">    x = y;</div><div class="line">    access(x), splay(x);</div><div class="line">    <span class="keyword">while</span> (ls) x = ls;</div><div class="line">    <span class="keyword">return</span> f1 == x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">        freopen(<span class="string">"magic.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</div><div class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    <span class="keyword">int</span> x, y, z, w;</div><div class="line">    read(n), read(m);</div><div class="line">    rep(i, <span class="number">1</span>, m)&#123;</div><div class="line">        read(x), read(y), read(z), read(w);</div><div class="line">        e[i] = edge(x, y, z, w);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//rep(i, 1, n) val[i] = 0;</span></div><div class="line">    sort(e + <span class="number">1</span>, e + <span class="number">1</span> + m, cmp);</div><div class="line">    rep(i, <span class="number">1</span>, m) val[i + n] = e[i].vb;<span class="comment">//Link-Cut-Tree上维护的是B的有关信息</span></div><div class="line">    <span class="keyword">int</span> ans = INF;</div><div class="line">    rep(i, <span class="number">1</span>, m)&#123;</div><div class="line">        x = e[i].x, y = e[i].y, z = e[i].va, w = e[i].vb;</div><div class="line">        <span class="keyword">if</span> (!check(x, y)) &#123;</div><div class="line">            link(x, i + n);</div><div class="line">            link(y, i + n);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">int</span> k = get_max_point(x, y);</div><div class="line">            <span class="keyword">if</span> (val[k] &gt; w) &#123;</div><div class="line">                cut(k, e[k - n].x);</div><div class="line">                cut(k, e[k - n].y);</div><div class="line">                link(x, i + n);</div><div class="line">                link(y, i + n);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (check(<span class="number">1</span>, n))&#123;</div><div class="line">            <span class="keyword">int</span> k = get_max_point(<span class="number">1</span>, n);</div><div class="line">            ans = min(ans, val[k] + z);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (ans == INF) <span class="built_in">printf</span>(<span class="string">"-1"</span>);</div><div class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><ul>
+<li><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3669" target="_blank" rel="external">BZOJ 3669: [Noi2014]魔法森林</a></p>
+</li>
+<li><p><a href="http://uoj.ac/problem/274" target="_blank" rel="external">UOJ #274. 【清华集训2016】温暖会指引我们前行</a> <font color="#FFFFFF">好像和普通的最大生成树没什么区别…正常做就好</font></p>
+<ul>
+<li><a href="http://goseqh.tk/2018/01/13/UOJ-274-%E3%80%90%E6%B8%85%E5%8D%8E%E9%9B%86%E8%AE%AD2016%E3%80%91%E6%B8%A9%E6%9A%96%E4%BC%9A%E6%8C%87%E5%BC%95%E6%88%91%E4%BB%AC%E5%89%8D%E8%A1%8C/">题解</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="易错点-1"><a href="#易错点-1" class="headerlink" title="易错点"></a>易错点</h3><ul>
+<li>最主要的易错点，<strong>就是由于加点而引起的点数增多</strong>，这常常会被忽略而导致严重的问题，我们要时刻考虑这个问题</li>
+</ul>
+<h3 id="后记-1"><a href="#后记-1" class="headerlink" title="后记"></a>后记</h3><p>这就是一个常用的技巧，其实没什么难的……</p>
+<h2 id="Link-Cut-Tree维护子树信息"><a href="#Link-Cut-Tree维护子树信息" class="headerlink" title="Link-Cut-Tree维护子树信息"></a>Link-Cut-Tree维护子树信息</h2><h3 id="讲解-3"><a href="#讲解-3" class="headerlink" title="讲解"></a>讲解</h3><p>不错，终于到了这里了～</p>
+<p>这个技巧是相对来说有点难度的（其实也没有……），我们知道LCT本身其实是很难维护子树信息的，因为它的维护对象是树上的链剖分，也就是一条一条的链</p>
+<p>我们发现，一个点的子树，会包含什么？</p>
+<p>显然这个点在某个链剖分上，所以，它一定会包含自己所在链的下面的点的各自的子树，以及它自己的不在链上的子树</p>
+<p>这样，我们可以子树信息分为三部分，一个是实子树信息，就是Splay上的LCT子树信息，另一个是虚子树信息，就是自己的不在链上的点的LCT子树信息，第三个，就是前面提到的LCT子树信息，一个点的LCT子树信息，就是它的实子树信息与虚子树信息之和</p>
+<p>看起来比较乱是不是</p>
+<p>我们发现，一个点如果不是链上的最底端的点，那么它所包含的也会有自己下面的链上的其他点的信息，而这样是很难维护的，我们要做的就是把这个点下面的链上点都与他断开</p>
+<ul>
+<li>模板</li>
+<li>例题</li>
+<li>易错点</li>
+</ul>
+<ul>
+<li>Link-Cut-Tree高级应用<ul>
+<li>前言</li>
+<li>例题</li>
+<li>易错点</li>
+</ul>
+</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/LCT/">LCT</a> <a class="tag tag--primary tag--small t-link" href="/tags/重要文章/">重要文章</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/15/BZOJ-3319-黑白树/"  data-tooltip="BZOJ 3319: 黑白树">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/13/BZOJ-4530-Bjoi2014-大融合/" data-tooltip="BZOJ 4530: [Bjoi2014]大融合">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/&amp;title=Link-Cut-Tree完全解析">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2018 Goseqh. All Rights Reserved.
+    </span>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/15/BZOJ-3319-黑白树/"  data-tooltip="BZOJ 3319: 黑白树">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/01/13/BZOJ-4530-Bjoi2014-大融合/" data-tooltip="BZOJ 4530: [Bjoi2014]大融合">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/&amp;title=Link-Cut-Tree完全解析">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/&amp;title=Link-Cut-Tree完全解析">
+                    <i class="fa fa-qq"></i><span>分享到 QQ</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-star"></i><span>分享到 Qzone</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/">
+                    <i class="fa fa-renren"></i><span>分享到 Renren</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+        
+            <h4 id="about-card-name">Goseqh</h4>
+        
+            <div id="about-card-bio"><p>For what I cherish forever.</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>NEYC的<strong>OI狗</strong></p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                China, Liaoning, NEYC
+            </div>
+        
+    </div>
+</div>
+
+        <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-close"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">
+                            <h3 class="media-heading">莫比乌斯反演总结</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/莫比乌斯反演详解/">
+                            <h3 class="media-heading">莫比乌斯反演详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830262/83053_kwvev3.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/杜教筛原理详解/">
+                            <h3 class="media-heading">杜教筛原理详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830177/86548_fqol95.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/06/30/狄利克雷卷积详解/">
+                            <h3 class="media-heading">狄利克雷卷积详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/01/Dilworth定理/">
+                            <h3 class="media-heading">Dilworth定理</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月1日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830261/85371_fltskc.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <h3 class="media-heading">#6164. 「美团 CodeM 初赛 Round A」数列互质</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6164$. 「美团 CodeM 初赛 Round A」数列互质<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830238/86242_qg6y9f.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <h3 class="media-heading">#6161. 「美团 CodeM 初赛 Round A」倒水</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6161$. 「美团 CodeM 初赛 Round A」倒水<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6190-序列查询/">
+                            <h3 class="media-heading">#6190. 序列查询</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830203/85373_qtkof1.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <h3 class="media-heading">#6075. 「2017 山东一轮集训 Day6」重建</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6075$. 「2017 山东一轮集训 Day6」重建<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://goseqh.tk/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <h3 class="media-heading">#6136. 「2017 山东三轮集训 Day4」Left</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="没有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 81 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1501465056/85754_kmawco.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('CVL5M7VURH', '14d1d65fe890a7fa4482dd38cb49fb35');
+        var algoliaIndex = algoliaClient.initIndex('Goseqh');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    </body>
+</html>
