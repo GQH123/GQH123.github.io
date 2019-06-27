@@ -5,9 +5,9 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Goseqh&#39;s Blog">
-    <title>【置顶】编程错误汇总 - Goseqh&#39;s Blog</title>
-    <meta name="author" content="Goseqh">
+    <meta name="generator" content="Renatus&#39;s Blog">
+    <title>【置顶】编程错误汇总 - Renatus&#39;s Blog</title>
+    <meta name="author" content="Renatus">
     
     
         <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1501464937/new2_qgnz5x.png">
@@ -20,9 +20,9 @@
 <meta property="og:type" content="blog">
 <meta property="og:title" content="【置顶】编程错误汇总">
 <meta property="og:url" content="https://goseqh.tk/2018/09/09/【置顶】编程错误汇总/index.html">
-<meta property="og:site_name" content="Goseqh&#39;s Blog">
+<meta property="og:site_name" content="Renatus&#39;s Blog">
 <meta property="og:description" content="引言妙妙妙妙不可言&amp;lt;（￣︶￣）/">
-<meta property="og:updated_time" content="2018-01-15T03:26:02.085Z">
+<meta property="og:updated_time" content="2019-06-27T07:29:24.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【置顶】编程错误汇总">
 <meta name="twitter:description" content="引言妙妙妙妙不可言&amp;lt;（￣︶￣）/">
@@ -67,7 +67,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+        <a class="header-title-link" href="/ ">Renatus&#39;s Blog</a>
     </div>
     
         
@@ -104,7 +104,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="/assets/images/new2.png" alt="作者的图片"/>
                 </a>
-                <h4 class="sidebar-profile-name">Goseqh</h4>
+                <h4 class="sidebar-profile-name">Renatus</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>For what I cherish forever.</p>
 </h5>
@@ -311,7 +311,7 @@
 <p>我们想计算$(a + b) * c$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A a + b</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> a, b, c;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, A * c);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>但这样做的结果是$a + b * c$<br>要想得到正确结果，多使用’()’：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A (a + b)</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> a, b, c;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, A * c);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="排序相关"><a href="#排序相关" class="headerlink" title="排序相关"></a>排序相关</h2><ul>
-<li><p></p><p style="font-family:verdana;color:red">严重问题：绝对不要使比较方法出现循环比较现象，必须保证排序结果唯一</p>，相关链接：<a href="http://goseqh.tk/2018/01/15/BZOJ-3712-PA2014-Fiolki/">BZOJ 3712: [PA2014]Fiolki</a><p></p>
+<li><p></p><p style="font-family:verdana;color:red">严重问题：绝对不要使比较方法出现循环比较现象，必须保证排序结果唯一</p>，相关链接：<a href="http://gqh123.github.io/2018/01/15/BZOJ-3712-PA2014-Fiolki/" target="_blank" rel="external">BZOJ 3712: [PA2014]Fiolki</a><p></p>
 </li>
 <li><p></p><p style="font-family:verdana;color:orange">在priority_queue的自定义比较用结构体中，注意运算符()的比较方法是：(a, b)在a的优先级小于b时返回True</p>，即相当于重载大于运算符<p></p>
 </li>
@@ -342,7 +342,7 @@
 </li>
 </ul>
 <h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><ul>
-<li><gqh style="font-family:verdana;color:orange">注意构造函数前面简化赋值语句的正确使用方法</gqh>，相关链接：<a href="http://goseqh.tk/2018/01/15/BZOJ-4502-%E4%B8%B2/">BZOJ 4502: 串</a></li>
+<li><gqh style="font-family:verdana;color:orange">注意构造函数前面简化赋值语句的正确使用方法</gqh>，相关链接：<a href="http://gqh123.github.io/2018/01/15/BZOJ-4502-%E4%B8%B2/" target="_blank" rel="external">BZOJ 4502: 串</a></li>
 </ul>
 <h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ul>
 <li>即使是定义在全局的结构体，内部变量初始时也不一定都为$0$，需要在构造函数中手动初始化</li>
@@ -379,10 +379,10 @@
 <li>注意有些时候边与点数目的差异会很大，不要直接对存储点与边的数组直接使用相同大小的宏定义进行声明</li>
 </ul>
 <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="树链剖分"><a href="#树链剖分" class="headerlink" title="树链剖分"></a>树链剖分</h3><ul>
-<li>注意题目的要求，仔细严谨地设置链上操作方法，相关链接：<a href="http://goseqh.tk/2018/01/15/BZOJ-3319-%E9%BB%91%E7%99%BD%E6%A0%91/">BZOJ 3319: 黑白树</a></li>
+<li>注意题目的要求，仔细严谨地设置链上操作方法，相关链接：<a href="http://gqh123.github.io/2018/01/15/BZOJ-3319-%E9%BB%91%E7%99%BD%E6%A0%91/" target="_blank" rel="external">BZOJ 3319: 黑白树</a></li>
 </ul>
 <h3 id="Link-Cut-Tree"><a href="#Link-Cut-Tree" class="headerlink" title="Link-Cut-Tree"></a>Link-Cut-Tree</h3><ul>
-<li>相关链接：<a href="http://goseqh.tk/2018/01/13/Link-Cut-Tree%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/">Link-Cut-Tree完全解析</a></li>
+<li>相关链接：<a href="http://gqh123.github.io/2018/01/13/Link-Cut-Tree%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/" target="_blank" rel="external">Link-Cut-Tree完全解析</a></li>
 </ul>
 <h3 id="字典树-Trie"><a href="#字典树-Trie" class="headerlink" title="字典树(Trie)"></a>字典树(Trie)</h3><ul>
 <li><gqh style="font-family:verdana;color:red">严重问题：时刻注意Trie的空间占用大小并非$O(n)$而是$O(n\log n)$</gqh>，要计算后声明足够的内存空间，同时<gqh style="font-family:verdana;color:orange">防止内存超过限制</gqh>
@@ -516,7 +516,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2018 Goseqh. All Rights Reserved.
+        Copyrights &copy; 2019 Renatus. All Rights Reserved.
     </span>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
@@ -700,7 +700,7 @@
         
             <img id="about-card-picture" src="/assets/images/new2.png" alt="作者的图片"/>
         
-            <h4 id="about-card-name">Goseqh</h4>
+            <h4 id="about-card-name">Renatus</h4>
         
             <div id="about-card-bio"><p>For what I cherish forever.</p>
 </div>
@@ -1009,7 +1009,7 @@
                 data-message-zero="没有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 81 篇文章
+                找到 77 篇文章
             </p>
         </div>
     </div>
@@ -1027,8 +1027,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
     <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script>
-        var algoliaClient = algoliasearch('CVL5M7VURH', '14d1d65fe890a7fa4482dd38cb49fb35');
-        var algoliaIndex = algoliaClient.initIndex('Goseqh');
+        var algoliaClient = algoliasearch('VG6E0WF7PE', '5560ff8b18848ff4be8803fcf2cec428');
+        var algoliaIndex = algoliaClient.initIndex('Renatus&#39;s Blog');
     </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
     </body>

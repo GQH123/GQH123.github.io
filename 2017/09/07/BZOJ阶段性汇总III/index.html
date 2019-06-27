@@ -5,9 +5,9 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Goseqh&#39;s Blog">
-    <title>BZOJ阶段性汇总III - Goseqh&#39;s Blog</title>
-    <meta name="author" content="Goseqh">
+    <meta name="generator" content="Renatus&#39;s Blog">
+    <title>BZOJ阶段性汇总III - Renatus&#39;s Blog</title>
+    <meta name="author" content="Renatus">
     
     
         <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1501464937/new2_qgnz5x.png">
@@ -20,14 +20,14 @@
 <meta property="og:type" content="blog">
 <meta property="og:title" content="BZOJ阶段性汇总III">
 <meta property="og:url" content="https://goseqh.tk/2017/09/07/BZOJ阶段性汇总III/index.html">
-<meta property="og:site_name" content="Goseqh&#39;s Blog">
+<meta property="og:site_name" content="Renatus&#39;s Blog">
 <meta property="og:description" content="引言Time passes so fast, but…">
 <meta property="og:image" content="https://goseqh.tk/JudgeOnline/upload/201611/flahint.png">
 <meta property="og:image" content="http://218.106.205.134/uploads/aa.png">
 <meta property="og:image" content="https://goseqh.tk/2017/09/07/BZOJ阶段性汇总III/images/1922.jpg">
 <meta property="og:image" content="https://goseqh.tk/2017/09/07/BZOJ阶段性汇总III/images/1340.jpg">
 <meta property="og:image" content="https://goseqh.tk/2017/09/07/BZOJ阶段性汇总III/images/1256.jpg">
-<meta property="og:updated_time" content="2017-11-02T07:04:52.000Z">
+<meta property="og:updated_time" content="2019-06-27T07:29:24.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BZOJ阶段性汇总III">
 <meta name="twitter:description" content="引言Time passes so fast, but…">
@@ -73,7 +73,7 @@
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
-        <a class="header-title-link" href="/ ">Goseqh&#39;s Blog</a>
+        <a class="header-title-link" href="/ ">Renatus&#39;s Blog</a>
     </div>
     
         
@@ -110,7 +110,7 @@
                 <a href="/#about">
                     <img class="sidebar-profile-picture" src="/assets/images/new2.png" alt="作者的图片"/>
                 </a>
-                <h4 class="sidebar-profile-name">Goseqh</h4>
+                <h4 class="sidebar-profile-name">Renatus</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>For what I cherish forever.</p>
 </h5>
@@ -554,7 +554,7 @@ SpellCard 之情形下，从城市1 到城市N最少需要多长时间。 </span
 </ul>
 <hr>
 <h2 id="题目分析-5"><a href="#题目分析-5" class="headerlink" title="题目分析"></a>题目分析</h2><p><strong>莫比乌斯反演基础题</strong></p>
-<p>一道水题，只要直接莫比乌斯反演套路即可解决，如果觉得本题有难度，请移步<a href="https://goseqh.tk/2017/06/30/莫比乌斯反演总结/">《莫比乌斯反演总结》</a></p>
+<p>一道水题，只要直接莫比乌斯反演套路即可解决，如果觉得本题有难度，请移步<a href="https://gqh123.github.io/2017/06/30/莫比乌斯反演总结/" target="_blank" rel="external">《莫比乌斯反演总结》</a></p>
 <p>其实只要想到那个大函数可以线性筛就行了，不懂的看一遍上面的总结然后自己推公式</p>
 <p>然而忘了线性筛T了一发。。。</p>
 <h2 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long int</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> M 1000000007</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 5000005</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> p[maxn];</div><div class="line"><span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line"><span class="keyword">bool</span> vis[maxn];</div><div class="line"><span class="keyword">int</span> n, k;</div><div class="line">LL F[maxn];</div><div class="line">LL mi[maxn];</div><div class="line"></div><div class="line"><span class="function">LL <span class="title">fast_power</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    LL ans = <span class="number">1</span>, con = x;</div><div class="line">    <span class="keyword">while</span> (y)&#123;</div><div class="line">        <span class="keyword">if</span> (y &amp; <span class="number">1</span>) ans = ans * con % M;</div><div class="line">        con = con * con % M;</div><div class="line">        y &gt;&gt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">    F[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; maxn; i++)&#123;</div><div class="line">        <span class="keyword">if</span> (!vis[i])&#123;</div><div class="line">            p[cnt++] = i;</div><div class="line">            F[i] = (fast_power(i, k) - <span class="number">1</span> + M) % M;</div><div class="line">            mi[i] = fast_power(i, k);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cnt; j++)&#123;</div><div class="line">            <span class="keyword">if</span> (p[j] * i &gt;= maxn) <span class="keyword">break</span>;</div><div class="line">            vis[i * p[j]] = <span class="number">1</span>;</div><div class="line">            F[i * p[j]] = F[i] * F[p[j]] % M;</div><div class="line">            <span class="keyword">if</span> (i % p[j] == <span class="number">0</span>) &#123;</div><div class="line">                F[i * p[j]] = F[i] * mi[p[j]] % M;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/*for (int i = 1; i &lt; maxn; i++)&#123;</span></div><div class="line">        for (int j = 1; i * j &lt; maxn; j++)&#123;</div><div class="line">            F[i * j] = (F[i * j] + mu[i] * mi[j] % M) % M;</div><div class="line">        &#125;</div><div class="line">    &#125;*/</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; i++) F[i] = (F[i] + F[i - <span class="number">1</span>]) % M;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span>&#123;</div><div class="line">    LL ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= min(n, m); i++)&#123;</div><div class="line">        <span class="keyword">int</span> next = min(n / (n / i), m / (m / i));</div><div class="line">        ans = (ans + ((F[next] - F[i - <span class="number">1</span>]) % M + M) % M * (m / i) % M * (n / i) % M) % M;</div><div class="line">        i = next;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> T, n, m;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;T, &amp;k);</div><div class="line">    init();</div><div class="line">    <span class="keyword">while</span> (T--)&#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</div><div class="line">        work(n, m);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -837,7 +837,7 @@ eternal life.”克里斯军团士气大增。作为克里斯军团的主帅，�
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2018 Goseqh. All Rights Reserved.
+        Copyrights &copy; 2019 Renatus. All Rights Reserved.
     </span>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
@@ -1021,7 +1021,7 @@ eternal life.”克里斯军团士气大增。作为克里斯军团的主帅，�
         
             <img id="about-card-picture" src="/assets/images/new2.png" alt="作者的图片"/>
         
-            <h4 id="about-card-name">Goseqh</h4>
+            <h4 id="about-card-name">Renatus</h4>
         
             <div id="about-card-bio"><p>For what I cherish forever.</p>
 </div>
@@ -1330,7 +1330,7 @@ eternal life.”克里斯军团士气大增。作为克里斯军团的主帅，�
                 data-message-zero="没有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 81 篇文章
+                找到 77 篇文章
             </p>
         </div>
     </div>
@@ -1348,8 +1348,8 @@ eternal life.”克里斯军团士气大增。作为克里斯军团的主帅，�
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
     <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script>
-        var algoliaClient = algoliasearch('CVL5M7VURH', '14d1d65fe890a7fa4482dd38cb49fb35');
-        var algoliaIndex = algoliaClient.initIndex('Goseqh');
+        var algoliaClient = algoliasearch('VG6E0WF7PE', '5560ff8b18848ff4be8803fcf2cec428');
+        var algoliaIndex = algoliaClient.initIndex('Renatus&#39;s Blog');
     </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
     </body>

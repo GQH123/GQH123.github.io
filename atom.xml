@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Goseqh&#39;s Blog</title>
-  <subtitle>A JuRuo from a weak province</subtitle>
+  <title>Renatus&#39;s Blog</title>
+  <subtitle>Renatus</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://goseqh.tk/"/>
-  <updated>2017-12-12T10:32:48.000Z</updated>
+  <updated>2019-06-27T07:29:24.848Z</updated>
   <id>https://goseqh.tk/</id>
   
   <author>
-    <name>Goseqh</name>
+    <name>Renatus</name>
     
   </author>
   
@@ -20,7 +20,7 @@
     <link href="https://goseqh.tk/2018/09/09/%E3%80%90%E7%BD%AE%E9%A1%B6%E3%80%91%E9%BB%91%E7%A7%91%E6%8A%80%E6%B1%87%E6%80%BB/"/>
     <id>https://goseqh.tk/2018/09/09/【置顶】黑科技汇总/</id>
     <published>2018-09-09T08:01:20.000Z</published>
-    <updated>2017-12-12T10:32:48.000Z</updated>
+    <updated>2019-06-27T07:29:24.848Z</updated>
     
     <content type="html"><![CDATA[<!-- toc -->
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在这神秘的光芒背后，有着怎样的奥秘？（纯胡扯<br><a id="more"></a><br>黑科技大概指的就是我们编程中的一些技巧，无法单独开一篇文章进行记录，于是汇总到这里</p>
@@ -87,7 +87,7 @@
     <link href="https://goseqh.tk/2018/09/09/%E3%80%90%E7%BD%AE%E9%A1%B6%E3%80%91%E7%BC%96%E7%A8%8B%E9%94%99%E8%AF%AF%E6%B1%87%E6%80%BB/"/>
     <id>https://goseqh.tk/2018/09/09/【置顶】编程错误汇总/</id>
     <published>2018-09-09T07:17:39.000Z</published>
-    <updated>2018-01-15T03:26:02.085Z</updated>
+    <updated>2019-06-27T07:29:24.848Z</updated>
     
     <content type="html"><![CDATA[<!-- toc -->
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>妙妙妙妙不可言&lt;（￣︶￣）/<br><a id="more"></a></p>
@@ -131,7 +131,7 @@
 <p>我们想计算$(a + b) * c$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A a + b</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> a, b, c;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, A * c);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>但这样做的结果是$a + b * c$<br>要想得到正确结果，多使用’()’：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A (a + b)</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> a, b, c;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, A * c);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="排序相关"><a href="#排序相关" class="headerlink" title="排序相关"></a>排序相关</h2><ul>
-<li><p></p><p style="font-family:verdana;color:red">严重问题：绝对不要使比较方法出现循环比较现象，必须保证排序结果唯一</p>，相关链接：<a href="http://goseqh.tk/2018/01/15/BZOJ-3712-PA2014-Fiolki/">BZOJ 3712: [PA2014]Fiolki</a><p></p>
+<li><p></p><p style="font-family:verdana;color:red">严重问题：绝对不要使比较方法出现循环比较现象，必须保证排序结果唯一</p>，相关链接：<a href="http://gqh123.github.io/2018/01/15/BZOJ-3712-PA2014-Fiolki/" target="_blank" rel="external">BZOJ 3712: [PA2014]Fiolki</a><p></p>
 </li>
 <li><p></p><p style="font-family:verdana;color:orange">在priority_queue的自定义比较用结构体中，注意运算符()的比较方法是：(a, b)在a的优先级小于b时返回True</p>，即相当于重载大于运算符<p></p>
 </li>
@@ -162,7 +162,7 @@
 </li>
 </ul>
 <h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><ul>
-<li><gqh style="font-family:verdana;color:orange">注意构造函数前面简化赋值语句的正确使用方法</gqh>，相关链接：<a href="http://goseqh.tk/2018/01/15/BZOJ-4502-%E4%B8%B2/">BZOJ 4502: 串</a></li>
+<li><gqh style="font-family:verdana;color:orange">注意构造函数前面简化赋值语句的正确使用方法</gqh>，相关链接：<a href="http://gqh123.github.io/2018/01/15/BZOJ-4502-%E4%B8%B2/" target="_blank" rel="external">BZOJ 4502: 串</a></li>
 </ul>
 <h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ul>
 <li>即使是定义在全局的结构体，内部变量初始时也不一定都为$0$，需要在构造函数中手动初始化</li>
@@ -199,10 +199,10 @@
 <li>注意有些时候边与点数目的差异会很大，不要直接对存储点与边的数组直接使用相同大小的宏定义进行声明</li>
 </ul>
 <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="树链剖分"><a href="#树链剖分" class="headerlink" title="树链剖分"></a>树链剖分</h3><ul>
-<li>注意题目的要求，仔细严谨地设置链上操作方法，相关链接：<a href="http://goseqh.tk/2018/01/15/BZOJ-3319-%E9%BB%91%E7%99%BD%E6%A0%91/">BZOJ 3319: 黑白树</a></li>
+<li>注意题目的要求，仔细严谨地设置链上操作方法，相关链接：<a href="http://gqh123.github.io/2018/01/15/BZOJ-3319-%E9%BB%91%E7%99%BD%E6%A0%91/" target="_blank" rel="external">BZOJ 3319: 黑白树</a></li>
 </ul>
 <h3 id="Link-Cut-Tree"><a href="#Link-Cut-Tree" class="headerlink" title="Link-Cut-Tree"></a>Link-Cut-Tree</h3><ul>
-<li>相关链接：<a href="http://goseqh.tk/2018/01/13/Link-Cut-Tree%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/">Link-Cut-Tree完全解析</a></li>
+<li>相关链接：<a href="http://gqh123.github.io/2018/01/13/Link-Cut-Tree%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/" target="_blank" rel="external">Link-Cut-Tree完全解析</a></li>
 </ul>
 <h3 id="字典树-Trie"><a href="#字典树-Trie" class="headerlink" title="字典树(Trie)"></a>字典树(Trie)</h3><ul>
 <li><gqh style="font-family:verdana;color:red">严重问题：时刻注意Trie的空间占用大小并非$O(n)$而是$O(n\log n)$</gqh>，要计算后声明足够的内存空间，同时<gqh style="font-family:verdana;color:orange">防止内存超过限制</gqh>
@@ -242,7 +242,7 @@
     <link href="https://goseqh.tk/2018/01/15/BZOJ-4502-%E4%B8%B2/"/>
     <id>https://goseqh.tk/2018/01/15/BZOJ-4502-串/</id>
     <published>2018-01-15T02:46:23.000Z</published>
-    <updated>2018-01-15T03:25:19.388Z</updated>
+    <updated>2019-06-27T07:29:24.752Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -306,7 +306,7 @@
     <link href="https://goseqh.tk/2018/01/15/BZOJ-3712-PA2014-Fiolki/"/>
     <id>https://goseqh.tk/2018/01/15/BZOJ-3712-PA2014-Fiolki/</id>
     <published>2018-01-14T23:38:34.000Z</published>
-    <updated>2018-01-14T23:56:09.692Z</updated>
+    <updated>2019-06-27T07:29:24.748Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -358,7 +358,7 @@
     <link href="https://goseqh.tk/2018/01/15/BZOJ-4592-Shoi2015-%E8%84%91%E6%B4%9E%E6%B2%BB%E7%96%97%E4%BB%AA/"/>
     <id>https://goseqh.tk/2018/01/15/BZOJ-4592-Shoi2015-脑洞治疗仪/</id>
     <published>2018-01-14T23:30:39.000Z</published>
-    <updated>2018-01-14T23:36:38.586Z</updated>
+    <updated>2019-06-27T07:29:24.752Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -423,7 +423,7 @@
     <link href="https://goseqh.tk/2018/01/15/BZOJ-1334-Baltic2008-Elect/"/>
     <id>https://goseqh.tk/2018/01/15/BZOJ-1334-Baltic2008-Elect/</id>
     <published>2018-01-14T23:23:03.000Z</published>
-    <updated>2018-01-14T23:30:10.328Z</updated>
+    <updated>2019-06-27T07:29:24.736Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -468,7 +468,7 @@
     <link href="https://goseqh.tk/2018/01/15/BZOJ-1125-POI2008-Poc/"/>
     <id>https://goseqh.tk/2018/01/15/BZOJ-1125-POI2008-Poc/</id>
     <published>2018-01-14T23:02:13.000Z</published>
-    <updated>2018-01-14T23:22:04.718Z</updated>
+    <updated>2019-06-27T07:29:24.736Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -528,9 +528,9 @@
     
       <category term="数据结构" scheme="https://goseqh.tk/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="离散化" scheme="https://goseqh.tk/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/"/>
-    
       <category term="字符串" scheme="https://goseqh.tk/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+      <category term="离散化" scheme="https://goseqh.tk/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/"/>
     
       <category term="题解" scheme="https://goseqh.tk/tags/%E9%A2%98%E8%A7%A3/"/>
     
@@ -547,7 +547,7 @@
     <link href="https://goseqh.tk/2018/01/15/BZOJ-3304-Shoi2005-%E5%B8%A6%E9%99%90%E5%88%B6%E7%9A%84%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/"/>
     <id>https://goseqh.tk/2018/01/15/BZOJ-3304-Shoi2005-带限制的最长公共子序列/</id>
     <published>2018-01-14T22:57:48.000Z</published>
-    <updated>2018-01-14T23:25:05.587Z</updated>
+    <updated>2019-06-27T07:29:24.740Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -596,7 +596,7 @@
     <link href="https://goseqh.tk/2018/01/15/BZOJ-4275-ONTAK2015-Badania-naukowe/"/>
     <id>https://goseqh.tk/2018/01/15/BZOJ-4275-ONTAK2015-Badania-naukowe/</id>
     <published>2018-01-14T22:53:17.000Z</published>
-    <updated>2018-01-14T23:25:15.399Z</updated>
+    <updated>2019-06-27T07:29:24.748Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -647,7 +647,7 @@
     <link href="https://goseqh.tk/2018/01/15/BZOJ-3319-%E9%BB%91%E7%99%BD%E6%A0%91/"/>
     <id>https://goseqh.tk/2018/01/15/BZOJ-3319-黑白树/</id>
     <published>2018-01-14T22:49:00.000Z</published>
-    <updated>2018-01-14T22:52:43.485Z</updated>
+    <updated>2019-06-27T07:29:24.744Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -708,7 +708,7 @@
     <link href="https://goseqh.tk/2018/01/13/Link-Cut-Tree%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/"/>
     <id>https://goseqh.tk/2018/01/13/Link-Cut-Tree完全解析/</id>
     <published>2018-01-13T12:58:28.000Z</published>
-    <updated>2018-01-14T22:48:19.430Z</updated>
+    <updated>2019-06-27T07:29:24.808Z</updated>
     
     <content type="html"><![CDATA[<!-- toc -->
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>终于迎来这一刻啦O(∩_∩)O~，可以专心致志地写一篇完全解析了<br><a id="more"></a></p>
@@ -848,7 +848,7 @@
 <ul>
 <li><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2631" target="_blank" rel="external">BZOJ 2631: tree</a> <font color="#FFFFFF">基础标记下传LCT，正常搞就好了</font></p>
 <ul>
-<li><a href="http://goseqh.tk/2018/01/02/BZOJ-2631-tree/">题解</a></li>
+<li><a href="http://gqh123.github.io/2018/01/02/BZOJ-2631-tree/" target="_blank" rel="external">题解</a></li>
 </ul>
 </li>
 <li><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3282" target="_blank" rel="external">BZOJ 3282: Tree</a> <font color="#FFFFFF">基础LCT，正常搞就好了 </font></p>
@@ -858,7 +858,7 @@
 </li>
 <li><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1180" target="_blank" rel="external">BZOJ 1180: [CROATIAN2009]OTOCI</a> <font color="#FFFFFF">高鲁棒性LCT </font></p>
 <ul>
-<li><a href="http://goseqh.tk/2018/01/02/BZOJ-1180-CROATIAN2009-OTOCI/">题解</a></li>
+<li><a href="http://gqh123.github.io/2018/01/02/BZOJ-1180-CROATIAN2009-OTOCI/" target="_blank" rel="external">题解</a></li>
 </ul>
 </li>
 <li><p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2002" target="_blank" rel="external">BZOJ 2002: [Hnoi2010]Bounce 弹飞绵羊</a> <font color="#FFFFFF">稍微有一点思考难度的LCT（其实一点也没有…）但是这题还可以分块做 </font></p>
@@ -901,7 +901,7 @@
 </li>
 <li><p><a href="http://uoj.ac/problem/274" target="_blank" rel="external">UOJ #274. 【清华集训2016】温暖会指引我们前行</a> <font color="#FFFFFF">好像和普通的最大生成树没什么区别…正常做就好</font></p>
 <ul>
-<li><a href="http://goseqh.tk/2018/01/13/UOJ-274-%E3%80%90%E6%B8%85%E5%8D%8E%E9%9B%86%E8%AE%AD2016%E3%80%91%E6%B8%A9%E6%9A%96%E4%BC%9A%E6%8C%87%E5%BC%95%E6%88%91%E4%BB%AC%E5%89%8D%E8%A1%8C/">题解</a></li>
+<li><a href="http://gqh123.github.io/2018/01/13/UOJ-274-%E3%80%90%E6%B8%85%E5%8D%8E%E9%9B%86%E8%AE%AD2016%E3%80%91%E6%B8%A9%E6%9A%96%E4%BC%9A%E6%8C%87%E5%BC%95%E6%88%91%E4%BB%AC%E5%89%8D%E8%A1%8C/" target="_blank" rel="external">题解</a></li>
 </ul>
 </li>
 </ul>
@@ -950,7 +950,7 @@
     <link href="https://goseqh.tk/2018/01/13/BZOJ-4530-Bjoi2014-%E5%A4%A7%E8%9E%8D%E5%90%88/"/>
     <id>https://goseqh.tk/2018/01/13/BZOJ-4530-Bjoi2014-大融合/</id>
     <published>2018-01-13T11:21:33.000Z</published>
-    <updated>2018-01-13T11:26:06.000Z</updated>
+    <updated>2019-06-27T07:29:24.752Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -1001,7 +1001,7 @@
     <link href="https://goseqh.tk/2018/01/13/UOJ-228-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%83%E4%B9%A0%E9%A2%98/"/>
     <id>https://goseqh.tk/2018/01/13/UOJ-228-基础数据结构练习题/</id>
     <published>2018-01-13T10:59:23.000Z</published>
-    <updated>2018-01-13T11:21:10.000Z</updated>
+    <updated>2019-06-27T07:29:24.816Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -1091,7 +1091,7 @@
     <link href="https://goseqh.tk/2018/01/13/UOJ-207-%E5%85%B1%E4%BB%B7%E5%A4%A7%E7%88%B7%E6%B8%B8%E9%95%BF%E6%B2%99/"/>
     <id>https://goseqh.tk/2018/01/13/UOJ-207-共价大爷游长沙/</id>
     <published>2018-01-13T10:41:47.000Z</published>
-    <updated>2018-01-13T11:04:24.000Z</updated>
+    <updated>2019-06-27T07:29:24.816Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -1194,9 +1194,9 @@ YES
     
       <category term="题解" scheme="https://goseqh.tk/tags/%E9%A2%98%E8%A7%A3/"/>
     
-      <category term="LCT" scheme="https://goseqh.tk/tags/LCT/"/>
-    
       <category term="Hash" scheme="https://goseqh.tk/tags/Hash/"/>
+    
+      <category term="LCT" scheme="https://goseqh.tk/tags/LCT/"/>
     
       <category term="UOJ" scheme="https://goseqh.tk/tags/UOJ/"/>
     
@@ -1207,7 +1207,7 @@ YES
     <link href="https://goseqh.tk/2018/01/13/UOJ-274-%E3%80%90%E6%B8%85%E5%8D%8E%E9%9B%86%E8%AE%AD2016%E3%80%91%E6%B8%A9%E6%9A%96%E4%BC%9A%E6%8C%87%E5%BC%95%E6%88%91%E4%BB%AC%E5%89%8D%E8%A1%8C/"/>
     <id>https://goseqh.tk/2018/01/13/UOJ-274-【清华集训2016】温暖会指引我们前行/</id>
     <published>2018-01-13T10:21:34.000Z</published>
-    <updated>2018-01-13T11:03:36.000Z</updated>
+    <updated>2019-06-27T07:29:24.820Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -1402,7 +1402,7 @@ change 6 4846
     <link href="https://goseqh.tk/2018/01/13/BZOJ-3510-%E9%A6%96%E9%83%BD/"/>
     <id>https://goseqh.tk/2018/01/13/BZOJ-3510-首都/</id>
     <published>2018-01-13T10:02:20.000Z</published>
-    <updated>2018-01-13T12:42:22.000Z</updated>
+    <updated>2019-06-27T07:29:24.744Z</updated>
     
     <content type="html"><![CDATA[<!--用真正的题解标题替换所有的<title>--->
 <!-- toc -->
@@ -1478,7 +1478,7 @@ change 6 4846
     <link href="https://goseqh.tk/2018/01/13/BZOJ-3779-%E9%87%8D%E7%BB%84%E7%97%85%E6%AF%92/"/>
     <id>https://goseqh.tk/2018/01/13/BZOJ-3779-重组病毒/</id>
     <published>2018-01-13T09:27:41.000Z</published>
-    <updated>2018-01-13T10:01:42.000Z</updated>
+    <updated>2019-06-27T07:29:24.748Z</updated>
     
     <content type="html"><![CDATA[<!-- toc -->
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>BZOJ 3779: 重组病毒  题解<br><a id="more"></a></p>
@@ -1565,7 +1565,7 @@ change 6 4846
     <link href="https://goseqh.tk/2018/01/13/BZOJ-3159-%E5%86%B3%E6%88%98-md/"/>
     <id>https://goseqh.tk/2018/01/13/BZOJ-3159-决战-md/</id>
     <published>2018-01-13T08:14:42.000Z</published>
-    <updated>2018-01-13T09:26:26.000Z</updated>
+    <updated>2019-06-27T07:29:24.740Z</updated>
     
     <content type="html"><![CDATA[<!-- toc -->
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>BZOJ 3159: 决战  题解<br><a id="more"></a></p>
@@ -1648,31 +1648,11 @@ change 6 4846
   </entry>
   
   <entry>
-    <title>新语</title>
-    <link href="https://goseqh.tk/2018/01/06/%E6%96%B0%E8%AF%AD/"/>
-    <id>https://goseqh.tk/2018/01/06/新语/</id>
-    <published>2018-01-06T10:06:34.000Z</published>
-    <updated>2018-01-13T08:12:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<link href="/style.css" rel="stylesheet" type="text/css"><script src="/crypto-js.js"></script><script src="/mcommon.js"></script><script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <div id="security"> <div> <div class="input-container"> <input type="password" class="form-control" id="pass" placeholder=" Welcome to my blog, enter password to read. "/> <label for="pass"> Welcome to my blog, enter password to read. </label> <div class="bottom-line"></div> </div> </div> </div> <div id="encrypt-blog" style="display:none"> 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 </div>]]></content>
-    
-    <summary type="html">
-    
-      New Words.
-    
-    </summary>
-    
-    
-      <category term="感悟" scheme="https://goseqh.tk/tags/%E6%84%9F%E6%82%9F/"/>
-    
-  </entry>
-  
-  <entry>
     <title>原创题目&amp;idea汇总</title>
     <link href="https://goseqh.tk/2018/01/05/%E5%8E%9F%E5%88%9B%E9%A2%98%E7%9B%AE-idea%E6%B1%87%E6%80%BB/"/>
     <id>https://goseqh.tk/2018/01/05/原创题目-idea汇总/</id>
     <published>2018-01-05T10:51:01.000Z</published>
-    <updated>2018-01-05T11:31:26.000Z</updated>
+    <updated>2019-06-27T07:29:24.836Z</updated>
     
     <content type="html"><![CDATA[<!-- toc -->
 <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>记录了一些生活中想出来的小idea什么的……<br><a id="more"></a></p>
@@ -1696,6 +1676,87 @@ change 6 4846
     
     
       <category term="原创题目" scheme="https://goseqh.tk/tags/%E5%8E%9F%E5%88%9B%E9%A2%98%E7%9B%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BZOJ 3589: 动态树</title>
+    <link href="https://goseqh.tk/2018/01/02/BZOJ-3589-%E5%8A%A8%E6%80%81%E6%A0%91/"/>
+    <id>https://goseqh.tk/2018/01/02/BZOJ-3589-动态树/</id>
+    <published>2018-01-02T13:22:13.000Z</published>
+    <updated>2019-06-27T07:29:24.744Z</updated>
+    
+    <content type="html"><![CDATA[<!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>BZOJ 3589: 动态树  题解<br><a id="more"></a></p>
+<h1 id="BZOJ-3589-动态树"><a href="#BZOJ-3589-动态树" class="headerlink" title="BZOJ 3589: 动态树"></a>BZOJ 3589: 动态树</h1><ul>
+<li><p>Time Limit:  30 Sec </p>
+</li>
+<li><p>Memory Limit:  1024 MB</p>
+</li>
+</ul>
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>别忘了这是一棵动态树, 每时每刻都是动态的. 小明要求你在这棵树上维护两种事件<br>事件0:<br>这棵树长出了一些果子, 即某个子树中的每个节点都会长出K个果子.<br>事件1:<br>小明希望你求出几条树枝上的果子数. 一条树枝其实就是一个从某个节点到根的路径的一段. 每次小明会选定一些树枝, 让你求出在这些树枝上的节点的果子数的和. 注意, 树枝之间可能会重合, 这时重合的部分的节点的果子只要算一次.</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第一行一个整数n(1&lt;=n&lt;=200,000), 即节点数.<br>接下来n-1行, 每行两个数字u, v. 表示果子u和果子v之间有一条直接的边. 节点从1开始编号.<br>在接下来一个整数nQ(1&lt;=nQ&lt;=200,000), 表示事件.<br>最后nQ行, 每行开头要么是0, 要么是1.<br>如果是0, 表示这个事件是事件0. 这行接下来的2个整数u, delta表示以u为根的子树中的每个节点长出了delta个果子.<br>如果是1, 表示这个事件是事件1. 这行接下来一个整数K(1&lt;=K&lt;=5), 表示这次询问涉及K个树枝. 接下来K对整数u_k, v_k, 每个树枝从节点u_k到节点v_k. 由于果子数可能非常多, 请输出这个数模2^31的结果.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>对于每个事件1, 输出询问的果子数.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><p>5</p>
+<p>1 2</p>
+<p>2 3</p>
+<p>2 4</p>
+<p>1 5</p>
+<p>3</p>
+<p>0 1 1</p>
+<p>0 2 3</p>
+<p>1 2 3 1 1 4</p>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><p>13</p>
+<h3 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h3><p> 1 &lt;= n &lt;= 200,000, 1 &lt;= nQ &lt;= 200,000, K = 5.</p>
+<p>生成每个树枝的过程是这样的:先在树中随机找一个节点, 然后在这个节点到根的路径上随机选一个节点, 这两个节点就作为树枝的两端.</p>
+<h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><p>By 佚名提供</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>首先这题神tm动态树</p>
+<p>好了我们来说正题……</p>
+<p>这道题我自己想了一下，首先显然是树链剖分对吧……当然也可以改成LCT，这样少一个$log$,也正好能够呼应题目（雾</p>
+<p>由于我十分的菜，我看到题目每次同时询问的链的个数不超过$5$，于是我想，这不是和$O(1)$一样的吗……所以我每次对每条链都查询一下就行？</p>
+<p>所以现在的主要问题就是怎么舍去重复的结点，我考虑了一下，我们可以考虑每次查询完一条链以后，把它在线段树上正好覆盖的那些区间的$Sum$信息都设为零，但这样我们在查询到这些节点的下方结点时仍然会计重，那么我就再开一个$Set$标记，表示这个节点是不是已经被设为了$0$，如果我们每次进入了一个节点，发现它有$Set$标记，那么我们就直接退出</p>
+<p>由于每次查询涉及的结点数为$O(\log^2 n)$级别的，所以我们上面的操作都是可行的</p>
+<p>现在，我们的问题就转化为，如何快速恢复每个被更改节点的信息，以及如何处理信息下传的情况</p>
+<p>首先，对于有信息下传的情况，我们可以发现，同时进行查询以及维护信息下传是一件很麻烦的事情，很容易出现问题，所以我们不妨类比LCT中在Splay预先下传所有相关信息的技巧，在最开始先把所有会被影响到的节点的信息都下传完毕，这样就解决了这个问题，而且复杂度也是正确的</p>
+<p>这个技巧不妨称为<code>线段树信息下传预处理</code></p>
+<p>其次，对于如何快速恢复每个被更改节点的信息这个问题，我们可以类比回滚的技巧，用一个栈来维护所有的修改，这样，我们就可以把所有结点的$Set$复位，$Sum$复原，这样就可以了，同时由于下面的结点被修改，上面的结点会因信息上传而同样受到影响，所以我们需要把所有经过的结点都复原，但即便如此，复杂度仍然正确，是$O(\log^2 n)$</p>
+<p>这个技巧不妨称为<code>线段树信息回滚</code></p>
+<p>这样，通过这道题，我们就掌握了两种技巧以及其背后的思想，所以这道题目是一道非常优秀的题目</p>
+<p>所以我们就完美地解决了这个问题，相关细节可以参考代码</p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>去网上baidu了一下题解，发现大家好像都不是我这样做的（捂脸</p>
+<p>好像是什么容斥原理+链求交，看了一下觉得也是好有道理的，还顺便学习了一下如何链求交，但是貌似跑起来没有我这个快？</p>
+<p>还有一个技巧就是利用题目中特殊的模数，我们可以用<code>unsigned int</code>直接自然溢出，最后输出答案时再&amp;上一个$2147483647$即可</p>
+<p>然而我非常ZZ，并不知道这件事，直接暴力上<code>long long int</code>然后暴力取模……</p>
+<p>优化完一下子从$13196ms$跑到了$8216ms$ O(∩_∩)O~</p>
+<p>总之这道题目确实非常好啊</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cassert&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 400005</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ll unsigned int</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pil pair<span class="meta-string">&lt;int, ll&gt; </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pii pair<span class="meta-string">&lt;int, int&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> M 2147483647</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i, l, r) for (register int i = l; i &lt;= r; i++)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i, r, l) for (register int i = r; i &gt;= l; i--)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> erep(i, x) for (register int i = h[x]; i; i = e[i].next)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> gc() ((p1 == p2 &amp;&amp; (p2 = (p1 = buffer) + fread(buffer, 1, maxn, stdin), p1 == p2)) ? EOF : *p1++)</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">char</span> *p1, *p2;</div><div class="line"><span class="keyword">char</span> buffer[maxn];</div><div class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">void</span> <span class="title">read</span>(<span class="title">T</span>&amp; <span class="title">x</span>)&#123;</span></div><div class="line">    <span class="keyword">char</span> ch = gc(); x = <span class="number">0</span>; <span class="keyword">bool</span> f = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (!(<span class="string">'0'</span> &lt;= ch &amp;&amp; ch &lt;= <span class="string">'9'</span>) &amp;&amp; ch != <span class="string">'-'</span>) ch = gc();</div><div class="line">    <span class="keyword">if</span> (ch == <span class="string">'-'</span>) f = <span class="number">0</span>, ch = gc();</div><div class="line">    <span class="keyword">while</span> (<span class="string">'0'</span> &lt;= ch &amp;&amp; ch &lt;= <span class="string">'9'</span>) x = (x &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">3</span>) + ch - <span class="string">'0'</span>, ch = gc();</div><div class="line">    <span class="keyword">if</span> (!f) x = -x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n, m;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> next, to;</div><div class="line">    edge(<span class="keyword">int</span> next, <span class="keyword">int</span> to) : next(next), to(to)&#123;&#125;</div><div class="line">    edge()&#123;&#125;</div><div class="line">&#125;e[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="keyword">int</span> h[maxn], cnt = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add_Edge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    e[++cnt] = edge(h[x], y);</div><div class="line">    h[x] = cnt;</div><div class="line">    e[++cnt] = edge(h[y], x);</div><div class="line">    h[y] = cnt;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> dfs[maxn];</div><div class="line"><span class="keyword">int</span> idfs[maxn];</div><div class="line"><span class="keyword">int</span> son[maxn];</div><div class="line"><span class="keyword">int</span> siz[maxn];</div><div class="line"><span class="keyword">int</span> d[maxn];</div><div class="line"><span class="keyword">int</span> top[maxn];</div><div class="line"><span class="keyword">int</span> fa[maxn];</div><div class="line"><span class="keyword">int</span> t = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">    siz[x] = <span class="number">1</span>;</div><div class="line">    erep(i, x)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (op == fa[x]) <span class="keyword">continue</span>;</div><div class="line">        fa[op] = x, d[op] = d[x] + <span class="number">1</span>;</div><div class="line">        DFS(op);</div><div class="line">        siz[x] += siz[op];</div><div class="line">        <span class="keyword">if</span> (siz[op] &gt; siz[son[x]]) son[x] = op;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> tp)</span></span>&#123;</div><div class="line">    dfs[x] = ++t;</div><div class="line">    idfs[t] = x;</div><div class="line">    top[x] = tp;</div><div class="line">    <span class="keyword">if</span> (son[x]) DFS(son[x], tp);</div><div class="line">    erep(i, x)&#123;</div><div class="line">        <span class="keyword">int</span> op = e[i].to;</div><div class="line">        <span class="keyword">if</span> (op == fa[x] || op == son[x]) <span class="keyword">continue</span>;</div><div class="line">        DFS(op, op);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">    DFS(<span class="number">1</span>);</div><div class="line">    DFS(<span class="number">1</span>, <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">ll sum[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line">ll add[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"><span class="keyword">int</span> qx, qy;</div><div class="line">ll qd;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (add[o] &amp;&amp; l != r)&#123;</div><div class="line">        <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">        ll&amp; ad = add[o];</div><div class="line">        add[o &lt;&lt; <span class="number">1</span>] += ad;</div><div class="line">        add[o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] += ad;</div><div class="line">        sum[o &lt;&lt; <span class="number">1</span>] += (mid + <span class="number">1</span> - l) * ad;</div><div class="line">        sum[o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] += (r - mid) * ad;</div><div class="line">        ad = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (l == r) <span class="keyword">return</span>;</div><div class="line">    sum[o] = sum[o &lt;&lt; <span class="number">1</span>] + sum[o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="comment">//printf("------------------------Add------------------------");</span></div><div class="line">    pushdown(l, r, o);</div><div class="line">    <span class="comment">//printf("------------------------OUTAdd------------------------");</span></div><div class="line">    <span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy)&#123;</div><div class="line">        add[o] += qd;</div><div class="line">        sum[o] += qd * (r - l + <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= mid) Add(l, mid, o &lt;&lt; <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span> (qy &gt; mid) Add(mid + <span class="number">1</span>, r, o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</div><div class="line">    pushup(l, r, o);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Modify</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    qx = dfs[x], qy = dfs[x] + siz[x] - <span class="number">1</span>, qd = y;</div><div class="line">    Add(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Pushdown</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="comment">//printf("------------------------Pushdown------------------------");</span></div><div class="line">    pushdown(l, r, o);</div><div class="line">    <span class="comment">//printf("------------------------OUTPushdown------------------------");</span></div><div class="line">    <span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= mid) Pushdown(l, mid, o &lt;&lt; <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span> (qy &gt; mid) Pushdown(mid + <span class="number">1</span>, r, o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">bool</span> <span class="built_in">set</span>[maxn &lt;&lt; <span class="number">1</span>];</div><div class="line"><span class="built_in">stack</span>&lt;pil&gt; s;</div><div class="line"></div><div class="line"><span class="function">ll <span class="title">Get</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">set</span>[o]) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy)&#123;</div><div class="line">        ll tem = sum[o];</div><div class="line">        s.push(pil(o, sum[o]));</div><div class="line">        sum[o] = <span class="number">0</span>;</div><div class="line">        <span class="built_in">set</span>[o] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> tem;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    ll ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= mid) ans += Get(l, mid, o &lt;&lt; <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span> (qy &gt; mid) ans += Get(mid + <span class="number">1</span>, r, o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</div><div class="line">    s.push(pil(o, sum[o]));</div><div class="line">    sum[o] = sum[o &lt;&lt; <span class="number">1</span>] + sum[o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>];</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">recover</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">while</span> (!s.empty())&#123;</div><div class="line">        pil op = s.top(); s.pop();</div><div class="line">        sum[op.fi] = op.se;</div><div class="line">        <span class="built_in">set</span>[op.fi] = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Pushdown</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> f1 = top[x], f2 = top[y];</div><div class="line">    <span class="keyword">while</span> (f1 != f2)&#123;</div><div class="line">        <span class="keyword">if</span> (d[f1] &gt; d[f2])&#123;</div><div class="line">            qx = dfs[f1], qy = dfs[x];</div><div class="line">            Pushdown(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">            x = fa[f1];</div><div class="line">            f1 = top[x];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            qx = dfs[f2], qy = dfs[y];</div><div class="line">            Pushdown(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">            y = fa[f2];</div><div class="line">            f2 = top[y];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    qx = dfs[x], qy = dfs[y];</div><div class="line">    <span class="keyword">if</span> (qx &gt; qy) swap(qx, qy);</div><div class="line">    Pushdown(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">ll <span class="title">Get</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">    ll ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> f1 = top[x], f2 = top[y];</div><div class="line">    <span class="keyword">while</span> (f1 != f2)&#123;</div><div class="line">        <span class="keyword">if</span> (d[f1] &gt; d[f2])&#123;</div><div class="line">            qx = dfs[f1], qy = dfs[x];</div><div class="line">            ans += Get(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">            x = fa[f1];</div><div class="line">            f1 = top[x];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            qx = dfs[f2], qy = dfs[y];</div><div class="line">            ans += Get(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">            y = fa[f2];</div><div class="line">            f2 = top[y];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    qx = dfs[x], qy = dfs[y];</div><div class="line">    <span class="keyword">if</span> (qx &gt; qy) swap(qx, qy);</div><div class="line">    ans += Get(<span class="number">1</span>, n, <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"></div><div class="line">pii que[maxn];</div><div class="line"><span class="keyword">int</span> ct = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Solve</span><span class="params">()</span></span>&#123;</div><div class="line">    ll tot = <span class="number">0</span>;</div><div class="line">    rep(i, <span class="number">1</span>, ct) Pushdown(que[i].fi, que[i].se); </div><div class="line">    rep(i, <span class="number">1</span>, ct) tot += Get(que[i].fi, que[i].se); </div><div class="line">    recover();</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%u\n"</span>, tot &amp; M);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="meta">#<span class="meta-keyword">ifndef</span> ONLINE_JUDGE</span></div><div class="line">        freopen(<span class="string">"dynamic.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</div><div class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    <span class="keyword">int</span> x, y, op;</div><div class="line">    read(n);</div><div class="line">    rep(i, <span class="number">1</span>, n - <span class="number">1</span>) read(x), read(y), Add_Edge(x, y);</div><div class="line">    init();</div><div class="line">    read(m);</div><div class="line">    rep(i, <span class="number">1</span>, m)&#123;</div><div class="line">        read(op);</div><div class="line">        <span class="keyword">switch</span>(op)&#123;</div><div class="line">            <span class="keyword">case</span> <span class="number">0</span>: read(x), read(y), Modify(x, y); <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">1</span>: read(ct); rep(j, <span class="number">1</span>, ct) read(x), read(y), que[j] = pii(x, y); Solve(); <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span> : assert(<span class="literal">false</span>); <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*ll _sum[maxn &lt;&lt; 1];</span></div><div class="line">stack&lt;pil&gt; s;</div><div class="line">ll Modify_Get(int l, int r, int o)&#123;</div><div class="line">    pushdown(l, r, o);</div><div class="line">    if (set[o]) return 0;</div><div class="line">    if (qx &lt;= l &amp;&amp; r &lt;= qy)&#123;</div><div class="line">        set[o] = 1;</div><div class="line">        s.push(o);</div><div class="line">        return sum[o];</div><div class="line">    &#125;</div><div class="line">    int mid = ((r - l) &gt;&gt; 1) + l;</div><div class="line">    ll ans = 0;</div><div class="line">    if (qx &lt;= mid) ans = (ans + Mod_Get(l, mid, o &lt;&lt; 1)) % M;</div><div class="line">    if (qy &gt; mid) ans = (ans + Mod_Get(mid + 1, r, o &lt;&lt; 1 | 1)) % M;</div><div class="line">    _sum[o] = (_sum[o &lt;&lt; 1] + _sum[o &lt;&lt; 1 | 1]) % M;</div><div class="line">    return ans;</div><div class="line">&#125;*/</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*ll Get(int l, int r, int o)&#123;</span></div><div class="line">    if (qx &lt;= l &amp;&amp; r &lt;= qy) return sum[o];</div><div class="line">    int mid = ((r - l) &gt;&gt; 1) + l;</div><div class="line">    ll ans = 0;</div><div class="line">    if (qx &lt;= mid) ans = (ans + Get(l, mid, o &lt;&lt; 1)) % M;</div><div class="line">    if (qy &gt; mid) ans = (ans + Get(mid + 1, r, o &lt;&lt; 1 | 1)) % M;</div><div class="line">    return ans;</div><div class="line">&#125;*/</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;!-- toc --&gt;
+&lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;BZOJ 3589: 动态树  题解&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="数据结构" scheme="https://goseqh.tk/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="线段树" scheme="https://goseqh.tk/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
+    
+      <category term="题解" scheme="https://goseqh.tk/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+      <category term="BZOJ" scheme="https://goseqh.tk/tags/BZOJ/"/>
+    
+      <category term="重要文章" scheme="https://goseqh.tk/tags/%E9%87%8D%E8%A6%81%E6%96%87%E7%AB%A0/"/>
+    
+      <category term="树链剖分" scheme="https://goseqh.tk/tags/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/"/>
+    
+      <category term="容斥原理" scheme="https://goseqh.tk/tags/%E5%AE%B9%E6%96%A5%E5%8E%9F%E7%90%86/"/>
+    
+      <category term="状态压缩" scheme="https://goseqh.tk/tags/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/"/>
+    
+      <category term="好题精选" scheme="https://goseqh.tk/tags/%E5%A5%BD%E9%A2%98%E7%B2%BE%E9%80%89/"/>
     
   </entry>
   
