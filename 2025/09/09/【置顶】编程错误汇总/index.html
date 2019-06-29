@@ -1,0 +1,1034 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Renatus&#39;s Blog">
+    <title>【置顶】编程错误汇总 - Renatus&#39;s Blog</title>
+    <meta name="author" content="Renatus">
+    
+    
+        <link rel="icon" href="http://res.cloudinary.com/goseqh/image/upload/v1501464937/new2_qgnz5x.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="引言妙妙妙妙不可言&amp;lt;（￣︶￣）/">
+<meta name="keywords" content="编程错误">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="【置顶】编程错误汇总">
+<meta property="og:url" content="https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/index.html">
+<meta property="og:site_name" content="Renatus&#39;s Blog">
+<meta property="og:description" content="引言妙妙妙妙不可言&amp;lt;（￣︶￣）/">
+<meta property="og:updated_time" content="2019-06-28T13:17:24.551Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【置顶】编程错误汇总">
+<meta name="twitter:description" content="引言妙妙妙妙不可言&amp;lt;（￣︶￣）/">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://gqh123.github.io/assets/images/new2.png"/>
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg" />
+    
+    
+        <meta property="og:image" content="http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg" />
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css">
+    <!--STYLES END-->
+    
+    
+    <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?9505a5af654a2478f93fd6c0ae4f687d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Renatus&#39;s Blog</a>
+    </div>
+    
+        
+            <a  class="header-right-icon open-algolia-search"
+                href="#search">
+        
+        
+            <i class="fa fa-lg fa-search"></i>
+        
+        </a>
+    
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5fc847eb9d9d78d9abdc859c2181ec2f";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Renatus</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>For what I cherish forever.</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc">首页</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc">分类</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc">标签</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc">归档</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                        <span class="sidebar-button-desc">搜索</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc">关于</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/GQH123" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="mailto:572694553@qq.com" target="_blank" rel="noopener">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                        <span class="sidebar-button-desc">QQmail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-left
+                    "
+             style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1502772098/1389146115569_fwg2bu.jpg');"
+             data-behavior="4">
+            
+                <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            【置顶】编程错误汇总
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2025-09-09T15:17:39+08:00">
+	
+		    9月 09, 2025
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+            
+        </div>
+
+            <div id="main" data-behavior="4"
+                 class="hasCover
+                        hasCoverMetaIn
+                        hasCoverCaption">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <span class="post-header-cover-caption caption">We read the world wrong and say that it deceives us.</span>
+    
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#语法类"><span class="toc-text">语法类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据范围"><span class="toc-text">数据范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本语句"><span class="toc-text">基本语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#循环语句"><span class="toc-text">循环语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件语句"><span class="toc-text">条件语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支语句"><span class="toc-text">分支语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#宏定义"><span class="toc-text">宏定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序相关"><span class="toc-text">排序相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STL"><span class="toc-text">STL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#set"><span class="toc-text">set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map"><span class="toc-text">map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#priority-queue"><span class="toc-text">priority_queue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lower-bound-upper-bound"><span class="toc-text">lower_bound/upper_bound</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构体"><span class="toc-text">结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化"><span class="toc-text">初始化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法类"><span class="toc-text">算法类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前缀和-积"><span class="toc-text">前缀和/积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速幂"><span class="toc-text">快速幂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划（DP）"><span class="toc-text">动态规划（DP）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图论"><span class="toc-text">图论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据结构"><span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#树链剖分"><span class="toc-text">树链剖分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Link-Cut-Tree"><span class="toc-text">Link-Cut-Tree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字典树-Trie"><span class="toc-text">字典树(Trie)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线段树"><span class="toc-text">线段树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可持久化线段树-主席树"><span class="toc-text">可持久化线段树/主席树</span></a></li></ol></li></ol></li></ol>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>妙妙妙妙不可言&lt;（￣︶￣）/<br><a id="more"></a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大概就是许多常见错误的汇总，每次考试前仔细的看一看，认真地记一记，应该会有很大的好处</p>
+<p>注意，下面的每个错误都很重要，时间允许的话一定要一字一字地看！</p>
+<h1 id="语法类"><a href="#语法类" class="headerlink" title="语法类"></a>语法类</h1><h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><ul>
+<li><p><strong>随时都要注意是否应该使用更大的数据类型以防止溢出</strong>，这一点至关重要</p>
+<ul>
+<li>常见的需要用到<code>long long int</code>的地方<ul>
+<li>算术表达式里面的计算中间结果</li>
+<li>与取模有关的几乎所有题目</li>
+<li>对程序计算答案的累计（即最终结果）</li>
+<li>对于满足条件的n元组个数的统计</li>
+<li>组合数学相关题目</li>
+<li>一些数据范围很大的数论题以及需要用到杜教筛的数论题</li>
+<li>总之每次都仔细的判断一下，程序完成后特别考虑一下这个问题，应该就没问题了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>随时都要注意是否由于使用了较大的数据类型导致内存超限</strong></p>
+</li>
+<li><p><strong>注意输入输出是否使用了正确的类型表标识符</strong></p>
+</li>
+</ul>
+<h2 id="基本语句"><a href="#基本语句" class="headerlink" title="基本语句"></a>基本语句</h2><h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><ul>
+<li><strong>注意内外层循环变量的冲突</strong></li>
+<li>注意内部语句循环变量的正确使用</li>
+<li>注意循环变量与全局变量（循环外部变量）的冲突</li>
+</ul>
+<h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h3><ul>
+<li>注意if…else的对应性，不要把内层的if对应到外层的else上，为避免这一错误可多使用’{}’</li>
+<li>注意<gqh style="font-family:Goseqh;color:red">运算符的优先级</gqh></li>
+</ul>
+<h3 id="分支语句"><a href="#分支语句" class="headerlink" title="分支语句"></a>分支语句</h3><ul>
+<li>保险起见，在每个分支后面加上break;</li>
+</ul>
+<h2 id="宏定义"><a href="#宏定义" class="headerlink" title="宏定义"></a>宏定义</h2><ul>
+<li><gqh style="font-family:Goseqh;color:red">严重问题:注意宏定义的不安全性</gqh>，代码示例如下：</li>
+</ul>
+<p>我们想计算$(a + b) * c$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A a + b</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> a, b, c;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, A * c);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>但这样做的结果是$a + b * c$<br>要想得到正确结果，多使用’()’：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A (a + b)</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> a, b, c;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, A * c);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="排序相关"><a href="#排序相关" class="headerlink" title="排序相关"></a>排序相关</h2><ul>
+<li><p></p><p style="font-family:verdana;color:red">严重问题：绝对不要使比较方法出现循环比较现象，必须保证排序结果唯一</p>，相关链接：<a href="http://gqh123.github.io/2018/01/15/BZOJ-3712-PA2014-Fiolki/">BZOJ 3712: [PA2014]Fiolki</a><p></p>
+</li>
+<li><p></p><p style="font-family:verdana;color:orange">在priority_queue的自定义比较用结构体中，注意运算符()的比较方法是：(a, b)在a的优先级小于b时返回True</p>，即相当于重载大于运算符<p></p>
+</li>
+</ul>
+<h2 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h2><ul>
+<li><p style="font-family:verdana;color:orange">尽可能避免在任何STL中存放比较方法定义与外部数组存在关联的元素，否则会导致排序紊乱产生错误</p>
+
+</li>
+</ul>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><ul>
+<li><p style="font-family:verdana;color:red">严重问题：绝对不要使用STL的二分查找功能来查找set中的元素，只能使用set自带的二分查找成员函数，否则会导致严重的TLE问题</p>
+
+</li>
+</ul>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><ul>
+<li>不要在未对要访问的map键值赋值的情况下访问它，否则会RE</li>
+</ul>
+<h3 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h3><ul>
+<li>注意cmp的定义方法：当$a$比$b$优先级小的时候返回true</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cmp</span>&#123;</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> a &lt; b;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">priority_queue&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, cmp&gt; p;</div></pre></td></tr></table></figure>
+<p>$p$是一个大根堆</p>
+<h3 id="lower-bound-upper-bound"><a href="#lower-bound-upper-bound" class="headerlink" title="lower_bound/upper_bound"></a>lower_bound/upper_bound</h3><ul>
+<li><p><gqh style="font-family:verdana;color:red">严重问题：绝对不要使用这两个函数来查找set中的元素，只能使用set自带的二分查找成员函数，否则会导致严重的TLE问题</gqh>，本处再强调一遍</p>
+</li>
+<li><gqh style="font-family:verdana;color:orange">注意这两个二分查找函数只能作用于一个有序数组，即已经排好序的数组，而不能是任意数组（二分算法本身也要求有序...）</gqh>
+
+</li>
+</ul>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><ul>
+<li><gqh style="font-family:verdana;color:orange">注意构造函数前面简化赋值语句的正确使用方法</gqh>，相关链接：<a href="http://gqh123.github.io/2018/01/15/BZOJ-4502-%E4%B8%B2/">BZOJ 4502: 串</a></li>
+</ul>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ul>
+<li>即使是定义在全局的结构体，内部变量初始时也不一定都为$0$，需要在构造函数中手动初始化</li>
+</ul>
+<h1 id="算法类"><a href="#算法类" class="headerlink" title="算法类"></a>算法类</h1><h2 id="前缀和-积"><a href="#前缀和-积" class="headerlink" title="前缀和/积"></a>前缀和/积</h2><ul>
+<li>不要使最开头累加/乘的操作访问不该访问的内存</li>
+<li>如果是求前缀积，一定不要忘记第一个元素应该手动设为$1$</li>
+</ul>
+<h2 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h2><ul>
+<li>注意不要忘记每次对幂数进行的右移操作，否则会TLE（当然，这个本地也是很容易测试出来的，但可能会不知道问题出在哪里）</li>
+<li><gqh style="font-family:verdana;color:red">严重问题：注意绝对不要使幂数为一个负数</gqh>，如果容易出现此错误，最好提前判断一下</li>
+<li>在取模的题目中，不要忘记每次乘法都是需要取模的</li>
+</ul>
+<h2 id="动态规划（DP）"><a href="#动态规划（DP）" class="headerlink" title="动态规划（DP）"></a>动态规划（DP）</h2><ul>
+<li><p>在边界值问题上要特别注意，边界值需要经过计算与论证方可确定</p>
+</li>
+<li><p>注意情况讨论的不充分或是相互重叠的问题</p>
+</li>
+<li><p>在取模的问题中时刻记住对结果及时进行取模处理</p>
+</li>
+</ul>
+<ul>
+<li><gqh style="font-family:verdana;color:red">严重问题：在记忆化搜索时，时刻记住在跳出当前计算层之前把vis数组设置为$true$，否则会导致严重的TLE问题</gqh>
+</li>
+<li><p>DP的状态转移不能存在环，否则需要使用最短路式更新法</p>
+</li>
+</ul>
+<ul>
+<li><gqh style="font-family:verdana;color:orange">注意：在题目卡常时，要将递归形式的DP改造为迭代形式，以大幅提高运行速度</gqh>
+
+</li>
+</ul>
+<h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><ul>
+<li>注意有些时候边与点数目的差异会很大，不要直接对存储点与边的数组直接使用相同大小的宏定义进行声明</li>
+</ul>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="树链剖分"><a href="#树链剖分" class="headerlink" title="树链剖分"></a>树链剖分</h3><ul>
+<li>注意题目的要求，仔细严谨地设置链上操作方法，相关链接：<a href="http://gqh123.github.io/2018/01/15/BZOJ-3319-%E9%BB%91%E7%99%BD%E6%A0%91/">BZOJ 3319: 黑白树</a></li>
+</ul>
+<h3 id="Link-Cut-Tree"><a href="#Link-Cut-Tree" class="headerlink" title="Link-Cut-Tree"></a>Link-Cut-Tree</h3><ul>
+<li>相关链接：<a href="http://gqh123.github.io/2018/01/13/Link-Cut-Tree%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/">Link-Cut-Tree完全解析</a></li>
+</ul>
+<h3 id="字典树-Trie"><a href="#字典树-Trie" class="headerlink" title="字典树(Trie)"></a>字典树(Trie)</h3><ul>
+<li><gqh style="font-family:verdana;color:red">严重问题：时刻注意Trie的空间占用大小并非$O(n)$而是$O(n\log n)$</gqh>，要计算后声明足够的内存空间，同时<gqh style="font-family:verdana;color:orange">防止内存超过限制</gqh>
+
+
+</li>
+</ul>
+<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><ul>
+<li><gqh style="font-family:verdana;color:red">严重问题：注意不要让查询的区间为不合法区间</gqh>，否则会RE，这种错误往往比较隐蔽，所以可能出现此情况时最好提前判断一下</li>
+<li><p>注意线段树的基本架构不要写错：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Operate</span> <span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> o)</span></span>&#123;</div><div class="line">    <span class="comment">//pushdown(l, r, o);</span></div><div class="line">    <span class="keyword">if</span> (qx &lt;= l &amp;&amp; r &lt;= qy)&#123;</div><div class="line">        <span class="comment">//do something</span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> mid = ((r - l) &gt;&gt; <span class="number">1</span>) + l;</div><div class="line">    <span class="keyword">if</span> (qx &lt;= mid) Operate(l, mid, o &lt;&lt; <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span> (qy &gt; mid) Operate(mid + <span class="number">1</span>, r, o &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><gqh style="font-family:verdana;color:orange">有的时候，当题目卡常数时，我们需要把线段树改写为迭代形式，以加快运行速度</gqh>
+
+</li>
+</ul>
+<h3 id="可持久化线段树-主席树"><a href="#可持久化线段树-主席树" class="headerlink" title="可持久化线段树/主席树"></a>可持久化线段树/主席树</h3><ul>
+<li><gqh style="font-family:verdana;color:red">严重问题：时刻注意可持久化线段树/主席树的空间占用大小并非$O(n)$而是$O(n\log n)$</gqh>，要计算后声明足够的内存空间，同时<gqh style="font-family:verdana;color:orange">防止内存超过限制</gqh>
+</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/编程错误/">编程错误</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2025/09/09/【置顶】黑科技汇总/"  data-tooltip="【置顶】黑科技汇总">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/06/28/Oier的知识/" data-tooltip="Oier的知识">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/&amp;title=【置顶】编程错误汇总">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Renatus. All Rights Reserved.
+    </span>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2025/09/09/【置顶】黑科技汇总/"  data-tooltip="【置顶】黑科技汇总">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/06/28/Oier的知识/" data-tooltip="Oier的知识">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/&amp;title=【置顶】编程错误汇总">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-star"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-renren"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/&amp;title=【置顶】编程错误汇总">
+                    <i class="fa fa-qq"></i><span>分享到 QQ</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-star"></i><span>分享到 Qzone</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://widget.renren.com/dialog/share?resourceUrl=https://gqh123.github.io/2025/09/09/【置顶】编程错误汇总/">
+                    <i class="fa fa-renren"></i><span>分享到 Renren</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/new2.png" alt="作者的图片"/>
+        
+            <h4 id="about-card-name">Renatus</h4>
+        
+            <div id="about-card-bio"><p>For what I cherish forever.</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>NEYC的<strong>OI狗</strong></p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                China, Liaoning, NEYC
+            </div>
+        
+    </div>
+</div>
+
+        <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-close"></i></span>
+            <a href="https://www.algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <img class="searchby-algolia-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjgiIGhlaWdodD0iMjQiPjxnIGZpbGw9Im5vbmUiPjxwYXRoIGZpbGw9IiM1NDY4RkYiIGQ9Ik03OC45ODguOTM4aDE2LjU5NGEyLjk2OCAyLjk2OCAwIDAgMSAyLjk2NiAyLjk2NlYyMC41YTIuOTY3IDIuOTY3IDAgMCAxLTIuOTY2IDIuOTY0SDc4Ljk4OGEyLjk2NyAyLjk2NyAwIDAgMS0yLjk2Ni0yLjk2NFYzLjg5N0EyLjk2MSAyLjk2MSAwIDAgMSA3OC45ODguOTM4em00MS45MzcgMTcuODY2Yy00LjM4Ni4wMi00LjM4Ni0zLjU0LTQuMzg2LTQuMTA2bC0uMDA3LTEzLjMzNiAyLjY3NS0uNDI0djEzLjI1NGMwIC4zMjIgMCAyLjM1OCAxLjcxOCAyLjM2NHYyLjI0OHptLTEwLjg0Ni0yLjE4Yy44MjEgMCAxLjQzLS4wNDcgMS44NTUtLjEyOXYtMi43MTlhNi4zMzQgNi4zMzQgMCAwIDAtMS41NzQtLjE5OSA1LjcgNS43IDAgMCAwLS44OTcuMDY5IDIuNjk5IDIuNjk5IDAgMCAwLS44MTQuMjRjLS4yNC4xMTYtLjQzOS4yOC0uNTgyLjQ5MS0uMTUuMjEyLS4yMTkuMzM1LS4yMTkuNjU2IDAgLjYyOC4yMTkuOTkxLjYxNiAxLjIzcy45MzguMzYyIDEuNjE1LjM2MnptLS4yMzMtOS43Yy44ODMgMCAxLjYyOS4xMDkgMi4yMzEuMzI4LjYwMi4yMTggMS4wODguNTI1IDEuNDQ0LjkxNS4zNjMuMzk2LjYwOS45MjIuNzYgMS40ODMuMTU3LjU2LjIzMiAxLjE3NS4yMzIgMS44NXY2Ljg3NGEzMi41IDMyLjUgMCAwIDEtMS44NjguMzE0Yy0uODM0LjEyMy0xLjc3Mi4xODUtMi44MTMuMTg1LS42OSAwLTEuMzI3LS4wNjktMS44OTUtLjE5OGE0LjAwMSA0LjAwMSAwIDAgMS0xLjQ3MS0uNjM2IDMuMDg1IDMuMDg1IDAgMCAxLS45NTEtMS4xMzRjLS4yMjYtLjQ2NS0uMzQzLTEuMTItLjM0My0xLjgwMyAwLS42NTYuMTMtMS4wNzMuMzg0LTEuNTI1YTMuMjQgMy4yNCAwIDAgMSAxLjA0Ny0xLjEwNmMuNDQ1LS4yODcuOTUtLjQ5MiAxLjUzMi0uNjE1YTguOCA4LjggMCAwIDEgMS44Mi0uMTg1IDguNDA0IDguNDA0IDAgMCAxIDEuOTcyLjI0di0uNDM4YzAtLjMwNy0uMDM1LS42LS4xMS0uODc0YTEuODggMS44OCAwIDAgMC0uMzg0LS43MyAxLjc4NCAxLjc4NCAwIDAgMC0uNzI0LS40OTMgMy4xNjQgMy4xNjQgMCAwIDAtMS4xNDMtLjIwNWMtLjYxNiAwLTEuMTc3LjA3NS0xLjY5LjE2NGE3LjczNSA3LjczNSAwIDAgMC0xLjI2LjMwN2wtLjMyMS0yLjE5MmMuMzM1LS4xMTcuODM0LS4yMzMgMS40NzgtLjM0OWExMC45OCAxMC45OCAwIDAgMSAyLjA3My0uMTc4em01Mi44NDIgOS42MjZjLjgyMiAwIDEuNDMtLjA0OCAxLjg1NC0uMTNWMTMuN2E2LjM0NyA2LjM0NyAwIDAgMC0xLjU3NC0uMTk5Yy0uMjk0IDAtLjU5NS4wMjEtLjg5Ni4wNjlhMi43IDIuNyAwIDAgMC0uODE0LjI0IDEuNDYgMS40NiAwIDAgMC0uNTgyLjQ5MWMtLjE1LjIxMi0uMjE4LjMzNS0uMjE4LjY1NiAwIC42MjguMjE4Ljk5MS42MTUgMS4yMy40MDQuMjQ1LjkzOC4zNjIgMS42MTUuMzYyem0tLjIyNi05LjY5NGMuODgzIDAgMS42MjkuMTA4IDIuMjMxLjMyNy42MDIuMjE5IDEuMDg4LjUyNiAxLjQ0NC45MTUuMzU1LjM5LjYwOS45MjMuNzU5IDEuNDgzYTYuOCA2LjggMCAwIDEgLjIzMyAxLjg1MnY2Ljg3M2MtLjQxLjA4OC0xLjAzNC4xOS0xLjg2OC4zMTQtLjgzNC4xMjMtMS43NzIuMTg0LTIuODEzLjE4NC0uNjkgMC0xLjMyNy0uMDY4LTEuODk1LS4xOThhNC4wMDEgNC4wMDEgMCAwIDEtMS40NzEtLjYzNSAzLjA4NSAzLjA4NSAwIDAgMS0uOTUxLTEuMTM0Yy0uMjI2LS40NjUtLjM0My0xLjEyLS4zNDMtMS44MDQgMC0uNjU2LjEzLTEuMDczLjM4NC0xLjUyNC4yNi0uNDUuNjA4LS44MiAxLjA0Ny0xLjEwNy40NDUtLjI4Ni45NS0uNDkxIDEuNTMyLS42MTRhOC44MDMgOC44MDMgMCAwIDEgMi43NTEtLjEzYy4zMjkuMDM0LjY3MS4wOTYgMS4wNC4xODV2LS40MzdhMy4zIDMuMyAwIDAgMC0uMTA5LS44NzUgMS44NzMgMS44NzMgMCAwIDAtLjM4NC0uNzMxIDEuNzg0IDEuNzg0IDAgMCAwLS43MjQtLjQ5MiAzLjE2NSAzLjE2NSAwIDAgMC0xLjE0My0uMjA1Yy0uNjE2IDAtMS4xNzcuMDc1LTEuNjkuMTY0YTcuNzUgNy43NSAwIDAgMC0xLjI2LjMwN2wtLjMyMS0yLjE5M2MuMzM1LS4xMTYuODM0LS4yMzIgMS40NzgtLjM0OGExMS42MzMgMTEuNjMzIDAgMCAxIDIuMDczLS4xNzd6bS04LjAzNC0xLjI3MWExLjYyNiAxLjYyNiAwIDAgMS0xLjYyOC0xLjYyYzAtLjg5NS43MjUtMS42MiAxLjYyOC0xLjYyLjkwNCAwIDEuNjMuNzI1IDEuNjMgMS42MiAwIC44OTUtLjczMyAxLjYyLTEuNjMgMS42MnptMS4zNDggMTMuMjJoLTIuNjg5VjcuMjdsMi42OS0uNDIzdjExLjk1NnptLTQuNzE0IDBjLTQuMzg2LjAyLTQuMzg2LTMuNTQtNC4zODYtNC4xMDdsLS4wMDgtMTMuMzM2IDIuNjc2LS40MjR2MTMuMjU0YzAgLjMyMiAwIDIuMzU4IDEuNzE4IDIuMzY0djIuMjQ4em0tOC42OTgtNS45MDNjMC0xLjE1Ni0uMjUzLTIuMTE5LS43NDYtMi43ODgtLjQ5My0uNjc3LTEuMTgzLTEuMDEtMi4wNjctMS4wMS0uODgyIDAtMS41NzQuMzMzLTIuMDY1IDEuMDEtLjQ5My42NzYtLjczMyAxLjYzMi0uNzMzIDIuNzg4IDAgMS4xNjguMjQ2IDEuOTUzLjc0IDIuNjMuNDkyLjY4MyAxLjE4MyAxLjAxOCAyLjA2NiAxLjAxOC44ODIgMCAxLjU3NC0uMzQyIDIuMDY3LTEuMDE5LjQ5Mi0uNjgzLjczOC0xLjQ2LjczOC0yLjYzem0yLjczNy0uMDA3YzAgLjkwMi0uMTMgMS41ODQtLjM5NyAyLjMzYTUuNTIgNS41MiAwIDAgMS0xLjEyOCAxLjkwNiA0Ljk4NiA0Ljk4NiAwIDAgMS0xLjc1MiAxLjIyM2MtLjY4NS4yODYtMS43MzkuNDUtMi4yNjUuNDUtLjUyOC0uMDA2LTEuNTc0LS4xNTctMi4yNTItLjQ1YTUuMDk2IDUuMDk2IDAgMCAxLTEuNzQ0LTEuMjIzYy0uNDg3LS41MjctLjg2My0xLjE2Mi0xLjEzNy0xLjkwNmE2LjM0NSA2LjM0NSAwIDAgMS0uNDEtMi4zM2MwLS45MDIuMTIzLTEuNzcuMzk3LTIuNTA4YTUuNTU0IDUuNTU0IDAgMCAxIDEuMTUtMS44OTIgNS4xMzMgNS4xMzMgMCAwIDEgMS43NS0xLjIxNmMuNjc5LS4yODcgMS40MjUtLjQyMyAyLjIzMi0uNDIzLjgwOCAwIDEuNTUzLjE0MiAyLjIzNy40MjNhNC44OCA0Ljg4IDAgMCAxIDEuNzUzIDEuMjE2IDUuNjQ0IDUuNjQ0IDAgMCAxIDEuMTM1IDEuODkyYy4yODcuNzM4LjQzMSAxLjYwNi40MzEgMi41MDh6bS0yMC4xMzggMGMwIDEuMTIuMjQ2IDIuMzYzLjczOCAyLjg4Mi40OTMuNTIgMS4xMy43OCAxLjkxLjc4LjQyNCAwIC44MjgtLjA2MiAxLjIwNC0uMTc4LjM3Ny0uMTE2LjY3Ny0uMjUzLjkxNy0uNDE3VjkuMzNhMTAuNDc2IDEwLjQ3NiAwIDAgMC0xLjc2Ni0uMjI2Yy0uOTcxLS4wMjgtMS43MS4zNy0yLjIzIDEuMDA0LS41MTMuNjM2LS43NzMgMS43NS0uNzczIDIuNzg4em03LjQzOCA1LjI3NGMwIDEuODI0LS40NjYgMy4xNTYtMS40MDQgNC4wMDQtLjkzNi44NDYtMi4zNjcgMS4yNy00LjI5NiAxLjI3LS43MDUgMC0yLjE3LS4xMzctMy4zNC0uMzk2bC40MzEtMi4xMThjLjk4LjIwNSAyLjI3Mi4yNiAyLjk1LjI2IDEuMDc0IDAgMS44NC0uMjE5IDIuMjk5LS42NTYuNDU5LS40MzcuNjg0LTEuMDg2LjY4NC0xLjk0OHYtLjQzN2E4LjA3IDguMDcgMCAwIDEtMS4wNDcuMzk3Yy0uNDMuMTMtLjkzLjE5OC0xLjQ5Mi4xOTgtLjczOSAwLTEuNDEtLjExNi0yLjAxOC0uMzQ5YTQuMjA2IDQuMjA2IDAgMCAxLTEuNTY3LTEuMDI1Yy0uNDMxLS40NS0uNzc0LTEuMDE3LTEuMDEzLTEuNjk0LS4yNC0uNjc3LS4zNjMtMS44ODUtLjM2My0yLjc3MyAwLS44MzQuMTMtMS44OC4zODQtMi41NzcuMjYtLjY5Ni42MjktMS4yOTggMS4xMjktMS43OTYuNDkzLS40OTggMS4wOTUtLjg4MSAxLjgtMS4xNjJhNi42MDUgNi42MDUgMCAwIDEgMi40MjgtLjQ1N2MuODcgMCAxLjY3LjEwOSAyLjQ1LjI0Ljc4LjEyOSAxLjQ0NC4yNjUgMS45ODUuNDE1VjE4LjE3eiIvPjxwYXRoIGZpbGw9IiM1RDY0OTQiIGQ9Ik02Ljk3MiA2LjY3N3YxLjYyN2MtLjcxMi0uNDQ2LTEuNTItLjY3LTIuNDI1LS42Ny0uNTg1IDAtMS4wNDUuMTMtMS4zOC4zOTFhMS4yNCAxLjI0IDAgMCAwLS41MDIgMS4wM2MwIC40MjUuMTY0Ljc2NS40OTQgMS4wMi4zMy4yNTYuODM1LjUzMiAxLjUxNi44My40NDcuMTkyLjc5NS4zNTYgMS4wNDUuNDk1LjI1LjEzOC41MzcuMzMyLjg2Mi41ODIuMzI0LjI1LjU2My41NDguNzE4Ljg5NC4xNTQuMzQ1LjIzLjc0MS4yMyAxLjE4OCAwIC45NDctLjMzNCAxLjY5MS0xLjAwNCAyLjIzNC0uNjcuNTQyLTEuNTM3LjgxNC0yLjYwMS44MTQtMS4xOCAwLTIuMTYtLjIyOS0yLjkzNi0uNjg2di0xLjcwOGMuODQuNjI4IDEuODE0Ljk0MiAyLjkyLjk0Mi41ODUgMCAxLjA0OC0uMTM2IDEuMzg4LS40MDcuMzQtLjI3MS41MS0uNjQ2LjUxLTEuMTI1IDAtLjI4Ny0uMS0uNTUtLjMwMi0uNzktLjIwMy0uMjQtLjQyLS40Mi0uNjU1LS41NDItLjIzNC0uMTIzLS41ODUtLjI5LTEuMDUzLS41MDNhNjEuMjcgNjEuMjcgMCAwIDEtLjU4Mi0uMjcxIDEzLjY3IDEzLjY3IDAgMCAxLS41NS0uMjg3IDQuMjc1IDQuMjc1IDAgMCAxLS41NjctLjM1MSA2LjkyIDYuOTIgMCAwIDEtLjQ1NS0uNGMtLjE4LS4xNy0uMzEtLjM0LS4zOS0uNTEtLjA4LS4xNy0uMTU1LS4zNy0uMjI0LS41OThhMi41NTMgMi41NTMgMCAwIDEtLjEwNC0uNzQyYzAtLjkxNS4zMzMtMS42MzguOTk4LTIuMTcuNjY0LS41MzIgMS41MjMtLjc5OCAyLjU3Ni0uNzk4Ljk2OCAwIDEuNzkzLjE3IDIuNDczLjUxem03LjQ2OCA1LjY5NnYtLjI4N2MtLjAyMi0uNjA3LS4xODctMS4wODgtLjQ5NS0xLjQ0NC0uMzA5LS4zNTctLjc1LS41MzUtMS4zMjQtLjUzNS0uNTMyIDAtLjk5LjE5NC0xLjM3My41ODMtLjM4Mi4zODgtLjYyMi45NDktLjcxNyAxLjY4M2gzLjkwOXptMS4wMDUgMi43OTJ2MS40MDRjLS41OTYuMzQtMS4zODMuNTEtMi4zNjIuNTEtMS4yNTUgMC0yLjI1NS0uMzc3LTMtMS4xMzItLjc0NC0uNzU1LTEuMTE2LTEuNzQ0LTEuMTE2LTIuOTY4IDAtMS4yOTcuMzQtMi4zMTYgMS4wMjEtMy4wNTUuNjgtLjc0IDEuNTQ4LTEuMTEgMi42LTEuMTEgMS4wMzMgMCAxLjg1Mi4zMjMgMi40NTguOTY2LjYwNi42NDQuOTEgMS41NzIuOTEgMi43ODQgMCAuMzMtLjAzMy42NzYtLjA5NiAxLjAzOGgtNS4zMTRjLjEwNy43MDIuNDA1IDEuMjM5Ljg5NCAxLjYxMS40OS4zNzIgMS4xMDYuNTU4IDEuODUuNTU4Ljg2MiAwIDEuNTgtLjIwMiAyLjE1NS0uNjA2em02LjYwNS0xLjc3aC0xLjIxMmMtLjU5NiAwLTEuMDQ1LjExNi0xLjM0OS4zNS0uMzAzLjIzNC0uNDU0LjUzMi0uNDU0Ljg5NCAwIC4zNzIuMTE3LjY2NC4zNS44NzcuMjM1LjIxMy41NzUuMzIgMS4wMjIuMzIuNTEgMCAuOTEyLS4xNDIgMS4yMDQtLjQyNC4yOTMtLjI4MS40NC0uNjUxLjQ0LTEuMTA4di0uOTF6bS00LjA2OC0yLjU1NFY5LjMyNWMuNjI3LS4zNjEgMS40NTctLjU0MiAyLjQ4OS0uNTQyIDIuMTE2IDAgMy4xNzUgMS4wMjYgMy4xNzUgMy4wOFYxN2gtMS41NDh2LS45NTdjLS40MTUuNjgtMS4xNDMgMS4wMi0yLjE4NiAxLjAyLS43NjYgMC0xLjM4LS4yMi0xLjg0My0uNjYxLS40NjItLjQ0Mi0uNjk0LTEuMDAzLS42OTQtMS42ODQgMC0uNzc2LjI5My0xLjM4Ljg3OC0xLjgxLjU4NS0uNDMxIDEuNDA0LS42NDcgMi40NTctLjY0N2gxLjM0VjExLjhjMC0uNTU0LS4xMzMtLjk3MS0uMzk5LTEuMjUzLS4yNjYtLjI4Mi0uNzA3LS40MjMtMS4zMjQtLjQyM2E0LjA3IDQuMDcgMCAwIDAtMi4zNDUuNzE4em05LjMzMy0xLjkzdjEuNDJjLjM5NC0xIDEuMTAxLTEuNSAyLjEyMy0xLjUuMTQ4IDAgLjMxMy4wMTYuNDk0LjA0OHYxLjUzMWExLjg4NSAxLjg4NSAwIDAgMC0uNzUtLjE0M2MtLjU0MiAwLS45ODkuMjQtMS4zNC43MTgtLjM1MS40NzktLjUyNyAxLjA0OC0uNTI3IDEuNzA3VjE3aC0xLjU2M1Y4LjkxaDEuNTYzem01LjAxIDQuMDg0Yy4wMjIuODIuMjcyIDEuNDkyLjc1IDIuMDE5LjQ3OS41MjYgMS4xNS43OSAyLjAxLjc5LjYzOSAwIDEuMjM1LS4xNzYgMS43ODgtLjUyN3YxLjQwNGMtLjUyMS4zMTktMS4xODYuNDc5LTEuOTk1LjQ3OS0xLjI2NSAwLTIuMjc2LS40LTMuMDMxLTEuMTk3LS43NTUtLjc5OC0xLjEzMy0xLjc5Mi0xLjEzMy0yLjk4NCAwLTEuMTYuMzgtMi4xNTEgMS4xNC0yLjk3NS43NjEtLjgyNSAxLjc5LTEuMjM3IDMuMDg4LTEuMjM3LjcwMiAwIDEuMzQ2LjE0OSAxLjkzLjQ0N3YxLjQzNmEzLjI0MiAzLjI0MiAwIDAgMC0xLjc3LS40OTVjLS44NCAwLTEuNTEzLjI2Ni0yLjAxOS43OTgtLjUwNS41MzItLjc1OCAxLjIxMy0uNzU4IDIuMDQyek00MC4yNCA1LjcydjQuNTc5Yy40NTgtMSAxLjI5My0xLjUgMi41MDUtMS41Ljc4NyAwIDEuNDIuMjQ1IDEuODk5LjczNC40NzkuNDkuNzE4IDEuMTcuNzE4IDIuMDQyVjE3aC0xLjU2NHYtNS4xMDZjMC0uNTUzLS4xNC0uOTgtLjQyMi0xLjI4NC0uMjgyLS4zMDMtLjY1Mi0uNDU1LTEuMTEtLjQ1NS0uNTMxIDAtMS4wMDIuMjAyLTEuNDExLjYwNi0uNDEuNDA1LS42MTUgMS4wMjItLjYxNSAxLjg1MVYxN2gtMS41NjNWNS43MmgxLjU2M3ptMTQuOTY2IDEwLjAyYy41OTYgMCAxLjA5Ni0uMjUzIDEuNS0uNzU4LjQwNC0uNTA2LjYwNi0xLjE1Ny42MDYtMS45NTUgMC0uOTE1LS4yMDItMS42Mi0uNjA2LTIuMTE0LS40MDQtLjQ5NS0uOTItLjc0Mi0xLjU0OC0uNzQyLS41NTMgMC0xLjA1LjIyNC0xLjQ5MS42Ny0uNDQyLjQ0Ny0uNjYyIDEuMTMzLS42NjIgMi4wNTggMCAuOTU4LjIxMiAxLjY3LjYzOCAyLjEzOC40MjUuNDY5Ljk0Ni43MDMgMS41NjMuNzAzek01My4wMDQgNS43MnY0LjQyYy41NzQtLjg5NCAxLjM4OC0xLjM0MSAyLjQ0LTEuMzQxIDEuMDIyIDAgMS44NTcuMzgzIDIuNTA2IDEuMTQ5LjY0OS43NjYuOTczIDEuNzgxLjk3MyAzLjA0NyAwIDEuMTM4LS4zMDkgMi4xMDktLjkyNSAyLjkxMi0uNjE3LjgwMy0xLjQ2MyAxLjIwNS0yLjUzNyAxLjIwNS0xLjA3NSAwLTEuODk0LS40NDctMi40NTctMS4zNFYxN2gtMS41OFY1LjcyaDEuNTh6bTkuOTA4IDExLjEwNGwtMy4yMjMtNy45MTNoMS43MzlsMS4wMDUgMi42MzIgMS4yNiAzLjQxNWMuMDk2LS4zMi40OC0xLjQ1OCAxLjE1LTMuNDE1bC45MDktMi42MzJoMS42NmwtMi45MiA3Ljg2NmMtLjc3NyAyLjA3NC0xLjk2MyAzLjExLTMuNTU5IDMuMTFhMi45MiAyLjkyIDAgMCAxLS43MzQtLjA3OXYtMS4zNGMuMTcuMDQyLjM1MS4wNjQuNTQzLjA2NCAxLjAzMiAwIDEuNzU1LS41NyAyLjE3LTEuNzA4eiIvPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik04OS42MzIgNS45Njd2LS43NzJhLjk3OC45NzggMCAwIDAtLjk3OC0uOTc3aC0yLjI4YS45NzguOTc4IDAgMCAwLS45NzguOTc3di43OTNjMCAuMDg4LjA4Mi4xNS4xNzEuMTNhNy4xMjcgNy4xMjcgMCAwIDEgMS45ODQtLjI4Yy42NSAwIDEuMjk1LjA4OCAxLjkxNy4yNTkuMDgyLjAyLjE2NC0uMDQuMTY0LS4xM20tNi4yNDggMS4wMWwtLjM5LS4zODlhLjk3Ny45NzcgMCAwIDAtMS4zODIgMGwtLjQ2NS40NjVhLjk3My45NzMgMCAwIDAgMCAxLjM4bC4zODMuMzgzYy4wNjIuMDYxLjE1LjA0Ny4yMDUtLjAxNC4yMjYtLjMwNy40NzItLjYwMS43NDYtLjg3NC4yODEtLjI4LjU2OC0uNTI2Ljg4My0uNzUxLjA2OC0uMDQyLjA3NS0uMTM3LjAyLS4ybTQuMTYgMi40NTN2My4zNDFjMCAuMDk2LjEwNC4xNjUuMTkyLjExN2wyLjk3LTEuNTM3Yy4wNjgtLjAzNC4wODktLjExNy4wNTUtLjE4NGEzLjY5NSAzLjY5NSAwIDAgMC0zLjA4LTEuODY2Yy0uMDY4IDAtLjEzNi4wNTQtLjEzNi4xM20wIDguMDQ4YTQuNDg5IDQuNDg5IDAgMCAxLTQuNDktNC40ODIgNC40ODggNC40ODggMCAwIDEgNC40OS00LjQ4MiA0LjQ4OCA0LjQ4OCAwIDAgMSA0LjQ4OSA0LjQ4MiA0LjQ4NCA0LjQ4NCAwIDAgMS00LjQ5IDQuNDgybTAtMTAuODVhNi4zNjMgNi4zNjMgMCAxIDAgMCAxMi43MjkgNi4zNyA2LjM3IDAgMCAwIDYuMzcyLTYuMzY4IDYuMzU4IDYuMzU4IDAgMCAwLTYuMzcxLTYuMzYiLz48L2c+PC9zdmc+">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">没有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/06/30/莫比乌斯反演总结/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498829981/83039_mrjvqk.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/06/30/莫比乌斯反演总结/">
+                            <h3 class="media-heading">莫比乌斯反演总结</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>首先大家都知道莫比乌斯反演是什么对吧，那么下面直接对一些常用的公式推导技巧进行一些汇总<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/06/30/莫比乌斯反演详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830269/83058_sineyx.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/06/30/莫比乌斯反演详解/">
+                            <h3 class="media-heading">莫比乌斯反演详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>终于把莫比乌斯反演搞得一清二楚啦（原来我就是那么一个小地方没搞懂，<del>唉我真是太垃圾了</del>），下面对这一神奇的数论定理予以详细的介绍：</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/06/30/杜教筛原理详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830262/83053_kwvev3.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/06/30/杜教筛原理详解/">
+                            <h3 class="media-heading">杜教筛原理详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>刚才简单看了下，正如某位神犇博客上所说的，大千世界，无(sang)奇(xin)不(bing)有(kuang)，居然有比线性筛还要快的算法——杜教筛 orz<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/06/30/狄利克雷卷积详解/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830177/86548_fqol95.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/06/30/狄利克雷卷积详解/">
+                            <h3 class="media-heading">狄利克雷卷积详解</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年6月30日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>作为初入莫比乌斯反演的Oier，怎么能不学狄利克雷卷积呢？下面我就来简单地介绍一下：<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/01/Dilworth定理/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830244/86565_hccjkv.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/01/Dilworth定理/">
+                            <h3 class="media-heading">Dilworth定理</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月1日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>今天这个定理是我在逛某神犇博客时看到的，是一个以前从未听说过的定理，今天我就来简单介绍一下<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830261/85371_fltskc.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/11/6164-「美团-CodeM-初赛-Round-A」数列互质/">
+                            <h3 class="media-heading">#6164. 「美团 CodeM 初赛 Round A」数列互质</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6164$. 「美团 CodeM 初赛 Round A」数列互质<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830238/86242_qg6y9f.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/11/6161-「美团-CodeM-初赛-Round-A」倒水/">
+                            <h3 class="media-heading">#6161. 「美团 CodeM 初赛 Round A」倒水</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6161$. 「美团 CodeM 初赛 Round A」倒水<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/11/6190-序列查询/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830224/86437_sz8fta.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/11/6190-序列查询/">
+                            <h3 class="media-heading">#6190. 序列查询</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6190$. 序列查询<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830203/85373_qtkof1.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/11/6075-「2017-山东一轮集训-Day6」重建/">
+                            <h3 class="media-heading">#6075. 「2017 山东一轮集训 Day6」重建</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6075$. 「2017 山东一轮集训 Day6」重建<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <img class="media-image" src="http://res.cloudinary.com/goseqh/image/upload/v1498830242/83064_qh7t1c.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="https://gqh123.github.io/2017/07/11/6136-「2017-山东三轮集训-Day4」Left/">
+                            <h3 class="media-heading">#6136. 「2017 山东三轮集训 Day4」Left</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2017年7月11日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>题解：$Libre$ $Online$ $Judge$ # $6136$. 「2017 山东三轮集训 Day4」Left<br></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="没有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 78 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('http://res.cloudinary.com/goseqh/image/upload/v1501465056/85754_kmawco.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+        var algoliaClient = algoliasearch('VG6E0WF7PE', '5560ff8b18848ff4be8803fcf2cec428');
+        var algoliaIndex = algoliaClient.initIndex('Renatus&#39;s Blog');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    </body>
+</html>
