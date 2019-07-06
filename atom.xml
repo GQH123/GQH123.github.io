@@ -238,6 +238,45 @@
   </entry>
   
   <entry>
+    <title>题目分析要领II</title>
+    <link href="https://gqh123.github.io/2019/07/06/%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90%E8%A6%81%E9%A2%86II/"/>
+    <id>https://gqh123.github.io/2019/07/06/题目分析要领II/</id>
+    <published>2019-07-06T03:59:07.000Z</published>
+    <updated>2019-07-06T04:30:07.719Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>洗澡时的领悟，本文予以记录<br><a id="more"></a></p>
+<!-- toc -->
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>继上一篇题目分析要领已经过去了一年半多的时间，值此CF Div.1受挫之际，我决定再次改进我思维的缺陷，改变我长久以来形成习惯的对题目的理解与分析方式。</p>
+<p>本次的《题目分析要领II》，大概与其名稍有不符，本文不会讲解题目分析的步骤与过程，而是更多地侧重分析题目时的思维上的注意事项，由此加以避免。</p>
+<h1 id="题目分析要点"><a href="#题目分析要点" class="headerlink" title="题目分析要点"></a>题目分析要点</h1><p>不妨先说一说过去的习惯是什么样子的，由此产生对比。</p>
+<h2 id="过去"><a href="#过去" class="headerlink" title="过去"></a>过去</h2><p>如果将解决题目比作是挖掘星球岩层下的矿石，那么我过去则是习惯于直降星球表面，拿起钻头就开始向下进发。</p>
+<p>换句话说，我习惯于紧盯题目本身，从题目出发，希望能够同平常一般从上挖到下。</p>
+<p>有的时候（尤其是应对较为简单的题目时），这样的方式往往比较有效，因为，许多简单的题目正是这样一个抽丝剥茧的过程，我们只要顺着思路做，最后常常可以做出来。</p>
+<p>但是，这样一来，题目的区分性也就随之降低。因为，若不是入门，知识不全或是对题目分析有障碍的人，大部分人都可以轻松解决题目。</p>
+<p>因此，越向难度高的方向走，我就越能感受到这种思维方式的障碍。好像岩层过厚过硬，钻头变得十分无力。</p>
+<p>以致我长期以来，在高难度比赛上的表现都不够优秀（例如NOI，CF Div.1，AGC等）。</p>
+<p>那么，更好，更灵活的思维方式是什么呢？</p>
+<h2 id="如今"><a href="#如今" class="headerlink" title="如今"></a>如今</h2><p>当然，所有的思维都应是灵活的，领悟到这一点，也不意味着我们就一定抛弃原有的。</p>
+<p>还是用上面的例子作为比喻，这样的思维方式，就好像是，我们回到宇宙之中，在将目标星球观察一番后，找到一颗“彗星”来撞击它，打碎它的岩层。</p>
+<p><del>（比喻可能有些不当，请体会精神…）</del></p>
+<p>也就是说，我们不要把目光局限在这样一道题上，<strong>多去联想，多去类比，思考关键性质</strong>，而非急于尝试解决问题。</p>
+<p>从题目的外部“旁征博引”，他山之石攻我璞玉。</p>
+<p>这一点上，也好像是我们<strong>以退为进，以守为攻</strong>，有一种以柔克刚的意思。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>所以，我们有的时候可能太盲目，太浮躁了，静下来思考本质，戒骄戒躁，也许更有利于问题的解决。这一点不只适用于<code>Programming Contest</code>，可能人生中的问题大多也都如此。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;洗澡时的领悟，本文予以记录&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="技巧" scheme="https://gqh123.github.io/tags/%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Oier的知识</title>
     <link href="https://gqh123.github.io/2019/06/28/Oier%E7%9A%84%E7%9F%A5%E8%AF%86/"/>
     <id>https://gqh123.github.io/2019/06/28/Oier的知识/</id>
@@ -1225,9 +1264,9 @@ YES
     
       <category term="题解" scheme="https://gqh123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
     
-      <category term="Hash" scheme="https://gqh123.github.io/tags/Hash/"/>
-    
       <category term="LCT" scheme="https://gqh123.github.io/tags/LCT/"/>
+    
+      <category term="Hash" scheme="https://gqh123.github.io/tags/Hash/"/>
     
       <category term="UOJ" scheme="https://gqh123.github.io/tags/UOJ/"/>
     
@@ -1675,38 +1714,6 @@ change 6 4846
       <category term="BZOJ" scheme="https://gqh123.github.io/tags/BZOJ/"/>
     
       <category term="LCT" scheme="https://gqh123.github.io/tags/LCT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>原创题目&amp;idea汇总</title>
-    <link href="https://gqh123.github.io/2018/01/05/%E5%8E%9F%E5%88%9B%E9%A2%98%E7%9B%AE-idea%E6%B1%87%E6%80%BB/"/>
-    <id>https://gqh123.github.io/2018/01/05/原创题目-idea汇总/</id>
-    <published>2018-01-05T10:51:01.000Z</published>
-    <updated>2019-06-27T07:29:24.836Z</updated>
-    
-    <content type="html"><![CDATA[<!-- toc -->
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>记录了一些生活中想出来的小idea什么的……<br><a id="more"></a></p>
-<p>由于我比(shi)较(fen)菜，所以大部分的idea我自己并不能够解决，因此数据范围也没有确定……但是请各位不要随手拿去出题什么的，至少告诉我一下……</p>
-<p>反正应该都是些非常菜的东西啦，只是因为我太弱所以才不会……</p>
-<h2 id="Renatus的硬币I"><a href="#Renatus的硬币I" class="headerlink" title="Renatus的硬币I"></a>Renatus的硬币I</h2><p>蒟蒻Renatus有一排$n$个硬币，有一天它发现它们正好全部反面朝上，于是就想用它们玩一个小游戏。这个游戏是这样的，每次Renatus会等概率选择一枚硬币，将它翻面，仅此而已…..因为Renatus太咸鱼了，所以他重复了$m$次这样的操作，最后，他发现好多的硬币仍然是反面朝上的，并且是连续的，于是，他想知道最长的连续反面朝上的硬币串的长度期望是多少？</p>
-<p>输入$n$, $m$，请输出此时的答案</p>
-<h2 id="Renatus的硬币II"><a href="#Renatus的硬币II" class="headerlink" title="Renatus的硬币II"></a>Renatus的硬币II</h2><p>蒟蒻Renatus有一排$n$个硬币，有一天他在桌子上画了许多个圆圈，这些圆圈恰好排成一行，于是就用它们玩了一个小游戏。这个游戏是这样的，每次Renatus会等概率选择一个圆圈，然后放一枚硬币上去（如果上面已经有了硬币，那么就把它堆在那枚硬币上）…..因为Renatus太咸鱼了，所以他重复了$m$次这样的操作，最后，他发现这些硬币堆高低不齐，于是，他想知道在一段区间$[l, r]$中，硬币数最多的那一堆的硬币数的期望是多少，由于Renatus特别ZZ，所以一共有$K$次询问</p>
-<p>输入$n$, $m$，$K$, 以及$K$个询问的区间，请输出此时的答案</p>
-<h2 id="Renatus的硬币III"><a href="#Renatus的硬币III" class="headerlink" title="Renatus的硬币III"></a>Renatus的硬币III</h2><p>蒟蒻Renatus有一排$n$个硬币，有一天他在桌子上画了许多个圆圈，这些圆圈恰好排成一行，于是就用它们玩了一个小游戏。这个游戏是这样的，每次Renatus会以一定概率选择某一个圆圈（概率已知），然后放一枚硬币上去（如果上面已经有了硬币，那么就把它堆在那枚硬币上）…..因为Renatus太咸鱼了，所以他重复了$m$次这样的操作，最后，他发现这些硬币堆高低不齐，于是，他想知道在一段区间$[l, r]$中，硬币数最多的那一堆的硬币数的期望是多少，由于Renatus特别ZZ，所以一共有$K$次询问</p>
-<p>输入$n$, $m$，以及$n$个圆圈各自被选中的概率$p_i$，保证其和为$1$, 最后是$K$, 以及$K$个询问的区间，请输出此时的答案</p>
-<p><del>总之，我其实就是Renatus啦</del></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;!-- toc --&gt;
-&lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;记录了一些生活中想出来的小idea什么的……&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="原创题目" scheme="https://gqh123.github.io/tags/%E5%8E%9F%E5%88%9B%E9%A2%98%E7%9B%AE/"/>
     
   </entry>
   
